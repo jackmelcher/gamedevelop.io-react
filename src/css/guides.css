@@ -1,0 +1,120 @@
+:root{
+    --guide-link-article-color: #000000;
+    --guide-link-header-color: #000000;
+    --bg-img-color: #ffffff;
+
+}
+html[data-theme = "dark"]{
+    --guide-link-article-color: #ececec;
+    --guide-link-header-color: #ececec;
+    --bg-img-color: #bdbdbd;
+}
+.sidenav{width: 320px;}
+.guideslistTitle{
+    margin-left: -20px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+.guidelink{
+    margin: 16px 0px;
+}
+.guidelink > a{
+    color: var(--guide-link-article-color);
+}
+.guidelink > ul > li >a{
+    color: var(--guide-link-header-color);
+}
+.guidelink > ul > li > ul > li > a{
+    color: var(--guide-link-header-color);
+}
+.guidelink > ul > li > ul{
+    margin-top: 8px;
+}
+.guideHeaders, .guideHeaders > *,.guideHeaders > * >*{
+    margin: 0px;
+}
+.guideHeaders > *
+{
+    margin-bottom: 24px;
+}
+.guideHeaders > a {
+    color: var(--link-color);
+    font-size: 16pt;
+    font-weight: bold;
+}
+ul{line-height: 1.5;}
+li{margin-bottom: 8px;}
+
+.guideflex-container {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+
+    padding-left: 33vw;
+    padding-right: 40px;
+    padding-bottom: 64px;
+}
+.guideflex-container > div {
+    min-width: 200px;
+    flex-basis: 200px;
+    flex-grow: 1;
+    -webkit-flex-grow: 1;
+}
+.guideflex{
+    max-width: 33vw !important;
+}
+.guideflex > div{
+    margin-bottom: 64px;
+}
+.guideflex > .lastmodified{
+    font-size: 12px; 
+    color: var(--footer-color);
+    margin: 0;
+    margin-top: -24px;
+    font-style: italic;
+}
+.guideflex > div > .guideimg {
+    text-align: center;
+    background-color: var(--bg-img-color);
+}
+.guideflex > div > .guideimg > a{
+    display: block;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    line-height: 0;
+}
+.guideflex > div > .guideimg > * > img{
+    max-height: 80px;
+    max-width: 90%;
+}
+.guideflex > div > .guideimg > i {
+    color: #000000;
+}
+@media (min-width: 1080px) and (max-width: 1250px){
+    .guideflex-container{
+        padding-left: 440px;
+        padding-right: 30px;
+    }
+    .guideflex{
+        max-width: 70% !important;
+    }
+}
+@media (min-width: 769px) and (max-width: 1080px){
+    .guideflex-container{
+    padding-left: 380px;
+    padding-right: 20px;
+    }
+    .guideflex{
+        max-width: 90% !important;
+    }
+}
+@media (max-width: 768px){
+    .guideflex-container{
+    padding-left: 20px;
+    padding-right: 20px;
+    }
+    .guideflex{
+        max-width: 100% !important;
+    }
+}

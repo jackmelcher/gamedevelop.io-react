@@ -1,0 +1,24 @@
+Name,Link,Categories,Pricing,Platforms,Tags,Description
+Table Top Simulator,http://berserk-games.com/tabletop-simulator/,Game Creation System,Paid,"Windows, Mac","3D, Lua",Make and script TableTop games.
+Super Mario Maker 2,https://supermariomaker.nintendo.com/,Game Creation System,Paid,Nintendo,2D,"Play and create side-scrolling Super Mario courses anytime, anywhere with the Super Mario Maker 2 game for the Nintendo Switch system."
+Warcraft 3 Reforged,https://playwarcraft3.com/en-us/,"Level Editor, Custom Games",Paid,Windows,RTS,Create custom games using the built-in World Editor.
+Starcraft 2,https://starcraft2.com/en-us/,"Level Editor, Custom Games","Free, Paid",Windows,RTS,Create custom games using the built-in World Editor.
+Overwatch,https://playoverwatch.com/en-us/,Custom Games,Paid,Windows,FPS,Create custom games using the built-in Workshop.
+Age of Empires 2,https://www.ageofempires.com/games/aoeiide/,"Level Editor, Custom Games",Paid,Windows,RTS,Create custom games using the built-in Scenario Editor.
+Roblox Studio,https://www.roblox.com/create,Game Creation System,"Free, Paid","Windows, Mac, iOS, Android, Xbox, Rift, Vive",Lua,"Create assets, scripted objects, levels, and games for the Roblox MMO."
+GMod,https://gmod.facepunch.com/,Sandbox,Free,Windows,Lua,"Create scripted objects, levels, and share games. Base is Source Engine. Requires self-hosting servers to share."
+Minecraft,https://www.minecraft.net/en-us/about-minecraft,Sandbox,Paid,"Windows, Xbox, Nintendo Switch, Android, iOS",Java,"Create scripted objects, texture packs, levels, and share games. Requires self-hosting servers to share."
+Fallout 4,https://store.steampowered.com/app/377160/Fallout_4/,Game,Paid,"Windows, Xbox, PlayStation",RPG,A popular Post-Apocalyptic RPG that is an excellent base for modding.
+Elder Scrolls 5: Skyrim Special Edition,https://store.steampowered.com/app/489830/The_Elder_Scrolls_V_Skyrim_Special_Edition/,Game,Paid,"Windows, Xbox, PlayStation",RPG,A popular Fantasy RPG that is an excellent base for modding.
+Nexus Mods,https://www.nexusmods.com/,"Mod Hosting, Mod Community",Free,Web,,Popular Mod hosting and games modding community.
+Reshade,https://reshade.me/,Reshading Tool,Free,Windows,HLSL,A Tool used to inject custom post-processing into almost any game. Uses custom shader language based on HLSL.
+Core,https://www.coregames.com/,Game Creation System,Free,Windows,Lua,Create and share your own games using a creation system built on Unreal Engine 4
+Grand Theft Auto V,https://store.steampowered.com/app/271590/Grand_Theft_Auto_V/,Game,Paid,"Windows, Xbox, PlayStation",Sim,A popular Sim Sandbox that is an excellent base for modding.
+5mods,https://www.gta5-mods.com/,"Mod Hosting, Mod Community",Free,Web,,Popular Mod hosting and games modding community specifically for GTA 5.
+FiveM,https://fivem.net/,Mod Framework,Free,Windows,"Lua, C#, Javascript","FiveM is a multiplayer modification framework for GTA V, allowing you to play on customized dedicated servers."
+Dreams,https://www.playstation.com/en-us/games/dreams-ps4/,Game Creation System,Paid,PlayStation,,Create and share custom games or experiences using the built-in creation system.
+Little Big Planet 3,https://www.playstation.com/en-us/games/littlebigplanet-3-ps4/,Game Creation System,Paid,PlayStation,2D,Create and share Little Big Planet levels using the built-in level editor.
+Cryta,https://crayta.com/,Game Creation System,Paid,Web,"3D, Lua",Create and share your own games using a creation system built on Unreal Engine 4. Exclusive to Stadia.
+Ylands,https://ylands.com/,Game Creation System,Free,"PC, iOS, Android","3D, Visual Scripting",Create and share your own games using a creation system built on Unity.
+CurseForge,https://www.curseforge.com/,"Mod Hosting, Mod Community",Free,"Windows, Mac",,Popular Mod hosting and games modding community.
+Overwolf,https://www.overwolf.com/,Game App Hosting,Free,"Windows, Mac",,"Overwolf is an open platform for building gaming apps for top PC games. Use simple HTML and JavaScript to build native desktop apps - installer, desktop icon, auto updates - the works! What would you build?"

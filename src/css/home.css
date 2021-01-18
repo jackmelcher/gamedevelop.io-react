@@ -1,0 +1,15 @@
+.home{
+    max-width: 1600px;
+    text-align: center;
+    padding-bottom: 32px;
+  }
+.home > p {
+font-size: 20px;
+margin-top: 8px;
+margin-bottom: 12px;
+}
+.home > h2 {
+margin-top: 36px;
+margin-bottom: 8px;
+}
+.home > a {margin-bottom: 16px;}

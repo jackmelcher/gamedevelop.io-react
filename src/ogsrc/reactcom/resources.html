@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>GameDevelop.io Resources</title>
+        <meta name="description" content="GameDevelop.io is a Resource Website for Game Development.">
+        <link rel="canonical" href="https://www.gamedevelop.io/resources">
+        <!-- Site Settings -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="height=device-height, 
+            width=device-width, initial-scale=1.0, 
+            minimum-scale=1.0, maximum-scale=1.0, 
+            user-scalable=no, width=device-width">
+        
+        <!-- Meta Properties -->
+        <meta property="og:site_name" content="GameDevelop.io">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="GameDevelop.io Resources">
+        <meta property="og:description" content="Explore a database full of tools and services for game development.">
+        <meta property="og:image" content="https://www.gamedevelop.io/images/logo1.png">
+        <meta property="og:url" content="https://www.gamedevelop.io/resources">
+
+        <!-- Favicons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+        <link rel="manifest" href="favicons/site.webmanifest">
+        <link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+        
+        <!-- Style -->
+        <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+        <link rel="stylesheet" type="text/css" href="css/resources.css">
+        <link rel="stylesheet" type="text/css" href="css/fontawesome-free-5.13.1-web/css/all.min.css">
+        
+        <!-- Scripts -->
+        <script src="js/papaparse.min.js"></script> 
+    </head>
+
+    <body>
+        <nav class="navbar">
+            <button class="button sidenavbutton" onclick="ToggleSide()">
+                <i class="menuicon fas fa-bars"></i>
+            </button>
+            <a href="/" class="button button_logo">
+                <img src="images/logo.svg" alt="logo" class="logoimg">
+            </a>
+            <a href="resources.html" class="button button_nav">
+                Resources
+            </a>
+            <a href="guides.html" class="button button_nav">
+                Guides
+            </a>
+            <button class="button settingsnavbutton" onclick="ToggleSettings()">
+                <i class="menuicon fas fa-cog"></i>
+            </button>
+        </nav>
+        <div class="settingsnav">
+            <p >
+                <span id="themetext">Light Mode:</span>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider round"></span>
+                </label>
+            </p>
+        </div>
+        <div class="sidenav">
+            <div class="bold">Table:</div>
+            <br>
+            <div>
+                <select id="category" onchange="SetHash(this.value)">
+                    <option value="pop">Popular Tools and Services</option>
+                    <optgroup label="Software & Tools"> 
+                        <option value="2d">2D Art</option>
+                        <option value="3d">3D Art</option>
+                        <option value="oart">Other Art</option>
+                        <option value="analytics">Analytics</option>
+                        <option value="audio">Audio</option>
+                        <option value="business">Business</option>
+                        <option value="communication">Communication</option>
+                        <option value="design">Design</option>
+                        <option value="engine">Engines and Frameworks</option>
+                        <option value="oengine">Other Engineering</option>
+                        <option value="mod">Modding & Creation Platforms</option>
+                        <option value="monetization">Monetization</option>
+                        <option value="sdk">SDKs</option>
+                        <option value="security">Security</option>
+                        <option value="tasking">Tasking and Collaboration</option>
+                        <option value="vcs">Version Control Software</option>
+                        <option value="video">Video</option>
+                        <option value="website">Websites</option>
+                        <option value="writing">Writing</option>
+                    </optgroup>
+                    <optgroup label="Assets & Services">
+                        <option value="assets">Assets</option>
+                        <option value="services">Services</option>
+                    </optgroup>
+                    <optgroup label="Hardware & Peripherals">
+                        <option value="hardware">Hardware</option>
+                        <option value="peripherals">Peripherals</option>
+                    </optgroup>
+                    <optgroup label="Publishing & Distribution">
+                        <option value="funding">Funding Options</option>
+                        <option value="gamehosts">Hosting & Storefronts</option>
+                        <option value="news">News Outlets</option>
+                        <option value="publisher">Publishers</option>
+                    </optgroup> 
+                    <optgroup label="Learning & Communities">
+                        <option value="communities">Communities</option>
+                        <option value="conventions">Conventions</option>
+                        <option value="jams">Game Jams</option>
+                        <option value="jobs">Job Boards</option>
+                        <option value="learning">Learning Websites</option>
+                        <option value="schools">Schools</option>
+                    </optgroup>
+                </select>
+            </div>
+            <br>
+            <div>
+                <div class="bold">Filters:</div>
+                <div>
+                    <p class="listTitle">Price:</p>
+                    <ul id="price" class="nobullets">
+                    </ul>    
+                </div>
+
+                <div>
+                    <p class="listTitle">Platform:</p>
+                    <ul id="platform" class="nobullets">
+                    </ul>    
+                </div>   
+
+                <div>
+                    <p class="listTitle">Categories:</p>
+                    <ul id="categories" class="nobullets">
+                    </ul>
+                </div>
+                <div>
+                    <p class="listTitle">Tags:</p>
+                    <ul id="tag" class="nobullets">
+                    </ul>
+                </div>
+            </div>   
+            <div>
+                <br><br>
+            </div> 
+        </div>
+        <section class="resource">
+            <div>
+                <h1 id="tname"></h1>
+                <div id="showData">
+                    <!-- Table is added here -->
+                </div>
+            </div>
+        </section>
+        <div class="footer">
+            <a href="/about.html">About</a>
+            <a href="/suggestion.html">Make a Suggestion</a>
+            <a href="/contact.html">Contact</a>
+            <a href="https://www.patreon.com/jackmelcher" target="_blank">Patreon</a>
+            <a href="https://www.ko-fi.com/jackmelcher" target="_blank">Ko-fi</a>
+            <br>
+            <p>© 2020 GameDevelop.io All rights reserved. All trademarks and registered trademarks are the property of their respective owners.</p>
+        </div>
+    </body>
+</html>
+<script src="js/theme.js"></script>
+<script src="js/rsidebar.js"></script>
+<script src="js/resources.js"></script>

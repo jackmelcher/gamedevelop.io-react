@@ -1,0 +1,50 @@
+.contact{
+  max-width: 800px;
+  font-weight: bold;
+  background-color: var(--form-bg-color);
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 #00000071;
+  margin: 10px;
+  margin-bottom: 32px;
+  padding: 0px 32px;
+}
+.contact > form > p{
+  font-size: 20px;
+}
+.contact > form > p > label > input{
+  font-size: 20px;
+  width: 100%;
+}
+.contact > form > p > label > textarea {
+  font-size: 20px;
+  width: 100%;
+  height: 120px; resize: none;
+}
+.contact >p:last-child{
+  text-align: center;
+}
+.bcm{
+  background-color: #ff813f;
+}
+.discord{
+  background-color: #7289da;
+}
+.about{
+  max-width: 800px;
+  padding-bottom: 32px;
+  text-align: center;
+}
+.about>p{
+  font-size: 20px;
+}
+.about > a {
+  margin-bottom: 16px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+.textcenter{
+  text-align: center;
+}
+.textleft{
+  text-align: left;
+}
