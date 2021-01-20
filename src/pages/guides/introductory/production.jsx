@@ -1,0 +1,382 @@
+import React from "react"
+import { Link } from "gatsby"
+
+import Layoutg from "../../../components/layoutguides"
+import SEO from "../../../components/seo"
+
+const ProductionPage = () => (
+    <Layoutg>
+        <SEO title="Producing a Video Game" description="Learn about standard production practices and techniques."/>
+        <h1 id="top">Producing a Video Game</h1>
+            <div id="vc">
+                <h3>Setup Version Control</h3>
+                <p>
+                    Version Control Systems (VCS) let you backup your work, keep a history of changes, and collaborate with multiple developers on the same project.
+                    Pick a system that works bet for you and your team.
+                </p>
+                <p>
+                    A distributed VCS, such as Git, keeps a copy of the codebase and the change history on a repository on all machines.
+                    When a user pushes changes to the master repository, other users can pull those changes to their machines.
+                    Users can also make branches of the codebase to isolate development, then merge the changes into the master copy.
+                </p>
+                <p>
+                    A centralized VCS, such as Perforce, keeps a master copy and the change history on a central server.
+                    Users connect to the server and checkout a copy of a file they would like to work on.
+                    Checking out a file locks it out, and prevents other users from modifying it until the file is checked back in.
+                </p>
+                <p>
+                    Git is the most widely used VCS because it is easy to learn, setup, and use.
+                    Remote work is also easily supported thanks to the multitude of platforms that offer free cloud hosting for git repositories.
+                    But large files and large change histories may be an issue for machines with little local storage space.
+                </p>
+                <p>
+                    Perforce is widely used in AAA Studios because it's excellent for projects with a lot of large assets and files.
+                    Users only have to copy files to their machine that they need to work on.
+                    Users also can't work on the same file simultaneously.
+                </p>
+                <p>
+                    Select a VCS that works best for your team and the project's needs.
+                </p>
+            </div>
+            <div id="vcstools">
+                <h3>Version Control Recommendations</h3>
+                <b>Version Control Systems</b>
+                <p class="guideimg">
+                    <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/guides/git-logo.svg" alt="Git Logo"/>
+                    </a>
+                    <a href="https://www.perforce.com/products/helix-core" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/guides/perforce-logo.png" alt="Perforce Logo"/>
+                    </a> 
+                    <a href="https://www.plasticscm.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/guides/plastic-logo.svg" alt="PlsticSCM Logo"/>
+                    </a>
+                    <i>
+                        Perforce includes GUI Client. <br/>
+                        Plastic includes GUI Client and offers Repo Hosting. <br/><br/>
+                    </i>
+                </p>
+
+                <b>Version Control Repo Hosts</b>
+                <p class="guideimg">
+                    <a href="https://github.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/guides/github-logo.svg" alt="Github Logo"/>
+                    </a>
+                    <a href="https://bitbucket.org/" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/guides/bitbucket-logo.svg" alt="Bitbucket Logo"/>
+                    </a>
+                    <a href="https://gitlab.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/guides/gitlab-logo.svg" alt="Gitlab Logo"/>
+                    </a>
+                    <a href="https://www.assembla.com/home" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/guides/assembla-logo.png" alt="Assembla Logo"/>
+                    </a>
+                    <i>
+                        Github, Gitlab, and Bitbucket are mainly for Git repo hosting. <br/>
+                        Assembla is mainly for Perforce hosting. <br/><br/>
+                    </i>
+                </p>
+                
+                <b>Git GUI Clients</b>
+                <p class="guideimg">
+                    <a href="https://www.sourcetreeapp.com/">
+                        <img src="/images/guides/sourcetree-logo.svg" alt="Sourcetree Logo"/>
+                    </a>
+                    <a href="https://www.gitkraken.com/">
+                        <img src="/images/guides/gitkraken-logo.svg" alt="Gitkraken Logo"/>
+                    </a>
+                </p>
+                <p>
+                    <b><Link to="/resources#vcs">Full list of Version Control Systems, Hosts, and Tools</Link></b>
+                </p>
+            </div>
+            <div id="tasking">
+                <h3>Setup Task Management</h3>
+                <p>
+                    Use a task management process in order to keep track of tasking on a daily, weekly, and monthly basis.
+                    Pick a method that works best for you and your team.
+                </p>
+                <p>
+                    If you are working as a solo dev or in a small team, then it's usually best to use TODO lists and Kanban Boards.
+                    Some are as simple as paper TODO lists, sticky note scrum boards, or digital kanban boards.
+                </p>
+                <p>
+                    If you are working with a very large team, then a more complex system is necessary.
+                    Agile task manamgement applications let teams plan out a production schedule, organize development, track progress, and report issues.
+                </p>
+                <p>
+                    Use the system that fits your needs and works best for you.
+                </p>
+            </div>
+            <div id="tasktools">
+                <h3>Task Managment Recommendations</h3>
+                <b>TODO Lists Methods</b>
+                <p style={{textAlign: "center"}}>
+                    Pencil and Paper <br/>
+                    <i class="far fa-edit fa-5x"></i> <br/><br/>
+                    Sticky Notes <br/>
+                    <i class="far fa-sticky-note fa-5x"></i> <br/><br/>
+                    Whiteboard <br/>
+                    <i class="fas fa-chalkboard fa-5x"></i> <br/><br/>
+                    Text File <br/>
+                    <i class="far fa-file-alt fa-5x"></i> <br/><br/>
+                </p>
+                <b>TODO Lists Apps</b>
+                <p class="guideimg">
+                    <a href="https://todoist.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/guides/todoist-logo.svg" alt="Todoist Logo"/>
+                    </a>
+                    <a href="https://ticktick.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/guides/ticktick-logo.png" alt="TickTick Logo"/>
+                    </a>
+                    <a href="https://evernote.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/guides/evernote-logo.svg" alt="Evernote Logo"/>
+                    </a>
+                </p>
+                <b>Collaborative Tasking and File Sharing</b>
+                <p class="guideimg">
+                    <a href="https://trello.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/guides/trello-logo.svg" alt="Trello Logo"/>
+                    </a>
+                    <a href="https://drive.google.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/guides/drive-logo.png" alt="Google Drive Logo"/>
+                    </a>
+                    <a href="https://www.atlassian.com/software/confluence" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/guides/confluence-logo.svg" alt="Confluence Logo"/>
+                    </a>
+                    <a href="https://www.notion.so/" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/guides/notion-logo.svg" alt="Notion Logo"/>
+                    </a>
+                    <a href="https://clickup.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/guides/clickup-logo.svg" alt="Clickup Logo"/>
+                    </a>
+                </p>
+                <b>Agile Production</b>
+                <p class="guideimg">
+                    <a href="https://www.atlassian.com/software/jira" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/guides/jira-logo.svg" alt="Jira Logo"/>
+                    </a>
+                    <a href="https://azure.microsoft.com/en-us/services/devops/" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/guides/devops-logo.png" alt="Azure Devops Logo"/>
+                    </a>
+                    <a href="https://www.perforce.com/products/hansoft" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/guides/hansoft-logo.png" alt="Hansoft Logo"/>
+                    </a>
+                </p>
+                <p>
+                    <b><Link to="/resources#tasking">Full List of Task Management Software</Link></b>
+                </p>
+            </div>
+            
+            <div id="goals">
+                <h3>Set Goals and Deadlines</h3>
+                <p>
+                    Set goals for what you want to accomplish. <br/>
+                    Set deadlines for when you want to accomplish them.
+                </p>
+                <p>
+                    Make a list of tasks you would like to complete.
+                    Make these lists every day, week, or as often as you need to.
+                </p>
+                <p>
+                    Set a goal for what state you want to game to be in after a week, two weeks, or a month of work.
+                    Set a deadline for when you want to release your game.
+                </p>
+                <p>
+                    Deadlines are a means to motivate production, as they encourage team members to make progress on the project.
+                    Completing tasks regularly helps maintain your team's motivation.
+                    Don't forget to take a moment to celebrate when you achieve a major goal.
+                </p>
+                <p>
+                    The most important factor is that progress is being made on developing your game.
+                    If you miss a deadline, re-evaluate your team's production capacity and set a new deadline.
+                </p>
+                <p>
+                    If you'd like, you can make an estimate of how long it will take to produce your game.
+                    Estimate how long each feature will take to develop and sum them all up.
+                    Take the sum and then double it, this is to account for time needed to iterate design, polish gameplay, and fix bugs.
+                    For a more conservative estimate, triple the sum of the Feature estimates.
+                </p>
+            </div>
+            <div id="production">
+                <h3>Major Production Goals</h3>
+                <p>
+                    <b> Proof of Concept (Prototype) </b><br/>
+                    After rapid prototyping, a Proof of Concept build is made to validate the game's design.
+                    At this stage, the game should contain most of the core components that make up the game experience.
+                    The game should be fun on gameplay alone, as a majority of the visual and audio assets are placeholder.
+                </p>
+                <p>
+                    <b>Vertical Slice (Pre-alpha)</b> <br/>
+                    The Vertical Slice is a polished pre-alpha demo that showcases all of the game's core features with mostly finalized assets.
+                    The demo should contain all of the gameplay experiences that a player will encounter.
+                    It does not need to showcase all the content, but the content presented within the demo should be finished.
+                    The levels used to make the Vertical Slice don't have to be in the final product.
+                </p>
+                <p>
+                    <b>Code Complete (Alpha)</b> <br/>
+                    Code Complete is when all of the programming that makes up the game has been completed and fully implemented.
+                    At this stage, the game is considered to be in Alpha.
+                    Programmers will pivot to fixing bugs and glitches that exist in the game.
+                    If resources are available, developers can program features intended for the Desired Product.
+                </p>
+                <p>
+                    <b> Content Complete (Beta)</b> <br/>
+                    Content Complete is when all the art and audio assets have been created and implemented into the game.
+                    At this stage, the game is considered to be in Beta.
+                    Artists will fix or polish any issues with assets that exist in the game.
+                    If resources are available, artists and designers can continue making content for the Desired Product.
+                </p>
+                <p>
+                    <b>Gold Master (Final)</b> <br/>
+                    The Gold Master is a finished product that contains the minimum amount of content that was planned to be released to market.
+                    All features and content are complete and all critical bugs have been fixed.
+                    This version of the game is considered to be the Minimum Viable Product.
+                    Major and minor bugs may still exist and might get fixed either prior to getting printed to disc or as a Day 1 patch.
+                    If time is available, developers can work on additional features and content.
+                </p>
+                <p>
+                    <b>Post-Launch Updates (Sustainment)</b> <br/>
+                    After launch, developers transition into producing Post-Launch Updates, aka Downloadable Content (DLC).
+                    The most common updates are patches, which include bug fixes and balance changes.
+                    Content updates, aka Expansions, typically include new levels, characters, and gameplay experiences.
+                    Content updates can either be released for free or as paid DLC.
+                    Development of Post-Launch content may follow a similar set of production goals as the ones listed above.
+                </p>
+            </div>
+            <div id="iterate">
+                <h3>Develop Iteratively</h3>
+                <p>
+                    Just like modern Software Development, game development is an iterative process.
+                    To support frequent design changes, studios often utilize an Agile model of development using a Scrum Framework.
+                </p>
+                <p>
+                    The premise of Agile is to make software with a focus on the end-user experience.
+                    Production is flexible and open to rapid design changes.
+                    Regular reviews of the product are done to verify and validate the product.
+                    Through continuous iteration and collaboration, the product continues to evolve and improve.
+                </p>
+                <p>
+                    The Scrum Framework assists in achieving an Agile model of development.
+                    At the start of a project, development is brokendown into sprints.
+                    Each sprint has a set of features that developers work on implementing.
+                    At the end of the sprint, users and testers evaluate the product by submitting feedback and bug reports.
+                    Lastly, developers review the feedback and integrate plans for design changes and bug fixes into future sprints.
+                </p>
+                <p>
+                    Source:<br/>
+                    <a href="https://www.agilealliance.org/agile101/">Agile 101 - Agile Alliance</a> <br/>
+                    <a href="https://www.scrum.org/resources/what-is-scrum">What is Scrum? - Scrum.org</a>
+                </p>
+            </div>
+            <div id="production">
+                <h3>Facilitating Production</h3>
+                <p>
+                    <b>Create a Backlog of Tasks</b> <br/>
+                    Determine which features take priority for development and break them out into a collection of tasks.
+                    Assign tasks to the appropriate team members that will work on them during the sprint.
+                </p>
+                <p>
+                    <b>Set a Deadline for the Sprint</b> <br/>
+                    Set a weekly, biweekly, or monthly deadline for when the tasks in the backlog should be completed.
+                    You can also set deadlines for tasks within the sprint.
+                </p>
+                <p>
+                    <b>Develop the Game</b> <br/>
+                    Let team members work on the tasks assigned out to them.
+                    Review the work as it is delivered.
+                    Development continues until the end of the sprint.
+                </p>
+                <p>
+                    <b>Playtest the Game</b> <br/>
+                    Verify features are implemented and validate the user experience.
+                    Let testers provide feedback and report any bugs or glitches.
+                    If you have a dedicated test team, testing can be done alongside development.
+                </p>
+                <p>
+                    <b>Evaluate Production</b> <br/>
+                    Ask questions such as: 
+                    How many tasks are still in the backlog?
+                    What is the teams production capacity?
+                    Is production on schedule?
+                    Are there any issues with team members that need to be addressed?
+                </p>
+                <p>
+                    <b>Review Feedback</b> <br/>
+                    Discuss any feedback and bugs.
+                    Prioritize and create future task work to address them.
+                </p>
+                <p>
+                    <b>Start a New Sprint</b> <br/>
+                    Rinse and Repeat.
+                </p>
+            </div>
+            <div id="feedback">
+                <h3>Designs are Always Subject to Change</h3>
+                <p>
+                    Video games are an artistic endeavor.
+                    The game you originally envisioned will not necessarily be the game that gets shipped.
+                </p>
+                <p>
+                    Features need to be built and tested in order to validate a design.
+                    A Feature that looks good on paper may turn out to be a horrible gameplay experience.
+                    Along with criticism, players will often suggest improvements or changes to existing design.
+                    Even bugs and glitches can potentially become features or lead to other design changes.
+                </p>
+                <p>
+                    Based on the feedback you receive, your team will have to decide whether to
+                    keep existing design, improve it, scrap it, or implement a new design.
+                </p>
+                <p>
+                    Design changes can continue to be made long after a game is release.
+                    You can address feedback and introduce new features, new content, gameplay balancing, and bug fixes with post-launch updates.
+                </p>
+            </div>
+            <div id="postmortem">
+                <h3>Post Mortem</h3>
+                <p>
+                    Congratulations!!!
+                    You’ve finished your game and released it to market.
+                </p>
+                <p>
+                    Sales numbers are rolling in and you see a surge of active users.
+                    Your team gets word from the community of various bugs and glitches.
+                    Critics and users write reviews and provide feedback.
+                </p>
+                <p>
+                    Or, the project was a complete mess.
+                </p>
+                <p>
+                    Production was plagued by delays due to mismanagement and constant design changes.
+                    Team members couldn't work together and constantly argued over creative differences.
+                    Maybe you had to cancel development because the project ran out of money.
+                    Or maybe you still managed to release the game, but was met with poor sales and scathing reviews.
+                </p>
+                <p>
+                    Post Mortems are meant to be a learning opportunity for team members.
+                    Ask questions such as: Did the team meet the original production schedule?
+                    Did the team have to Crunch and/or delay the release?
+                    Was production within budget?
+                    Does the game that was created match the original creative vision?
+                    Is the team satisfied with the results?
+                    Are players satisfied with the results?
+                    Did you reach your projected sales goals?
+                    How was the game received by the audience?
+                    What parts of the development process worked well?
+                    What mistakes were made along the way that could've been avoided?
+                    What processes could be improved and implemented in future projects?
+                    Is there any work that was completed that can be reused for future projects?
+                    Does the team feel like they can continue working together on future projects?
+                </p>
+                <p>
+                    It’s important to learn from the experience and for everyone to provide constructive criticism.
+                    Nobody is perfect, and there is plenty of room for growth.
+                    Take what you learned and apply it to improve the success of future projects.
+                </p>
+            </div>
+            <div class="lastmodified">
+                Last Modified: 2020/09/07
+            </div>
+    </Layoutg>
+)
+export default ProductionPage

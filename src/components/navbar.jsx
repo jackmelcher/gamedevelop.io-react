@@ -29,7 +29,7 @@ function Navbar()
 
             </span>
             <Link to="/" className="button button_logo">
-                <img src="images/logo.svg" alt="logo" className="logoimg"/>
+                <img src="/images/logo.svg" alt="logo" className="logoimg"/>
             </Link>
             <Link to="/resources" className="button button_nav">
                 Resources

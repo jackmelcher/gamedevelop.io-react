@@ -98,7 +98,7 @@ const Resources = () => {
                     </optgroup>
                 </select>
             </div>
-            <div className="rsidenav">
+            <div className="sidenav rsidenav">
                 <div>
                     <b className="filtername">Filters:</b>
                     <div className="listTitle">

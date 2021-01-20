@@ -44,7 +44,6 @@ function SelectTable(filename)
     
     //filepath = "csv/"+ doc.getElementById("category").value;
     filepath = "csv/"+filename+".csv";
-    //document.getElementById("demo").innerHTML = filepath;
 
     //Clear HTML Data Table
     document.getElementById("showData").innerHTML = "";
@@ -64,7 +63,7 @@ function LoadDoc(filepath, callback) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
-            //document.getElementById("papa").innerHTML = this.responseText;
+            //Parse csv file with Papaparse
             csvdata = Papa.parse(this.responseText);
             //console.log(csvdata);
             callback(csvdata.data);
@@ -132,6 +131,7 @@ function CreateTableFromArray2D(array2D)
 
     // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
     var divContainer = document.getElementById("showData");
+    divContainer.removeChild(divContainer.lastChild);
     divContainer.appendChild(table);
 
     //Make Filter List
