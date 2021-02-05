@@ -93,7 +93,8 @@ const Resources = () => {
                         <option value="learning">Learning Websites</option>
                     </optgroup>
                     <optgroup label="Hardware & Peripherals">
-                        <option value="hardware">Hardware</option>
+                        <option value="hardware">PC, Mobile, and XR Devices</option>
+                        <option value="hardwareparts">PC Components</option>
                         <option value="peripherals">Peripherals</option>
                     </optgroup>
                 </select>

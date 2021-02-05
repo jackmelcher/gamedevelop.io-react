@@ -8,7 +8,7 @@ const IntroductoryPage = () => (
     <Layoutg>
         <SEO title="Introductory Guides" description="Introductory Guides on Game Development. Learn how to develop a game from start to finish."/>
         <h1>Introductory Guides</h1>
-        <div class="guideHeaders">
+        <div className="guideHeaders">
             <Link to="concept">
                 Conceptualizing a Video Game 
             </Link>

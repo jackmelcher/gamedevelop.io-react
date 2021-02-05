@@ -1,4 +1,5 @@
 import {Papa} from "papaparse"
+
 //Update the Table based on the url hash to support site navigation changes
 window.onhashchange = function(){
     //console.log("hash change");    
@@ -23,7 +24,7 @@ function LoadTableFromHash()
 }
 
 //Set URL Hash
-export function SetHash(value)
+function SetHash(value)
 {
     window.location.hash = value;            
 }

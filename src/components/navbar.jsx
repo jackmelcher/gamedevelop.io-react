@@ -14,7 +14,7 @@ function themeMode(isDarkMode)
     }
 }
 
-function Navbar()
+function Navbar({children})
 {
     useEffect(() => {    
         // Initialize Theme 
@@ -25,9 +25,7 @@ function Navbar()
 
     return (
         <div className="navbar">
-            <span id="sidebutton">
-
-            </span>
+            {children}
             <Link to="/" className="button button_logo">
                 <img src="/images/logo.svg" alt="logo" className="logoimg"/>
             </Link>
@@ -46,7 +44,6 @@ function Navbar()
         </div>
     );
 }
-
 
 function Settings()
 {
@@ -68,5 +65,4 @@ function Settings()
         </div>
     );
 }
-
 export default Navbar

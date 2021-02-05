@@ -5,25 +5,40 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 
-import Layout from "./layout"
+import SidebarG from "./sidebarg"
+import Navbar from "./navbar"
+import Footer from "./footer"
 
 import "../css/guides.css"
 
 const Layoutg = ({ children }) => {
 
+  const [openSide, setOpenSide] = useState(true);
+
+  useEffect(() =>{
+  });
+
   return (
-    <Layout>
-      <div className="sidenav">
-                    
-      </div>
-      <div className="guideflex-container">
-        <div id="overview" class="guideflex">
-          {children}
+    <div className="flex-main">
+      <Navbar>
+        <button className="button sidenavbutton" onClick={() => setOpenSide(!openSide)}>    
+          <i className="menuicon fas fa-list"></i>
+        </button>
+      </Navbar>
+      {
+        openSide && <SidebarG/>
+      }
+      <div className="flex-main-content">
+        <div className="guideflex-container">
+          <div id="overview" className="guideflex">
+            {children}
+          </div>
         </div>
       </div>
-    </Layout>
+      <Footer/>
+    </div>
   )
 }
 export default Layoutg

@@ -8,7 +8,7 @@ const IndustryPage = () => (
   <Layoutg>
     <SEO title="Industry Guides" description="Articles about the Games Industry."/>
     <h1>The Computer and Video Game Industry</h1>
-    <div class="guideHeaders">
+    <div className="guideHeaders">
         <Link to="overview">
             Games Industry Market Overview
         </Link>

@@ -20,7 +20,7 @@ const IndexPage = () => (
                 Find communities to share development progress, learn from each other, and team up for group projects.<br/>
                 Discover publishers and funding options that can help take your game idea to the next level.
             </p>
-            <Link to="/resources/" className="button button_main">
+            <Link to="/resources" className="button button_main">
                 VIEW RESOURCES
             </Link>
             <h2 >Game Development Guides</h2>
@@ -29,7 +29,7 @@ const IndexPage = () => (
                 Gain insight into Game Industry trends, career options, and work culture.<br/>
                 Acquire specialized knowledge on business and marketing techniques.
             </p>
-            <Link to="/guides/" className="button button_main">
+            <Link to="/guides" className="button button_main">
                 VIEW GUIDES
             </Link>
         </div>

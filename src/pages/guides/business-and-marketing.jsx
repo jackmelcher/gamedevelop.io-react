@@ -8,7 +8,7 @@ const BusinessPage = () => (
   <Layoutg>
     <SEO title="Business & Marketing Guides" description="Tips and Tricks for marketing your Game and running a games business."/>
     <h1>Business and Marketing Guides</h1>
-    <div class="guideHeaders">
+    <div className="guideHeaders">
         <Link to="ip">
             The Strength of Intellectual Property
         </Link>
