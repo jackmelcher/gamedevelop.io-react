@@ -10,6 +10,7 @@ html[data-theme = "dark"]{
     --bg-img-color: #bdbdbd;
 }
 .sidenav{width: 320px;}
+.tablecon{width: 100%;}
 .guideslistTitle{
     margin-left: -20px;
     font-weight: bold;
@@ -102,8 +103,8 @@ li{margin-bottom: 8px;}
 }
 @media (min-width: 769px) and (max-width: 1080px){
     .guideflex-container{
-    padding-left: 380px;
-    padding-right: 20px;
+        padding-left: 380px;
+        padding-right: 20px;
     }
     .guideflex{
         max-width: 90% !important;
@@ -111,10 +112,22 @@ li{margin-bottom: 8px;}
 }
 @media (max-width: 768px){
     .guideflex-container{
-    padding-left: 20px;
-    padding-right: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 36px;
     }
     .guideflex{
         max-width: 100% !important;
     }
 }
+@media (max-width: 430px) {
+    .selectbarGuide{
+        padding: 10px 20px !important;
+        width: auto !important;
+
+    }
+    .selectbarGuide>button{
+        margin: 0px !important;
+        width: 100% !important;
+    }
+  }

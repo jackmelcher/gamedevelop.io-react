@@ -23,13 +23,16 @@ const Layoutg = ({ children }) => {
   return (
     <div className="flex-main">
       <Navbar>
-        <button className="button sidenavbutton" onClick={() => setOpenSide(!openSide)}>    
+      <div className="selectbar selectbarGuide">
+        <button onClick={console.log("Table of Contents Button")}>
           <i className="menuicon fas fa-list"></i>
+          <span>Table of Contents</span>
         </button>
-      </Navbar>
+      </div>
       {
         openSide && <SidebarG/>
       }
+      </Navbar>
       <div className="flex-main-content">
         <div className="guideflex-container">
           <div id="overview" className="guideflex">

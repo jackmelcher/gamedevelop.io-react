@@ -229,18 +229,33 @@ th {
   .resource {
     padding-left: 5px;
     padding-right: 5px;
-    padding-top: 20px;
+    padding-top: 64px;
   }
-  .selectbar{
+  .selectbar *{
+    font-size: 16px;
+  }
+  .selectbar > * *{
+    font-size: 16px;
+  }
+  .selectbar>button>img{
+    height: 18px;
+    vertical-align: -3px;
+  }
+  .selectbarRes{
     padding: 10px 5px;
     width: calc(100vw - 11px);
   }
-  .selectbar>button{
-    padding: 0px 4px 0px 4px;
-    margin: 0px;
+  .selectbarRes>button{
+    padding: 0px 0px;
+    margin-right: 1%;
+    width: 45%;
   }
-  .selectbar>select{
-    width: calc(100vw - 147px);
-    font-size: 18px;
+  .selectbarRes>select{
+    width: 54%;
+    font-size: 16px;
+  }
+  td,
+  th {
+    padding: 10pt 4pt;
   }
 }

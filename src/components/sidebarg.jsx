@@ -60,7 +60,6 @@ const SidebarG = () => {
           </li>
         </ul>
       </div>
-                   
     </div>
   )
 }

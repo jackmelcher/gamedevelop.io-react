@@ -25,7 +25,6 @@ function Navbar({children})
 
     return (
         <div className="navbar">
-            {children}
             <Link to="/" className="button button_logo">
                 <img src="/images/logo.svg" alt="logo" className="logoimg"/>
             </Link>
@@ -38,9 +37,12 @@ function Navbar({children})
             <button className="button settingsnavbutton" onClick={() => setOpen(!open)}>
                 <i className="menuicon fas fa-cog"></i>
             </button>
+            {children}
+            <div>
             {
                 open && <Settings />
             }
+            </div>
         </div>
     );
 }

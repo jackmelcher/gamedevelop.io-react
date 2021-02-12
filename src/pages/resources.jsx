@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from "react"
 
-import Layout from "../components/layout"
+import Layoutr from "../components/layoutres"
 import SEO from "../components/seo"
+import Navbar from "../components/navbar"
+
 import {readString} from "react-papaparse"
 
 import "../css/resources.css"
@@ -22,12 +24,12 @@ const Resources = () => {
     }
 
     return(
-        <Layout>
+        <Layoutr>
             <SEO title="Resources" description="Explore a Database full of game development tools, assets, and services."/>
-            <div className="selectbar">
+            <Navbar>
+            <div className="selectbar selectbarRes">
                 <button onClick={console.log("Filter Button")}>
-                    <img src="images/filter.svg" alt="filter icon"/>
-                    <span>Filter & Sort</span>
+                    <i class="fas fa-filter"></i><span>Filter & Sort</span>
                 </button>
                 <div className="tableTitle">
                     <b>Tables:</b>
@@ -127,12 +129,13 @@ const Resources = () => {
                     <br/><br/>
                 </div> 
             </div>
+            </Navbar>
             <div className="resource">
                 <h1 id="tname">{tableName}</h1>
                 <div id="showData">
                 </div>
             </div>
-        </Layout>
+        </Layoutr>
     )
 }
 export default Resources
