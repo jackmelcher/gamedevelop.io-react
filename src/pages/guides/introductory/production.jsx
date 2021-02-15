@@ -374,7 +374,7 @@ const ProductionPage = () => (
                     Take what you learned and apply it to improve the success of future projects.
                 </p>
             </div>
-            <div class="lastmodified">
+            <div className="lastmodified">
                 Last Modified: 2020/09/07
             </div>
     </Layoutg>

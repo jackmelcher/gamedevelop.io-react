@@ -406,7 +406,7 @@ const IntroductoryPage = () => (
                 <Link to="/guides/introductory/production">Producing a Video Game</Link>
             </p>
         </div>
-        <div class="lastmodified">
+        <div className="lastmodified">
             Last Modified: 2020/10/26
         </div>
     </Layoutg>

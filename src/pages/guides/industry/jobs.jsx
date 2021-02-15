@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 
 import Layoutg from "../../../components/layoutguides"
 import SEO from "../../../components/seo"
@@ -97,7 +96,7 @@ const IndustryPage = () => (
             Don't be afraid to reach out to friends and associates to find your next opprotunity. 
         </p>
     </div>
-    <div id="departments">
+    <div id="application">
         <h3>Making Your Application Stand Out</h3>
         <p>
             <b>Apply with a Resume, Cover Letter, and Portfolio</b> <br/>
@@ -160,7 +159,7 @@ const IndustryPage = () => (
             </li>
         </ul>
         <b>Resume Builder and Cover Letter Samples</b>
-        <p class="guideimg">
+        <p className="guideimg">
             <a href="https://resume.com/" target="_blank" rel="noopener noreferrer">
                 <img src="/images/guides/resume-logo.svg" alt="Resume.com Logo"/>
             </a>
@@ -255,155 +254,153 @@ const IndustryPage = () => (
         <p>
             There are many departments in the games industry than just game programming and art. But, there are plenty of other roles within a game studio that most people might not be aware of. Or, people might need more insight into what are the roles available within a certain discipline.
         </p>
-        <p>
-            <b>Administration</b>
-            <ul>
-                <li>Business Executive</li>
-                <li>Administrative Assistant</li>
-            </ul>
-            <b>Business Intelligence</b>
-            <ul>
-                <li>Data Scientist Engineer</li>
-                <li>BI Analyst</li>
-                <li>Psychologist</li>
-            </ul>
-            <b>Accounting / Finances</b>
-            <ul>
-                <li>Accountant</li>
-                <li>Tax Specialist</li>
-            </ul>
-            <b>Human Resources</b>
-            <ul>
-                <li>HR Representative</li>
-            </ul>
-            <b>Recruiting / Talent Acquisition</b>
-            <ul>
-                <li>Recruiters</li>
-                <li>Hiring Manager</li>
-            </ul>
-            <b>Legal</b>
-            <ul>
-                <li>Lawyer</li>
-                <li>IP Specialist</li>
-            </ul>
-            <b>Customer Support</b>
-            <ul>
-                <li>Customer Support Representative</li>
-            </ul>
-            <b>IT / DevOps</b>
-            <ul>
-                <li>IT Specialist</li>
-                <li>DevOps Specialist</li>
-                <li>Software Engineer in Test</li>
-            </ul>
-            <b>AV</b>
-            <ul>
-                <li>Audio / Video Technician</li>
-            </ul>
-            <b>Art / Animation</b>
-            <ul>
-                <li>Tech Artist</li>
-                <li>Concept Artist</li>
-                <li>Environmental Artist</li>
-                <li>3D Artist</li>
-                <li>Texture Artist</li>
-                <li>Pixel Artist</li>
-                <li>Graphic Artist</li>
-                <li>VFX Artist</li>
-                <li>Cinematic Artist</li>
-                <li>MoCap Actor</li>
-            </ul>
-            <b>Audio / Music</b>
-            <ul>
-                <li>Musician</li>
-                <li>Composer</li>
-                <li>Voice Actor</li>
-                <li>Sound Engineer</li>
-                <li>Folio Artist</li>
-            </ul>
-            <b>Design</b>
-            <ul>
-                <li>Game Designer</li>
-                <li>Level Designer</li>
-                <li>UI/UX Designer</li>
-                <li>Mission Designer</li>
-                <li>Combat Designer</li>
-            </ul>
-            <b>Writing</b>
-            <ul>
-                <li>Scriptwriter</li>
-                <li>Lore Writer</li>
-                <li>UI Writer</li>
-                <li>Technical Writer</li>
-                <li>Localization Writer</li>
-            </ul>
-            <b>Programming / Engineering</b>
-            <ul>
-                <li>AI Programmer</li>
-                <li>Network Programmer</li>
-                <li>Engine Programmer</li>
-                <li>Tools Programmer</li>
-                <li>Physics Programmer</li>
-                <li>Graphics Programmer</li>
-                <li>Audio Programmer</li>
-                <li>Data Programmer</li>
-                <li>UI Programmer</li>
-                <li>Input Programmer</li>
-                <li>Web programmer</li>
-                <li>Monetization programmer</li>
-            </ul>
-            <b>Production / Directing</b>
-            <ul>
-                <li>Director</li>
-                <li>Producer / Manager</li>
-            </ul>
-            <b>Facility</b>
-            <ul>
-                <li>Receptionist</li>
-                <li>Security Personel</li>
-                <li>Facility Manager</li>
-                <li>Janatorial</li>
-            </ul>
-            <b>Marketing</b>
-            <ul>
-                <li>Marketing Manager</li>
-                <li>Marketing Copywriter</li>
-                <li>Market Research Analyst</li>
-                <li>Video Editor (Trailers)</li>
-                <li>Social Media Marketer</li>
-            </ul>
-            <b>Sales</b>
-            <ul>
-                <li>Sales Representative</li>
-            </ul>
-            <b>Public Relations</b>
-            <ul>
-                <li>PR Representative</li>
-                <li>Community Manager</li>
-            </ul>
-            <b>Supply / Logistics / Retail</b>
-            <ul>
-                <li>Supply Chain Specialist</li>
-                <li>Truck Driver</li>
-                <li>Warehouse Worker</li>
-                <li>Store Manager</li>
-                <li>Retail Worker</li>
-            </ul>
-            <b>Testing</b>
-            <ul>
-                <li>QA Tester</li>
-                <li>QA Producer / Software Test Engineer</li>
-                <li>QA Engineer / Software Development Engineer in Test</li>
-                <li>QA Analyst</li>
-                <li>Test Lead</li>
-            </ul>
-        </p>
+        <b>Administration</b>
+        <ul>
+            <li>Business Executive</li>
+            <li>Administrative Assistant</li>
+        </ul>
+        <b>Business Intelligence</b>
+        <ul>
+            <li>Data Scientist Engineer</li>
+            <li>BI Analyst</li>
+            <li>Psychologist</li>
+        </ul>
+        <b>Accounting / Finances</b>
+        <ul>
+            <li>Accountant</li>
+            <li>Tax Specialist</li>
+        </ul>
+        <b>Human Resources</b>
+        <ul>
+            <li>HR Representative</li>
+        </ul>
+        <b>Recruiting / Talent Acquisition</b>
+        <ul>
+            <li>Recruiters</li>
+            <li>Hiring Manager</li>
+        </ul>
+        <b>Legal</b>
+        <ul>
+            <li>Lawyer</li>
+            <li>IP Specialist</li>
+        </ul>
+        <b>Customer Support</b>
+        <ul>
+            <li>Customer Support Representative</li>
+        </ul>
+        <b>IT / DevOps</b>
+        <ul>
+            <li>IT Specialist</li>
+            <li>DevOps Specialist</li>
+            <li>Software Engineer in Test</li>
+        </ul>
+        <b>AV</b>
+        <ul>
+            <li>Audio / Video Technician</li>
+        </ul>
+        <b>Art / Animation</b>
+        <ul>
+            <li>Tech Artist</li>
+            <li>Concept Artist</li>
+            <li>Environmental Artist</li>
+            <li>3D Artist</li>
+            <li>Texture Artist</li>
+            <li>Pixel Artist</li>
+            <li>Graphic Artist</li>
+            <li>VFX Artist</li>
+            <li>Cinematic Artist</li>
+            <li>MoCap Actor</li>
+        </ul>
+        <b>Audio / Music</b>
+        <ul>
+            <li>Musician</li>
+            <li>Composer</li>
+            <li>Voice Actor</li>
+            <li>Sound Engineer</li>
+            <li>Folio Artist</li>
+        </ul>
+        <b>Design</b>
+        <ul>
+            <li>Game Designer</li>
+            <li>Level Designer</li>
+            <li>UI/UX Designer</li>
+            <li>Mission Designer</li>
+            <li>Combat Designer</li>
+        </ul>
+        <b>Writing</b>
+        <ul>
+            <li>Scriptwriter</li>
+            <li>Lore Writer</li>
+            <li>UI Writer</li>
+            <li>Technical Writer</li>
+            <li>Localization Writer</li>
+        </ul>
+        <b>Programming / Engineering</b>
+        <ul>
+            <li>AI Programmer</li>
+            <li>Network Programmer</li>
+            <li>Engine Programmer</li>
+            <li>Tools Programmer</li>
+            <li>Physics Programmer</li>
+            <li>Graphics Programmer</li>
+            <li>Audio Programmer</li>
+            <li>Data Programmer</li>
+            <li>UI Programmer</li>
+            <li>Input Programmer</li>
+            <li>Web programmer</li>
+            <li>Monetization programmer</li>
+        </ul>
+        <b>Production / Directing</b>
+        <ul>
+            <li>Director</li>
+            <li>Producer / Manager</li>
+        </ul>
+        <b>Facility</b>
+        <ul>
+            <li>Receptionist</li>
+            <li>Security Personel</li>
+            <li>Facility Manager</li>
+            <li>Janatorial</li>
+        </ul>
+        <b>Marketing</b>
+        <ul>
+            <li>Marketing Manager</li>
+            <li>Marketing Copywriter</li>
+            <li>Market Research Analyst</li>
+            <li>Video Editor (Trailers)</li>
+            <li>Social Media Marketer</li>
+        </ul>
+        <b>Sales</b>
+        <ul>
+            <li>Sales Representative</li>
+        </ul>
+        <b>Public Relations</b>
+        <ul>
+            <li>PR Representative</li>
+            <li>Community Manager</li>
+        </ul>
+        <b>Supply / Logistics / Retail</b>
+        <ul>
+            <li>Supply Chain Specialist</li>
+            <li>Truck Driver</li>
+            <li>Warehouse Worker</li>
+            <li>Store Manager</li>
+            <li>Retail Worker</li>
+        </ul>
+        <b>Testing</b>
+        <ul>
+            <li>QA Tester</li>
+            <li>QA Producer / Software Test Engineer</li>
+            <li>QA Engineer / Software Development Engineer in Test</li>
+            <li>QA Analyst</li>
+            <li>Test Lead</li>
+        </ul>
         <p>
             Sources:<br/>
             <a href="https://en.wikipedia.org/wiki/Video_game_development#Roles">Video game development: Roles</a>
         </p>
     </div>
-    <div class="lastmodified">
+    <div className="lastmodified">
         Last Modified: 2020/09/07
     </div>
   </Layoutg>

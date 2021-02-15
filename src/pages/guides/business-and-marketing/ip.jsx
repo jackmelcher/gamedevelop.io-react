@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 
 import Layoutg from "../../../components/layoutguides"
 import SEO from "../../../components/seo"
@@ -117,21 +116,19 @@ const IPPage = () => (
     </div>
     <div id="takeaways">
         <h3>Key Takeaways</h3>
-        <p>
-            <ul>
-                <li>Have a character you own that you can build an IP around.</li>
-                <li>Ask yourself, does this game have a unique emotional journey we can own? And how do we communicate it to the market?</li>
-                <li>Let others playtest the game as soon as possible. You need external advice from people who aren’t as invested in the game.</li>
-                <li>Test your marketing to figure out the best way to communicate your game's experience to your target audience.</li>
-            </ul>
-        </p>
+        <ul>
+            <li>Have a character you own that you can build an IP around.</li>
+            <li>Ask yourself, does this game have a unique emotional journey we can own? And how do we communicate it to the market?</li>
+            <li>Let others playtest the game as soon as possible. You need external advice from people who aren’t as invested in the game.</li>
+            <li>Test your marketing to figure out the best way to communicate your game's experience to your target audience.</li>
+        </ul>
         <p>
             Sources:
             <br/>
             <a href="https://www.ddmagency.com/about/team/person/christian-fonnesbech/">Christian Fonnesbech - CEO of Leverage</a>
         </p>
     </div>
-    <div class="lastmodified">
+    <div className="lastmodified">
         Last Modified: 2020/09/07
     </div>
   </Layoutg>

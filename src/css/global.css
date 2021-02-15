@@ -20,12 +20,12 @@ html[data-theme = "dark"]{
   --primary-color-v: #0079ca;
   --secondary-color: #ffffff;
   --tertiary-color: #ffffff;
-  --font-color: #e2e2e2;
+  --font-color: #eeeeee;
   --bg-color: #1d1d1d;
   --side-bg-color: #1d1d1d; 
   --side-border-color: #4e4e4e; 
   --heading-color: #ececec;
-  --link-color: #41bcff;
+  --link-color: #57c4ff;
   --footer-bg-color: #272727;
   --footer-color: #c0c0c0;
   --form-bg-color: #3d3d3d; 
@@ -138,7 +138,7 @@ a:hover{
   position: sticky;
   top: 0;
   background-color: var(--primary-color);
-  color: var(--secondary-color);
+  color: var(--font-color);
   padding : 0;
 
   /* Keep navbar as 50px height*/
@@ -164,7 +164,6 @@ a:hover{
   border-radius: 0;
   vertical-align: top;
   padding: 13px 8px 13px 8px;  
-  margin-right: -4px;
 }
 .settingsnavbutton{
   float: right;
@@ -183,7 +182,6 @@ a:hover{
 .button_nav, .button_logo{
   font-weight: bold;
   border-radius: 0;
-  margin-right: -4px;
 }
 .button_nav:hover{
   background-color: var(--primary-color-v);
@@ -207,7 +205,6 @@ a:hover{
 .button_support > img {
   vertical-align: middle;
   margin-right: 8px;
-  margin-right: -4px;
   max-height: 48px;
 }
 .button_nav,.settingsnavbutton,.sidenavbutton,.button_logo
@@ -364,7 +361,6 @@ input:checked + .slider:before {
 .slider.round {
   border-radius: 34px;
 }
-
 .slider.round:before {
   border-radius: 50%;
 } 

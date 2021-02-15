@@ -114,18 +114,18 @@ li{margin-bottom: 8px;}
     .guideflex-container{
         padding-left: 20px;
         padding-right: 20px;
-        padding-top: 36px;
+        padding-top: 48px;
     }
     .guideflex{
         max-width: 100% !important;
     }
-}
-@media (max-width: 430px) {
     .selectbarGuide{
         padding: 10px 20px !important;
         width: auto !important;
 
     }
+}
+@media (max-width: 430px) {
     .selectbarGuide>button{
         margin: 0px !important;
         width: 100% !important;

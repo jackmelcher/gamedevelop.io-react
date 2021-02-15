@@ -42,7 +42,7 @@ const TeamPage = () => (
                 Compensation: (None, Revenue-Share, Commission, Hourly, Salary)<br/>
             </p>
         </div>
-        <div id="team">
+        <div id="recruit">
             <h3>Recruit Team Members</h3>
             <p>
                 Publish your recruitment post on game development forums, subreddits, and discord servers.
@@ -128,7 +128,7 @@ const TeamPage = () => (
                 <Link to="/guides/introductory/production">Producing a Video Game</Link>
             </p>
         </div>
-        <div class="lastmodified">
+        <div className="lastmodified">
             Last Modified: 2020/09/07
         </div>
     </Layoutg>

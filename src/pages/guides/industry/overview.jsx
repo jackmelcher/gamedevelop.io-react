@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 
 import Layoutg from "../../../components/layoutguides"
 import SEO from "../../../components/seo"
@@ -64,7 +63,7 @@ const IndustryPage = () => (
             Many web games today are designed to be compatible with mobile browsers.
         </p>
     </div>
-    <div class="lastmodified">
+    <div className="lastmodified">
         Last Modified: 2020/09/07
     </div>
   </Layoutg>

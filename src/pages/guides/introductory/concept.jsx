@@ -8,7 +8,7 @@ const ConceptPage = () => (
     <Layoutg>
         <SEO title="Conceptualizing a Video Game" description="Learn how to brainstorm a game idea and contain it in a Game Design Doc."/>
         <h1 id="top">Conceptualizing a Video Game</h1>
-        <div id="concept">
+        <div id="brain">
             <h3>Brainstorm a Game Idea</h3>
             <p>
                 Start putting your game idea on paper.
@@ -31,7 +31,9 @@ const ConceptPage = () => (
             </p>
             <p>
                 Common bases for game ideas include:
-                <ul>
+                
+            </p>
+            <ul>
                     <li>
                         Taking an existing game idea and replicating it to learn how to develop that type of game.
                     </li>
@@ -48,7 +50,6 @@ const ConceptPage = () => (
                         Participating in a Game Jam. Often, novel game ideas come from having to brainstorm around the proposed theme.
                     </li>
                 </ul>
-            </p>
             <p>
                 Take the the time to brainstorm and lay out all the high-level features of the game.
                 Jot down the theme, genre, goals, features, game pieces, game loop, progression, rewards, art style, type of music, target platform/s, etc.
@@ -173,7 +174,7 @@ const ConceptPage = () => (
                 <Link to="/guides/introductory/production">Producing a Video Game</Link>
             </p>
         </div>
-        <div class="lastmodified">
+        <div className="lastmodified">
             Last Modified: 2020/09/09
         </div>
     </Layoutg>

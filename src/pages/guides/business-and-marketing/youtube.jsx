@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 
 import Layoutg from "../../../components/layoutguides"
 import SEO from "../../../components/seo"
@@ -13,50 +12,46 @@ const YoutubePage = () => (
         <p>
             Be niche. Focus on a specific set of content you want to deliver.
         </p>
-        <p>
-            <ul>
-                <li>
-                    Make tutorials, guides, and walkthroughs on a specific game with a lot of depth. Show off builds and strategies. 
-                </li>
-                <li>
-                    Be an entertainer. Make gameplay content focused on making a viewer laugh.
-                </li>
-                <li>
-                    Regurgitate news, commentate, and provide additional speculation.
-                </li>
-                <li>
-                    Make reviews or video essays about games or game related topics.
-                </li>
-                <li>
-                    Development Vlogs. Document your journey and provide advice about programming, art, design, tools, etc.
-                </li>
-                <li>
-                    Do speedruns and/or show off bugs and glitches.
-                </li>
-            </ul>
-        </p>
+        <ul>
+            <li>
+                Make tutorials, guides, and walkthroughs on a specific game with a lot of depth. Show off builds and strategies. 
+            </li>
+            <li>
+                Be an entertainer. Make gameplay content focused on making a viewer laugh.
+            </li>
+            <li>
+                Regurgitate news, commentate, and provide additional speculation.
+            </li>
+            <li>
+                Make reviews or video essays about games or game related topics.
+            </li>
+            <li>
+                Development Vlogs. Document your journey and provide advice about programming, art, design, tools, etc.
+            </li>
+            <li>
+                Do speedruns and/or show off bugs and glitches.
+            </li>
+        </ul>
     </div>
     <div id="grow">
         <h3>Growing Your Channel</h3>
         <p>
             Getting the first 1,000 to 10,000 subscribers is the hardest part. The only way you are going to get subscribers is by putting in the work.
         </p>
-        <p>
-            <ul>
-                <li>
-                    Make content and make it consistently. Publish a video on a weekly or biweekly basis at the very least. This helps build familiarity with your viewers.
-                </li>
-                <li>
-                    Remix: Copy and innovate a little. Research similar channels and learn what works for them. Apply similar techniques in your content, but with your own unique twist.
-                </li>
-                <li>
-                    Build trust with your community by being honest and consistent. Interact with your audience to build a stronger connection.
-                </li>
-                <li>
-                    Collaborate with other YouTube channels and/or give shoutouts. This will expand your network be a way to give back to the community.
-                </li>
-            </ul>
-        </p>
+        <ul>
+            <li>
+                Make content and make it consistently. Publish a video on a weekly or biweekly basis at the very least. This helps build familiarity with your viewers.
+            </li>
+            <li>
+                Remix: Copy and innovate a little. Research similar channels and learn what works for them. Apply similar techniques in your content, but with your own unique twist.
+            </li>
+            <li>
+                Build trust with your community by being honest and consistent. Interact with your audience to build a stronger connection.
+            </li>
+            <li>
+                Collaborate with other YouTube channels and/or give shoutouts. This will expand your network be a way to give back to the community.
+            </li>
+        </ul>
         <p>
             Once you feel like your channel has reached a sufficient subscriber base, feel free to branch out into other interests. Broaden your content and explore other avenues to continue growing the channel.
         </p>
@@ -74,13 +69,13 @@ const YoutubePage = () => (
         <h3>Monetizing Your Channel</h3>
         <p>
             There are several ways to monetize your content on YouTube.
-            <ul>
-                <li>YouTube Ads</li>
-                <li>Sponsorships and Brand Deals</li>
-                <li>Crowdfunding</li>
-                <li>Selling Merchandise or Digital Products</li>
-            </ul>
         </p>
+        <ul>
+            <li>YouTube Ads</li>
+            <li>Sponsorships and Brand Deals</li>
+            <li>Crowdfunding</li>
+            <li>Selling Merchandise or Digital Products</li>
+        </ul>
         <p>
             When your channel reaches a minimum threshold of viewers and watch time, your channel will be open to monetization with YouTube Ads. 
             These ads will be placed either before and/or during the video. Keep in mind, that your content needs to follow YouTube's guidelines for being advertiser friendly, or you risk your videos and channel from being demonetized.
@@ -114,7 +109,7 @@ const YoutubePage = () => (
             <a href="https://jumpcut.com/about">Kong Pham - CEO of Jumpcut</a>
         </p>
     </div>
-    <div class="lastmodified">
+    <div className="lastmodified">
         Last Modified: 2020/09/07
     </div>
   </Layoutg>

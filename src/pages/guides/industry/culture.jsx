@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 
 import Layoutg from "../../../components/layoutguides"
 import SEO from "../../../components/seo"
@@ -58,53 +57,53 @@ const CulturePage = () => (
         </p>
         <p>
             Reasons Crunch occurs:
-            <ul>
-                <li>
-                    You made big promises to your fanbase through crowdfunding stretch goals.
-                    Developers Crunch in order to meet the release deadline and give fans everything that was promised.
-                </li>
-                <li>
-                    Developers Crunch from the start because the money raised from the crowdfunding campaign will only last for a specific amount of production time and the business can't afford extensions.
-                </li>
-                <li>
-                    Developers decide to change to a new engine, but the toolset is incomplete for the game genre they are making.
-                    Engineers have to make new tools as quickly as possible, while designers struggle to work with a buggy toolset.
-                </li>
-                <li>
-                    If the studio does not meet the publisher's release schedule, then they may not be contracted again in the future.
-                </li>
-                <li>
-                    All throughout production, design and narrative are constantly changing due to creative differences and lack of a cohesive vision.
-                    Once design is set, everyone is scrambling to make a game before the release date.
-                </li>
-                <li>
-                    Creative direction changes drastically midway into production.
-                    Much of the game is scraped and now more work needs to be done.
-                    Even with the extensions, developers are still Crunching all the way to the finish line.
-                </li>
-                <li>
-                    Everyone in the studio is passionate about the project they want to prove to the rest of the world that they can make bigger and better games.
-                </li>
-                <li>
-                    As a solo indie dev working on a project of massive scope there is no one holding you accountable for your work ethic.
-                    Through blind passion, you spend every waking hour working on the game.
-                </li>
-                <li>
-                    Business leadership imposes a new creative vision, leaving designers and engineers scrambing to implement these sudden changes.
-                </li>
-                <li>
-                    Due to studio turmoil, a majority of the developers are working on a game not approved by the publishing partner.
-                    Eventually, the publisher has to step in and stop the insubordination, and now the entire studio is Crunching to meet the release deadline for the approved game.
-                </li>
-                <li>
-                    As the release date approaches, the team is working feverishly to fix every last bug.
-                </li>
-                <li>
-                    On launch, the audience criticizes the game on multiple fronts and leave the development team dazed and confused.
-                    Developers Crunch to get new designs implemented as quickly as possible issues as possible to recapture the good graces of their fans.
-                </li>
-            </ul>
         </p>
+        <ul>
+            <li>
+                You made big promises to your fanbase through crowdfunding stretch goals.
+                Developers Crunch in order to meet the release deadline and give fans everything that was promised.
+            </li>
+            <li>
+                Developers Crunch from the start because the money raised from the crowdfunding campaign will only last for a specific amount of production time and the business can't afford extensions.
+            </li>
+            <li>
+                Developers decide to change to a new engine, but the toolset is incomplete for the game genre they are making.
+                Engineers have to make new tools as quickly as possible, while designers struggle to work with a buggy toolset.
+            </li>
+            <li>
+                If the studio does not meet the publisher's release schedule, then they may not be contracted again in the future.
+            </li>
+            <li>
+                All throughout production, design and narrative are constantly changing due to creative differences and lack of a cohesive vision.
+                Once design is set, everyone is scrambling to make a game before the release date.
+            </li>
+            <li>
+                Creative direction changes drastically midway into production.
+                Much of the game is scraped and now more work needs to be done.
+                Even with the extensions, developers are still Crunching all the way to the finish line.
+            </li>
+            <li>
+                Everyone in the studio is passionate about the project they want to prove to the rest of the world that they can make bigger and better games.
+            </li>
+            <li>
+                As a solo indie dev working on a project of massive scope there is no one holding you accountable for your work ethic.
+                Through blind passion, you spend every waking hour working on the game.
+            </li>
+            <li>
+                Business leadership imposes a new creative vision, leaving designers and engineers scrambing to implement these sudden changes.
+            </li>
+            <li>
+                Due to studio turmoil, a majority of the developers are working on a game not approved by the publishing partner.
+                Eventually, the publisher has to step in and stop the insubordination, and now the entire studio is Crunching to meet the release deadline for the approved game.
+            </li>
+            <li>
+                As the release date approaches, the team is working feverishly to fix every last bug.
+            </li>
+            <li>
+                On launch, the audience criticizes the game on multiple fronts and leave the development team dazed and confused.
+                Developers Crunch to get new designs implemented as quickly as possible issues as possible to recapture the good graces of their fans.
+            </li>
+        </ul>
         <p>
             Participating in Crunch often puts developers under a lot of stress and fatigue for weeks to months.
             The longer Crunch goes on, the greater the chances of burnout.
@@ -148,7 +147,7 @@ const CulturePage = () => (
             <a href="https://www.stjv.fr/en/">Le Syndicat des Travailleurs et Travailleuses du Jeu Vidéo</a>
         </p>
     </div>
-    <div class="lastmodified">
+    <div className="lastmodified">
         Last Modified: 2020/09/07
     </div>
   </Layoutg>

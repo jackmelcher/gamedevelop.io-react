@@ -11,16 +11,39 @@ import "../css/resources.css"
 const Resources = () => {
     
     const [tableName,setTableName] = useState("Popular Tools and Services");
-    const [tableFile,setTableFile] = useState("pop");
 
     useEffect(() => {
-        SelectTable(tableFile);
-    },[tableFile]);
+        let category = document.getElementById("category");
+        if(window.location.hash !== "")
+        {
+            document.getElementById("category").value = window.location.hash.split('#')[1];
+            setTableName(category.options[category.selectedIndex].text);
+            SelectTable(window.location.hash.split('#')[1]);
+        }
+        else
+        {
+            document.getElementById("category").selectedIndex = 0;
+            setTableName(category.options[category.selectedIndex].text);
+            SelectTable("pop");
+        }
+    },[window.location.hash]);
 
-    function handleSelectChange(file, name)
+    function handleSelectChange(file)
     {
-        setTableFile(file);
-        setTableName(name);
+        window.location.hash = file;
+    }
+
+    function toggleSidebar()
+    {
+        var side = document.getElementsByClassName("sidenav")[0];
+        if(side.style.display === "none" || side.style.display === "")
+        {
+            side.style.display = "block";
+        }
+        else
+        {
+            side.style.display = "";
+        }
     }
 
     return(
@@ -28,13 +51,13 @@ const Resources = () => {
             <SEO title="Resources" description="Explore a Database full of game development tools, assets, and services."/>
             <Navbar>
             <div className="selectbar selectbarRes">
-                <button onClick={console.log("Filter Button")}>
-                    <i class="fas fa-filter"></i><span>Filter & Sort</span>
+                <button onClick={(e) => toggleSidebar()}>
+                    <i className="fas fa-filter"></i><span>Filter & Sort</span>
                 </button>
                 <div className="tableTitle">
                     <b>Tables:</b>
                 </div>
-                <select id="category" onChange={(e) => handleSelectChange(e.target.value, e.target.options[e.target.selectedIndex].text)}>
+                <select id="category" onChange={(e) => handleSelectChange(e.target.value)}>
                     <option value="pop">Popular Tools and Services</option>
                     <optgroup label="Art Tools">
                         <option value="2d">2D Art</option>

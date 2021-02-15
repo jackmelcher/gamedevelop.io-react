@@ -146,34 +146,32 @@ const BusinessPage = () => (
         </div>
         <div id="roi">
             <h3>Return on Investment</h3>
-            <div>
-                <p>
-                    What will be the Return on Investment (ROI) for developing the game?
-                    What are the rewards for investing your time and money on the project?
-                    The return on investment may include one or all of the following:
-                </p>
-                <p>
-                    <b>Personal Experience</b> <br/>
-                    The intention is to improve one's professional skillset.
-                    The experience can be documented on your resume and social media, which could lead to career opportunities.
-                </p>
-                <p>
-                    <b>Business Recognition</b> <br/>
-                    The intention is to build up the company's brand and ip recognition.
-                    Completing a successful project can lead to greater success on future projects.
-                </p>
-                <p>
-                    <b>Strengthen Partnership</b> <br/>
-                    Successful projects can boost relationships with partner companies and lead to more business opportunities.
-                    Could lead to better licensing deals, exclusive contracts, and long-term partnerships.
-                </p>
-                <p>
-                    <b>Monetary Gain</b> <br/>
-                    The intention is to make a large amounts of profit by providing a superb gaming experience.
-                    Money is distributed among teammates and partners.
-                    This could either be a one-time monetary gain or reoccurring revenue.
-                </p>
-            </div>
+            <p>
+                What will be the Return on Investment (ROI) for developing the game?
+                What are the rewards for investing your time and money on the project?
+                The return on investment may include one or all of the following:
+            </p>
+            <p>
+                <b>Personal Experience</b> <br/>
+                The intention is to improve one's professional skillset.
+                The experience can be documented on your resume and social media, which could lead to career opportunities.
+            </p>
+            <p>
+                <b>Business Recognition</b> <br/>
+                The intention is to build up the company's brand and ip recognition.
+                Completing a successful project can lead to greater success on future projects.
+            </p>
+            <p>
+                <b>Strengthen Partnership</b> <br/>
+                Successful projects can boost relationships with partner companies and lead to more business opportunities.
+                Could lead to better licensing deals, exclusive contracts, and long-term partnerships.
+            </p>
+            <p>
+                <b>Monetary Gain</b> <br/>
+                The intention is to make a large amounts of profit by providing a superb gaming experience.
+                Money is distributed among teammates and partners.
+                This could either be a one-time monetary gain or reoccurring revenue.
+            </p>
         </div>
         <div id="funding">
             <h3>Acquire Funding</h3>
@@ -188,7 +186,7 @@ const BusinessPage = () => (
                     <ul>
                         <li>
                             Work and Invest with your Savings <br/>
-                            <i class="fas fa-piggy-bank fa-5x"></i> <br/>
+                            <i className="fas fa-piggy-bank fa-5x"></i> <br/>
                         </li>
                     </ul>
                 </li>
@@ -217,7 +215,7 @@ const BusinessPage = () => (
                     <ul>
                         <li>
                             Local Government Grants <br/>
-                            <i class="fas fa-university fa-5x"></i> <br/>
+                            <i className="fas fa-university fa-5x"></i> <br/>
                         </li>
                         <li>
                             <a href="https://www.unrealengine.com/en-US/megagrants" target="_blank" rel="noopener noreferrer">
@@ -396,7 +394,7 @@ const BusinessPage = () => (
                 <Link to="/guides/introductory/production">Producing a Video Game</Link>
             </p>
         </div>
-        <div class="lastmodified">
+        <div className="lastmodified">
             Last Modified: 2020/09/30
         </div>
     </Layoutg>

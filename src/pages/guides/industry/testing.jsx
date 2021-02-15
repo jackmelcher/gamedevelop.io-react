@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 
 import Layoutg from "../../../components/layoutguides"
 import SEO from "../../../components/seo"
@@ -25,21 +24,21 @@ const IndustryPage = () => (
         </p>
         <p>
             Types of test strategies include:
-            <ul>
-                <li>
-                    Test cases: Executing a specific set of instructions to verify that a specific result occurs.
-                </li>
-                <li>
-                    Attacks: Performing directed adhoc testing around a specific feature or aspect of a game.
-                </li>
-                <li>
-                    Scenarios: Playing an area of the game under a certain set of conditions or customer perspective.
-                </li>
-                <li>
-                    Tour: Exploring and freely adhocing over a wide area of the game.
-                </li>
-            </ul>
         </p>
+        <ul>
+            <li>
+                Test cases: Executing a specific set of instructions to verify that a specific result occurs.
+            </li>
+            <li>
+                Attacks: Performing directed adhoc testing around a specific feature or aspect of a game.
+            </li>
+            <li>
+                Scenarios: Playing an area of the game under a certain set of conditions or customer perspective.
+            </li>
+            <li>
+                Tour: Exploring and freely adhocing over a wide area of the game.
+            </li>
+        </ul>
         <p>
             Production regularly reviews new bug reports and triages them, assessing the validity of the bug as well as noting the severity of the issue and the priority to fix it.
             The bug report is then sent to the appropriate development team, where a developer will investigate the bug and procure a fix for the issue if it's still occurring.
@@ -114,7 +113,7 @@ const IndustryPage = () => (
             Ultimately, these issues can be a detriment to the quality of the game if they do not get addressed.
         </p>
     </div>
-    <div class="lastmodified">
+    <div className="lastmodified">
         Last Modified: 2020/09/07
     </div>
   </Layoutg>

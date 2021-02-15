@@ -20,11 +20,15 @@ const Layoutg = ({ children }) => {
   useEffect(() =>{
   });
 
+  function toggleSidebarEvent(){
+    toggleSidebar();
+  }
+
   return (
     <div className="flex-main">
       <Navbar>
       <div className="selectbar selectbarGuide">
-        <button onClick={console.log("Table of Contents Button")}>
+        <button onClick={(e) => toggleSidebarEvent()}>
           <i className="menuicon fas fa-list"></i>
           <span>Table of Contents</span>
         </button>
@@ -45,3 +49,17 @@ const Layoutg = ({ children }) => {
   )
 }
 export default Layoutg
+
+
+function toggleSidebar()
+{
+  var side = document.getElementsByClassName("sidenav")[0];
+  if(side.style.display === "none" || side.style.display === "")
+  {
+      side.style.display = "block";
+  }
+  else
+  {
+      side.style.display = "";
+  }
+}
