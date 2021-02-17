@@ -13,36 +13,53 @@ const Resources = () => {
     const [tableName,setTableName] = useState("Popular Tools and Services");
 
     useEffect(() => {
-        let category = document.getElementById("category");
         if(window.location.hash !== "")
         {
             document.getElementById("category").value = window.location.hash.split('#')[1];
-            setTableName(category.options[category.selectedIndex].text);
             SelectTable(window.location.hash.split('#')[1]);
         }
         else
         {
             document.getElementById("category").selectedIndex = 0;
-            setTableName(category.options[category.selectedIndex].text);
             SelectTable("pop");
         }
-    },[window.location.hash]);
+    });
 
     function handleSelectChange(file)
     {
         window.location.hash = file;
     }
-
+    function SelectTable(filename)
+    {
+        var filepath;
+        //console.log("Select table called");
+        filepath = "csv/"+filename+".csv";
+        
+        let category = document.getElementById("category");
+        setTableName(category.options[category.selectedIndex].text);
+    
+        //Clear HTML Data Table
+        document.getElementById("showData").innerHTML = "";
+        //ClearFilter("price");
+        //ClearFilter("platform");
+        //ClearFilter("categories");
+        //ClearFilter("tag");
+    
+        //Load CSV Data
+        LoadDoc(filepath, CreateTableFromArray2D);
+    }
     function toggleSidebar()
     {
         var side = document.getElementsByClassName("sidenav")[0];
         if(side.style.display === "none" || side.style.display === "")
         {
             side.style.display = "block";
+            //document.body.style.overflow = "hidden";
         }
         else
         {
             side.style.display = "";
+            //document.body.style.overflow = "";
         }
     }
 
@@ -164,24 +181,9 @@ const Resources = () => {
 export default Resources
 
 //Global vars
-var filepath;
 var csvdata;
 
-function SelectTable(filename)
-{
-    //console.log("Select table called");
-    filepath = "csv/"+filename+".csv";
 
-    //Clear HTML Data Table
-    document.getElementById("showData").innerHTML = "";
-    //ClearFilter("price");
-    //ClearFilter("platform");
-    //ClearFilter("categories");
-    //ClearFilter("tag");
-
-    //Load CSV Data
-    LoadDoc(filepath, CreateTableFromArray2D);
-}
 
 function LoadDoc(filepath, callback) {
     var xhttp = new XMLHttpRequest();

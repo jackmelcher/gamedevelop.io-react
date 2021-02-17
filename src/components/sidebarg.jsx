@@ -1,28 +1,35 @@
 import { Link } from "gatsby"
 import React from "react"
-import {useState, useEffect} from "react"
-
+import {useEffect} from "react"
 import "../css/guides.css"
 
 const SidebarG = () => {
 
-  const [pageURL,setPageURL] = useState(window.location.href);
+  useEffect(() => {
+    makeUnderlines();
+    makeAnchorList();
+  });
 
-    useEffect(() => {
-      makeAnchorList();
-    });
-
-
+  function toggleSidebarEvent(){
+    toggleSidebar();
+  }
 
   return (
+    <>
+    <div className="selectbar selectbarGuide">
+      <button onClick={(e) => toggleSidebarEvent()}>
+        <i className="menuicon fas fa-list"></i>
+        <span>Table of Contents</span>
+      </button>
+    </div>
     <div className="sidenav">
+      
       <div className="guidelink">
         <Link to="/guides/introductory" className="bold">Introductory Guides</Link>
         <ul className="nobullets">
           <li>
             <Link to="/guides/introductory/concept" className="pagelink">Conceptualizing a Video Game</Link>
           </li>
-          
           <li>
             <Link to="/guides/introductory/business" className="pagelink">Making a Business Strategy</Link>
           </li>
@@ -71,6 +78,7 @@ const SidebarG = () => {
         </ul>
       </div>
     </div>
+    </>
   )
 }
 export default SidebarG
@@ -78,7 +86,7 @@ export default SidebarG
 function makeAnchorList()
 {
   let pages = document.getElementsByClassName("pagelink");
-  let pageurl = window.location.href.split("/").slice(-1).toString()
+  let pageurl = window.location.href.split("/").slice(-1).toString();
 
   for(let i = 0; i < pages.length; i++)
   {
@@ -96,6 +104,7 @@ function makeAnchorList()
       {
         litem = document.createElement("li");
         anchor = document.createElement("a");
+        anchor.href = "javascript:";
         anchor.onclick = function(){handleAnchorLink(ids[j].id)};
         anchor.textContent = headers[j].textContent;
         litem.appendChild(anchor);
@@ -110,5 +119,42 @@ function makeAnchorList()
 function handleAnchorLink(id)
 {
   document.getElementById(id).scrollIntoView();
-  window.scrollBy(0,-64);
+  if(window.innerWidth <= 768)
+  {
+    window.scrollBy(0,-120);
+  }
+  else
+  {
+    window.scrollBy(0,-64);
+  }
+  toggleSidebar();
+
+}
+
+function makeUnderlines()
+{
+  let links = document.getElementsByTagName("a");
+
+  for(let i=0;i<links.length;i++)
+  {
+    if(window.location.href.includes(links[i].href))
+    {
+      links[i].classList.add("underline");
+    }
+  }
+}
+
+function toggleSidebar()
+{
+  var side = document.getElementsByClassName("sidenav")[0];
+  if(side.style.display === "none" || side.style.display === "")
+  {
+    side.style.display = "block";
+    //document.body.style.overflow = "hidden";
+  }
+  else
+  {
+    side.style.display = "";
+    //document.body.style.overflow = "";
+  }
 }

@@ -143,9 +143,3 @@ function makeAnchors(divContainer,ids,sections)
     }
     divContainer.appendChild(list);
 }
-
-function secjump(id)
-{
-    document.getElementById(id).scrollIntoView();
-    window.scrollBy(0,-64);
-}

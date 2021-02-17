@@ -19,14 +19,9 @@ html[data-theme = "dark"]{
 .guidelink{
     margin: 16px 0px;
 }
-.guidelink > a{
+.guidelink > a,
+.guidelink > * a {
     color: var(--guide-link-article-color);
-}
-.guidelink > ul > li >a{
-    color: var(--guide-link-header-color);
-}
-.guidelink > ul > li > ul > li > a{
-    color: var(--guide-link-header-color);
 }
 .guidelink > ul > li > ul{
     margin-top: 8px;
