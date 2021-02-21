@@ -147,7 +147,7 @@ a:hover{
 .button {
   background-color: var(--primary-color);
   border: none; /* 2px solid #000000; */
-  border-radius: 2px;
+  border-radius: 8px;
   color: var(--secondary-color) !important; /* Text Color */
   padding: 16px;
   text-align: center;

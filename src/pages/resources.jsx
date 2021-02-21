@@ -38,12 +38,7 @@ const Resources = () => {
         let category = document.getElementById("category");
         setTableName(category.options[category.selectedIndex].text);
     
-        //Clear HTML Data Table
-        document.getElementById("showData").innerHTML = "";
-        //ClearFilter("price");
-        //ClearFilter("platform");
-        //ClearFilter("categories");
-        //ClearFilter("tag");
+
     
         //Load CSV Data
         LoadDoc(filepath, CreateTableFromArray2D);
@@ -90,7 +85,7 @@ const Resources = () => {
                     </optgroup>
                     <optgroup label="Business Tools">
                         <option value="analytics">Analytics</option>
-                        <option value="business">Business</option>
+                        <option value="business">Business & Marketing</option>
                         <option value="monetization">Monetization</option>
                         <option value="website">Websites</option>
                     </optgroup>
@@ -183,8 +178,6 @@ export default Resources
 //Global vars
 var csvdata;
 
-
-
 function LoadDoc(filepath, callback) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -201,12 +194,14 @@ function LoadDoc(filepath, callback) {
 
 function CreateTableFromArray2D(array2D)
 {
+    //Clear HTML Data Table
+    document.getElementById("showData").innerHTML = "";
+
     // CREATE DYNAMIC TABLE.
     var table = document.createElement("table");
     table.setAttribute("id", "myTable");
 
     // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
-
     for(var i = 0; i < array2D.length; i++)
     {
         var tr = table.insertRow(-1);                       // TABLE ROW.

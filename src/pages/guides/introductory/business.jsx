@@ -195,17 +195,17 @@ const BusinessPage = () => (
                     <ul>
                         <li>
                             <a href="https://www.kickstarter.com/" target="_blank" rel="noopener noreferrer">
-                                <img src="/images/guides/kickstarter-logo.svg" alt="Kickstarter Logo" style={imgStyle}/>
+                                <img src="/images/guides/kickstarter-logo.svg" alt="Kickstarter Logo" className="imgguide"/>
                             </a>
                         </li>
                         <li>
                             <a href="https://www.indiegogo.com/" target="_blank" rel="noopener noreferrer">
-                                <img src="/images/guides/igg-logo.svg" alt="Indiegogo Logo" style={imgStyle}/>
+                                <img src="/images/guides/igg-logo.svg" alt="Indiegogo Logo" className="imgguide"/>
                             </a>
                         </li>
                         <li>
                             <a href="https://www.patreon.com/" target="_blank" rel="noopener noreferrer">
-                                <img src="/images/guides/patreon-logo.svg" alt="Patreon Logo" style={imgStyle}/>
+                                <img src="/images/guides/patreon-logo.svg" alt="Patreon Logo" className="imgguide"/>
                             </a>
                         </li>
                     </ul>
@@ -219,12 +219,12 @@ const BusinessPage = () => (
                         </li>
                         <li>
                             <a href="https://www.unrealengine.com/en-US/megagrants" target="_blank" rel="noopener noreferrer">
-                                <img src="/images/guides/epicgrant-logo.png" alt="Epic Mega Grant Logo" style={imgStyle}/>
+                                <img src="/images/guides/epicgrant-logo.png" alt="Epic Mega Grant Logo" className="imgguide"/>
                             </a>
                         </li>
                         <li>
                             <a href="http://indie-fund.com/" target="_blank" rel="noopener noreferrer">
-                                <img src="/images/guides/indiefund-logo.png" alt="IndieFund Logo" style={imgStyle}/>
+                                <img src="/images/guides/indiefund-logo.png" alt="IndieFund Logo" className="imgguide"/>
                             </a>
                         </li>
                     </ul>
@@ -395,12 +395,8 @@ const BusinessPage = () => (
             </p>
         </div>
         <div className="lastmodified">
-            Last Modified: 2020/09/30
+            Last Modified: 2021/02/20
         </div>
     </Layoutg>
 )
 export default BusinessPage
-const imgStyle = {
-    maxHeight: 80,
-    maxWidth: "90%",
-  };

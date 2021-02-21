@@ -1,7 +1,7 @@
 Name,Link,Categories,Pricing,Platforms,Tags,Description
-Upwork,https://www.upwork.com/,All,,,Freelancers,"Upwork connects businesses of all sizes to freelancers, independent professionals, and agencies for all their hiring needs. Scale your workforce dynamically as business needs change."
-Fiverr,https://www.fiverr.com/,All,,,Freelancers,"One marketplace, millions of professional services. Browse. Buy. Done."
-CGTrader,https://www.cgtrader.com/3d-modeling-jobs,Freelance,Free,Web,,Discover the largest platform to find freelance designers and artists for your next 3D Project. Post a 3D modeling job for free today.
+Upwork,https://www.upwork.com/,All,Paid,Web,Freelancers,"Upwork connects businesses of all sizes to freelancers, independent professionals, and agencies for all their hiring needs. Scale your workforce dynamically as business needs change."
+Fiverr,https://www.fiverr.com/,All,Paid,Web,Freelancers,"One marketplace, millions of professional services. Browse. Buy. Done."
+CGTrader,https://www.cgtrader.com/3d-modeling-jobs,Freelance,Paid,Web,Freelancers,Discover the largest platform to find freelance designers and artists for your next 3D Project. Post a 3D modeling job for free today.
 Bunker,https://bunkervfx.com/,Marketing,,,Game Trailers,"We are a team of professionals hooked on air saturated with ideas, on tension that comes with creativity and  the excitement of rewarding the imaginary with various astounding shapes. We operate from a safe location."
 M. Joshua Makes Trailers,http://mjoshua.com/,Marketing,,,Game Trailers,Need a trailer? Want a consultation? Let's talk!
 Gabe Allen,https://vimeo.com/173878248,Marketing,,,Game Trailers,I work with game developers from around the world in creating high quality professional video game trailers for their games. Here are some snippets of that work!
@@ -127,7 +127,7 @@ Tomedes,https://www.tomedes.com/,Localization,,,,"Professional translation servi
 Trusted Translations,https://www.trustedtranslations.com/,Localization,,,,Trusted Translations is the leader in Spanish translation services and multilingual translations.Free quote or consultation.Quality at the best rates.
 Universally Speak,http://usspeaking.com/,"Localization, Game Testing, Audio",,,,"Multi award-winning, end-to-end, service provider for the global gaming industry. Game Localisation, Culturalisation, QA, ASO & Audio solutions."
 WritingBunny,https://bunnyinc.com/writing/,Writing,,,,"Our Writing service allows creative teams to delegate their writing needs and get consistent top-notch content: from blog posts, scripts, landings and more."
-The McArthur Law Firm,https://smcarthurlaw.com/,Legal,"","","",Need a Video Game Lawyer? McArthur Law Firm works directly w/ software companies to protect them against poachers & frivolous intellectual property claims.
+The McArthur Law Firm,https://smcarthurlaw.com/,Legal,,,,Need a Video Game Lawyer? McArthur Law Firm works directly w/ software companies to protect them against poachers & frivolous intellectual property claims.
 Morrison Rothman,https://morrisonrothman.com/,Legal,,,,Experience. Creativity. Results.
 Purewal and Partners,https://www.purewalandpartners.com/,Legal,,,,"A law firm for video games, YouTube, digital entertainment and tech companies. Based in Europe."
 Sheridans,https://www.sheridans.co.uk/sectors/computer-games/,Legal,,,,"Sheridans has several leading lawyers in the interactive, entertainment and computer games sector advising on every aspect on the operation of an interactive business from development agreements to license agreements, from data protection to privacy policies and from crowd sourcing to alternative business models. Based in UK."
@@ -196,3 +196,4 @@ Western Egg,http://westeregg.com/,Porting,,,,"We are an independent game studio 
 Plastic Fern Studios,https://www.plasticfernstudios.com/,"Porting, Game Testing, Audio",,,,"We're experts in what you need to release your game. From porting to release management, our experienced team provides personalized and premium skills, insights, and deliverables to demystify the process of launching your game."
 Virtual Arts,https://www.virtualarts.co.uk/,Development,,,UK,Best in class mobile extended reality content development. We can make your vision a reality.
 PlayEveryWare,https://www.playeveryware.com/,Porting,,,,PlayEveryWare collaborates with other indie teams and publishers to help bring their games to more players! We love working on unique games and developing for consoles.
+Alan's Gamedev Resources Sheet,https://docs.google.com/spreadsheets/d/11g8MCMFNrBM0CXIWrT8bej5vqR1fCJGMhoFfbS5ph3Q/,"Porting, Localization","","","",Need a publisher? QA team? Localization? Just jump to that tab and look through the list for possible resources.

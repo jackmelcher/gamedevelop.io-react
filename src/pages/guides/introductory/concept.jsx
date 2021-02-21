@@ -34,22 +34,38 @@ const ConceptPage = () => (
                 
             </p>
             <ul>
-                    <li>
-                        Taking an existing game idea and replicating it to learn how to develop that type of game.
-                    </li>
-                    <li>
-                        Taking a proven game idea and innovating on top of it.
-                    </li>
-                    <li>
-                        Reusing the same genre and mechanics from a game, but using them in a different setting.
-                    </li>
-                    <li>
-                        Combining two or more genres to create a new experience that poses a different set of challenges.
-                    </li>
-                    <li>
-                        Participating in a Game Jam. Often, novel game ideas come from having to brainstorm around the proposed theme.
-                    </li>
-                </ul>
+                <li>
+                    Taking an existing game idea and replicating it to learn how to develop that type of game.
+                </li>
+                <li>
+                    Taking a proven game idea and innovating on top of it.
+                </li>
+                <li>
+                    Reusing the same genre and mechanics from a game, but using them in a different setting.
+                </li>
+                <li>
+                    Combining two or more genres to create a new experience that poses a different set of challenges.
+                </li>
+                <li>
+                    Participating in a Game Jam. Often, novel game ideas come from having to brainstorm around the proposed theme.
+                    <ul>
+                        <li>
+                        <a href="https://globalgamejam.org/" target="_blank" rel="noopener noreferrer">
+                            <img src="/images/guides/ggj-logo.svg" alt="Global Game Jam Logo" className="imgguide"/>
+                        </a>
+                        </li>
+                        <li>
+                        <a href="https://ldjam.com/" target="_blank" rel="noopener noreferrer">
+                            <img src="/images/guides/ludum-logo.png" alt="Ludum Dare Logo" className="imgguide"/>
+                        </a>
+                        </li>
+                        <li>
+                            <b><Link to="/resources#jams">Full List of Game Jams</Link></b>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            
             <p>
                 Take the the time to brainstorm and lay out all the high-level features of the game.
                 Jot down the theme, genre, goals, features, game pieces, game loop, progression, rewards, art style, type of music, target platform/s, etc.
@@ -81,10 +97,10 @@ const ConceptPage = () => (
             </p>
             <p>
                 If you are whole-heartedly commited to making your big dream game, then go for it.
-                Start by breaking down your game into smaller, manageable chunks or milestones.
+                But make sure to break down your game into smaller, manageable chunks or milestones.
                 The feeling of progress will help with maintaining your motivation to work on projects that may take years to complete.
                 By accomplishing small goals, it becomes easier to achieve big goals.
-                If you dont feel confident that you can make your big dream game yet, then take a small fraction of the features from your big game idea to make a smaller game using them.
+                If you dont feel confident that you can make your big dream game yet, then reduce your scope and make a smaller game.
             </p>
         </div>
         <div id="gdd">
@@ -175,7 +191,7 @@ const ConceptPage = () => (
             </p>
         </div>
         <div className="lastmodified">
-            Last Modified: 2020/09/09
+            Last Modified: 2021/02/20
         </div>
     </Layoutg>
 )

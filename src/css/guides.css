@@ -40,7 +40,10 @@ html[data-theme = "dark"]{
 }
 ul{line-height: 1.5;}
 li{margin-bottom: 8px;}
-
+.imgguide{
+    max-height: 80px;
+    max-width: 90%;
+}
 .guideflex-container {
     display: flex;
     display: -webkit-flex;

@@ -57,6 +57,14 @@ function SEO({ description, lang, meta, title, children }) {
           content: 'GameDevelop.io',
         },
         {
+          name: 'og:image',
+          content: 'https://gamedevelop.io/images/logo1.png',
+        },
+        {
+          name: 'twitter:image',
+          content: 'https://gamedevelop.io/images/logo1.png',
+        },
+        {
           name: `twitter:card`,
           content: `summary`,
         },

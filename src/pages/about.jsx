@@ -73,7 +73,7 @@ const About = () => (
                     If you'd like to support the development of GameDevelop.io, then consider becoming a supporter on: 
                     <br/> <br/>
                     <a href="https://www.buymeacoffee.com/gamedevelop" className="button button_support bcm" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/about/Button_orange.png" alt="Buy Me a Coffee Logo"/>
+                        <img src="/images/about/Button_orange.png" alt="Buymeacoffee support page"/>
                     </a>
                 </p>
                 
@@ -82,17 +82,30 @@ const About = () => (
                 <br/>
                 <h2 >Join the Discord Server</h2>
                 <p>
-                    Submit feedback and make suggestions about GameDevelop.io
+                    Got feedback about GameDevelop.io? Want to submit a resource to the database?
                     <br/>
-                    Share resources and discuss game development with fellow developers.
+                    Join GameDevelop.io's discord server and make suggestions for the website.
+                    
                 </p>
                 <a href="https://discord.gg/xZPUrKR" className="button button_support discord" target="_blank" rel="noopener noreferrer">
-                    <img src="/images/about/discord.com.png" alt="Discord logo"/>
+                    <img src="/images/about/discord.com.png" alt="Gamedevelop.io's Discord server"/>
+                </a>
+                <br/>
+                <br/>
+                <br/>
+                <h2 >Source Code</h2>
+                <p>
+                    GameDevelop.io is open source and the repository is available on Github.
+                    <br/>
+                    If you would like to contribute to the development of GameDevelop.io, get in-touch with developers on the discord server.
+                    <br/>
+                </p>
+                <a href="https://github.com/jackmelcher/gamedevelop.io-react" className="button button_support github" target="_blank" rel="noopener noreferrer">
+                    <img src="/images/about/github-logo.svg" alt="GameDevelop.io's source on Github"/>
                 </a>
             </div>
         </div>
         <br id="contact"/>
-        <br/>
         <h1 className="header">Contact</h1>
         <p className="textcenter">
             <b>For all enquiries, please fill out the Form below.</b>
