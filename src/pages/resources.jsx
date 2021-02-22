@@ -33,7 +33,7 @@ const Resources = () => {
     {
         var filepath;
         //console.log("Select table called");
-        filepath = "csv/"+filename+".csv";
+        filepath = "/csv/"+filename+".csv";
         
         let category = document.getElementById("category");
         setTableName(category.options[category.selectedIndex].text);
@@ -225,9 +225,9 @@ function CreateTableFromArray2D(array2D)
                     // Using event listener to catch errors
                     img.addEventListener('error', function(e) {
                         //console.log(e.target.src);
-                        this.src = "images/placeholder.png";
+                        this.src = "/images/placeholder.png";
                     });
-                    img.src = "images/resources/" + GetImageName(array2D[i][j+1]) + ".png";
+                    img.src = "/images/resources/" + GetImageName(array2D[i][j+1]) + ".png";
                     img.className = "tableimg";
                     img.addEventListener('load',function(e){
                         //console.log(e.target.src);

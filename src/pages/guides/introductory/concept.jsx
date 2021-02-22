@@ -60,7 +60,7 @@ const ConceptPage = () => (
                         </a>
                         </li>
                         <li>
-                            <b><Link to="/resources#jams">Full List of Game Jams</Link></b>
+                            <b><Link to="/resources/#jams">Full List of Game Jams</Link></b>
                         </li>
                     </ul>
                 </li>
@@ -175,19 +175,19 @@ const ConceptPage = () => (
             <h3>What's Next?</h3>
             <p>
                 If you need a business strategy, let's make a business strategy.<br/>
-                <Link to="/guides/introductory/business">Making a Business and Marketing Strategy</Link>
+                <Link to="/guides/introductory/business/">Making a Business and Marketing Strategy</Link>
             </p>
             <p>
                 If you need a toolkit, let's pick out some tools.<br/>
-                <Link to="/guides/introductory/tools">Selecting a Toolkit</Link>
+                <Link to="/guides/introductory/tools/">Selecting a Toolkit</Link>
             </p>
             <p>
                 If you need a team, let's recruit some team members.<br/>
-                <Link to="/guides/introductory/team">Forming a Team</Link>
+                <Link to="/guides/introductory/team/">Forming a Team</Link>
             </p>
             <p>
                 Otherwise, it's time to start producing your game!<br/>
-                <Link to="/guides/introductory/production">Producing a Video Game</Link>
+                <Link to="/guides/introductory/production/">Producing a Video Game</Link>
             </p>
         </div>
         <div className="lastmodified">

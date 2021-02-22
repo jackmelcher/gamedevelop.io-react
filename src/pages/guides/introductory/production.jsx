@@ -87,7 +87,7 @@ const ProductionPage = () => (
                     </a>
                 </p>
                 <p>
-                    <b><Link to="/resources#vcs">Full list of Version Control Systems, Hosts, and Tools</Link></b>
+                    <b><Link to="/resources/#vcs">Full list of Version Control Systems, Hosts, and Tools</Link></b>
                 </p>
             </div>
             <div id="tasking">
@@ -164,7 +164,7 @@ const ProductionPage = () => (
                     </a>
                 </p>
                 <p>
-                    <b><Link to="/resources#tasking">Full List of Task Management Software</Link></b>
+                    <b><Link to="/resources/#tasking">Full List of Task Management Software</Link></b>
                 </p>
             </div>
             

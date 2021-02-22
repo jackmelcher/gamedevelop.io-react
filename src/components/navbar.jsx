@@ -28,10 +28,10 @@ function Navbar({children})
             <Link to="/" className="button button_logo">
                 <img src="/images/logo.svg" alt="logo" className="logoimg"/>
             </Link>
-            <Link to="/resources" className="button button_nav">
+            <Link to="/resources/" className="button button_nav">
                 Resources
             </Link>
-            <Link to="/guides" className="button button_nav">
+            <Link to="/guides/" className="button button_nav">
                 Guides
             </Link>
             <button className="button settingsnavbutton" onClick={() => setOpen(!open)}>

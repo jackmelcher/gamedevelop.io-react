@@ -38,7 +38,7 @@ html[data-theme = "dark"]{
     font-size: 16pt;
     font-weight: bold;
 }
-ul{line-height: 1.5;}
+ul,ol{line-height: 1.5;}
 li{margin-bottom: 8px;}
 .imgguide{
     max-height: 80px;

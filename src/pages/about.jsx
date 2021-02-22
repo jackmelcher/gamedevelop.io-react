@@ -11,7 +11,7 @@ const About = () => (
         <div className="flex-container">
             <div className="about">
                 <h1 className="header">About</h1> 
-                <img src="images/logo1.svg" alt="GameDevelop.io logo" className="logomain"/>
+                <img src="/images/logo1.svg" alt="GameDevelop.io logo" className="logomain"/>
                 <h2 className="subheader">GameDevelop.io's mission is to provide Game Developers of any skill level with the resources and knowledge necessary to develop Video Games.</h2>
                 <p>
                     The Resource Database is designed to be a complete and up to date collection of tools, assets, communities, and services commonly used by game developers.<br/><br/>

@@ -47,21 +47,21 @@ const IntroductoryPage = () => (
                 Q: When would I make my own Game Engine?<br/>
                 </b>
                 A: Only make a Game Engine if: 
-                <ul>
-                    <li>
-                        You want to be a professional Engine Programmer.
-                    </li>
-                    <li>
-                        All the available engines aren’t suitable for making your game.
-                    </li>
-                    <li>
-                        You want a specialized tool that you own and you plan on reusing it to make sequels or similar games.
-                    </li>
-                    <li>
-                        You are adamant about avoiding royalties or subscriptions for the use of a commercial engine.
-                    </li>
-                </ul>
             </p>
+            <ul>
+                <li>
+                    You want to be a professional Engine Programmer.
+                </li>
+                <li>
+                    All the available engines aren’t suitable for making your game.
+                </li>
+                <li>
+                    You want a specialized tool that you own and you plan on reusing it to make sequels or similar games.
+                </li>
+                <li>
+                    You are adamant about avoiding royalties or subscriptions for the use of a commercial engine.
+                </li>
+            </ul>
             <br/>
             <p>
                 <b>
@@ -215,7 +215,7 @@ const IntroductoryPage = () => (
                 </a>
             </p>
             <p>
-                <b><Link to="/resources#engine">Full List of Engines and Frameworks</Link></b>
+                <b><Link to="/resources/#engine">Full List of Engines and Frameworks</Link></b>
             </p>
         </div>
         <div id="2d">
@@ -260,7 +260,7 @@ const IntroductoryPage = () => (
                     </a>
             </p>
             <p>
-                <b><Link to="/resources#2d">Full List of 2D Art Tools</Link></b>
+                <b><Link to="/resources/#2d">Full List of 2D Art Tools</Link></b>
             </p>
         </div>
         <div id="3d">
@@ -326,7 +326,7 @@ const IntroductoryPage = () => (
                 </a>
             </p>
             <p>
-                <b><Link to="/resources#3d">Full List of 3D Art Tools</Link></b>
+                <b><Link to="/resources/#3d">Full List of 3D Art Tools</Link></b>
             </p>
         </div>
         <div id="audio">
@@ -336,21 +336,21 @@ const IntroductoryPage = () => (
                 <a href="https://www.ableton.com/" target="_blank" rel="noopener noreferrer">
                     <img src="/images/guides/ableton-logo.png" alt="Ableton Logo"/>
                 </a>
-                    <a href="https://www.avid.com/en/pro-tools" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/avid-logo.png" alt="Avid Pro Tools Logo"/>
-                    </a>
-                    <a href="https://www.presonus.com/products/Studio-One" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/studio1-logo.svg" alt="Presonus Studio One Logo"/>
-                    </a>
+                <a href="https://www.avid.com/en/pro-tools" target="_blank" rel="noopener noreferrer">
+                    <img src="/images/guides/avid-logo.png" alt="Avid Pro Tools Logo"/>
+                </a>
+                <a href="https://www.presonus.com/products/Studio-One" target="_blank" rel="noopener noreferrer">
+                    <img src="/images/guides/studio1-logo.svg" alt="Presonus Studio One Logo"/>
+                </a>
             </p>
             <b>Music Tracker</b>
             <p class="guideimg">
                 <a href="http://deflemask.com/" target="_blank" rel="noopener noreferrer">
                     <img src="/images/guides/deflemask-logo.png" alt="Deflemask Logo"/>
                 </a>
-                    <a href="https://www.renoise.com/products/renoise" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/renoise-logo.png" alt="Renoise Logo"/>
-                    </a>
+                <a href="https://www.renoise.com/products/renoise" target="_blank" rel="noopener noreferrer">
+                    <img src="/images/guides/renoise-logo.png" alt="Renoise Logo"/>
+                </a>
             </p>
             <b>Audio Recording and Editing</b>
             <p class="guideimg">
@@ -363,12 +363,12 @@ const IntroductoryPage = () => (
                 <a href="https://www.bfxr.net/" target="_blank" rel="noopener noreferrer">
                     <img src="/images/guides/bfxr-logo.png" alt="Bfxr Logo"/>
                 </a>
-                    <a href="http://sfbgames.com/chiptone/" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/chiptone-logo.png" alt="Chiptone Logo"/>
-                    </a>
+                <a href="http://sfbgames.com/chiptone/" target="_blank" rel="noopener noreferrer">
+                    <img src="/images/guides/chiptone-logo.png" alt="Chiptone Logo"/>
+                </a>
             </p>
             <p>
-                <b><Link to="/resources#audio">Full List of Audio Tools</Link></b>
+                <b><Link to="/resources/#audio">Full List of Audio Tools</Link></b>
             </p>
         </div>
         <div id="video">
@@ -378,32 +378,32 @@ const IntroductoryPage = () => (
                 <a href="https://obsproject.com/" target="_blank" rel="noopener noreferrer">
                     <img src="/images/guides/obs-logo.png" alt="OBS Studios Logo"/>
                 </a>
-                    <a href="https://www.elgato.com/en/gaming/game-capture-software" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/elgato-logo.svg" alt="Elgato Logo"/>
-                    </a>
+                <a href="https://www.elgato.com/en/gaming/game-capture-software" target="_blank" rel="noopener noreferrer">
+                    <img src="/images/guides/elgato-logo.svg" alt="Elgato Logo"/>
+                </a>
             </p>
             <b>Video Editing</b>
             <p class="guideimg">
                 <a href="https://www.adobe.com/products/premiere.html" target="_blank" rel="noopener noreferrer">
                     <img src="/images/guides/premiere-logo.png" alt="Adobe Premiere Logo"/>
                 </a>
-                    <a href="https://www.blackmagicdesign.com/products/davinciresolve/" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/davinci-logo.png" alt="Davinci Resolve Logo"/>
-                    </a>
+                <a href="https://www.blackmagicdesign.com/products/davinciresolve/" target="_blank" rel="noopener noreferrer">
+                    <img src="/images/guides/davinci-logo.png" alt="Davinci Resolve Logo"/>
+                </a>
             </p>
             <p>
-                <b><Link to="/resources#video">Full List of Video Tools</Link></b>
+                <b><Link to="/resources/#video">Full List of Video Tools</Link></b>
             </p>
         </div>
         <div id="next">
             <h3>What's Next?</h3>
             <p>
                 If you need a team, let's recruit some team members.<br/>
-                <Link to="/guides/introductory/team">Forming a Team</Link>
+                <Link to="/guides/introductory/team/">Forming a Team</Link>
             </p>
             <p>
                 Otherwise, it's time to start producing your game!<br/>
-                <Link to="/guides/introductory/production">Producing a Video Game</Link>
+                <Link to="/guides/introductory/production/">Producing a Video Game</Link>
             </p>
         </div>
         <div className="lastmodified">

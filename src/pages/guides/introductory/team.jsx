@@ -9,12 +9,63 @@ const TeamPage = () => (
         <SEO title="Forming a Team" description="Learn how to recruit team members and effects of a team's composition."/>
         <h1 id="top">Forming a Team</h1>
         <div id="team">
-            <h3>Figure Out the Team's Composition</h3>
+            <h3>Determine the Team's Composition</h3>
+            <ol>
+                <li>
+                    Decide what work you want to do. This will determine your role/s on your team.
+                </li>
+                <li>
+                    Decide what tasks you want to delegate. This will determine what roles you want your teammates to fill.
+                </li>
+            </ol>
             <p>
-                Make a layout of the team's size and the various roles for the project.
-                Determine what tasks each role will be responsible for, and how many individuals you will need for each role.
-                Once you've decide on what role you want to play, you can fill the remaining roles by recruiting additional members.
+                <b>Types of Roles:</b>
             </p>
+            <ul>
+                <li>
+                    <b>Designer</b> - Creates the concepts and ideas for the game.
+                    Lays them out at a high level in a Game Design Document.
+                    Uses tools made by engineers to make the game, or works alongside engineers to script the game.
+                    Works with engineers and artists to fine tune the game's mechanics and art direction.
+                </li>
+                <li>
+                    <b>Engineer</b> - Implements the designers concepts and the artists assets.
+                    Build tools for artits and designers.
+                    Documents the more technical aspects of the game's design.
+                    Sets up the means for continuous integration of code changes and the process for making builds of the game.
+                </li>
+                <li>
+                    <b>Artist</b> - Creates the assets, art or sound, that will be used in the game.
+                </li>
+                <li>
+                    <b>Writer</b> - Writes the narrative, lore, script, dialogue, plot, or descriptive text.
+                </li>
+                <li>
+                    <b>Producer</b> - Creates a development schedule and a task backlog for the Designers, Engineers, Artists, and Writers.
+                    Helps establish development processes and best practices.
+                    Sets production deadlines and makes sure development stays is within budget.
+                </li>
+                <li>
+                    <b>Tester</b> - Playtests the game in order to find and report bugs and glitches.
+                    Also provides feedback and suggestions about the User Experience.
+                </li>
+                <li>
+                    <b>Localizer</b> - Translates the text that will be used in the game into other languages.
+                </li>
+                <li>
+                    <b>Business Admin</b> - Handles the business related aspects of running a games studio, such as human resources, finances, or accounting.
+                    Evaluates business success based on reports from marketers and producers.
+                </li>
+                <li>
+                    <b>Marketer</b> - Focuses on advertising the game to a potential audience and increasing the chances of a successful launch or crowdfunding campaign.
+                </li>
+                <li>
+                    <b>Community Manager</b> - Engages with fans and community members of the game.
+                    Moderates community discussion.
+                    Relays community feedback and concerns to developers.
+                    Works with marketers to encourage community engagement and growth.
+                </li>
+            </ul>
         </div>
         <div id="draft">
             <h3>Draft a Recruitment Post</h3>
@@ -37,7 +88,7 @@ const TeamPage = () => (
                 Team Size: <br/>
                 Role(s) Required: <br/>
                 Responsibilities of Role(s):<br/>
-                Require Experience for Role(s):<br/>
+                Required Experience for Role(s):<br/>
                 Project Length: (X Months, X Years)<br/>
                 Compensation: (None, Revenue-Share, Commission, Hourly, Salary)<br/>
             </p>
@@ -62,7 +113,10 @@ const TeamPage = () => (
                 Factors to consider while recruiting members are: experience, availabile time commitment, physical location, and time zone.
             </p>
             <p>
-                <Link to="/resources#communities">Full List of Game Development Communities</Link>
+                <Link to="/resources/#communities">Full List of Game Development Communities</Link>
+            </p>
+            <p>
+                <Link to="/resources/#jobs">Full List of Job Boards</Link>
             </p>
         </div>
         <div id="experience">
@@ -72,8 +126,8 @@ const TeamPage = () => (
                 Team members will also expect a certain level of compensation based on their experience.
             </p>
             <p>
-                While less experienced members are more likely to work for free or for revenue-share, they may spend more time learning the necessary skills to make the game.
-                Also, less experienced members may have a more difficult time implementating complex features.
+                While less experienced members are more likely to work for free or for revenue-share, they may have a hareder time implementating complex features.
+                Also, less experienced members will likely spend more time learning the necessary skills to make the game.
             </p>
             <p>
                 Experienced members will have an easier time building the required systems and expanding upon them.
@@ -125,11 +179,11 @@ const TeamPage = () => (
             <h3>What's Next?</h3>
             <p>
                 It's time to produce your game!<br/>
-                <Link to="/guides/introductory/production">Producing a Video Game</Link>
+                <Link to="/guides/introductory/production/">Producing a Video Game</Link>
             </p>
         </div>
         <div className="lastmodified">
-            Last Modified: 2020/09/07
+            Last Modified: 2021/02/21
         </div>
     </Layoutg>
 )

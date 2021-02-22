@@ -25,55 +25,55 @@ const SidebarG = () => {
     <div className="sidenav">
       
       <div className="guidelink">
-        <Link to="/guides/introductory" className="bold">Introductory Guides</Link>
+        <Link to="/guides/introductory/" className="bold">Introductory Guides</Link>
         <ul className="nobullets">
           <li>
-            <Link to="/guides/introductory/concept" className="pagelink">Conceptualizing a Video Game</Link>
+            <Link to="/guides/introductory/concept/" className="pagelink">Conceptualizing a Video Game</Link>
           </li>
           <li>
-            <Link to="/guides/introductory/business" className="pagelink">Making a Business Strategy</Link>
+            <Link to="/guides/introductory/business/" className="pagelink">Making a Business Strategy</Link>
           </li>
           <li>
-            <Link to="/guides/introductory/tools" className="pagelink">Selecting a Toolkit</Link>
+            <Link to="/guides/introductory/tools/" className="pagelink">Selecting a Toolkit</Link>
           </li>
           <li>
-            <Link to="/guides/introductory/team" className="pagelink">Forming a Team</Link>
+            <Link to="/guides/introductory/team/" className="pagelink">Forming a Team</Link>
           </li>
           <li>
-            <Link to="/guides/introductory/production" className="pagelink">Producing a Video Game</Link>
+            <Link to="/guides/introductory/production/" className="pagelink">Producing a Video Game</Link>
           </li>
         </ul>
-        <Link to="/guides/industry" className="bold">The Computer and Video Game Industry</Link>
+        <Link to="/guides/industry/" className="bold">The Computer and Video Game Industry</Link>
         <ul className="nobullets">
           <li>
-            <Link to="/guides/industry/overview" className="pagelink">Games Industry Market Overview</Link>
+            <Link to="/guides/industry/overview/" className="pagelink">Games Industry Market Overview</Link>
           </li>
           <li>
-            <Link to="/guides/industry/jobs" className="pagelink">Jobs in the Games Industry</Link>
+            <Link to="/guides/industry/jobs/" className="pagelink">Jobs in the Games Industry</Link>
           </li>
           <li>
-            <Link to="/guides/industry/testing" className="pagelink">Publisher QA Testing</Link>
+            <Link to="/guides/industry/testing/" className="pagelink">Publisher QA Testing</Link>
           </li>
           <li>
-            <Link to="/guides/industry/culture" className="pagelink">Games Industry Work Culture</Link>
+            <Link to="/guides/industry/culture/" className="pagelink">Games Industry Work Culture</Link>
           </li>
         </ul>
-        <Link to="/guides/business-and-marketing" className="bold">Business and Marketing Guides</Link>
+        <Link to="/guides/business-and-marketing/" className="bold">Business and Marketing Guides</Link>
         <ul className="nobullets">
           <li>
-            <Link to="/guides/business-and-marketing/ip" className="pagelink">The Strength of Intellectual Property</Link>
+            <Link to="/guides/business-and-marketing/ip/" className="pagelink">The Strength of Intellectual Property</Link>
           </li>
           <li>
-            <Link to="/guides/business-and-marketing/youtube" className="pagelink">Building a Successful YouTube Channel</Link>
+            <Link to="/guides/business-and-marketing/youtube/" className="pagelink">Building a Successful YouTube Channel</Link>
           </li>
           <li>
-            <Link to="/guides/business-and-marketing/tactics" className="pagelink">Indie Business Tactics</Link>
+            <Link to="/guides/business-and-marketing/tactics/" className="pagelink">Indie Business Tactics</Link>
           </li>
           <li>
-            <Link to="/guides/business-and-marketing/kickstarter" className="pagelink">How to be Successful at Kickstarter</Link>
+            <Link to="/guides/business-and-marketing/kickstarter/" className="pagelink">How to be Successful at Kickstarter</Link>
           </li>
           <li>
-            <Link to="/guides/business-and-marketing/pr" className="pagelink">Public Relations and Marketing</Link>
+            <Link to="/guides/business-and-marketing/pr/" className="pagelink">Public Relations and Marketing</Link>
           </li>
         </ul>
       </div>
@@ -86,7 +86,9 @@ export default SidebarG
 function makeAnchorList()
 {
   let pages = document.getElementsByClassName("pagelink");
-  let pageurl = window.location.href.split("/").slice(-1).toString();
+  let pageurl = window.location.href.split("/")[5]+"/";
+  //console.log(window.location.href)
+  //console.log(pageurl)
 
   for(let i = 0; i < pages.length; i++)
   {

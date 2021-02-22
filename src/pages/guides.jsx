@@ -9,19 +9,19 @@ const Guides = () => (
         <SEO title="Guides" description="Explore GameDevelop.io's various guides on game development."/>
         <h1>Game Development Guides</h1>
         <div className="guideHeaders">
-            <Link to="introductory">
+            <Link to="introductory/">
                 Introductory Guides
             </Link>
             <p>
                 Learn how to develop a game from start to finish.
             </p>
-            <Link to="industry">
+            <Link to="industry/">
                 The Computer and Video Game Industry
             </Link>
             <p>
                 A collection of articles about the Video Game Industry. Topics cover industry trends, careers, and culture.
             </p>
-            <Link to="business-and-marketing">
+            <Link to="business-and-marketing/">
                 Business and Marketing Guides
             </Link>
             <p>

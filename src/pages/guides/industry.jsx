@@ -9,25 +9,25 @@ const IndustryPage = () => (
     <SEO title="Industry Guides" description="Articles about the Games Industry."/>
     <h1>The Computer and Video Game Industry</h1>
     <div className="guideHeaders">
-        <Link to="overview">
+        <Link to="overview/">
             Games Industry Market Overview
         </Link>
         <p>
             A breakdown of the markets and trends in the Games Industry.
         </p>
-        <Link to="jobs">
+        <Link to="jobs/">
             Games Industry Jobs
         </Link>
         <p>
             Learn about the type of jobs in the Games Industry as well as how to improve your chances at starting a career.
         </p>
-        <Link to="testing">
+        <Link to="testing/">
             Publisher QA Testing
         </Link>
         <p>
             Learn what it's like to work as a QA Tester for a Publisher.
         </p>
-        <Link to="culture">
+        <Link to="culture/">
             Games Industry Work Culture
         </Link>
         <p>
