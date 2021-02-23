@@ -141,22 +141,22 @@ const Resources = () => {
                     <b className="filtername">Filters:</b>
                     <div className="listTitle">
                         <b>Price:</b>
-                        <ul id="price" className="nobullets">
+                        <ul id="Pricing" className="nobullets">
                         </ul>    
                     </div>
                     <div className="listTitle">
                         <b>Platform:</b>
-                        <ul id="platform" className="nobullets">
+                        <ul id="Platforms" className="nobullets">
                         </ul>    
                     </div>   
                     <div className="listTitle">
                         <b>Categories:</b>
-                        <ul id="categories" className="nobullets">
+                        <ul id="Categories" className="nobullets">
                         </ul>
                     </div>
                     <div className="listTitle">
                         <b>Tags:</b>
-                        <ul id="tag" className="nobullets">
+                        <ul id="Tags" className="nobullets">
                         </ul>
                     </div>
                 </div>   
@@ -253,11 +253,22 @@ function CreateTableFromArray2D(array2D)
     var divContainer = document.getElementById("showData");
     divContainer.appendChild(table);
 
+    //Get all table headers
+    let tableheaders = document.getElementsByTagName("th");
+
+    //Get Filter Categories
+    let filtercategories = [];
+    for(let i=2; i<tableheaders.length-1;i++)
+    {
+        filtercategories.push(tableheaders[i].textContent);
+    }
+    console.log(filtercategories);
+
     //Make Filter List
-    MakeFilterChoices(3,"price");
-    MakeFilterChoices(4,"platform");
-    MakeFilterChoices(2,"categories");
-    MakeFilterChoices(5,"tag");
+    for(let i=0; i<filtercategories.length;i++)
+    {
+        MakeFilterChoices(i+2,filtercategories[i]);
+    }
 }
 
 function GetImageName(url)
@@ -376,53 +387,63 @@ function MakeFilterChoices(column_index, filter_id)
     });
 }
 
-var filtersPrice;
-var fitlersPlat;
-var fitlersCat;
-var fitlersTag;
-
-// Add filtering for categories and tags
+// Add filtering for categories, price, platform, and tags
 function FilterTable()
 {
-    filtersPrice = UpdateFilterArray("price");
-    fitlersPlat = UpdateFilterArray("platform");
-    fitlersCat = UpdateFilterArray("categories");
-    fitlersTag = UpdateFilterArray("tag");
+    //Get all table headers
+    let tableheaders = document.getElementsByTagName("th");
 
-    filterTableByColumn();
-
-    var filterids = ["categories","price","platform","tag"];
-    for(var i = 0; i < filterids.length; i++)
+    //Get Filter Categories
+    let filterCategories = [];
+    for(let i=2; i<tableheaders.length-1;i++)
     {
-        HideFilters(filterids[i], i+2);
+        filterCategories.push(tableheaders[i].textContent);
+    }
+    console.log(filterCategories);
+    
+    filterTableByColumn(filterCategories);
+
+    //Disable other filters that are no longer applicable
+    for(var i = 0; i < filterCategories.length; i++)
+    {
+        HideFilters(filterCategories[i], i+2);
     }
 }
 
-function UpdateFilterArray(filterName)
+function filterTableByColumn(filterCategories) 
 {
-    var filterArrayAll = document.getElementsByName(filterName);
-    //console.log(filterArrayAll);
-    var filterArrayCurrent = [];
-    for(var i = 0; i < filterArrayAll.length; i++)
-    {
-        if(filterArrayAll[i].checked === true)
-        {
-            filterArrayCurrent.push(filterArrayAll[i].value);
-        }
-    }
-    return filterArrayCurrent;
-}
+    let filterCategoriesArray = [[]];
 
-function filterTableByColumn() 
-{
+    for(let i=0; i<filterCategories.length; i++)
+    {
+        let ArrayCurrent = UpdateFilterArray(filterCategories[i]);
+        filterCategoriesArray.push(ArrayCurrent);
+    }
+    filterCategoriesArray.shift();
+    console.log(filterCategoriesArray);
+    
     var table, tr, i;
     table = document.getElementById("myTable");
     if(table)
     {
         tr = table.getElementsByTagName("tr");
-        for (i = 1; i < tr.length; i++) 
+        // Remove table rows that do not match the filter lists
+        for (let i = 1; i < tr.length; i++) 
         {
-            if (CheckFilter(filtersPrice, tr, i, 3) && CheckFilter(fitlersPlat, tr, i, 4) && CheckFilter(fitlersCat, tr, i, 2) && CheckFilter(fitlersTag, tr, i, 5))
+            let filterchecker = true;
+            for(let j=0;j<filterCategoriesArray.length;j++)
+            {
+                if(CheckFilter(filterCategoriesArray[j], tr, i, j+2) && filterchecker)
+                {
+                    filterchecker = true;
+                }
+                else
+                {
+                    filterchecker = false;
+                }
+            }
+
+            if(filterchecker)
             {
                 tr[i].style.display = "";
             } 
@@ -432,6 +453,21 @@ function filterTableByColumn()
             }
         }     
     }
+}
+
+function UpdateFilterArray(filterName)
+{
+    var filterArrayAll = document.getElementsByName(filterName);
+    console.log(filterArrayAll);
+    var filterArrayCurrent = [];
+    for(var i = 0; i < filterArrayAll.length; i++)
+    {
+        if(filterArrayAll[i].checked === true)
+        {
+            filterArrayCurrent.push(filterArrayAll[i].value);
+        }
+    }
+    return filterArrayCurrent;
 }
 
 function CheckFilter(filterArr, tr, i, colIndex)
