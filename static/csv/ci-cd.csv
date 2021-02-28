@@ -3,7 +3,7 @@ Jenkins,https://www.jenkins.io/,CI/CD,,,,"Jenkins – an open source automation 
 CircleCI,https://circleci.com/,CI/CD,,,,"Get the best continuous integration and delivery for any platform, in our cloud or on your own infrastructure."
 Azure Pipelines,https://azure.microsoft.com/en-us/services/devops/pipelines/,CI/CD,,,,"Get 10 free parallel jobs for cloud-based CI/CD pipelines for Linux, macOS, and Windows. Automate builds and easily deploy to any cloud with Azure Pipelines."
 AWS CodeBuild,https://aws.amazon.com/codebuild/,CI/CD,,,,Looking for a fully managed build service? AWS CodeBuild builds and tests code in the cloud with continuous scaling and per-minute pricing.
-Google Cloud CodeBuild,https://cloud.google.com/cloud-build,CI/CD,,,,"A fully managed continuous integration, delivery & deployment platform that lets you run fast, consistent, reliable automated builds. Focus on coding."
+Google Cloud Build,https://cloud.google.com/cloud-build,CI/CD,,,,"A fully managed continuous integration, delivery & deployment platform that lets you run fast, consistent, reliable automated builds. Focus on coding."
 Atlassian Bamboo,https://www.atlassian.com/software/bamboo,CI/CD,,,,"Bamboo is a continuous integration and deployment tool that ties automated builds, tests and releases together in a single workflow."
 Travis CI,https://travis-ci.org/,CI/CD,,,,Travis CI enables your team to test and ship your apps with confidence. Easily sync your projects with Travis CI and you'll be testing your code in minutes.
 VMware Tanzu,https://tanzu.vmware.com/,CI/CD,,,,VMware Tanzu portfolio is a family of products and services for modernizing your applications and infrastructure to deliver better software to production.

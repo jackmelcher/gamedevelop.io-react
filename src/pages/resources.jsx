@@ -89,6 +89,11 @@ const Resources = () => {
                         <option value="monetization">Monetization</option>
                         <option value="website">Websites</option>
                     </optgroup>
+                    <optgroup label="Production Tools">
+                        <option value="communication">Communication</option>
+                        <option value="office">Office and Cloud Storage</option>
+                        <option value="tasking">Tasking and Collaboration</option>
+                    </optgroup>
                     <optgroup label="Engineering Tools">
                         <option value="engine">Engines and Frameworks</option>
                         <option value="sdk">SDKs, APIs, and Libraries</option>
@@ -100,10 +105,6 @@ const Resources = () => {
                     <optgroup label="DevOps Tools">
                         <option value="vcs">Version Control Systems</option>
                         <option value="ci-cd">CI / CD</option>
-                    </optgroup>
-                    <optgroup label="Production Tools">
-                        <option value="communication">Communication</option>
-                        <option value="tasking">Tasking and Collaboration</option>
                     </optgroup>
                     <optgroup label="Assets & Services">
                         <option value="assets">Assets</option>
@@ -126,7 +127,7 @@ const Resources = () => {
                         <option value="jobs">Job Boards</option>
                     </optgroup>
                     <optgroup label="Education & Learning">
-                        <option value="schools">Schools</option>
+                        <option value="schools">Schools & Courses</option>
                         <option value="learning">Learning Websites</option>
                     </optgroup>
                     <optgroup label="Hardware & Peripherals">
