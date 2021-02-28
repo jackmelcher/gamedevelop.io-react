@@ -1,7 +1,12 @@
 Name,Link,Categories,Pricing,Platforms,Tags,Description
 Dundoc,http://www.dundoc.com/,Writing,Free,Web,"Game Design Doc, Collaboration",Create a working game design document project on Dundoc. Dundoc plans world domination by destroying the way you develop your game design document. Build your ideas from the ground up with you or your team and share it with the world!
-Sentient Sketchbook,http://www.sentientsketchbook.com/index.php,Level Design,Free,"Windows, Mac, Linux",Simulation,Computer Assisted Map Sketch tool
-Machinations,https://machinations.io/,Systems Design,"Free, Subscription",Web,Simulation,"The browser-based platform to Design, Prototype & Handoff game systems."
+Tiled,https://www.mapeditor.org/,2D Level Editor,Free,"Windows, Mac, Linux",Tiled Map,A flexible level editor
+SuperTiled2Unity,https://seanba.com/supertiled2unity.html,2D Level Editor,Free,"Windows, Mac, Linux","Tiled Map, Unity Plugin",SuperTiled2Unity is like regular Tiled2Unity but is easier to use and has been updated to use new Unity classes like Tilemaps and Scripted Importers.
+Tile Studio,http://tilestudio.sourceforge.net/,2D Level Editor,Free,Windows,Tiled Map,Tile Studio is a complete development utility for graphics of tile-based games. The application contains a bitmap editor for creating tiles and sprites and a map editor for designing level maps.
+Tile Studio 2,https://www.wieringsoftware.com/ts2/,2D Level Editor,"Free, Paid",Windows,Tiled Map,"Tile Studio II aims to help you produce high quality pixel art graphics, but without the kinds of limitations that the early artists faced. It lets you make little tiles which can be used in different colors and combine those into a tilesheet, with which you can draw your maps."
+Tilesetter,https://www.tilesetter.org/,2D Level Editor,"Free, Paid","Windows, Mac, Linux",Tiled Map,Create your whole tileset instantly.
+OGMO Editor,https://ogmo-editor-3.github.io/,2D Level Editor,Free,Windows,Tiled Map,"A free, open source, project oriented level editor made for indie game developers by indie game developers."
+Game UI Database,https://www.gameuidatabase.com/,UI,Free,,,"A comprehensive screen reference Tool for game interface designers.  Explore over 320 games and 11,000 individual images, and filter by screen type, material, layout, texture, shapes, patterns, genre and more!"
 YGD Game Idea Generator,http://ygd.bafta.org/resources/game-idea-generator,Design,Free,Web,Game Idea Generator,Need an idea for a game? Press the button to generate a new idea.
 Board Game Design Idea,http://www.boardgamizer.com/,Design,Free,Web,Game Idea Generator,This tool will help you generate board game design ideas
 Video Game Name Generator,https://videogamena.me/,Design,Free,"Windows, Web, Android",Game Idea Generator,Randomly generates a name for your video game project.
@@ -15,4 +20,5 @@ Donjon Fantasy World Generator,http://donjon.bin.sh/fantasy/world/,Level Design,
 Medieval Fantasy City Generator,https://watabou.itch.io/medieval-fantasy-city-generator,Level Design,Free,Web,RPG Map Making Tools,"Generates a random medieval city layout of a requested size. The generation method is rather arbitrary, the goal is to produce a nice looking map, not an accurate model of a city."
 Fantasy Map Generator,https://github.com/mewo2/terrain,Level Design,Free,Web,RPG Map Making Tools,Generates Fantasy maps that look like the ones in paperback fantasy novels.
 Grid Cartographer,http://gridcartographer.com/,Level Design,Paid,Web,RPG Map Making Tools,"Grid Cartographer is an intuitive map creation tool. Use it to quickly craft table-top dungeon encounters, block-out computer game environments or as the perfect companion for classic role-playing games."
-Game UI Database,https://www.gameuidatabase.com/,UI,Free,,,"A comprehensive screen reference Tool for game interface designers.  Explore over 320 games and 11,000 individual images, and filter by screen type, material, layout, texture, shapes, patterns, genre and more!"
+Sentient Sketchbook,http://www.sentientsketchbook.com/index.php,Level Design,Free,"Windows, Mac, Linux",Simulation,Computer Assisted Map Sketch tool
+Machinations,https://machinations.io/,Systems Design,"Free, Subscription",Web,Simulation,"The browser-based platform to Design, Prototype & Handoff game systems."
