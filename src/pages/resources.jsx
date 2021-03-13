@@ -80,6 +80,7 @@ const Resources = () => {
                     </optgroup>
                     <optgroup label="Design Tools">
                         <option value="design">Design</option>
+                        <option value="accessibility">Accessibility</option>
                         <option value="narrative">Narrative Writing</option>
                         <option value="diagram">Diagramming</option>
                     </optgroup>
@@ -129,6 +130,7 @@ const Resources = () => {
                     <optgroup label="Education & Learning">
                         <option value="schools">Schools & Courses</option>
                         <option value="learning">Learning Websites</option>
+                        <option value="youtube">YouTube Channels</option>
                     </optgroup>
                     <optgroup label="Hardware & Peripherals">
                         <option value="hardware">PC, Mobile, and XR Devices</option>
