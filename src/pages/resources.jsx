@@ -84,17 +84,6 @@ const Resources = () => {
                         <option value="narrative">Narrative Writing</option>
                         <option value="diagram">Diagramming</option>
                     </optgroup>
-                    <optgroup label="Business Tools">
-                        <option value="analytics">Analytics</option>
-                        <option value="business">Business & Marketing</option>
-                        <option value="monetization">Monetization</option>
-                        <option value="website">Websites</option>
-                    </optgroup>
-                    <optgroup label="Production Tools">
-                        <option value="communication">Communication</option>
-                        <option value="office">Office and Cloud Storage</option>
-                        <option value="tasking">Tasking and Collaboration</option>
-                    </optgroup>
                     <optgroup label="Engineering Tools">
                         <option value="engine">Engines and Frameworks</option>
                         <option value="sdk">SDKs, APIs, and Libraries</option>
@@ -106,6 +95,17 @@ const Resources = () => {
                     <optgroup label="DevOps Tools">
                         <option value="vcs">Version Control Systems</option>
                         <option value="ci-cd">CI / CD</option>
+                    </optgroup>
+                    <optgroup label="Production Tools">
+                        <option value="communication">Communication</option>
+                        <option value="office">Office and Cloud Storage</option>
+                        <option value="tasking">Tasking and Collaboration</option>
+                    </optgroup>
+                    <optgroup label="Business Tools">
+                        <option value="analytics">Analytics</option>
+                        <option value="business">Business & Marketing</option>
+                        <option value="monetization">Monetization</option>
+                        <option value="website">Websites</option>
                     </optgroup>
                     <optgroup label="Assets & Services">
                         <option value="assets">Assets</option>
@@ -119,12 +119,13 @@ const Resources = () => {
                         <option value="news">News Outlets</option>
                     </optgroup>
                     <optgroup label="Events">
-                        <option value="conventions">Conventions</option>
+                        <option value="conventions">Conventions & Events</option>
                         <option value="awards">Awards</option>
                         <option value="jams">Game Jams</option>
                     </optgroup>
                     <optgroup label="Communities & Career">
                         <option value="communities">Communities</option>
+                        <option value="social">Social Media Groups</option>
                         <option value="jobs">Job Boards</option>
                     </optgroup>
                     <optgroup label="Education & Learning">
