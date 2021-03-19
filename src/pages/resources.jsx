@@ -141,8 +141,10 @@ const Resources = () => {
                 </select>
             </div>
             <div className="sidenav rsidenav">
+                <div className="filtername">
+                    <b>Filters:</b>
+                </div> 
                 <div id="Filters">
-                    
                 </div>   
                 <div>
                     <br/><br/>
@@ -425,7 +427,7 @@ function filterTableByColumn(filterCategories)
     filterCategoriesArray.shift();
     console.log(filterCategoriesArray);
     
-    var table, tr, i;
+    var table, tr;
     table = document.getElementById("myTable");
     if(table)
     {

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useEffect, useState} from "react"
 
 import Layoutr from "../components/layoutres"
 import SEO from "../components/seo"
@@ -10,25 +10,30 @@ import "../css/resources.css"
 
 const Resources = () => {
     
-    const [tableName,setTableName] = useState("Popular Tools and Services");
+    const fetchData = async () => {
+        const response1 = await fetch('/.netlify/functions/hello');
+        console.log(response1.data);
+        
+        const response2 = await fetch('/.netlify/functions/viewtable');
+        console.log(response2.data);
+        
+        let table = document.getElementById("showData");
+        let div1 = document.createElement("div");
+        let div2 = document.createElement("div");
+
+        div1.textContent = response1.data;
+        div2.textContent = response2.data;
+
+        table.appendChild(div1);
+        table.appendChild(div2);
+    }
+
+    const [tableName,setTableName] = useState("User Submitted Resources");
 
     useEffect(() => {
-        if(window.location.hash !== "")
-        {
-            document.getElementById("category").value = window.location.hash.split('#')[1];
-            SelectTable(window.location.hash.split('#')[1]);
-        }
-        else
-        {
-            document.getElementById("category").selectedIndex = 0;
-            SelectTable("pop");
-        }
+        fetchData();
     });
 
-    function handleSelectChange(file)
-    {
-        window.location.hash = file;
-    }
     function SelectTable(filename)
     {
         var filepath;
@@ -37,8 +42,6 @@ const Resources = () => {
         
         let category = document.getElementById("category");
         setTableName(category.options[category.selectedIndex].text);
-    
-
     
         //Load CSV Data
         LoadDoc(filepath, CreateTableFromArray2D);
@@ -66,79 +69,12 @@ const Resources = () => {
                 <button onClick={(e) => toggleSidebar()}>
                     <i className="fas fa-filter"></i><span>Filter & Sort</span>
                 </button>
-                <div className="tableTitle">
-                    <b>Tables:</b>
-                </div>
-                <select id="category" onChange={(e) => handleSelectChange(e.target.value)}>
-                    <option value="pop">Popular Tools and Services</option>
-                    <optgroup label="Art Tools">
-                        <option value="2d">2D Art</option>
-                        <option value="3d">3D Art</option>
-                        <option value="oart">Other Art</option>
-                        <option value="audio">Audio</option>
-                        <option value="video">Video</option>
-                    </optgroup>
-                    <optgroup label="Design Tools">
-                        <option value="design">Design</option>
-                        <option value="narrative">Narrative Writing</option>
-                        <option value="diagram">Diagramming</option>
-                    </optgroup>
-                    <optgroup label="Business Tools">
-                        <option value="analytics">Analytics</option>
-                        <option value="business">Business & Marketing</option>
-                        <option value="monetization">Monetization</option>
-                        <option value="website">Websites</option>
-                    </optgroup>
-                    <optgroup label="Engineering Tools">
-                        <option value="engine">Engines and Frameworks</option>
-                        <option value="sdk">SDKs, APIs, and Libraries</option>
-                        <option value="mod">Modding & Creation Platforms</option>
-                        <option value="backend">Backend Services</option>
-                        <option value="security">Security</option>
-                        <option value="oengine">Other Engineering</option>
-                    </optgroup>
-                    <optgroup label="DevOps Tools">
-                        <option value="vcs">Version Control Systems</option>
-                        <option value="ci-cd">CI / CD</option>
-                    </optgroup>
-                    <optgroup label="Production Tools">
-                        <option value="communication">Communication</option>
-                        <option value="tasking">Tasking and Collaboration</option>
-                    </optgroup>
-                    <optgroup label="Assets & Services">
-                        <option value="assets">Assets</option>
-                        <option value="services">Services</option>
-                    </optgroup>
-                    <optgroup label="Publishing & Distribution">
-                        <option value="publisher">Publishers</option>
-                        <option value="funding">Funding Options</option>
-                        <option value="gamehosts">Hosting & Storefronts</option>
-                        <option value="ratings">Ratings Boards</option>
-                        <option value="news">News Outlets</option>
-                    </optgroup>
-                    <optgroup label="Events">
-                        <option value="conventions">Conventions</option>
-                        <option value="awards">Awards</option>
-                        <option value="jams">Game Jams</option>
-                    </optgroup>
-                    <optgroup label="Communities & Career">
-                        <option value="communities">Communities</option>
-                        <option value="jobs">Job Boards</option>
-                    </optgroup>
-                    <optgroup label="Education & Learning">
-                        <option value="schools">Schools</option>
-                        <option value="learning">Learning Websites</option>
-                    </optgroup>
-                    <optgroup label="Hardware & Peripherals">
-                        <option value="hardware">PC, Mobile, and XR Devices</option>
-                        <option value="hardwareparts">PC Components</option>
-                        <option value="peripherals">Peripherals</option>
-                    </optgroup>
-                </select>
             </div>
             <div className="sidenav rsidenav">
+                <div className="filtername">
+                    <b>Filters:</b>
+                </div> 
                 <div id="Filters">
-                    
                 </div>   
                 <div>
                     <br/><br/>
@@ -421,7 +357,7 @@ function filterTableByColumn(filterCategories)
     filterCategoriesArray.shift();
     console.log(filterCategoriesArray);
     
-    var table, tr, i;
+    var table, tr;
     table = document.getElementById("myTable");
     if(table)
     {
