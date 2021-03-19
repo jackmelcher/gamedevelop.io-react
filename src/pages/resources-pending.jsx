@@ -12,17 +12,17 @@ const Resources = () => {
     
     const fetchData = async () => {
         const response1 = await fetch('/.netlify/functions/hello');
-        console.log(response1.json().data);
+        console.log(response1);
         
         const response2 = await fetch('/.netlify/functions/viewtable');
-        console.log(response2.json().data);
+        console.log(response2);
         
         let table = document.getElementById("showData");
         let div1 = document.createElement("div");
         let div2 = document.createElement("div");
 
-        div1.textContent = response1.json().data;
-        div2.textContent = response2.json().data;
+        div1.textContent = response1.data.message;
+        div2.textContent = response2.data.message;
 
         table.appendChild(div1);
         table.appendChild(div2);
