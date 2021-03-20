@@ -4,17 +4,18 @@ import Layoutr from "../components/layoutres"
 import SEO from "../components/seo"
 import Navbar from "../components/navbar"
 
-import {readString} from "react-papaparse"
+import {readString,jsonToCSV} from "react-papaparse"
 
 import "../css/resources.css"
+import axios from "axios"
 
 const Resources = () => {
     
     const fetchData = async () => {
-        const response1 = await fetch('/.netlify/functions/hello');
+        const response1 = await axios.get('/.netlify/functions/hello');
         console.log(response1);
         
-        const response2 = await fetch('/.netlify/functions/viewtable');
+        const response2 = await axios.get('/.netlify/functions/spgtest');
         console.log(response2);
         
         let table = document.getElementById("showData");
@@ -22,10 +23,29 @@ const Resources = () => {
         let div2 = document.createElement("div");
 
         div1.textContent = response1.data.message;
-        div2.textContent = response2.data.message;
+        let tabletext;
+        let jsonData = response2.data.message;
+        for (let i in jsonData)
+        {
+            console.log(i);// JSON Object #
 
-        table.appendChild(div1);
-        table.appendChild(div2);
+            for(let j in jsonData[i])
+            {
+                console.log(j); // JSON Property Name
+                console.log(jsonData[i][j]) // JSON Property Value
+            }
+        }
+
+        let csv = jsonToCSV(response2.data.message)
+        //tabletext += JSON.stringify(response2.data)+"\n";
+        //tabletext += JSON.stringify(response2.data.message)+"\n";
+
+        console.log(csv);
+        let csvarray = readString(csv);
+        CreateTableFromArray2D(csvarray.data);
+
+        //table.appendChild(div1);
+        //table.appendChild(div2);
     }
 
     const [tableName,setTableName] = useState("User Submitted Resources");
@@ -91,10 +111,9 @@ const Resources = () => {
 }
 export default Resources
 
-//Global vars
-var csvdata;
-
 function LoadDoc(filepath, callback) {
+    var csvdata;
+    
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
@@ -178,7 +197,7 @@ function CreateTableFromArray2D(array2D)
     {
         filtercategories.push(tableheaders[i].textContent);
     }
-    console.log(filtercategories);
+    //console.log(filtercategories);
 
     //Make Filter Categories in page
     let filtersdiv = document.getElementById("Filters");
@@ -202,7 +221,7 @@ function CreateTableFromArray2D(array2D)
     //Make Filter Lists
     for(let i=0; i<filtercategories.length; i++)
     {
-        MakeFilterChoices(i+2,filtercategories[i]);
+        MakeFilterChoices(i+2,filtercategories[i], array2D);
     }
 }
 
@@ -294,9 +313,9 @@ function PlatformTextToIcon(tableCell){
     });
 }
 
-function MakeFilterChoices(column_index, filter_id)
+function MakeFilterChoices(column_index, filter_id, csvarray)
 {
-    var arr = GetFilterNames(column_index);
+    var arr = GetFilterNames(column_index, csvarray);
     var list = document.getElementById(filter_id);
 
     list.innerHTML = "";
@@ -446,12 +465,12 @@ function CheckFilter(filterArr, tr, i, colIndex)
     return isfiltered;
 }
 
-function GetFilterNames(column_index)
+function GetFilterNames(column_index, csvarray)
 {
     var set = new Set();
-    for (var j=1;j < csvdata.data.length;j++)
+    for (var j=1;j < csvarray.length;j++)
     {
-        var cells = csvdata.data[j][column_index].split(", ");
+        var cells = csvarray[j][column_index].split(", ");
         cells.forEach(element => {
             set.add(element);
         });

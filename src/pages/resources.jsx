@@ -161,10 +161,9 @@ const Resources = () => {
 }
 export default Resources
 
-//Global vars
-var csvdata;
-
 function LoadDoc(filepath, callback) {
+    var csvdata;
+
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
@@ -272,7 +271,7 @@ function CreateTableFromArray2D(array2D)
     //Make Filter Lists
     for(let i=0; i<filtercategories.length; i++)
     {
-        MakeFilterChoices(i+2,filtercategories[i]);
+        MakeFilterChoices(i+2,filtercategories[i], array2D);
     }
 }
 
@@ -364,9 +363,9 @@ function PlatformTextToIcon(tableCell){
     });
 }
 
-function MakeFilterChoices(column_index, filter_id)
+function MakeFilterChoices(column_index, filter_id, csvarray)
 {
-    var arr = GetFilterNames(column_index);
+    var arr = GetFilterNames(column_index, csvarray);
     var list = document.getElementById(filter_id);
 
     list.innerHTML = "";
@@ -516,12 +515,12 @@ function CheckFilter(filterArr, tr, i, colIndex)
     return isfiltered;
 }
 
-function GetFilterNames(column_index)
+function GetFilterNames(column_index, csvarray)
 {
     var set = new Set();
-    for (var j=1;j < csvdata.data.length;j++)
+    for (var j=1;j < csvarray.length;j++)
     {
-        var cells = csvdata.data[j][column_index].split(", ");
+        var cells = csvarray[j][column_index].split(", ");
         cells.forEach(element => {
             set.add(element);
         });
