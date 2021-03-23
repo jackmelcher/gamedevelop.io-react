@@ -127,6 +127,7 @@ const Resources = () => {
                         <option value="communities">Communities</option>
                         <option value="social">Social Media Groups</option>
                         <option value="jobs">Job Boards</option>
+                        <option value="space">Coworking Space</option>
                     </optgroup>
                     <optgroup label="Education & Learning">
                         <option value="schools">Schools & Courses</option>
@@ -354,11 +355,9 @@ function PlatformTextToIcon(tableCell){
                 icon.appendChild(div);
                 tableCell.appendChild(icon);
                 break;
-            case "Nintendo":
-                div.textContent = "Nintendo";
-                tableCell.appendChild(div);
-                break;
             default:
+                div.textContent = element;
+                tableCell.appendChild(div);
         }
     });
 }

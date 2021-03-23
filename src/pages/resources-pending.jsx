@@ -12,40 +12,30 @@ import axios from "axios"
 const Resources = () => {
     
     const fetchData = async () => {
-        const response1 = await axios.get('/.netlify/functions/hello');
-        console.log(response1);
+        // '?' starts the query parameter section
+        // queies are separated into key=value
+        // separate additional values with '&', ie. "key1=value1&key1=value2". Or use "key1=value1, value2"
+        // separate additional values with '&', ie. "key1=value&key2=value"
+        const response = await axios.get('/.netlify/functions/spgtest?categories=Cat1, Cat2');
+        console.log(response);
         
-        const response2 = await axios.get('/.netlify/functions/spgtest');
-        console.log(response2);
-        
-        let table = document.getElementById("showData");
-        let div1 = document.createElement("div");
-        let div2 = document.createElement("div");
-
-        div1.textContent = response1.data.message;
-        let tabletext;
-        let jsonData = response2.data.message;
+        let jsonData = response.data.message;
         for (let i in jsonData)
         {
             console.log(i);// JSON Object #
 
             for(let j in jsonData[i])
             {
-                console.log(j); // JSON Property Name
+                console.log(j); // JSON Property Key
                 console.log(jsonData[i][j]) // JSON Property Value
             }
         }
 
-        let csv = jsonToCSV(response2.data.message)
-        //tabletext += JSON.stringify(response2.data)+"\n";
-        //tabletext += JSON.stringify(response2.data.message)+"\n";
+        let csv = jsonToCSV(response.data.message)
 
         console.log(csv);
         let csvarray = readString(csv);
-        CreateTableFromArray2D(csvarray.data);
-
-        //table.appendChild(div1);
-        //table.appendChild(div2);
+        CreateTableFromArray2D(csvarray.data,4,8);
     }
 
     const [tableName,setTableName] = useState("User Submitted Resources");
@@ -127,7 +117,7 @@ function LoadDoc(filepath, callback) {
     xhttp.send();
 }
 
-function CreateTableFromArray2D(array2D)
+function CreateTableFromArray2D(array2D, filtercolstart,filtercolend)
 {
     //Clear HTML Data Table
     document.getElementById("showData").innerHTML = "";
@@ -145,17 +135,22 @@ function CreateTableFromArray2D(array2D)
         {
             if(i === 0)
             {
-                if(j===1){continue;}                         // Dont make Table Cell for Links column.
                 var th = document.createElement("th");      // TABLE HEADER.
-                if(j===0){th.style.borderRightStyle = "none";tr.appendChild(th);th = document.createElement("th");}
-                th.textContent = array2D[i][j];
+                if(j===1)
+                {
+                    th.style.borderRightStyle = "none";
+                    th.textContent = "Image";
+                    tr.appendChild(th);
+                    th = document.createElement("th");
+                }
+                th.textContent = array2D[i][j].charAt(0).toUpperCase() + array2D[i][j].slice(1);
                 tr.appendChild(th);
             }
             else
             {
-                if(j===1){continue;}                         // Dont make Table Cell for Links column.
                 var tabCell = tr.insertCell(-1);            // TABLE Cell.
-                if(j===0){   
+                if(j===1)
+                {   
                     var img = document.createElement("img");
                     // Using event listener to catch errors
                     img.addEventListener('error', function(e) {
@@ -164,22 +159,21 @@ function CreateTableFromArray2D(array2D)
                     });
                     img.src = "/images/resources/" + GetImageName(array2D[i][j+1]) + ".png";
                     img.className = "tableimg";
-                    img.addEventListener('load',function(e){
-                        //console.log(e.target.src);
-                        });
                     tabCell.appendChild(img);
                     tabCell = tr.insertCell(-1);
+                }
+                if(j===2)
+                {
                     var a = document.createElement("a");
-                    a.href = array2D[i][j+1];
+                    a.href = array2D[i][j];
                     a.target = "_blank";
                     a.rel="noopener noreferrer";
                     a.textContent = array2D[i][j];
                     tabCell.appendChild(a);
-                    j++;
                 }
                 else{
                     tabCell.textContent = array2D[i][j];
-                    if(j===4){PlatformTextToIcon(tabCell);}
+                    if(j===5){PlatformTextToIcon(tabCell);}
                 }
             }
         }
@@ -193,7 +187,7 @@ function CreateTableFromArray2D(array2D)
 
     //Get Filter Categories
     let filtercategories = [];
-    for(let i=2; i<tableheaders.length-1;i++)
+    for(let i=filtercolstart; i<filtercolend;i++)
     {
         filtercategories.push(tableheaders[i].textContent);
     }
@@ -221,7 +215,7 @@ function CreateTableFromArray2D(array2D)
     //Make Filter Lists
     for(let i=0; i<filtercategories.length; i++)
     {
-        MakeFilterChoices(i+2,filtercategories[i], array2D);
+        MakeFilterChoices(i+filtercolstart,filtercolend,filtercategories[i], array2D);
     }
 }
 
@@ -304,18 +298,16 @@ function PlatformTextToIcon(tableCell){
                 icon.appendChild(div);
                 tableCell.appendChild(icon);
                 break;
-            case "Nintendo":
-                div.textContent = "Nintendo";
-                tableCell.appendChild(div);
-                break;
             default:
+                div.textContent = element;
+                tableCell.appendChild(div);
         }
     });
 }
 
-function MakeFilterChoices(column_index, filter_id, csvarray)
+function MakeFilterChoices(column_index_start, coulmn_index_end,filter_id, csvarray)
 {
-    var arr = GetFilterNames(column_index, csvarray);
+    var arr = GetFilterNames(column_index_start-1, csvarray);
     var list = document.getElementById(filter_id);
 
     list.innerHTML = "";
@@ -330,7 +322,7 @@ function MakeFilterChoices(column_index, filter_id, csvarray)
             input.type = "checkbox";
             input.name = filter_id;
             input.value = element.toLowerCase();
-            input.onclick = function() {FilterTable();}
+            input.onclick = function() {FilterTable(column_index_start,coulmn_index_end);}
 
             label.appendChild(input);
             label.appendChild(document.createTextNode(element));
@@ -342,29 +334,29 @@ function MakeFilterChoices(column_index, filter_id, csvarray)
 }
 
 // Add filtering for categories, price, platform, and tags
-function FilterTable()
+function FilterTable(column_index_start,coulmn_index_end)
 {
     //Get all table headers
     let tableheaders = document.getElementsByTagName("th");
 
     //Get Filter Categories
     let filterCategories = [];
-    for(let i=2; i<tableheaders.length-1;i++)
+    for(let i=column_index_start; i<coulmn_index_end;i++)
     {
         filterCategories.push(tableheaders[i].textContent);
     }
     console.log(filterCategories);
     
-    filterTableByColumn(filterCategories);
+    filterTableByColumn(filterCategories, column_index_start);
 
     //Disable other filters that are no longer applicable
     for(var i = 0; i < filterCategories.length; i++)
     {
-        HideFilters(filterCategories[i], i+2);
+        HideFilters(filterCategories[i], i+column_index_start);
     }
 }
 
-function filterTableByColumn(filterCategories) 
+function filterTableByColumn(filterCategories, column_index_start) 
 {
     let filterCategoriesArray = [[]];
 
@@ -387,7 +379,7 @@ function filterTableByColumn(filterCategories)
             let filterchecker = true;
             for(let j=0;j<filterCategoriesArray.length;j++)
             {
-                if(CheckFilter(filterCategoriesArray[j], tr, i, j+2) && filterchecker)
+                if(CheckFilter(filterCategoriesArray[j], tr, i, j+column_index_start) && filterchecker)
                 {
                     filterchecker = true;
                 }
@@ -492,7 +484,7 @@ function HideFilters(filterid, col)
         if(table.rows[i].style.display !== "none")
         {   
             var cells
-            if(col === 4)
+            if(filterid === "Platforms")
             {
                 cells = Array.from(table.rows[i].cells[col].children);
                 cells.forEach(element => {

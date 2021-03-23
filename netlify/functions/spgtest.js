@@ -13,12 +13,52 @@ const client = new ServerlessClient({
 });
 
 exports.handler = async(event, context) => {
-    await client.connect();
-    const result = await client.query('SELECT * FROM "user-submitted";');
-    await client.clean();
-    await client.end();
-    return {
-        statusCode: 200,
-        body: JSON.stringify({message: result.rows})
+    console.log(event);
+    //console.log(event.queryStringParameters);
+    let queryparam = event.queryStringParameters;
+    let wherestring = null;
+    
+    if(queryparam !== null)
+    {
+        wherestring = "WHERE "
+        for(let x in queryparam)
+        {
+            console.log(x);
+            wherestring += x + "=\'" + queryparam[x]+"\'";
+        }
+        console.log(wherestring);
+    }
+
+    try
+    {    
+        await client.connect();
+        //const result = await client.query('SELECT * FROM user_submitted '+wherestring+';');
+        let query = 'SELECT * FROM user_submitted '+wherestring+';';
+        let values = [event.queryStringParameters.categories];
+        console.log(query);
+        
+        //const result = await client.query('SELECT * FROM user_submitted '+wherestring+';');
+        //const result = await client.query('SELECT * FROM user_submitted;');
+        const result = await client.query('SELECT * FROM pop;');
+        //const result = await client.query('SELECT * FROM user_submitted WHERE ID=1;');
+        
+        //const result = await client.query('SELECT * FROM user_submitted WHERE Categories=$1;',values);
+        //const result = await client.query(query);
+        await client.clean();
+        await client.end();
+        return {
+            statusCode: 200,
+            body: JSON.stringify({message: result.rows})
+        }
+    }
+    catch(err)
+    {
+        console.log(err.stack);
+        await client.clean();
+        await client.end();
+        return {
+            statusCode: 400,
+            body: JSON.stringify({message: result.rows})
+        }
     }
 }
