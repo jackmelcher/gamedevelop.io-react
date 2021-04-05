@@ -35,7 +35,7 @@ html[data-theme = "dark"]{
   height: 20px;
   vertical-align: -3px;
 }
-.selectbar>select{
+select{
   color: var(--font-color);
   background-color: var(--bg-color);
   border: 1px solid #7a7a7a;

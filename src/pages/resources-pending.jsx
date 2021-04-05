@@ -16,7 +16,12 @@ const Resources = () => {
         // queies are separated into key=value
         // separate additional values with '&', ie. "key1=value1&key1=value2". Or use "key1=value1, value2"
         // separate additional values with '&', ie. "key1=value&key2=value"
-        const response = await axios.get('/.netlify/functions/spgtest?categories=Cat1, Cat2');
+        
+        let table = document.getElementById("category");
+
+        const response = await axios.get('/.netlify/functions/resourceview?table='+table.value);
+        //const response = await axios.get('/.netlify/functions/resourceview?table=pop&tags=2D,3D&pricing=Royalty');
+        //const response = await axios.get('/.netlify/functions/resourceview?categories=Cat1, Cat2');
         console.log(response);
         
         let jsonData = response.data.message;
@@ -36,6 +41,7 @@ const Resources = () => {
         console.log(csv);
         let csvarray = readString(csv);
         CreateTableFromArray2D(csvarray.data,4,8);
+        setTableName(table.options[table.selectedIndex].text);
     }
 
     const [tableName,setTableName] = useState("User Submitted Resources");
@@ -44,18 +50,11 @@ const Resources = () => {
         fetchData();
     });
 
-    function SelectTable(filename)
+    function handleSelectChange(file)
     {
-        var filepath;
-        //console.log("Select table called");
-        filepath = "/csv/"+filename+".csv";
-        
-        let category = document.getElementById("category");
-        setTableName(category.options[category.selectedIndex].text);
-    
-        //Load CSV Data
-        LoadDoc(filepath, CreateTableFromArray2D);
+        fetchData();
     }
+
     function toggleSidebar()
     {
         var side = document.getElementsByClassName("sidenav")[0];
@@ -79,6 +78,13 @@ const Resources = () => {
                 <button onClick={(e) => toggleSidebar()}>
                     <i className="fas fa-filter"></i><span>Filter & Sort</span>
                 </button>
+                <div className="tableTitle">
+                    <b>Tables:</b>
+                </div>
+                <select id="category" onChange={(e) => handleSelectChange(e.target.value)}>
+                    <option value="user_submitted">User Submitted</option>
+                    <option value="pop">Popular Tools and Services</option>
+                </select>
             </div>
             <div className="sidenav rsidenav">
                 <div className="filtername">
@@ -100,22 +106,6 @@ const Resources = () => {
     )
 }
 export default Resources
-
-function LoadDoc(filepath, callback) {
-    var csvdata;
-    
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            //document.getElementById("papa").innerHTML = this.responseText;
-            csvdata = readString(this.responseText);
-            //console.log(csvdata);
-            callback(csvdata.data);
-        }
-    };
-    xhttp.open("GET", filepath, true);
-    xhttp.send();
-}
 
 function CreateTableFromArray2D(array2D, filtercolstart,filtercolend)
 {

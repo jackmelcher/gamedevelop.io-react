@@ -38,8 +38,6 @@ const Resources = () => {
         let category = document.getElementById("category");
         setTableName(category.options[category.selectedIndex].text);
     
-
-    
         //Load CSV Data
         LoadDoc(filepath, CreateTableFromArray2D);
     }
