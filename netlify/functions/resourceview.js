@@ -61,7 +61,7 @@ exports.handler = async(event, context) => {
         await client.connect();
         //const result = await client.query('SELECT * FROM user_submitted '+wherestring+';');
         let query = 'SELECT * FROM '+querytable+' '+wherestring;
-        let values = [event.queryStringParameters.categories];
+        //let values = [event.queryStringParameters.categories];
         console.log(query);
         
         //const result = await client.query('SELECT * FROM user_submitted '+wherestring+';');

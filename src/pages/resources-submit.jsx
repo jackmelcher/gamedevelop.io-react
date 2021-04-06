@@ -1,5 +1,6 @@
 import { Link } from "gatsby"
-import React, {useState} from "react"
+import React from "react"
+import { useForm } from "react-hook-form"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -8,34 +9,13 @@ import axios from "axios"
 
 const SubmitResource = () => {
 
-    const [formdata, setFormdata] = useState({
-        name: "",
-        link: "",
-        category: "",
-        pricing: "",
-        platforms: "",
-        tags: "",
-        description: ""
-    });
+    const{ register, handleSubmit } = useForm();
+    const onSubmit = data => {console.log(data);postData(data);}
 
-    const fetchData = async () => {
-        // '?' starts the query parameter section
-        // queies are separated into key=value
-        // separate additional values with '&', ie. "key1=value1&key1=value2". Or use "key1=value1, value2"
-        // separate additional values with '&', ie. "key1=value&key2=value"
-        
-        const response = await axios.post('/.netlify/functions/resourcesubmit');
+    const postData = async (data) => {
+        // Passing data object from useForm to axios post        
+        const response = await axios.post('/.netlify/functions/resourcesubmit',data);
         console.log(response);
-    }
-
-    function handleSubmit()
-    {
-        fetchData();
-    }
-
-    function handleChange (e)
-    {
-        setFormdata({[e.target.name]: e.target.value});
     }
 
     return(
@@ -53,16 +33,16 @@ const SubmitResource = () => {
                 </p>
                 <div className="flex-container">
                     <div className="contact">
-                        <form name="resource" onSubmit={handleSubmit}>
+                        <form name="resource" onSubmit={handleSubmit(onSubmit)}>
                             <p>
-                                <label>Name: *Required<br/> <input type="text" name="name" onChange={(e) => handleChange(e)}/></label>   
+                                <label>Name: *Required<br/> <input {...register("name", {required: true})} type="text" name="name"/></label>   
                             </p>
                             <p>
-                                <label>Link: *Required<br/> <input type="link" name="link"/></label>
+                                <label>Link: *Required<br/> <input {...register("link", {required: true})} type="link" name="link"/></label>
                             </p>
                             <p>
                                 <label>Category: *Required<br/>
-                                <select name="category">
+                                <select {...register("category", {required: true})} name="category">
                                 <option value="">Select A Category</option>
                                 <optgroup label="Art Tools">
                                     <option value="2d">2D Art</option>
@@ -140,31 +120,31 @@ const SubmitResource = () => {
                                 <ul className="nobullets">
                                     <li>
                                         <label>
-                                            <input type="checkbox" name="pricing" value="Free"/>
+                                            <input {...register("pricing")} type="checkbox" name="pricing" value="Free"/>
                                             Free
                                         </label>
                                     </li>
                                     <li>
                                         <label>
-                                            <input type="checkbox" name="pricing" value="Trial"/>
+                                            <input {...register("pricing")} type="checkbox" name="pricing" value="Trial"/>
                                             Trial
                                         </label>
                                     </li>
                                     <li>
                                         <label>
-                                            <input type="checkbox" name="pricing" value="Subscription"/>
+                                            <input {...register("pricing")} type="checkbox" name="pricing" value="Subscription"/>
                                             Subscription
                                         </label>
                                     </li>
                                     <li>
                                         <label>
-                                            <input type="checkbox" name="pricing" value="Paid"/>
+                                            <input {...register("pricing")} type="checkbox" name="pricing" value="Paid"/>
                                             Paid
                                         </label>
                                     </li>
                                     <li>
                                         <label>
-                                            <input type="checkbox" name="pricing" value="License"/>
+                                            <input {...register("pricing")} type="checkbox" name="pricing" value="License"/>
                                             License
                                         </label>
                                     </li>
@@ -175,43 +155,42 @@ const SubmitResource = () => {
                                 <ul className="nobullets">
                                     <li>
                                         <label>
-                                            <input type="checkbox" name="platforms" value="Windows"/>
+                                            <input {...register("platforms")} type="checkbox" name="platforms" value="Windows"/>
                                             Windows
                                         </label>
                                     </li>
                                     <li>
                                         <label>
-                                            <input type="checkbox" name="platforms" value="Mac"/>
+                                            <input {...register("platforms")} type="checkbox" name="platforms" value="Mac"/>
                                             Mac
                                         </label>
                                     </li>
                                     <li>
                                         <label>
-                                            <input type="checkbox" name="platforms" value="Linux"/>
+                                            <input {...register("platforms")} type="checkbox" name="platforms" value="Linux"/>
                                             Linux
                                         </label>
                                     </li>
                                     <li>
                                         <label>
-                                            <input type="checkbox" name="platforms" value="iOS"/>
+                                            <input {...register("platforms")} type="checkbox" name="platforms" value="iOS"/>
                                             iOS
                                         </label>
                                     </li>
                                     <li>
                                         <label>
-                                            <input type="checkbox" name="platforms" value="Android"/>
+                                            <input {...register("platforms")} type="checkbox" name="platforms" value="Android"/>
                                             Android
                                         </label>
                                     </li>
                                 </ul>
                             </p>
                             <p>
-                                <label>Tags: *(Separate Multiple Tags with Commas)<br/> <input type="text" name="tags"/></label>
+                                <label>Tags: *(Separate Multiple Tags with Commas)<br/> <input {...register("tags")} type="text" name="tags"/></label>
                             </p>
                             <p>
-                                <label>Description: <br/> <textarea name="description"></textarea></label>
+                                <label>Description: <br/> <textarea {...register("description")} name="description"></textarea></label>
                             </p>
-                            <div data-netlify-recaptcha="true"></div>
                             <p>
                                 <button type="submit" className="button button_main">Submit</button>
                             </p>

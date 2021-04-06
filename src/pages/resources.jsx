@@ -117,7 +117,7 @@ const Resources = () => {
                         <option value="news">News Outlets</option>
                     </optgroup>
                     <optgroup label="Events">
-                        <option value="conventions">Conventions & Events</option>
+                        <option value="events">Industry Events</option>
                         <option value="awards">Awards</option>
                         <option value="jams">Game Jams</option>
                     </optgroup>
