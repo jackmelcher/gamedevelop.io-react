@@ -11,6 +11,8 @@ import axios from "axios"
 
 const Resources = () => {
     
+    const tableNames = ["user_submitted","user_submitted"];
+
     const fetchData = async () => {
         // '?' starts the query parameter section
         // queies are separated into key=value
@@ -19,15 +21,18 @@ const Resources = () => {
         
         let table = document.getElementById("category");
 
-        const response = await axios.get('/.netlify/functions/resourceview?table='+table.value);
+        const response = await axios.get('/.netlify/functions/resourceview?table='+tableNames[table.selectedIndex]);
         //const response = await axios.get('/.netlify/functions/resourceview?table=pop&tags=2D,3D&pricing=Royalty');
         //const response = await axios.get('/.netlify/functions/resourceview?categories=Cat1, Cat2');
         console.log(response);
         
+
+        /*
         let jsonData = response.data.message;
+
         for (let i in jsonData)
         {
-            console.log(i);// JSON Object #
+            //console.log(i);// JSON Object #
 
             for(let j in jsonData[i])
             {
@@ -35,6 +40,7 @@ const Resources = () => {
                 console.log(jsonData[i][j]) // JSON Property Value
             }
         }
+        */
 
         let csv = jsonToCSV(response.data.message)
 
@@ -48,7 +54,7 @@ const Resources = () => {
 
     useEffect(() => {
         fetchData();
-    });
+    },[]);
 
     function handleSelectChange(file)
     {
@@ -81,9 +87,9 @@ const Resources = () => {
                 <div className="tableTitle">
                     <b>Tables:</b>
                 </div>
-                <select id="category" onChange={(e) => handleSelectChange(e.target.value)}>
+                <select id="category" onChange={(e) => handleSelectChange()}>
                     <option value="user_submitted">User Submitted</option>
-                    <option value="pop">Popular Tools and Services</option>
+                    <option value="user_submitted">Popular Tools and Services</option>
                 </select>
             </div>
             <div className="sidenav rsidenav">
@@ -335,7 +341,7 @@ function FilterTable(column_index_start,coulmn_index_end)
     {
         filterCategories.push(tableheaders[i].textContent);
     }
-    console.log(filterCategories);
+    //console.log(filterCategories);
     
     filterTableByColumn(filterCategories, column_index_start);
 
@@ -356,7 +362,7 @@ function filterTableByColumn(filterCategories, column_index_start)
         filterCategoriesArray.push(ArrayCurrent);
     }
     filterCategoriesArray.shift();
-    console.log(filterCategoriesArray);
+    //console.log(filterCategoriesArray);
     
     var table, tr;
     table = document.getElementById("myTable");
@@ -394,7 +400,7 @@ function filterTableByColumn(filterCategories, column_index_start)
 function UpdateFilterArray(filterName)
 {
     var filterArrayAll = document.getElementsByName(filterName);
-    console.log(filterArrayAll);
+    //console.log(filterArrayAll);
     var filterArrayCurrent = [];
     for(var i = 0; i < filterArrayAll.length; i++)
     {

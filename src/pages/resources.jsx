@@ -23,7 +23,7 @@ const Resources = () => {
             document.getElementById("category").selectedIndex = 0;
             SelectTable("pop");
         }
-    });
+    },[window.location.hash]);
 
     function handleSelectChange(file)
     {
