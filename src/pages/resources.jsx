@@ -209,9 +209,10 @@ function CreateTableFromArray2D(array2D)
                     // Using event listener to catch errors
                     img.addEventListener('error', function(e) {
                         //console.log(e.target.src);
+                        this.alt = this.src;
                         this.src = "/images/placeholder.png";
                     });
-                    img.src = "/images/resources/" + GetImageName(array2D[i][j+1]) + ".png";
+                    img.src = "https://ik.imagekit.io/ucxasjyuy/resources/" + GetImageName(array2D[i][j+1]) + ".png";
                     img.className = "tableimg";
                     img.addEventListener('load',function(e){
                         //console.log(e.target.src);
