@@ -7,6 +7,7 @@ const Footer = () => (
     <Link to="/about/#support">Support Us</Link>
     <Link to="/about/#discord">Discord</Link>
     <Link to="/about/#contact">Contact</Link>
+    <Link to="/resources-submit/">Submit a Resource</Link>
     <p>© 2020 GameDevelop.io All rights reserved. All trademarks and registered trademarks are the property of their respective owners.</p>
   </div>
 )

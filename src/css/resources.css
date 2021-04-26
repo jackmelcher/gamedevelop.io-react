@@ -3,12 +3,30 @@
   --table-border-color: #bebebe;
   --table-row-color-1: #ffffff;
   --table-row-color-2: #eeeeee;
+  --status-green: #0b8800;
+  --status-yellow: #b67c00;
+  --status-red: #cf0000;
 }
 html[data-theme = "dark"]{
   --table-header-color: #2c2c2c;
   --table-border-color: #5c5c5c;
   --table-row-color-1: #525252;
   --table-row-color-2: #424242;
+  --status-green: #64fd50;
+  --status-yellow: #ffe65c;
+  --status-red: #ff4a4a;
+}
+.accepted{
+  color: var(--status-green);
+  font-weight: bold;
+}
+.pending{
+  color: var(--status-yellow);
+  font-weight: bold;
+}
+.declined{
+  color: var(--status-red);
+  font-weight: bold;
 }
 .rsidenav {
   top: 143px;

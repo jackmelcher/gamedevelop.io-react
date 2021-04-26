@@ -11,7 +11,7 @@ import axios from "axios"
 
 const Resources = () => {
     
-    const tableNames = ["user_submitted","user_submitted"];
+    const tableNames = ["user_submitted","user_submitted","user_submitted"];
 
     const fetchData = async () => {
         // '?' starts the query parameter section
@@ -20,8 +20,8 @@ const Resources = () => {
         // separate additional values with '&', ie. "key1=value&key2=value"
         
         let table = document.getElementById("category");
-
-        const response = await axios.get('/.netlify/functions/resourceview?table='+tableNames[table.selectedIndex]);
+        
+        const response = await axios.get('/.netlify/functions/resourceview?table='+tableNames[table.selectedIndex]+'&status='+table.value);
         //const response = await axios.get('/.netlify/functions/resourceview?table=pop&tags=2D,3D&pricing=Royalty');
         //const response = await axios.get('/.netlify/functions/resourceview?categories=Cat1, Cat2');
         console.log(response);
@@ -45,9 +45,12 @@ const Resources = () => {
         let csv = jsonToCSV(response.data.message)
 
         console.log(csv);
-        let csvarray = readString(csv);
-        CreateTableFromArray2D(csvarray.data,4,8);
-        setTableName(table.options[table.selectedIndex].text);
+        if(csv !== "")
+        {
+            let csvarray = readString(csv);
+            CreateTableFromArray2D(csvarray.data,4,8);
+            setTableName(table.options[table.selectedIndex].text);
+        }
     }
 
     const [tableName,setTableName] = useState("User Submitted Resources");
@@ -88,8 +91,9 @@ const Resources = () => {
                     <b>Tables:</b>
                 </div>
                 <select id="category" onChange={(e) => handleSelectChange()}>
-                    <option value="user_submitted">User Submitted</option>
-                    <option value="user_submitted">Popular Tools and Services</option>
+                    <option value="Pending">User Submitted Pending</option>
+                    <option value="Accepted">User Submitted Accepted</option>
+                    <option value="Declined">User Submitted Rejected</option>
                 </select>
             </div>
             <div className="sidenav rsidenav">
@@ -153,7 +157,7 @@ function CreateTableFromArray2D(array2D, filtercolstart,filtercolend)
                         //console.log(e.target.src);
                         this.src = "/images/placeholder.png";
                     });
-                    img.src = "/images/resources/" + GetImageName(array2D[i][j+1]) + ".png";
+                    img.src = "https://api.faviconkit.com/" + GetImageName(array2D[i][j+1]) + "/32";
                     img.className = "tableimg";
                     tabCell.appendChild(img);
                     tabCell = tr.insertCell(-1);
@@ -170,6 +174,18 @@ function CreateTableFromArray2D(array2D, filtercolstart,filtercolend)
                 else{
                     tabCell.textContent = array2D[i][j];
                     if(j===5){PlatformTextToIcon(tabCell);}
+                    if(j===8){
+                        if(tabCell.textContent==="Accepted"){
+                            tabCell.classList.add("accepted")
+                        }
+                        if(tabCell.textContent==="Pending"){
+                            tabCell.classList.add("pending")
+                        }
+                        if(tabCell.textContent==="Declined"){
+                            tabCell.classList.add("declined")
+                        }
+                    }
+                    if(j===9){tabCell.textContent = tabCell.textContent.split('T')[0]}
                 }
             }
         }
