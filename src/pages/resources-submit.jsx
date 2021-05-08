@@ -6,10 +6,6 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 import axios from "axios"
-import { useRecaptcha } from "react-hook-recaptcha"
-
-const sitekey = process.env.SITE_RECAPTCHA_KEY;
-const containerId = "containerRecaptcha";
 
 const SubmitResource = () => {
 
@@ -23,24 +19,6 @@ const SubmitResource = () => {
     }
 
     const [submessage,setSubmessage] = useState(false);
-
-    const successCallback = (response) =>
-        handleSubmit((data) => onSubmit({ ...data, catchaResponse: response }))();
-
-    const { recaptchaLoaded, recaptchaWidget } = useRecaptcha({
-        containerId,
-        successCallback,
-        sitekey,
-        size: "invisible"
-    });
-
-    const executeCaptcha = (e) => {
-        e.preventDefault();
-        if (recaptchaWidget !== null) {
-        window.grecaptcha.reset(recaptchaWidget);
-        window.grecaptcha.execute(recaptchaWidget);
-        }
-    };
 
     return(
         <Layout>
@@ -65,7 +43,7 @@ const SubmitResource = () => {
                 { 
                 !submessage && <div className="flex-container">
                     <div className="contact">
-                        <form name="resource" onSubmit={executeCaptcha}>
+                        <form name="resource" onSubmit={handleSubmit(onSubmit)}>
                             <p>
                                 <label>Name: *Required<br/> <input {...register("name", {required: true})} type="text" name="name"/></label>   
                             </p>
@@ -233,14 +211,8 @@ const SubmitResource = () => {
                                 <label>Description: <br/> <textarea {...register("description")} name="description"></textarea></label>
                             </p>
                             <p>
-                                <button disabled={!recaptchaLoaded} type="submit" className="button button_main">Submit</button>
+                                <button type="submit" className="button button_main">Submit</button>
                             </p>
-                            <div  id={containerId}/>
-                                This site is protected by reCAPTCHA and the Google
-                                <a href="https://policies.google.com/privacy"> Privacy Policy</a> and
-                                <a href="https://policies.google.com/terms"> Terms of Service</a> apply.
-                                <br/>
-                                <br/>
                         </form>
                     </div>
                 </div>
