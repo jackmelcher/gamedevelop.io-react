@@ -6,6 +6,9 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 import axios from "axios"
+import ReCAPTCHA from "react-google-recaptcha";
+
+const TEST_SITE_KEY = process.env.GATSBY_SITE_RECAPTCHA_KEY;
 
 const SubmitResource = () => {
 
@@ -19,6 +22,17 @@ const SubmitResource = () => {
     }
 
     const [submessage,setSubmessage] = useState(false);
+    const [recaptchaValid,setRecaptchaValid] = useState(false);
+    const recaptchaRef = React.createRef();
+    function onChange(value) {
+        if(value === null){
+            setRecaptchaValid(false);
+        }
+        else{
+            console.log("Captcha value:", value);
+            setRecaptchaValid(true);
+        }
+    }
 
     return(
         <Layout>
@@ -36,7 +50,7 @@ const SubmitResource = () => {
                     submessage && 
                     <div>
                         <h2>Resource submitted!</h2>
-                        <button className="button button_main" onClick={() => setSubmessage(false)}>Click Here to Submit Another Resource?</button>
+                        <button className="button button_main" onClick={() => {setSubmessage(false); recaptchaRef.current.reset();setRecaptchaValid(false);}}>Click Here to Submit Another Resource?</button>
                     </div>
                     }
                 </h3>
@@ -211,8 +225,18 @@ const SubmitResource = () => {
                                 <label>Description: <br/> <textarea {...register("description")} name="description"></textarea></label>
                             </p>
                             <p>
-                                <button type="submit" className="button button_main">Submit</button>
+                            <ReCAPTCHA
+                                ref={recaptchaRef}
+                                sitekey={TEST_SITE_KEY}
+                                onChange={onChange}
+                            />
                             </p>
+                            {recaptchaValid &&
+                            <p>
+                            <button type="submit" className="button button_main">Submit</button>
+                            </p>
+                            }
+                            
                         </form>
                     </div>
                 </div>
