@@ -24,12 +24,14 @@ const Resources = () => {
             document.getElementById("category").selectedIndex = 0;
             SelectTable("pop");
         }
-    },[tableSelect]);
-
+    });
+    // SelectTable is getting called twice, need to look into it further to reduce it to just one call.
     function handleSelectChange(file)
     {
-        window.location.hash = file;
-        setTableSelect(window.location.hash); 
+        if(tableSelect !== window.location.hash){
+            window.location.hash = file;
+            setTableSelect(window.location.hash); 
+        }
     }
     function SelectTable(filename)
     {
