@@ -30,8 +30,8 @@ exports.handler = async(event, context) => {
     {    
         await client.connect();
 
-        let query = 'Insert INTO user_submitted (name, link, categories, platforms, pricing, tags, description) VALUES ($1, $2, $3, $4, $5, $6, $7)';
-        const result = await client.query(query, [name, link, table, platforms, pricing, tags, description]);
+        let query = 'Insert INTO user_submitted (name, link, category, platforms, pricing, tags, description) VALUES ($1, $2, $3, $4, $5, $6, $7)';
+        const result = await client.query(query, [name, link, category, platforms, pricing, tags, description]);
 
         await client.clean();
         await client.end();

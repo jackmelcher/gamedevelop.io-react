@@ -6,6 +6,10 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 import axios from "axios"
+import { useRecaptcha } from "react-hook-recaptcha"
+
+const sitekey = process.env.SITE_RECAPTCHA_KEY;
+const containerId = "containerRecaptcha";
 
 const SubmitResource = () => {
 
@@ -18,8 +22,25 @@ const SubmitResource = () => {
         console.log(response);
     }
 
-
     const [submessage,setSubmessage] = useState(false);
+
+    const successCallback = (response) =>
+        handleSubmit((data) => onSubmit({ ...data, catchaResponse: response }))();
+
+    const { recaptchaLoaded, recaptchaWidget } = useRecaptcha({
+        containerId,
+        successCallback,
+        sitekey,
+        size: "invisible"
+    });
+
+    const executeCaptcha = (e) => {
+        e.preventDefault();
+        if (recaptchaWidget !== null) {
+        window.grecaptcha.reset(recaptchaWidget);
+        window.grecaptcha.execute(recaptchaWidget);
+        }
+    };
 
     return(
         <Layout>
@@ -34,12 +55,17 @@ const SubmitResource = () => {
                     <br/>
                     <Link to="/resources-pending/" className="button button_main">View Pending Submissions</Link>
                     {
-                    submessage && <h2>Resource submitted successfully!</h2>
+                    submessage && 
+                    <div>
+                        <h2>Resource submitted!</h2>
+                        <button className="button button_main" onClick={() => setSubmessage(false)}>Click Here to Submit Another Resource?</button>
+                    </div>
                     }
                 </h3>
-                <div className="flex-container">
+                { 
+                !submessage && <div className="flex-container">
                     <div className="contact">
-                        <form name="resource" onSubmit={handleSubmit(onSubmit)}>
+                        <form name="resource" onSubmit={executeCaptcha}>
                             <p>
                                 <label>Name: *Required<br/> <input {...register("name", {required: true})} type="text" name="name"/></label>   
                             </p>
@@ -49,81 +75,81 @@ const SubmitResource = () => {
                             </p>
                             {errors.link && "Please provide a URL"}
                             <p>
-                                <label>Table: *Required<br/>
-                                <select {...register("table", {required: true})} name="table">
-                                    <option value="">Select A Table</option>
+                                <label>Category: *Required<br/>
+                                <select {...register("category", {required: true})} name="category">
+                                    <option value="">Select A Category</option>
                                     <optgroup label="Art Tools">
-                                        <option value="2d">2D Art</option>
-                                        <option value="3d">3D Art</option>
-                                        <option value="oart">Other Art</option>
-                                        <option value="audio">Audio</option>
-                                        <option value="video">Video</option>
+                                        <option value="2D Art">2D Art</option>
+                                        <option value="3D Art">3D Art</option>
+                                        <option value="Other Art">Other Art</option>
+                                        <option value="Audio">Audio</option>
+                                        <option value="Video">Video</option>
                                     </optgroup>
                                     <optgroup label="Design Tools">
-                                        <option value="design">Design</option>
-                                        <option value="accessibility">Accessibility</option>
-                                        <option value="narrative">Narrative Writing</option>
-                                        <option value="diagram">Diagramming</option>
+                                        <option value="Design">Design</option>
+                                        <option value="Accessibility">Accessibility</option>
+                                        <option value="Narrative Writing">Narrative Writing</option>
+                                        <option value="Diagramming">Diagramming</option>
                                     </optgroup>
                                     <optgroup label="Engineering Tools">
-                                        <option value="engine">Engines and Frameworks</option>
-                                        <option value="sdk">SDKs, APIs, and Libraries</option>
-                                        <option value="mod">Modding & Creation Platforms</option>
-                                        <option value="backend">Backend Services</option>
-                                        <option value="security">Security</option>
-                                        <option value="oengine">Other Engineering</option>
+                                        <option value="Engines and Frameworks">Engines and Frameworks</option>
+                                        <option value="SDKs, APIs, and Libraries">SDKs, APIs, and Libraries</option>
+                                        <option value="Modding & Creation Platforms">Modding & Creation Platforms</option>
+                                        <option value="Backend Services">Backend Services</option>
+                                        <option value="Security">Security</option>
+                                        <option value="Other Engineering">Other Engineering</option>
                                     </optgroup>
                                     <optgroup label="DevOps Tools">
-                                        <option value="vcs">Version Control Systems</option>
-                                        <option value="ci-cd">CI / CD</option>
+                                        <option value="Version Control Systems">Version Control Systems</option>
+                                        <option value="CI / CD">CI / CD</option>
                                     </optgroup>
                                     <optgroup label="Production Tools">
-                                        <option value="communication">Communication</option>
-                                        <option value="office">Office and Cloud Storage</option>
-                                        <option value="tasking">Tasking and Collaboration</option>
+                                        <option value="Communication">Communication</option>
+                                        <option value="Office and Cloud Storage">Office and Cloud Storage</option>
+                                        <option value="Tasking and Collaboration">Tasking and Collaboration</option>
                                     </optgroup>
                                     <optgroup label="Business Tools">
-                                        <option value="analytics">Analytics</option>
-                                        <option value="business">Business & Marketing</option>
-                                        <option value="monetization">Monetization</option>
-                                        <option value="website">Websites</option>
+                                        <option value="Analytics">Analytics</option>
+                                        <option value="Business & Marketing">Business & Marketing</option>
+                                        <option value="Monetization">Monetization</option>
+                                        <option value="Websites">Websites</option>
                                     </optgroup>
                                     <optgroup label="Assets & Services">
-                                        <option value="assets">Assets</option>
-                                        <option value="services">Services</option>
+                                        <option value="Assets">Assets</option>
+                                        <option value="Services">Services</option>
                                     </optgroup>
                                     <optgroup label="Publishing & Distribution">
-                                        <option value="publisher">Publishers</option>
-                                        <option value="funding">Funding Options</option>
-                                        <option value="gamehosts">Hosting & Storefronts</option>
-                                        <option value="ratings">Ratings Boards</option>
-                                        <option value="news">News Outlets</option>
+                                        <option value="Publishers">Publishers</option>
+                                        <option value="Funding Options">Funding Options</option>
+                                        <option value="Hosting & Storefronts">Hosting & Storefronts</option>
+                                        <option value="Ratings Boards">Ratings Boards</option>
+                                        <option value="News Outlets">News Outlets</option>
                                     </optgroup>
                                     <optgroup label="Events">
-                                        <option value="conventions">Conventions & Events</option>
-                                        <option value="awards">Awards</option>
-                                        <option value="jams">Game Jams</option>
+                                        <option value="Conventions & Events">Conventions & Events</option>
+                                        <option value="Awards">Awards</option>
+                                        <option value="Game Jams">Game Jams</option>
                                     </optgroup>
                                     <optgroup label="Communities & Career">
-                                        <option value="communities">Communities</option>
-                                        <option value="social">Social Media Groups</option>
-                                        <option value="jobs">Job Boards</option>
-                                        <option value="space">Coworking Space</option>
+                                        <option value="Communities">Communities</option>
+                                        <option value="Social Media Groups">Social Media Groups</option>
+                                        <option value="Job Boards">Job Boards</option>
+                                        <option value="Coworking Space">Coworking Space</option>
                                     </optgroup>
                                     <optgroup label="Education & Learning">
-                                        <option value="schools">Schools & Courses</option>
-                                        <option value="learning">Learning Websites</option>
-                                        <option value="youtube">YouTube Channels</option>
+                                        <option value="Schools & Courses">Schools & Courses</option>
+                                        <option value="Learning Websites">Learning Websites</option>
+                                        <option value="YouTube Channels">YouTube Channels</option>
                                     </optgroup>
                                     <optgroup label="Hardware & Peripherals">
-                                        <option value="hardware">PC, Mobile, and XR Devices</option>
-                                        <option value="hardwareparts">PC Components</option>
-                                        <option value="peripherals">Peripherals</option>
+                                        <option value="PC, Mobile, and XR Devices">PC, Mobile, and XR Devices</option>
+                                        <option value="PC Components">PC Components</option>
+                                        <option value="Peripherals">Peripherals</option>
                                     </optgroup>
                                 </select>
                                 </label>
                             </p>
-                            {errors.table && "Please select a Table"}
+                            {errors.category && "Please select a Category"}
                             <p>
                                 Pricing:
                                 <ul className="nobullets">
@@ -182,6 +208,12 @@ const SubmitResource = () => {
                                     </li>
                                     <li>
                                         <label>
+                                            <input {...register("platforms")} type="checkbox" name="platforms" value="Web"/>
+                                            Web
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
                                             <input {...register("platforms")} type="checkbox" name="platforms" value="iOS"/>
                                             iOS
                                         </label>
@@ -201,11 +233,18 @@ const SubmitResource = () => {
                                 <label>Description: <br/> <textarea {...register("description")} name="description"></textarea></label>
                             </p>
                             <p>
-                                <button type="submit" className="button button_main">Submit</button>
+                                <button disabled={!recaptchaLoaded} type="submit" className="button button_main">Submit</button>
                             </p>
+                            <div  id={containerId}/>
+                                This site is protected by reCAPTCHA and the Google
+                                <a href="https://policies.google.com/privacy"> Privacy Policy</a> and
+                                <a href="https://policies.google.com/terms"> Terms of Service</a> apply.
+                                <br/>
+                                <br/>
                         </form>
                     </div>
                 </div>
+                }
         </Layout>
     )
 }

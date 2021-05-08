@@ -11,6 +11,7 @@ import "../css/resources.css"
 const Resources = () => {
     
     const [tableName,setTableName] = useState("Popular Tools and Services");
+    const [tableSelect,setTableSelect] = useState("");
 
     useEffect(() => {
         if(window.location.hash !== "")
@@ -23,16 +24,16 @@ const Resources = () => {
             document.getElementById("category").selectedIndex = 0;
             SelectTable("pop");
         }
-    },[]);
+    },[tableSelect]);
 
     function handleSelectChange(file)
     {
         window.location.hash = file;
+        setTableSelect(window.location.hash); 
     }
     function SelectTable(filename)
     {
         var filepath;
-        //console.log("Select table called");
         filepath = "/csv/"+filename+".csv";
         
         let category = document.getElementById("category");
