@@ -50,7 +50,7 @@ const SubmitResource = () => {
                     submessage && 
                     <div>
                         <h2>Resource submitted!</h2>
-                        <button className="button button_main" onClick={() => {setSubmessage(false); recaptchaRef.current.reset();setRecaptchaValid(false);}}>Click Here to Submit Another Resource?</button>
+                        <button className="button button_main" onClick={() => {setSubmessage(false); setRecaptchaValid(false);recaptchaRef.current.reset();}}>Click Here to Submit Another Resource?</button>
                     </div>
                     }
                 </h3>
