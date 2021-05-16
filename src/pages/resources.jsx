@@ -12,7 +12,6 @@ const Resources = () => {
     
     const [tableName,setTableName] = useState("Popular Tools and Services");
     const [tableSelect,setTableSelect] = useState("");
-
     useEffect(() => {
         if(window.location.hash !== "")
         {
@@ -24,14 +23,13 @@ const Resources = () => {
             document.getElementById("category").selectedIndex = 0;
             SelectTable("pop");
         }
-    });
+    },[tableSelect,window.location.hash]); 
+    
     // SelectTable is getting called twice, need to look into it further to reduce it to just one call.
     function handleSelectChange(file)
     {
-        if(tableSelect !== window.location.hash){
-            window.location.hash = file;
-            setTableSelect(window.location.hash); 
-        }
+        window.location.hash = file;
+        setTableSelect(file);
     }
     function SelectTable(filename)
     {
