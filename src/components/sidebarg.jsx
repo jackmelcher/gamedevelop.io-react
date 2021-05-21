@@ -89,13 +89,19 @@ function makeAnchorList()
   let pageurl = window.location.href.split("/")[5]+"/";
   //console.log(window.location.href)
   //console.log(pageurl)
+  
+  let pageAnchorList = document.getElementsByClassName("pageAnchorList");
+  if(pageAnchorList.length > 0)
+  {
+    pageAnchorList[0].remove();
+  }
 
   for(let i = 0; i < pages.length; i++)
   {
     if(pages[i].getAttribute("href").endsWith(pageurl) && window.location.href.split("/").length > 5)
     {
       let list = document.createElement("ul");
-      list.classList.add("nobullets");
+      list.classList.add("nobullets","pageAnchorList");
 
       var litem;
       var anchor;
@@ -110,6 +116,7 @@ function makeAnchorList()
         anchor.onclick = function(){handleAnchorLink(ids[j].id)};
         anchor.textContent = headers[j].textContent;
         litem.appendChild(anchor);
+        litem.classList.add("pageAnchor");
         list.appendChild(litem);
       }
       pages[i].parentElement.insertAdjacentElement("afterend",list);

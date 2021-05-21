@@ -9,22 +9,25 @@ import {readString} from "react-papaparse"
 import "../css/resources.css"
 
 const Resources = () => {
-    
+
     const [tableName,setTableName] = useState("Popular Tools and Services");
     const [tableSelect,setTableSelect] = useState("");
     useEffect(() => {
         if(window.location.hash !== "")
         {
             document.getElementById("category").value = window.location.hash.split('#')[1];
-            SelectTable(window.location.hash.split('#')[1]);
+            setTableSelect(window.location.hash.split('#')[1]);
         }
         else
         {
             document.getElementById("category").selectedIndex = 0;
-            SelectTable("pop");
+            setTableSelect("pop");
         }
-    },[tableSelect,window.location.hash]); 
-    
+    });
+
+    useEffect(() => {
+        SelectTable(document.getElementById("category").value);
+    },[tableSelect]);
     // SelectTable is getting called twice, need to look into it further to reduce it to just one call.
     function handleSelectChange(file)
     {
@@ -33,14 +36,10 @@ const Resources = () => {
     }
     function SelectTable(filename)
     {
-        var filepath;
-        filepath = "/csv/"+filename+".csv";
-        
+        //Load CSV Data
+        LoadDoc(filename, CreateTableFromArray2D);
         let category = document.getElementById("category");
         setTableName(category.options[category.selectedIndex].text);
-    
-        //Load CSV Data
-        LoadDoc(filepath, CreateTableFromArray2D);
     }
     function toggleSidebar()
     {
@@ -123,6 +122,7 @@ const Resources = () => {
                         <option value="jams">Game Jams</option>
                     </optgroup>
                     <optgroup label="Communities & Career">
+                        <option value="orgs">Organizations</option>
                         <option value="communities">Communities</option>
                         <option value="social">Social Media Groups</option>
                         <option value="jobs">Job Boards</option>
@@ -161,9 +161,57 @@ const Resources = () => {
 }
 export default Resources
 
+let resourceMap = new Map();
+resourceMap.set("pop","https://docs.google.com/spreadsheets/d/e/2PACX-1vSH0z-EBQ7aUM3OARY_Xsvt9Hv9Mh04b3eEcl02jLP0u2KV3giDf7ilSmqqdbRjTR7qipL7F9v2gtVx/pub?output=csv");
+resourceMap.set("2d","https://docs.google.com/spreadsheets/d/e/2PACX-1vQDJIx7G70nXNeUyMbjpnsy3M9hRXGtV7ArJBhVk4L2K8cI_jWmNVRNVQDah0_olHCJ_5INP5TfPsJg/pub?output=csv");
+resourceMap.set("3d","https://docs.google.com/spreadsheets/d/e/2PACX-1vQRPDlbVzk2EPF9bh6lukjfMbmpVZe6-h-scoOZbWWPyBqL7t1KT8oTdsmMii9XRKsDX7miQuJc1a8Y/pub?output=csv");
+resourceMap.set("oart","https://docs.google.com/spreadsheets/d/e/2PACX-1vSBxva6gUtZSJyrRdQpjum2lRAF8LPcmQ7Z2NbgC-Femnss2x2pN8LKFthHuTH8II13P1AfVm7bPDsA/pub?output=csv");
+resourceMap.set("audio","https://docs.google.com/spreadsheets/d/e/2PACX-1vRCM79IdtRCW714RqPJleBtzz5GHhvVVpyQ8OSLwQafj2_AeWQR5BJyi4eMvnCEi7vZNQkEjQdU_tbK/pub?output=csv");
+resourceMap.set("video","https://docs.google.com/spreadsheets/d/e/2PACX-1vS_eAl6F-ZFE262Rf6WexBJkoV9AAjpjn60_ZMh4h9jvdk-sgTMR9rTEzEx3FAllC9CUdNrxYBNYGcO/pub?output=csv");
+resourceMap.set("design","https://docs.google.com/spreadsheets/d/e/2PACX-1vRD2q9SD8YKS51KpV71YMC0qghME_Qs0vqq4lDRMQESjgWH-VVOOu89wAzJlGrTvKxDz8p8nIGM9COS/pub?output=csv");
+resourceMap.set("accessibility","https://docs.google.com/spreadsheets/d/e/2PACX-1vRgUOIqsarZpVymKLED_5_tFn1WTRGz8us3GdqexmwIEywsRqXmj7o5HL2rlhheLPom9nQTVLMRoxq0/pub?output=csv");
+resourceMap.set("narrative","https://docs.google.com/spreadsheets/d/e/2PACX-1vQGGJ5FF_BiIs6Z1s352k--Q0-sLP4xdG7FitOpUsykP3z5quuB25SVuD7Q-yx9kn9iTbLijh-21l1p/pub?output=csv");
+resourceMap.set("diagram","https://docs.google.com/spreadsheets/d/e/2PACX-1vSGnTTlKBOZMXnGC7t4iX830zi7PIWyochlW8YpIVqrs0h_307k4qX1pueZe6cvyVxaQrKXGIlbXVLJ/pub?output=csv");
+resourceMap.set("engine","https://docs.google.com/spreadsheets/d/e/2PACX-1vQ9sShYkfVUkVI2XHBASu9DD0a-7kCkMFidjozCyEH2rhW1YnjFHw4BySKaCLAN4Xq_OAv9eeNSpw9s/pub?output=csv");
+resourceMap.set("sdk","https://docs.google.com/spreadsheets/d/e/2PACX-1vTJ-hCq_hrYjKF60QLmigAQ6yo3rPC0W3gJuTjA8-Y_2QOAppcUQC88jkCCTXQEzGn3sknRKRntdtN4/pub?output=csv");
+resourceMap.set("mod","https://docs.google.com/spreadsheets/d/e/2PACX-1vR5uW4NGvUv7VwSv8yUdZbnDOilGTOXdSfyxrBVE5eLe428s4g5Sq_WOBxJ-1xbmYSCax86rmX__aGr/pub?output=csv");
+resourceMap.set("backend","https://docs.google.com/spreadsheets/d/e/2PACX-1vTWNDx8dsTjLCgquTfsTs_OBeowXqmFbPmSKS31lNUuHsm37gpJI0zGMYv1pzuQ69rYfGlueJE_DiSw/pub?output=csv");
+resourceMap.set("security","https://docs.google.com/spreadsheets/d/e/2PACX-1vSjdroNpvimp_bT3cOvQt69dYe-EoYJrRfeAKtu4kmD6E7_yFnaGxm71YinP9FbIwuChxJyCGbjo5XA/pub?output=csv");
+resourceMap.set("oengine","https://docs.google.com/spreadsheets/d/e/2PACX-1vSeFL1o_NbA8-a8B4hsgbU0Y168DJeH4_1H_Y1cCILxrDwfDog3StKaKMUqvoURrAVQotoX5D9kFGMj/pub?output=csv");
+resourceMap.set("vcs","https://docs.google.com/spreadsheets/d/e/2PACX-1vSrEBSWTZ9ckxc3WB57C0B5oFc4O62OaOZ8lqpWZ-Vfu3owP0T7vh2ZktoWkz31edMo88lH-0nFNRIQ/pub?output=csv");
+resourceMap.set("ci-cd","https://docs.google.com/spreadsheets/d/e/2PACX-1vT4Cgu_TIphIB7T9tMoPrDvjXA0u7vIflKLNHfvGGU352IT3tOWX2yJj5FG33llEWflLwVNbyKnifKT/pub?output=csv");
+resourceMap.set("communication","https://docs.google.com/spreadsheets/d/e/2PACX-1vRrjVZ8PKAU51_fyLV5QMjdQFO8w4EqST2vQf5mfsmU9u13qg1_yF8DKXRIPOv00Fy1exWpiQv3qDI6/pub?output=csv");
+resourceMap.set("office","https://docs.google.com/spreadsheets/d/e/2PACX-1vSq1AqJMPPZUMb73dU1Vy_96koYGGRB4TjWYMVXbmdUqi_EHhAbcF51qqSaXi5j5tBsD_aPwKYYhzE9/pub?output=csv");
+resourceMap.set("tasking","https://docs.google.com/spreadsheets/d/e/2PACX-1vS9lpC4xOOiWXCz1Ysm2816qmBucgsA75721yezbz5ujFy7jul4Y49L2nXsNlZbmKREonZIXzn9SeG_/pub?output=csv");
+resourceMap.set("analytics","https://docs.google.com/spreadsheets/d/e/2PACX-1vSKnRa__EP0CwdkABbNGBavhMyUr8kJn01tlfF8yQd6hnz-A21dUNdjzAMpKrWeQtiMqG3hrtbxaSfW/pub?output=csv");
+resourceMap.set("business","https://docs.google.com/spreadsheets/d/e/2PACX-1vTLZktBrbkqfzXr0E_6e2NhOqV8f1IbJzx9aupyNe36kslRmCJ3f21BCIl0-NoJgXQUcSnCxxk2lZ3t/pub?output=csv");
+resourceMap.set("monetization","https://docs.google.com/spreadsheets/d/e/2PACX-1vSiZHeG6WJLA7O26L9kCOghdQvimRZmjrnVgs7QPrPvXF9euoLcQCLrc90SqnMajk29mGVy4MElvpOG/pub?output=csv");
+resourceMap.set("website","https://docs.google.com/spreadsheets/d/e/2PACX-1vTvwgqk5crjFD-1BjB7i3CDC3Gz_sE6cQyNUjn_x0mm23aCU3HtBnprCbvUWZtxEsH8KmlGSRX86d4d/pub?output=csv");
+resourceMap.set("assets","https://docs.google.com/spreadsheets/d/e/2PACX-1vRhjyyTz2hSRhuPrPSnvHQ2ckU2IrNM7UKM2C1QLU1jbahn8JW-lI20XZKu9eygjbNpdliaWz6mAk4n/pub?output=csv");
+resourceMap.set("services","https://docs.google.com/spreadsheets/d/e/2PACX-1vRwOchRhXiDDYJdctaNMrqUE_Mnfq1Eq5js5gHLsjQwR6I28qbnX8Cc1Ws7kzE_kfIxGnulm8NUnhw9/pub?output=csv");
+resourceMap.set("publisher","https://docs.google.com/spreadsheets/d/e/2PACX-1vQBHIGXEXbFvTI_ClUtX0E4tjlSSBwM4UDTZjKNBAY08Ud5-NJwjHmgeAUSWzwTHpviasVmXSRUDRI7/pub?output=csv");
+resourceMap.set("funding","https://docs.google.com/spreadsheets/d/e/2PACX-1vTIaf9Ydc-HbRMlidubHTLGuVhXficXv1o3FkUHfhkL0UEcHGBDGmhhFDNp4V0S-wv_J9VPvq7sJcg3/pub?output=csv");
+resourceMap.set("gamehosts","https://docs.google.com/spreadsheets/d/e/2PACX-1vQjTD0wKS8WO2UGJxT-mxEETxCZt2n6C3rxZlj2H7fJ3jUy0lTljUzMmUmUeBnLzC95vbd6XMCv5lck/pub?output=csv");
+resourceMap.set("ratings","https://docs.google.com/spreadsheets/d/e/2PACX-1vR_3vK3tP3DfcJy0fXwaM1v9x0eB80QgXA4Ynbh0GiESC-CTB71dhDSIZQPfOPZKLojascbscTwHMyA/pub?output=csv");
+resourceMap.set("news","https://docs.google.com/spreadsheets/d/e/2PACX-1vR902-_2TVjVM-hKRxAFkLe1TXeZsawX4RelNi9ezE0QPh3-Q7ZAySzsuzpqSAM7HyBE7Brvj2ZrTx2/pub?output=csv");
+resourceMap.set("events","https://docs.google.com/spreadsheets/d/e/2PACX-1vSHPf0nObNM0ZrY3K5IkkkmF3z9pbfxks11OmxvufGYityD4qpOUbRYCSESsrtkWBe6j2FE1Gb3unUk/pub?output=csv");
+resourceMap.set("awards","https://docs.google.com/spreadsheets/d/e/2PACX-1vRc91DOPuM_AWqOGMPpRZtqXeOq9ZWpBIkGR2m5IBtW_U9M2pIiZV4GTYRJsnSArwR4BSnQyH04f9dP/pub?output=csv");
+resourceMap.set("jams","https://docs.google.com/spreadsheets/d/e/2PACX-1vT8616zbXQGzbTKUJiKCJ2Ec16ffJVRW7F_PmlksRN_yXTSSQmYWZw93WNLP1bKiWDteC1sEAxWtmc_/pub?output=csv");
+resourceMap.set("orgs","https://docs.google.com/spreadsheets/d/e/2PACX-1vS8-mdVUkjV22dYh4mOvK-JKMyLVYbJ6oCy7glaf5xP0mLgVq3pk7mwOfG0fqveUND_cmYKxBoiyODF/pub?output=csv");
+resourceMap.set("communities","https://docs.google.com/spreadsheets/d/e/2PACX-1vTzoNxfsVBRGbU2InlM39Ze4SKWVB4mLZ8eNcT7z--TZYu_tsds_ga46hUa2xTLifnaWtzutS5lFpTt/pub?output=csv");
+resourceMap.set("social","https://docs.google.com/spreadsheets/d/e/2PACX-1vQEx_ZsuPYdKlSKVN7uZ3k1M6ZCjkh6GIJgT4pYjQ7g5rzAvXiHmP1WJ4S3gbdLMSo-oPrJrlBcHg2d/pub?output=csv");
+resourceMap.set("jobs","https://docs.google.com/spreadsheets/d/e/2PACX-1vTk54yYtogBp1B2VR5uIvsV5vLUdj1jpTH7PgCH_0gBbWetLdHUDyL0roNXoNW_g_f2DumneMX0PCUi/pub?output=csv");
+resourceMap.set("space","https://docs.google.com/spreadsheets/d/e/2PACX-1vTRJma3kNazH5j7D9-FoXFPIzz9I9lKir2ptVGpvBnYUDEsVq_y8KVDJiheyCgL5bWRtgoFY-g_SPzJ/pub?output=csv");
+resourceMap.set("schools","https://docs.google.com/spreadsheets/d/e/2PACX-1vTwzljYhZggbZR1MPOpb3RaoMXRjkAG3ZiqqtmhCyTUthbb-LdoeBxZjr7gOXW5odec_N3ZZPMyIp5O/pub?output=csv");
+resourceMap.set("learning","https://docs.google.com/spreadsheets/d/e/2PACX-1vQCAtHsQ64cne1GJqDM7jrT0D1w9-4FKjjOWvGCAJRCHD8-PHTa1oMqLiuYiLMQFgWlM0-UdU5kj9Ga/pub?output=csv");
+resourceMap.set("youtube","https://docs.google.com/spreadsheets/d/e/2PACX-1vTKPGCzhnIPnsb78SgAwrOTgCaG_rMnRnRsv57m7Pi5QtDa8A2_LPIxZPCPrLB8W92sOvgr1jwvLriH/pub?output=csv");
+resourceMap.set("hardware","https://docs.google.com/spreadsheets/d/e/2PACX-1vSp4O0V5Fj3lzBbC_n9Di_Jed5mUG3zrRvCBUNIYYMRYszHt8EFWOpzoB7rFob-kpM_WkEmeClHuLS_/pub?output=csv");
+resourceMap.set("hardwareparts","https://docs.google.com/spreadsheets/d/e/2PACX-1vS0rmMTZrzTLHVjImzK4I0-ncjRqd2HiY3h8oS_QXFK1p2rCksl944u5zmWPNqBAE2b5QKsDsbi2wIg/pub?output=csv");
+resourceMap.set("peripherals","https://docs.google.com/spreadsheets/d/e/2PACX-1vTSceDoG1MYdZ6LNGF5b4qCismN0YJ9Ohimzn_h1zI4VoXTLvQ-uIzi07hYKLK3HUhPg-xS22zvqKlD/pub?output=csv");
+
 function LoadDoc(filepath, callback) {
     var csvdata;
-
+    var link = resourceMap.get(filepath);
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
@@ -173,7 +221,8 @@ function LoadDoc(filepath, callback) {
             callback(csvdata.data);
         }
     };
-    xhttp.open("GET", filepath, true);
+    xhttp.open("GET", link, true);
+    //xhttp.open("GET", filepath, true);
     xhttp.send();
 }
 
