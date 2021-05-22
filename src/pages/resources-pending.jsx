@@ -43,12 +43,18 @@ const Resources = () => {
         */
 
         let csv = jsonToCSV(response.data.message)
-
         console.log(csv);
+
         if(csv !== "")
         {
             let csvarray = readString(csv);
             CreateTableFromArray2D(csvarray.data,4,8);
+            setTableName(table.options[table.selectedIndex].text);
+        }
+        else
+        {
+            let div = document.getElementById("showData");
+            div.innerHTML = "Empty Table";
             setTableName(table.options[table.selectedIndex].text);
         }
     }
