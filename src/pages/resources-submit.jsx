@@ -123,6 +123,7 @@ const SubmitResource = () => {
                                         <option value="Game Jams">Game Jams</option>
                                     </optgroup>
                                     <optgroup label="Communities & Career">
+                                        <option value="Organization">Organization</option>
                                         <option value="Communities">Communities</option>
                                         <option value="Social Media Groups">Social Media Groups</option>
                                         <option value="Job Boards">Job Boards</option>
