@@ -138,6 +138,7 @@ a:hover{
   position: sticky;
   background-color: var(--primary-color);
   color: var(--font-color);
+  top: 0;
   /* Keep navbar as 50px height*/
   max-height: 50px !important;
   /*
