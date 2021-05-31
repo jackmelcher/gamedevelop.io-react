@@ -11,7 +11,7 @@ const About = () => (
         <div className="flex-container">
             <div className="about">
                 <h1 className="header">About</h1> 
-                <img src="/images/logo1.svg" alt="GameDevelop.io logo" className="logomain"/>
+                <img src="https://ik.imagekit.io/ucxasjyuy/logo1.svg" alt="GameDevelop.io logo" className="logomain"/>
                 <h2 className="subheader">GameDevelop.io's mission is to provide Game Developers of any skill level with the resources and knowledge necessary to develop Video Games.</h2>
                 <p>
                     The Resource Database is designed to be a complete and up to date collection of tools, assets, communities, and services commonly used by game developers.<br/><br/>
@@ -20,7 +20,7 @@ const About = () => (
                 <br/>
                 <h2>Team</h2>
                 <h3>Jack Melcher</h3>
-                <img src="images/profile.jpg" alt="Jack Melcher's profile" className="imgprofile"/>
+                <img src="https://ik.imagekit.io/ucxasjyuy/profile.jpg" alt="Jack Melcher's profile" className="imgprofile"/>
                 <h3>Founder<br/>Lead Developer</h3>
                 <p>
                     A lifelong fan of Video Games and a professional in the Games Industy, Jack is building GameDevelop.io to make it easier for Game Developers to discover the right tools and learn valueable information.
@@ -72,11 +72,10 @@ const About = () => (
                 <p>
                     If you'd like to support the development of GameDevelop.io, then consider becoming a supporter on: 
                     <br/> <br/>
-                    <a href="https://www.buymeacoffee.com/gamedevelop" className="button button_support bcm" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/about/Button_orange.png" alt="Buymeacoffee support page"/>
+                    <a href="https://www.buymeacoffee.com/gamedevelop" className="button button_support patreon" target="_blank" rel="noopener noreferrer">
+                        <img src="https://ik.imagekit.io/ucxasjyuy/about/about-patreon.png" alt="Buymeacoffee support page"/>
                     </a>
                 </p>
-                
                 <br id="discord"/>
                 <br/>
                 <br/>
@@ -88,7 +87,7 @@ const About = () => (
                     
                 </p>
                 <a href="https://discord.gg/xZPUrKR" className="button button_support discord" target="_blank" rel="noopener noreferrer">
-                    <img src="/images/about/discord.com.png" alt="Gamedevelop.io's Discord server"/>
+                    <img src="https://ik.imagekit.io/ucxasjyuy/about/about-discord.svg" alt="Gamedevelop.io's Discord server"/>
                 </a>
                 <br/>
                 <br/>
@@ -101,7 +100,7 @@ const About = () => (
                     <br/>
                 </p>
                 <a href="https://github.com/jackmelcher/gamedevelop.io-react" className="button button_support github" target="_blank" rel="noopener noreferrer">
-                    <img src="/images/about/github-logo.svg" alt="GameDevelop.io's source on Github"/>
+                    <img src="https://ik.imagekit.io/ucxasjyuy/about/github-logo.svg" alt="GameDevelop.io's source on Github"/>
                 </a>
             </div>
         </div>

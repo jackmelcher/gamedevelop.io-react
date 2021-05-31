@@ -136,13 +136,15 @@ a:hover{
 .navbar{
   position: -webkit-sticky; /* Safari */
   position: sticky;
-  top: 0;
   background-color: var(--primary-color);
   color: var(--font-color);
-  padding : 0;
-
   /* Keep navbar as 50px height*/
   max-height: 50px !important;
+  /*
+  border-style: solid;
+  border-width: 0px 0px 2px 0px;
+  border-color: var(--side-border-color);
+  */
 }
 .button {
   background-color: var(--primary-color);
@@ -178,8 +180,11 @@ a:hover{
   vertical-align: middle;
   position: relative;
   top: -2px;
+  height: 32px;
+  padding: 0px 8px;
 }
 .button_nav, .button_logo{
+  font-size: 18px;
   font-weight: bold;
   border-radius: 0;
 }
@@ -212,6 +217,13 @@ a:hover{
   /* Keep navbar buttons as 50px height*/
   line-height: 1.125;
   background-color: transparent;
+}
+.button_nav_patreon{
+  background-color:#FF424D;
+  margin-bottom: 0.5px;
+}
+.button_nav_patreon:hover{
+  background-color:#b32e34;
 }
 .menuicon{
   font-size: 24px;

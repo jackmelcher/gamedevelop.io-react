@@ -43,13 +43,13 @@ const ProductionPage = () => (
                 <b>Version Control Systems</b>
                 <p class="guideimg">
                     <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/git-logo.svg" alt="Git Logo"/>
+                        <img src="https://ik.imagekit.io/ucxasjyuy/guides/git-logo.svg" alt="Git Logo"/>
                     </a>
                     <a href="https://www.perforce.com/products/helix-core" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/perforce-logo.png" alt="Perforce Logo"/>
+                        <img src="https://ik.imagekit.io/ucxasjyuy/guides/perforce-logo.png" alt="Perforce Logo"/>
                     </a> 
                     <a href="https://www.plasticscm.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/plastic-logo.svg" alt="PlsticSCM Logo"/>
+                        <img src="https://ik.imagekit.io/ucxasjyuy/guides/plastic-logo.svg" alt="PlsticSCM Logo"/>
                     </a>
                     <i>
                         Perforce includes GUI Client. <br/>
@@ -60,16 +60,16 @@ const ProductionPage = () => (
                 <b>Version Control Repo Hosts</b>
                 <p class="guideimg">
                     <a href="https://github.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/github-logo.svg" alt="Github Logo"/>
+                        <img src="https://ik.imagekit.io/ucxasjyuy/guides/github-logo.svg" alt="Github Logo"/>
                     </a>
                     <a href="https://bitbucket.org/" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/bitbucket-logo.svg" alt="Bitbucket Logo"/>
+                        <img src="https://ik.imagekit.io/ucxasjyuy/guides/bitbucket-logo.svg" alt="Bitbucket Logo"/>
                     </a>
                     <a href="https://gitlab.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/gitlab-logo.svg" alt="Gitlab Logo"/>
+                        <img src="https://ik.imagekit.io/ucxasjyuy/guides/gitlab-logo.svg" alt="Gitlab Logo"/>
                     </a>
                     <a href="https://www.assembla.com/home" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/assembla-logo.png" alt="Assembla Logo"/>
+                        <img src="https://ik.imagekit.io/ucxasjyuy/guides/assembla-logo.png" alt="Assembla Logo"/>
                     </a>
                     <i>
                         Github, Gitlab, and Bitbucket are mainly for Git repo hosting. <br/>
@@ -80,10 +80,10 @@ const ProductionPage = () => (
                 <b>Git GUI Clients</b>
                 <p class="guideimg">
                     <a href="https://www.sourcetreeapp.com/">
-                        <img src="/images/guides/sourcetree-logo.svg" alt="Sourcetree Logo"/>
+                        <img src="https://ik.imagekit.io/ucxasjyuy/guides/sourcetree-logo.svg" alt="Sourcetree Logo"/>
                     </a>
                     <a href="https://www.gitkraken.com/">
-                        <img src="/images/guides/gitkraken-logo.svg" alt="Gitkraken Logo"/>
+                        <img src="https://ik.imagekit.io/ucxasjyuy/guides/gitkraken-logo.svg" alt="Gitkraken Logo"/>
                     </a>
                 </p>
                 <p>
@@ -124,43 +124,43 @@ const ProductionPage = () => (
                 <b>TODO Lists Apps</b>
                 <p class="guideimg">
                     <a href="https://todoist.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/todoist-logo.svg" alt="Todoist Logo"/>
+                        <img src="https://ik.imagekit.io/ucxasjyuy/guides/todoist-logo.svg" alt="Todoist Logo"/>
                     </a>
                     <a href="https://ticktick.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/ticktick-logo.png" alt="TickTick Logo"/>
+                        <img src="https://ik.imagekit.io/ucxasjyuy/guides/ticktick-logo.png" alt="TickTick Logo"/>
                     </a>
                     <a href="https://evernote.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/evernote-logo.svg" alt="Evernote Logo"/>
+                        <img src="https://ik.imagekit.io/ucxasjyuy/guides/evernote-logo.svg" alt="Evernote Logo"/>
                     </a>
                 </p>
                 <b>Collaborative Tasking and File Sharing</b>
                 <p class="guideimg">
                     <a href="https://trello.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/trello-logo.svg" alt="Trello Logo"/>
+                        <img src="https://ik.imagekit.io/ucxasjyuy/guides/trello-logo.svg" alt="Trello Logo"/>
                     </a>
                     <a href="https://drive.google.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/drive-logo.png" alt="Google Drive Logo"/>
+                        <img src="https://ik.imagekit.io/ucxasjyuy/guides/drive-logo.png" alt="Google Drive Logo"/>
                     </a>
                     <a href="https://www.atlassian.com/software/confluence" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/confluence-logo.svg" alt="Confluence Logo"/>
+                        <img src="https://ik.imagekit.io/ucxasjyuy/guides/confluence-logo.svg" alt="Confluence Logo"/>
                     </a>
                     <a href="https://www.notion.so/" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/notion-logo.svg" alt="Notion Logo"/>
+                        <img src="https://ik.imagekit.io/ucxasjyuy/guides/notion-logo.svg" alt="Notion Logo"/>
                     </a>
                     <a href="https://clickup.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/clickup-logo.svg" alt="Clickup Logo"/>
+                        <img src="https://ik.imagekit.io/ucxasjyuy/guides/clickup-logo.svg" alt="Clickup Logo"/>
                     </a>
                 </p>
                 <b>Agile Production</b>
                 <p class="guideimg">
                     <a href="https://www.atlassian.com/software/jira" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/jira-logo.svg" alt="Jira Logo"/>
+                        <img src="https://ik.imagekit.io/ucxasjyuy/guides/jira-logo.svg" alt="Jira Logo"/>
                     </a>
                     <a href="https://azure.microsoft.com/en-us/services/devops/" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/devops-logo.png" alt="Azure Devops Logo"/>
+                        <img src="https://ik.imagekit.io/ucxasjyuy/guides/devops-logo.png" alt="Azure Devops Logo"/>
                     </a>
                     <a href="https://www.perforce.com/products/hansoft" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/guides/hansoft-logo.png" alt="Hansoft Logo"/>
+                        <img src="https://ik.imagekit.io/ucxasjyuy/guides/hansoft-logo.png" alt="Hansoft Logo"/>
                     </a>
                 </p>
                 <p>

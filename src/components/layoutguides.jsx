@@ -23,10 +23,8 @@ const Layoutg = ({ children }) => {
 
   return (
     <div className="flex-main">
-      <Navbar>
-        
-        <SidebarG/>
-      </Navbar>
+      <Navbar/>
+      <SidebarG/>
       <div className="flex-main-content">
         <div className="guideflex-container">
           <div id="overview" className="guideflex">

@@ -11,7 +11,7 @@ import axios from "axios"
 
 const Resources = () => {
     
-    const tableNames = ["user_submitted","user_submitted","user_submitted"];
+    const tableNames = ["user_submitted","user_submitted","user_submitted","user_submitted"];
 
     const fetchData = async () => {
         // '?' starts the query parameter section
@@ -100,6 +100,7 @@ const Resources = () => {
                     <option value="Pending">User Submitted Pending</option>
                     <option value="Accepted">User Submitted Accepted</option>
                     <option value="Declined">User Submitted Rejected</option>
+                    <option value="Duplicate">User Submitted Duplicate</option>
                 </select>
             </div>
             <div className="sidenav rsidenav">

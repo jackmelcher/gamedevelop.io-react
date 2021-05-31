@@ -161,7 +161,7 @@ const IndustryPage = () => (
         <b>Resume Builder and Cover Letter Samples</b>
         <p className="guideimg">
             <a href="https://resume.com/" target="_blank" rel="noopener noreferrer">
-                <img src="/images/guides/resume-logo.svg" alt="Resume.com Logo"/>
+                <img src="https://ik.imagekit.io/ucxasjyuy/guides/resume-logo.svg" alt="Resume.com Logo"/>
             </a>
         </p>
     </div>

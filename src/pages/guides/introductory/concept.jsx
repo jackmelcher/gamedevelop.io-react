@@ -51,12 +51,12 @@ const ConceptPage = () => (
                     <ul>
                         <li>
                         <a href="https://globalgamejam.org/" target="_blank" rel="noopener noreferrer">
-                            <img src="/images/guides/ggj-logo.svg" alt="Global Game Jam Logo" className="imgguide"/>
+                            <img src="https://ik.imagekit.io/ucxasjyuy/guides/ggj-logo.svg" alt="Global Game Jam Logo" className="imgguide"/>
                         </a>
                         </li>
                         <li>
                         <a href="https://ldjam.com/" target="_blank" rel="noopener noreferrer">
-                            <img src="/images/guides/ludum-logo.png" alt="Ludum Dare Logo" className="imgguide"/>
+                            <img src="https://ik.imagekit.io/ucxasjyuy/guides/ludum-logo.png" alt="Ludum Dare Logo" className="imgguide"/>
                         </a>
                         </li>
                         <li>

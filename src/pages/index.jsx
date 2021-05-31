@@ -12,7 +12,7 @@ const IndexPage = () => (
     <div className="flex-container">
         <div className="home">
             <h1 className="header">Welcome to GameDevelop.io</h1> 
-            <img src="/images/logo1.svg" alt="logo" className="logomain"/>
+            <img src="https://ik.imagekit.io/ucxasjyuy/logo1.svg" alt="logo" className="logomain"/>
             <h1 className="subheader">A Resource Website for Game Development.</h1>
             <h2>Resources Database</h2>
             <p>

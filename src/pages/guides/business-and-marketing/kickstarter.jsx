@@ -10,7 +10,7 @@ const KickstarterPage = () => (
         <div id="what">
             <h3>What is Kickstarter</h3>
             <a href="https://www.kickstarter.com/" target="_blank" rel="noopener noreferrer">
-                <img src="/images/guides/kickstarter-logo.svg" alt="Kickstarter Logo" className="imgguide"/>
+                <img src="https://ik.imagekit.io/ucxasjyuy/guides/kickstarter-logo.svg" alt="Kickstarter Logo" className="imgguide"/>
             </a>
             <p>
                 Kickstarter is a crowdfunding platform where users can start campaigns to raise funds for various projects and business endeavors.

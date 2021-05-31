@@ -25,8 +25,8 @@ function Navbar({children})
 
     return (
         <div className="navbar">
-            <Link to="/" className="button button_logo">
-                <img src="/images/logo.svg" alt="logo" className="logoimg"/>
+            <Link to="/" className="button button_logo button_nav">
+                <img src="https://ik.imagekit.io/ucxasjyuy/logo.svg" alt="logo" className="logoimg"/>
             </Link>
             <Link to="/resources/" className="button button_nav">
                 Resources
@@ -34,9 +34,14 @@ function Navbar({children})
             <Link to="/guides/" className="button button_nav">
                 Guides
             </Link>
-            <button className="button settingsnavbutton" onClick={() => setOpen(!open)}>
+            <button className="button settingsnavbutton button_nav" onClick={() => setOpen(!open)}>
                 <i className="menuicon fas fa-cog"></i>
             </button>
+            {/*
+            <a href="https://www.buymeacoffee.com/gamedevelop" className="button_nav_patreon button button_logo settingsnavbutton button_nav " target="_blank" rel="noopener noreferrer">
+                <img src="https://ik.imagekit.io/ucxasjyuy/patreon-navbar.png" alt="Patreon Logo"/>Become a Patron
+            </a>
+            */}
             {children}
             <div>
             {
