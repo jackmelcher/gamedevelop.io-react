@@ -1,33 +1,17 @@
 import { Link } from "gatsby"
 import React, {useState, useEffect} from "react"
 
-function themeMode(isDarkMode)
-{
-    const htmlTag = document.getElementsByTagName("html")[0];
-    if (!isDarkMode) {
-        htmlTag.removeAttribute("data-theme");
-        localStorage.removeItem("site-theme");
-    }
-    else{
-        htmlTag.setAttribute("data-theme", "dark");
-        localStorage.setItem("site-theme", "dark");
-    }
-}
+
 
 function Navbar({children})
 {
-    useEffect(() => {    
-        // Initialize Theme 
-        themeMode(localStorage.getItem("site-theme"));
-    });
-
-    const [open, setOpen] = useState(false);
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    //const [open, setOpen] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(1000);
 
     useEffect(()=>{
         function updateSize() {
             setWindowWidth(window.innerWidth);
-          }
+        }
         setWindowWidth(window.innerWidth);
         window.addEventListener('resize', updateSize);
     });
@@ -45,7 +29,7 @@ function Navbar({children})
                 <img src="https://ik.imagekit.io/ucxasjyuy/logo.svg" alt="logo" className="logoimg"/>
             </Link>
             {
-                windowWidth > 768 && 
+                windowWidth >= 768 && 
                 <>
                     <Link to="/resources/" className="button button_nav flex-item-navbar mid">
                     <p>Resources</p>
@@ -116,7 +100,13 @@ function Settings()
 
 function Theme()
 {
-    const [theme,setTheme] = useState(localStorage.getItem("site-theme") ? true : false);
+    const [theme,setTheme] = useState(true);
+
+    useEffect(() => {    
+        // Initialize Theme 
+        setTheme(localStorage.getItem("site-theme") ? true : false);
+    },[]);
+
     useEffect(() => {    
         themeMode(theme);
     },[theme]);
@@ -131,6 +121,19 @@ function Theme()
         </button>
     );
     
+}
+
+function themeMode(isDarkMode)
+{
+    const htmlTag = document.getElementsByTagName("html")[0];
+    if (!isDarkMode) {
+        htmlTag.removeAttribute("data-theme");
+        localStorage.removeItem("site-theme");
+    }
+    else{
+        htmlTag.setAttribute("data-theme", "dark");
+        localStorage.setItem("site-theme", "dark");
+    }
 }
 
 function CollapsedMenu()
