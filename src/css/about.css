@@ -26,11 +26,20 @@
 .patreon{
   background-color: #FF424D;
 }
+.patreon:hover{
+  background-color:#b32e34;
+}
 .discord{
   background-color: #5865F2;
 }
+.discord:hover{
+  background-color: #4751c0;
+}
 .github{
   background-color: #6533b3;
+}
+.github:hover{
+  background-color: #432279;
 }
 .about{
   max-width: 800px;

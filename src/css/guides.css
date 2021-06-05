@@ -119,7 +119,7 @@ li{margin-bottom: 8px;}
     }
     .selectbarGuide{
         padding: 10px 20px !important;
-        width: auto !important;
+        width: calc(100vw - 40px) !important;
 
     }
 }

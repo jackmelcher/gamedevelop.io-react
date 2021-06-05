@@ -72,7 +72,7 @@ const About = () => (
                 <p>
                     If you'd like to support the development of GameDevelop.io, then consider becoming a supporter on: 
                     <br/> <br/>
-                    <a href="https://www.buymeacoffee.com/gamedevelop" className="button button_support patreon" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.patreon.com/jackmelcher" className="button button_support patreon" target="_blank" rel="noopener noreferrer">
                         <img src="https://ik.imagekit.io/ucxasjyuy/about/about-patreon.png" alt="Buymeacoffee support page"/>
                     </a>
                 </p>

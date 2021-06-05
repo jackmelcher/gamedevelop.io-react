@@ -29,15 +29,14 @@ html[data-theme = "dark"]{
   font-weight: bold;
 }
 .rsidenav {
-  top: 143px;
+  top: 152px;
   width: 275px;
-  height: calc(100vh - 171px);
+  height: calc(100vh - 184px);
 }
 .selectbar{
   position: fixed;
   padding: 16px;
-  top: 50px;
-  height: 60px;
+  top: 56px;
   width: 275px;
   border-right: 1px solid var(--side-border-color);
   border-bottom: 1px solid var(--side-border-color);
@@ -201,16 +200,11 @@ th {
     padding-top: 64px;
   }
   .selectbar{
-    position: -webkit-sticky; /* Safari */
     background-color: var(--bg-color);
     color: var(--font-color);
     border-bottom: 1px solid var(--side-border-color);
   
-    /* Keep navbar as 50px height*/
-    height: auto;
-    position: sticky;
     padding: 10px 10px;
-    top: 50px;
     width: calc(100vw - 21px);
   }
   .selectbar *{
@@ -232,8 +226,8 @@ th {
     width: auto;
   }
   .sidenav{
-    top: 100px;
-    height: calc(100vh - 132px);
+    top: 113px;
+    height: calc(100vh - 145px);
   }
   .tableTitle{
     display: none;
@@ -285,6 +279,10 @@ th {
   }
   .selectbar > * *{
     font-size: 16px;
+  }
+  .sidenav{
+    top: 110px;
+    height: calc(100vh - 142px);
   }
   .selectbar>button>img{
     height: 18px;

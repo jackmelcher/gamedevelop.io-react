@@ -97,6 +97,8 @@ a:hover{
 }
 .logoimg{
   max-width: 32px;
+  max-height: 32px;
+  vertical-align: bottom;
 }
 .logomain{
   height: 128px;
@@ -110,7 +112,7 @@ a:hover{
   border-style: solid;
   border-color: var(--side-border-color);
   border-width: 0px 1px 0px 0px;
-  top: 50px;
+  top: 56px;
   padding: 16px 16px;
   overflow-x: auto;
   height: calc(100vh - 82px);
@@ -139,8 +141,6 @@ a:hover{
   background-color: var(--primary-color);
   color: var(--font-color);
   top: 0;
-  /* Keep navbar as 50px height*/
-  max-height: 50px !important;
   /*
   border-style: solid;
   border-width: 0px 0px 2px 0px;
@@ -172,22 +172,42 @@ a:hover{
   float: right;
   padding: 13px;
 }
-.button_logo{
-  padding: 0px 9px;
-  padding-top: 10.5px;
-  padding-bottom: 7.5px;
-}
-.button_logo > img {
-  vertical-align: middle;
-  position: relative;
-  top: -2px;
-  height: 32px;
-  padding: 0px 8px;
-}
-.button_nav, .button_logo{
+.button_nav{
   font-size: 18px;
   font-weight: bold;
   border-radius: 0;
+}
+.flex-container-navbar{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.flex-item-navbar{
+  flex: 1 0 auto;
+  padding: 12px;
+}
+.flex-item-navbar > p {
+  margin: 4px 0px;
+}
+.flex-item-navbar.big{
+  max-width: 200px;
+}
+.flex-item-navbar.mid{
+  max-width: 100px;
+}
+.flex-item-navbar.small{
+  max-width: 70px;
+}
+.flex-item-padding{
+  flex: 1 0 auto;
+}
+.collapsed-navbar{
+  position: fixed;
+  top: 56px;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: column;
 }
 .button_nav:hover{
   background-color: var(--primary-color-v);
@@ -210,25 +230,10 @@ a:hover{
 }
 .button_support > img {
   vertical-align: middle;
-  margin-right: 8px;
   max-height: 48px;
-}
-.button_nav,.settingsnavbutton,.sidenavbutton,.button_logo
-{
-  /* Keep navbar buttons as 50px height*/
-  line-height: 1.125;
-  background-color: transparent;
-}
-.button_nav_patreon{
-  background-color:#FF424D;
-  margin-bottom: 0.5px;
-}
-.button_nav_patreon:hover{
-  background-color:#b32e34;
 }
 .menuicon{
   font-size: 24px;
-  line-height: 0px;
   width: 32px;
 }
 .bold{
@@ -242,7 +247,7 @@ a:hover{
 }
 .footer{
   background-color: var(--footer-bg-color);
-  padding: 8px 0px 8px 360px;
+  padding: 8px 0px 8px 0px;
   font-size: 14px;
   color: var(--footer-color);
 
@@ -257,7 +262,8 @@ a:hover{
   margin: 4px 16px;
   display: inline-block;
 }
-.footer > p{
+.footer > p {
+  text-align: center;
   margin: 4px 16px 0px;
   font-size: 14px;
 }
@@ -287,6 +293,7 @@ input, textarea{
   }
   .sidenav{
     display: none;
+    top: 110px;
   }
   .footer{
     padding: 8px 0px 8px 0px;
