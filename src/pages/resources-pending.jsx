@@ -88,7 +88,6 @@ const Resources = () => {
     return(
         <Layoutr>
             <SEO title="Resources" description="Explore a Database full of game development tools, assets, and services."/>
-            <Navbar>
             <div className="selectbar selectbarRes">
                 <button onClick={(e) => toggleSidebar()}>
                     <i className="fas fa-filter"></i><span>Filter & Sort</span>
@@ -113,7 +112,7 @@ const Resources = () => {
                     <br/><br/>
                 </div> 
             </div>
-            </Navbar>
+            <Navbar/>
             <div className="resource">
                 <h1 id="tname">{tableName}</h1>
                 <div id="showData">
