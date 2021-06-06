@@ -259,7 +259,7 @@ function CreateTableFromArray2D(array2D)
                     img.addEventListener('error', function(e) {
                         //console.log(e.target.src);
                         this.alt = this.src;
-                        this.src = "/images/placeholder.png";
+                        this.src = "https://ik.imagekit.io/ucxasjyuy/placeholder.png";
                     });
                     img.src = "https://ik.imagekit.io/ucxasjyuy/resources/" + GetImageName(array2D[i][j+1]) + ".png";
                     img.className = "tableimg";
