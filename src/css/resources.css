@@ -16,6 +16,30 @@ html[data-theme = "dark"]{
   --status-yellow: #ffe65c;
   --status-red: #ff4a4a;
 }
+.flex-container-resources{
+  display: flex;
+  flex-direction: row;
+}
+.flex-item-resources{
+  flex: 0 1  auto;
+  max-width: 1600px;
+}
+.flex-item-resources-padding{
+  flex: 1 0 auto;
+}
+.flex-container-resources-inner{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.flex-item-resources-inner{
+  flex: 1 0 auto;
+  margin: 16px 64px;
+  flex-basis: 160px;
+  max-width: 160px;
+  height: 100px;
+}
 .accepted{
   color: var(--status-green);
   font-weight: bold;
@@ -38,6 +62,7 @@ html[data-theme = "dark"]{
   padding: 16px;
   top: 56px;
   width: 275px;
+  max-height: 63px;
   border-right: 1px solid var(--side-border-color);
   border-bottom: 1px solid var(--side-border-color);
 }

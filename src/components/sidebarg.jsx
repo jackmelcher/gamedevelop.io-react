@@ -6,7 +6,8 @@ import "../css/guides.css"
 const SidebarG = () => {
 
   useEffect(() => {
-    makeUnderlines();
+    makeUnderlines("pagelink");
+    makeUnderlines("guidelink");
     makeAnchorList();
   });
 
@@ -24,8 +25,8 @@ const SidebarG = () => {
     </div>
     <div className="sidenav">
       
-      <div className="guidelink">
-        <Link to="/guides/introductory/" className="bold">Introductory Guides</Link>
+      <div className="guidelink-container">
+        <Link to="/guides/introductory/" className="guidelink">Introductory Guides</Link>
         <ul className="nobullets">
           <li>
             <Link to="/guides/introductory/concept/" className="pagelink">Conceptualizing a Video Game</Link>
@@ -43,7 +44,7 @@ const SidebarG = () => {
             <Link to="/guides/introductory/production/" className="pagelink">Producing a Video Game</Link>
           </li>
         </ul>
-        <Link to="/guides/industry/" className="bold">The Computer and Video Game Industry</Link>
+        <Link to="/guides/industry/" className="guidelink">The Computer and Video Game Industry</Link>
         <ul className="nobullets">
           <li>
             <Link to="/guides/industry/overview/" className="pagelink">Games Industry Market Overview</Link>
@@ -58,7 +59,7 @@ const SidebarG = () => {
             <Link to="/guides/industry/culture/" className="pagelink">Games Industry Work Culture</Link>
           </li>
         </ul>
-        <Link to="/guides/business-and-marketing/" className="bold">Business and Marketing Guides</Link>
+        <Link to="/guides/business-and-marketing/" className="guidelink">Business and Marketing Guides</Link>
         <ul className="nobullets">
           <li>
             <Link to="/guides/business-and-marketing/ip/" className="pagelink">The Strength of Intellectual Property</Link>
@@ -140,12 +141,15 @@ function handleAnchorLink(id)
 
 }
 
-function makeUnderlines()
+function makeUnderlines(className)
 {
-  let links = document.getElementsByTagName("a");
+  let links = document.getElementsByClassName(className);
+  console.log();
 
   for(let i=0;i<links.length;i++)
   {
+    console.log(links[i].textContent);
+
     if(window.location.href.includes(links[i].href))
     {
       links[i].classList.add("underline");

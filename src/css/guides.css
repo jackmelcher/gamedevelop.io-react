@@ -9,21 +9,27 @@ html[data-theme = "dark"]{
     --guide-link-header-color: #ececec;
     --bg-img-color: #bdbdbd;
 }
-.sidenav{width: 320px;}
+.sidenav{
+    width: 320px;
+    height: calc(100vh - 88px);
+}
 .tablecon{width: 100%;}
 .guideslistTitle{
     margin-left: -20px;
     font-weight: bold;
     margin-left: 10px;
 }
-.guidelink{
+.guidelink-container{
     margin: 16px 0px;
 }
-.guidelink > a,
-.guidelink > * a {
+.guidelink{
+    font-weight: bold;
+}
+.guidelink-container > a,
+.guidelink-container > * a {
     color: var(--guide-link-article-color);
 }
-.guidelink > ul > li > ul{
+.guidelink-container > ul > li > ul{
     margin-top: 8px;
 }
 .guideHeaders, .guideHeaders > *,.guideHeaders > * >*{

@@ -58,11 +58,11 @@ function SEO({ description, lang, meta, title, children }) {
         },
         {
           name: 'og:image',
-          content: 'https://gamedevelop.io/images/logo1.png',
+          content: 'https://ik.imagekit.io/ucxasjyuy/logo1.png',
         },
         {
           name: 'twitter:image',
-          content: 'https://gamedevelop.io/images/logo1.png',
+          content: 'https://ik.imagekit.io/ucxasjyuy/logo1.png',
         },
         {
           name: `twitter:card`,

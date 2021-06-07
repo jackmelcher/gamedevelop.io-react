@@ -24,8 +24,8 @@ const IntroductoryPage = () => (
                 <b>
                 Q: I’ve never programmed before and want to make games. Where do I start?<br/>
                 </b>
-                A: Learn to program by making a game in a Game Engine.<br/><br/>
-                Google search for introductory tutorials and documentation on game engine programming.
+                A: Learn the fundamentals of programming through school or online course. Then learn how to program using a Game Engine.<br/><br/>
+                Google search for introductory tutorials and documentation on programming in a language of your choice.
                 Search for guides or videos on how to program game mechanics or systems.
                 Search for answers to questions in forums or Q&A hubs, it is very likely someone else has already asked them.
                 If you can't find an answer to a question you have, then make a post about your question.
