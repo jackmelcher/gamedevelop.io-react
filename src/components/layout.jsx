@@ -12,7 +12,6 @@ import Navbar from "../components/navbar"
 import Footer from "../components/footer"
 
 import "../css/global.css"
-import  "../css/fontawesome-free-5.13.1-web/css/all.min.css"
 
 const Layout = ({ children }) => {
 
