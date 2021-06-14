@@ -1,7 +1,7 @@
 :root {
   --primary-color: #008fee;
   --primary-color-v: #0079ca;
-  --secondary-color: #f0ffff;
+  --secondary-color: #ffffff;
   --tertiary-color: #ffffff;
   --font-color: #000000;
   --bg-color: #ffffff;
@@ -188,6 +188,9 @@ a:hover{
 }
 .flex-item-navbar > p {
   margin: 4px 0px;
+}
+.flex-item-navbar > i{
+  font-size: 24px;
 }
 .flex-item-navbar.big{
   max-width: 200px;

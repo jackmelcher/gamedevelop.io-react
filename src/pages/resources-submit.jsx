@@ -70,75 +70,18 @@ const SubmitResource = () => {
                                 <label>Category: *Required<br/>
                                 <select {...register("category", {required: true})} name="category">
                                     <option value="">Select A Category</option>
-                                    <optgroup label="Art Tools">
-                                        <option value="2D Art">2D Art</option>
-                                        <option value="3D Art">3D Art</option>
-                                        <option value="Other Art">Other Art</option>
-                                        <option value="Audio">Audio</option>
-                                        <option value="Video">Video</option>
-                                    </optgroup>
-                                    <optgroup label="Design Tools">
-                                        <option value="Design">Design</option>
-                                        <option value="Accessibility">Accessibility</option>
-                                        <option value="Narrative Writing">Narrative Writing</option>
-                                        <option value="Diagramming">Diagramming</option>
-                                    </optgroup>
-                                    <optgroup label="Engineering Tools">
-                                        <option value="Engines and Frameworks">Engines and Frameworks</option>
-                                        <option value="SDKs, APIs, and Libraries">SDKs, APIs, and Libraries</option>
-                                        <option value="Modding & Creation Platforms">Modding & Creation Platforms</option>
-                                        <option value="Backend Services">Backend Services</option>
-                                        <option value="Security">Security</option>
-                                        <option value="Other Engineering">Other Engineering</option>
-                                    </optgroup>
-                                    <optgroup label="DevOps Tools">
-                                        <option value="Version Control Systems">Version Control Systems</option>
-                                        <option value="CI / CD">CI / CD</option>
-                                    </optgroup>
-                                    <optgroup label="Production Tools">
-                                        <option value="Communication">Communication</option>
-                                        <option value="Office and Cloud Storage">Office and Cloud Storage</option>
-                                        <option value="Tasking and Collaboration">Tasking and Collaboration</option>
-                                    </optgroup>
-                                    <optgroup label="Business Tools">
-                                        <option value="Analytics">Analytics</option>
-                                        <option value="Business & Marketing">Business & Marketing</option>
-                                        <option value="Monetization">Monetization</option>
-                                        <option value="Websites">Websites</option>
-                                    </optgroup>
-                                    <optgroup label="Assets & Services">
-                                        <option value="Assets">Assets</option>
-                                        <option value="Services">Services</option>
-                                    </optgroup>
-                                    <optgroup label="Publishing & Distribution">
-                                        <option value="Publishers">Publishers</option>
-                                        <option value="Funding Options">Funding Options</option>
-                                        <option value="Hosting & Storefronts">Hosting & Storefronts</option>
-                                        <option value="Ratings Boards">Ratings Boards</option>
-                                        <option value="News Outlets">News Outlets</option>
-                                    </optgroup>
-                                    <optgroup label="Events">
-                                        <option value="Conventions & Events">Conventions & Events</option>
-                                        <option value="Awards">Awards</option>
-                                        <option value="Game Jams">Game Jams</option>
-                                    </optgroup>
-                                    <optgroup label="Communities & Career">
-                                        <option value="Organization">Organization</option>
-                                        <option value="Communities">Communities</option>
-                                        <option value="Social Media Groups">Social Media Groups</option>
-                                        <option value="Job Boards">Job Boards</option>
-                                        <option value="Coworking Space">Coworking Space</option>
-                                    </optgroup>
-                                    <optgroup label="Education & Learning">
-                                        <option value="Schools & Courses">Schools & Courses</option>
-                                        <option value="Learning Websites">Learning Websites</option>
-                                        <option value="YouTube Channels">YouTube Channels</option>
-                                    </optgroup>
-                                    <optgroup label="Hardware & Peripherals">
-                                        <option value="PC, Mobile, and XR Devices">PC, Mobile, and XR Devices</option>
-                                        <option value="PC Components">PC Components</option>
-                                        <option value="Peripherals">Peripherals</option>
-                                    </optgroup>
+                                    <option value="2D & 3D Art">2D & 3D Art</option>
+                                    <option value="Audio & Video">Audio & Video</option>
+                                    <option value="Design & Writing">Design & Writing</option>
+                                    <option value="Engineering & DevOps">Engineering & DevOps</option>
+                                    <option value="Business, Marketing, & Production">Business, Marketing, & Production</option>
+                                    <option value="Publishing, Funding, & Distribution">Publishing, Funding, & Distribution</option>
+                                    <option value="Events & Game Jams">Events & Game Jams</option>
+                                    <option value="Communities & Organization">Communities & Organization</option>
+                                    <option value="Career & Education">Career & Education</option>
+                                    <option value="Hardware & Peripherals">Hardware & Peripherals</option>
+                                    <option value="Assets">Assets</option>
+                                    <option value="Services">Services</option>
                                 </select>
                                 </label>
                             </p>

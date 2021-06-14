@@ -45,7 +45,7 @@ html[data-theme = "dark"]{
     font-weight: bold;
 }
 ul,ol{line-height: 1.5;}
-li{margin-bottom: 8px;}
+li{margin-bottom: 12px;}
 .imgguide{
     max-height: 80px;
     max-width: 90%;

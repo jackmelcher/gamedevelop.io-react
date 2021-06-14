@@ -7,6 +7,7 @@ const Engine = () => {
     resourceMap.set("pop","https://docs.google.com/spreadsheets/d/e/2PACX-1vQS6gi_-cuPCaqp0M0-JtC7wmbKqa-0Kmmr0ZyOLtICKvriZu8lzqd3JEs6Yo5VvyFJyr2PKFSMED22/pub?output=csv");
     resourceMap.set("engine","https://docs.google.com/spreadsheets/d/e/2PACX-1vQ9sShYkfVUkVI2XHBASu9DD0a-7kCkMFidjozCyEH2rhW1YnjFHw4BySKaCLAN4Xq_OAv9eeNSpw9s/pub?output=csv");
     resourceMap.set("sdk","https://docs.google.com/spreadsheets/d/e/2PACX-1vTJ-hCq_hrYjKF60QLmigAQ6yo3rPC0W3gJuTjA8-Y_2QOAppcUQC88jkCCTXQEzGn3sknRKRntdtN4/pub?output=csv");
+    resourceMap.set("library","https://docs.google.com/spreadsheets/d/e/2PACX-1vTdOB40-gs2rJ8zILyi0sG5cYz2QCxcVUcRPkGYbSB6ECuiENtYQBVDkMUhZLhcz-9Xm0e2biQKYM8d/pub?output=csv");
     resourceMap.set("mod","https://docs.google.com/spreadsheets/d/e/2PACX-1vR5uW4NGvUv7VwSv8yUdZbnDOilGTOXdSfyxrBVE5eLe428s4g5Sq_WOBxJ-1xbmYSCax86rmX__aGr/pub?output=csv");
     resourceMap.set("backend","https://docs.google.com/spreadsheets/d/e/2PACX-1vTWNDx8dsTjLCgquTfsTs_OBeowXqmFbPmSKS31lNUuHsm37gpJI0zGMYv1pzuQ69rYfGlueJE_DiSw/pub?output=csv");
     resourceMap.set("security","https://docs.google.com/spreadsheets/d/e/2PACX-1vSjdroNpvimp_bT3cOvQt69dYe-EoYJrRfeAKtu4kmD6E7_yFnaGxm71YinP9FbIwuChxJyCGbjo5XA/pub?output=csv");
@@ -19,7 +20,8 @@ const Engine = () => {
             <option value="pop">Popular Engines, Frameworks, and Services</option>
             <optgroup label="Engineering Tools">
                 <option value="engine">Engines and Frameworks</option>
-                <option value="sdk">SDKs, APIs, and Libraries</option>
+                <option value="sdk">Middleware</option>
+                <option value="library">Graphics and Physics Libraries</option>
                 <option value="mod">Modding & Creation Platforms</option>
                 <option value="backend">Backend Services</option>
                 <option value="security">Security</option>
