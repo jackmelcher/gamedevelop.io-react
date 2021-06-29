@@ -21,7 +21,7 @@ const path = require(`path`)
 exports.createPages = async ({ graphql, actions }) => {
     const { createPage } = actions
     const response = await graphql(`
-      query {
+      query MyQuery{
         allContentfulGuide {
           edges {
             node {
