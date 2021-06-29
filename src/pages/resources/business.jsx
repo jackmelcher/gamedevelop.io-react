@@ -10,21 +10,23 @@ const Business = () => {
     resourceMap.set("tasking","https://docs.google.com/spreadsheets/d/e/2PACX-1vS9lpC4xOOiWXCz1Ysm2816qmBucgsA75721yezbz5ujFy7jul4Y49L2nXsNlZbmKREonZIXzn9SeG_/pub?output=csv");
     resourceMap.set("analytics","https://docs.google.com/spreadsheets/d/e/2PACX-1vSKnRa__EP0CwdkABbNGBavhMyUr8kJn01tlfF8yQd6hnz-A21dUNdjzAMpKrWeQtiMqG3hrtbxaSfW/pub?output=csv");
     resourceMap.set("business","https://docs.google.com/spreadsheets/d/e/2PACX-1vTLZktBrbkqfzXr0E_6e2NhOqV8f1IbJzx9aupyNe36kslRmCJ3f21BCIl0-NoJgXQUcSnCxxk2lZ3t/pub?output=csv");
-    resourceMap.set("monetization","https://docs.google.com/spreadsheets/d/e/2PACX-1vSiZHeG6WJLA7O26L9kCOghdQvimRZmjrnVgs7QPrPvXF9euoLcQCLrc90SqnMajk29mGVy4MElvpOG/pub?output=csv");
+    resourceMap.set("ratings","https://docs.google.com/spreadsheets/d/e/2PACX-1vR_3vK3tP3DfcJy0fXwaM1v9x0eB80QgXA4Ynbh0GiESC-CTB71dhDSIZQPfOPZKLojascbscTwHMyA/pub?output=csv");
+    resourceMap.set("news","https://docs.google.com/spreadsheets/d/e/2PACX-1vR902-_2TVjVM-hKRxAFkLe1TXeZsawX4RelNi9ezE0QPh3-Q7ZAySzsuzpqSAM7HyBE7Brvj2ZrTx2/pub?output=csv");
     
     return(
         <Resources map={resourceMap}>
             <option value="pop">Popular Business and Production</option>
+            <optgroup label="Business Tools">
+                <option value="business">Business & Marketing</option>
+                <option value="analytics">Analytics</option>
+                <option value="news">News Outlets</option>
+                <option value="ratings">Ratings Boards</option>
+                <option value="website">Websites</option>
+            </optgroup>
             <optgroup label="Production Tools">
                 <option value="communication">Communication</option>
                 <option value="office">Office and Cloud Storage</option>
                 <option value="tasking">Tasking and Collaboration</option>
-            </optgroup>
-            <optgroup label="Business Tools">
-                <option value="analytics">Analytics</option>
-                <option value="business">Business & Marketing</option>
-                <option value="monetization">Monetization</option>
-                <option value="website">Websites</option>
             </optgroup>
         </Resources>
     );

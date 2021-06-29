@@ -111,7 +111,7 @@ const About = () => (
         </p>
         <div className="flex-container">
             <div className="contact">
-                <form name="contact" method="POST" data-netlify="true" data-netlify-recaptcha="true">
+                <form name="contact" method="POST" data-netlify="true">
                     <p>
                         <label>Name: <br/> <input type="text" name="name"/></label>   
                     </p>

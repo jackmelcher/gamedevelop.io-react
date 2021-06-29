@@ -35,14 +35,24 @@ html[data-theme = "dark"]{
 .guideHeaders, .guideHeaders > *,.guideHeaders > * >*{
     margin: 0px;
 }
-.guideHeaders > *
-{
-    margin-bottom: 24px;
+.guideSection {
+    margin-bottom: 64px;
 }
-.guideHeaders > a {
-    color: var(--link-color);
-    font-size: 16pt;
+.guideSectionHeader {
+    font-size: 28px;
+    margin-bottom: 16px;
     font-weight: bold;
+}
+.guideItem{
+    margin-bottom: 32px;
+}
+.guideItemLink {
+    color: var(--link-color);
+    font-size: 20px;
+    font-weight: bold;
+}
+.guideItemExcerpt{
+    font-size: 16px
 }
 ul,ol{line-height: 1.5;}
 li{margin-bottom: 12px;}
@@ -68,9 +78,6 @@ li{margin-bottom: 12px;}
 }
 .guideflex{
     max-width: 33vw !important;
-}
-.guideflex > div{
-    margin-bottom: 64px;
 }
 .guideflex > .lastmodified{
     font-size: 12px; 

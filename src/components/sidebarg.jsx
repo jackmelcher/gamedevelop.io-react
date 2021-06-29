@@ -1,4 +1,4 @@
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 import React from "react"
 import {useEffect} from "react"
 import "../css/guides.css"
@@ -15,72 +15,91 @@ const SidebarG = () => {
     toggleSidebar();
   }
 
-  return (
-    <>
-    <div className="selectbar selectbarGuide">
-      <button onClick={(e) => toggleSidebarEvent()}>
-        <i className="menuicon fas fa-list"></i>
-        <span>Table of Contents</span>
-      </button>
-    </div>
-    <div className="sidenav">
-      
-      <div className="guidelink-container">
-        <Link to="/guides/introductory/" className="guidelink">Introductory Guides</Link>
-        <ul className="nobullets">
-          <li>
-            <Link to="/guides/introductory/concept/" className="pagelink">Conceptualizing a Video Game</Link>
-          </li>
-          <li>
-            <Link to="/guides/introductory/business/" className="pagelink">Making a Business Strategy</Link>
-          </li>
-          <li>
-            <Link to="/guides/introductory/tools/" className="pagelink">Selecting a Toolkit</Link>
-          </li>
-          <li>
-            <Link to="/guides/introductory/team/" className="pagelink">Forming a Team</Link>
-          </li>
-          <li>
-            <Link to="/guides/introductory/production/" className="pagelink">Producing a Video Game</Link>
-          </li>
-        </ul>
-        <Link to="/guides/industry/" className="guidelink">The Computer and Video Game Industry</Link>
-        <ul className="nobullets">
-          <li>
-            <Link to="/guides/industry/overview/" className="pagelink">Games Industry Market Overview</Link>
-          </li>
-          <li>
-            <Link to="/guides/industry/jobs/" className="pagelink">Jobs in the Games Industry</Link>
-          </li>
-          <li>
-            <Link to="/guides/industry/testing/" className="pagelink">Publisher QA Testing</Link>
-          </li>
-          <li>
-            <Link to="/guides/industry/culture/" className="pagelink">Games Industry Work Culture</Link>
-          </li>
-        </ul>
-        <Link to="/guides/business-and-marketing/" className="guidelink">Business and Marketing Guides</Link>
-        <ul className="nobullets">
-          <li>
-            <Link to="/guides/business-and-marketing/ip/" className="pagelink">The Strength of Intellectual Property</Link>
-          </li>
-          <li>
-            <Link to="/guides/business-and-marketing/youtube/" className="pagelink">Building a Successful YouTube Channel</Link>
-          </li>
-          <li>
-            <Link to="/guides/business-and-marketing/tactics/" className="pagelink">Indie Business Tactics</Link>
-          </li>
-          <li>
-            <Link to="/guides/business-and-marketing/kickstarter/" className="pagelink">How to be Successful at Kickstarter</Link>
-          </li>
-          <li>
-            <Link to="/guides/business-and-marketing/pr/" className="pagelink">Public Relations and Marketing</Link>
-          </li>
-        </ul>
-      </div>
-    </div>
-    </>
-  )
+  const data = useStaticQuery(
+        graphql`
+            query asfd{
+                introductory: allContentfulGuide(filter: {category: {eq: "introductory"}} sort: {fields: createdAt}) {
+                    edges {
+                        node {
+                            title
+                            linkslug
+                            excerpt
+                        }
+                    }
+                }
+                industry:  allContentfulGuide(filter: {category: {eq: "industry"}} sort: {fields: createdAt}) {
+                    edges {
+                        node {
+                            title
+                            linkslug
+                            excerpt
+                        }
+                    }
+                }
+                business:  allContentfulGuide(filter: {category: {eq: "business-and-marketing"}} sort: {fields: createdAt}) {
+                    edges {
+                        node {
+                            title
+                            linkslug
+                            excerpt
+                        }
+                    }
+                }
+            }
+        `
+    );
+
+    return (
+        <>
+            <div className="selectbar selectbarGuide">
+            <button onClick={(e) => toggleSidebarEvent()}>
+                <i className="menuicon fas fa-list"></i>
+                <span>Table of Contents</span>
+            </button>
+            </div>
+            <div className="sidenav">
+            
+            <div className="guidelink-container">
+                <div className="guidelink">Introductory Guides</div>
+                <ul className="nobullets">
+                {
+                    data.introductory.edges.map(edge => {
+                        return (
+                            <li>
+                                <Link className="pagelink" to={`/guides/${edge.node.linkslug}/`}>{edge.node.title}</Link>
+                            </li>
+                        )
+                    })
+                }
+                </ul>
+                <div className="guidelink">Games Industry Guides</div>
+                <ul className="nobullets">
+                {
+                    data.industry.edges.map(edge => {
+                        return (
+                            <li>
+                                <Link className="pagelink" to={`/guides/${edge.node.linkslug}/`}>{edge.node.title}</Link>
+                            </li>
+                        )
+                    })
+                }
+                </ul>
+                <div className="guidelink">Business and Marketing Guides</div>
+                <ul className="nobullets">
+                {
+                    data.business.edges.map(edge => {
+                        return (
+                            <li>
+                                <Link className="pagelink" to={`/guides/${edge.node.linkslug}/`}>{edge.node.title}</Link>
+                            </li>
+                        )
+                    })
+                }
+                </ul>
+            </div>
+            </div>
+        </>
+    )
 }
 export default SidebarG
 

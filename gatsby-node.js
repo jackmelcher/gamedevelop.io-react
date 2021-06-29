@@ -15,3 +15,29 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         }
     })
 }
+
+// Need to make the create pages for guide sections and guides
+const path = require(`path`)
+exports.createPages = async ({ graphql, actions }) => {
+    const { createPage } = actions
+    const response = await graphql(`
+      query {
+        allContentfulGuide {
+          edges {
+            node {
+              linkslug
+            }
+          }
+        }
+      }
+    `)
+    response.data.allContentfulGuide.edges.forEach(edge => {
+      createPage({
+        path: `/guides/${edge.node.linkslug}`,
+        component: path.resolve(`src/templates/tguide.jsx`),
+        context: {
+            linkslug: edge.node.linkslug,
+        },
+      })
+    })
+  }
