@@ -3,11 +3,11 @@
   --primary-color-v: #0079ca;
   --secondary-color: #ffffff;
   --tertiary-color: #ffffff;
-  --font-color: #000000;
+  --font-color: #08090a;
   --bg-color: #ffffff;
   --side-bg-color: #ffffff; 
   --side-border-color: #d4d4d4; 
-  --heading-color: #000000;
+  --heading-color: #08090a;
   --link-color: #0043d3;
   --footer-bg-color: #e4e4e4;
   --footer-color: #494949;
@@ -20,9 +20,9 @@ html[data-theme = "dark"]{
   --primary-color-v: #0079ca;
   --secondary-color: #ffffff;
   --tertiary-color: #ffffff;
-  --font-color: #eeeeee;
-  --bg-color: #1d1d1d;
-  --side-bg-color: #1d1d1d; 
+  --font-color: #dadada;
+  --bg-color: #202124;
+  --side-bg-color: #202124; 
   --side-border-color: #4e4e4e; 
   --heading-color: #ececec;
   --link-color: #57c4ff;
@@ -75,9 +75,12 @@ h3 {
   font-size: 21px;
 }
 p {
-  font-size: 16px;
-  line-height: 1.5em;
+  font-size: 18px;
+  line-height: 1.7em;
   margin: 1.25em 0;
+}
+li {
+  font-size: 18px;
 }
 a:link, a:visited {
   color: var(--link-color);
@@ -96,8 +99,7 @@ a:hover{
   text-align: center; font-size: 28px; margin-top: 16px; margin-bottom: 0px;
 }
 .logoimg{
-  max-width: 32px;
-  max-height: 32px;
+  max-width: 36px;
   vertical-align: bottom;
 }
 .logomain{
@@ -112,7 +114,7 @@ a:hover{
   border-style: solid;
   border-color: var(--side-border-color);
   border-width: 0px 1px 0px 0px;
-  top: 56px;
+  top: 60px;
   padding: 16px 16px;
   overflow-x: auto;
   height: calc(100vh - 82px);
@@ -187,7 +189,7 @@ a:hover{
   padding: 12px;
 }
 .flex-item-navbar > p {
-  margin: 4px 0px;
+  margin: 4px 0px 0px 0px;
 }
 .flex-item-navbar > i{
   font-size: 24px;

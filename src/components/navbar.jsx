@@ -18,7 +18,7 @@ function Navbar({children})
     return (
         <div className="navbar flex-container-navbar">
             {
-                windowWidth < 768 && 
+                windowWidth < 800 && 
                 <>
                     <CollapsedMenu/>
                     <div className="flex-item-padding" />
@@ -29,7 +29,7 @@ function Navbar({children})
                 <img src="https://ik.imagekit.io/ucxasjyuy/logo.svg" alt="logo" className="logoimg"/>
             </Link>
             {
-                windowWidth >= 768 && 
+                windowWidth >= 800 && 
                 <>
                     <Link to="/resources/" className="button button_nav flex-item-navbar mid">
                     <p>Resources</p>
@@ -51,7 +51,7 @@ function Navbar({children})
                 </>
             }
             {
-                windowWidth < 768 && 
+                windowWidth < 800 && 
                 <>
                     <div className="flex-item-padding" />
                     <Theme />

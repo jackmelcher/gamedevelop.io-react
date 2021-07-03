@@ -11,7 +11,7 @@ html[data-theme = "dark"]{
 }
 .sidenav{
     width: 320px;
-    height: calc(100vh - 88px);
+    height: calc(100vh - 92px);
 }
 .tablecon{width: 100%;}
 .guideslistTitle{
@@ -23,6 +23,7 @@ html[data-theme = "dark"]{
     margin: 16px 0px;
 }
 .guidelink{
+    font-size: 18px;
     font-weight: bold;
 }
 .guidelink-container > a,
@@ -48,11 +49,11 @@ html[data-theme = "dark"]{
 }
 .guideItemLink {
     color: var(--link-color);
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
 }
 .guideItemExcerpt{
-    font-size: 16px
+    font-size: 18px
 }
 ul,ol{line-height: 1.5;}
 li{margin-bottom: 12px;}

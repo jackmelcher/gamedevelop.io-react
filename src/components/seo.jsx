@@ -83,7 +83,7 @@ function SEO({ description, lang, meta, title, children }) {
       ].concat(meta)}
     >
       {children}
-      {/*<script src="https://kit.fontawesome.com/00abf3a6fb.js" crossorigin="anonymous"></script>*/}
+      {<script src="https://kit.fontawesome.com/00abf3a6fb.js" crossorigin="anonymous"></script>}
     </Helmet>
   )
 }
