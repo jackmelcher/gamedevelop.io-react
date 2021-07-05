@@ -1,48 +1,59 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 import "../css/home.css"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" description="A Resource Website for Game Development."/>
-    <div className="flex-container">
-        <div className="home">
-            <h1 className="header">Welcome to GameDevelop.io</h1> 
-            <img src="https://ik.imagekit.io/ucxasjyuy/logo1.svg" alt="logo" className="logomain"/>
-            <h1 className="subheader">A Resource Website for Game Development.</h1>
-            <h2>Resources Database</h2>
-            <p>
-                Explore a comprehensive database of tools, assets, and services used by game developers around the world.
-            </p>
-            <p>
-                Find communities to share development progress, learn from each other, and team up for group projects.<br/>
-            </p>
-            <p>
-                Discover publishers and funding options that can help take your game idea to the next level.
-            </p>
-            <Link to="/resources/" className="button button_main">
-                VIEW RESOURCES
-            </Link>
-            <h2 >Game Development Guides</h2>
-            <p>
-                Learn about every aspect of game development, from conceptualization to release.
-            </p>
-            <p>
-                Gain insight into Game Industry trends, career options, and work culture.
-            </p>
-            <p>
-                Acquire specialized knowledge on business and marketing techniques.
-            </p>
-            <Link to="/guides/" className="button button_main">
-                VIEW GUIDES
-            </Link>
-        </div>
-    </div>
-  </Layout>
-)
-
+const IndexPage = () => {
+    const data = useStaticQuery(
+        graphql`
+            query Home{
+                contentfulHome(title:{eq:"Home"}){
+                    title
+                    description
+                    header
+                    subheader
+                    sectionResources {
+                        childMarkdownRemark {
+                            html
+                        }
+                    }
+                    sectionGuides {
+                        childMarkdownRemark {
+                            html
+                        }
+                    }
+                }
+            }
+        `
+    );
+    return(
+    <Layout>
+        <SEO title={data.contentfulHome.title} description={data.contentfulHome.description}/>
+            <div className="home">
+                <h1 className="header">{data.contentfulHome.header}</h1> 
+                <img src="https://ik.imagekit.io/ucxasjyuy/logo1.svg" alt="logo" className="logomain"/>
+                <h1 className="subheader">{data.contentfulHome.subheader}</h1>
+            </div>
+            <div className="home" dangerouslySetInnerHTML={{
+                    __html: data.contentfulHome.sectionResources.childMarkdownRemark.html,
+                  }}/>
+            <div className="home">
+                <Link to="/resources/" className="button button_main">
+                    VIEW RESOURCES
+                </Link>
+            </div>
+            <div className="home" dangerouslySetInnerHTML={{
+                    __html: data.contentfulHome.sectionGuides.childMarkdownRemark.html,
+                  }}/>
+            <div className="home">
+                <Link to="/guides/" className="button button_main">
+                    VIEW GUIDES
+                </Link>
+            </div>
+    </Layout>
+    )
+}
 export default IndexPage
