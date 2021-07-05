@@ -294,6 +294,10 @@ function PlatformTextToIcon(tableCell){
                 div.textContent = element;
                 tableCell.appendChild(div);
         }
+        if(element !== platforms[platforms.length - 1])
+        {
+            div.textContent += ", ";
+        }
     });
 }
 
@@ -464,20 +468,10 @@ function HideFilters(filterid, col)
         if(table.rows[i].style.display !== "none")
         {   
             var cells
-            if(col === 4)
-            {
-                cells = Array.from(table.rows[i].cells[col].children);
-                cells.forEach(element => {
-                    set.add(element.textContent);
-                });
-            }
-            else
-            {
-                cells = table.rows[i].cells[col].textContent.split(", ");
-                cells.forEach(element => {
-                    set.add(element);
-                });
-            }
+            cells = table.rows[i].cells[col].textContent.split(", ");
+            cells.forEach(element => {
+                set.add(element);
+            });
         }
     }
 
