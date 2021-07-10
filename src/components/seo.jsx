@@ -58,11 +58,19 @@ function SEO({ description, lang, meta, title, children }) {
         },
         {
           name: 'og:image',
-          content: 'https://ik.imagekit.io/ucxasjyuy/logo1.png',
+          content: 'https://ik.imagekit.io/ucxasjyuy/logo-ogimage.png',
+        },
+        {
+          name: 'og:image:width',
+          content: '1200',
+        },
+        {
+          name: 'og:image:height',
+          content: '627',
         },
         {
           name: 'twitter:image',
-          content: 'https://ik.imagekit.io/ucxasjyuy/logo1.png',
+          content: 'https://ik.imagekit.io/ucxasjyuy/logo-ogimage.png',
         },
         {
           name: `twitter:card`,
