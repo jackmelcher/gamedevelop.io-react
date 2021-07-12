@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 
 import Layoutg from "../../components/layoutguides"
-import SEO from "../../components/seo"
+import Seo from "../../components/seo"
 
 const GuideSection = () => {
     /*
@@ -36,7 +36,7 @@ const GuideSection = () => {
 
     return(
         <Layoutg>
-            <SEO title={data2.title} description={data2.excerpt}/>
+            <Seo title={data2.title} description={data2.excerpt}/>
             <h1>{data2.title}</h1>
             <div className="guideHeaders">
                 {

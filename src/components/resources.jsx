@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react"
 
 import Layout from "../components/layoutres"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import Navbar from "../components/navbar"
 
 import {readString} from "react-papaparse"
@@ -60,7 +60,7 @@ const Resources = ({map, children}) => {
 
     return(
         <Layout>
-            <SEO title="Resources" description="Explore a Database full of game development tools, assets, and services."/>
+            <Seo title="Resources" description="Explore a Database full of game development tools, assets, and services."/>
             <div className="selectbar selectbarRes">
                 <button onClick={(e) => toggleSidebar()}>
                     <i className="fas fa-filter"></i><span>Filter & Sort</span>

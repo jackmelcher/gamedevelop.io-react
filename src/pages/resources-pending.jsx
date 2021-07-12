@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 
 import Layoutr from "../components/layoutres"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import Navbar from "../components/navbar"
 
 import {readString,jsonToCSV} from "react-papaparse"
@@ -18,8 +18,11 @@ const Resources = () => {
         // queies are separated into key=value
         // separate additional values with '&', ie. "key1=value1&key1=value2". Or use "key1=value1, value2"
         // separate additional values with '&', ie. "key1=value&key2=value"
-        
+        //Show that table is loading
+        document.getElementById("showData").innerHTML = "Loading...";
+
         let table = document.getElementById("category");
+        setTableName(table.options[table.selectedIndex].text);
         
         const response = await axios.get('/.netlify/functions/resourceview?table='+tableNames[table.selectedIndex]+'&status='+table.value);
         //const response = await axios.get('/.netlify/functions/resourceview?table=pop&tags=2D,3D&pricing=Royalty');
@@ -49,17 +52,15 @@ const Resources = () => {
         {
             let csvarray = readString(csv);
             CreateTableFromArray2D(csvarray.data,4,8);
-            setTableName(table.options[table.selectedIndex].text);
         }
         else
         {
             let div = document.getElementById("showData");
             div.innerHTML = "Empty Table";
-            setTableName(table.options[table.selectedIndex].text);
         }
     }
 
-    const [tableName,setTableName] = useState("User Submitted Resources");
+    const [tableName,setTableName] = useState("");
 
     useEffect(() => {
         fetchData();
@@ -87,7 +88,7 @@ const Resources = () => {
 
     return(
         <Layoutr>
-            <SEO title="Resources" description="Explore a Database full of game development tools, assets, and services."/>
+            <Seo title="Resources" description="Explore a Database full of game development tools, assets, and services."/>
             <div className="selectbar selectbarRes">
                 <button onClick={(e) => toggleSidebar()}>
                     <i className="fas fa-filter"></i><span>Filter & Sort</span>

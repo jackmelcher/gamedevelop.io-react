@@ -2,13 +2,13 @@ import React from "react"
 import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
 import "../css/home.css"
 
 const ResourcePages = () => (
   <Layout>
-    <SEO title="Resources" description="Explore a Database full of game development tools, assets, and services."/>
+    <Seo title="Resources" description="Explore a Database full of game development tools, assets, and services."/>
     <div className="flex-container-resources">
         <h1>Resources</h1>
     </div>

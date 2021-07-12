@@ -1,7 +1,7 @@
 import React from "react"
 
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import { useStaticQuery, graphql } from "gatsby"
 
 const NotFoundPage = () => {
@@ -22,7 +22,7 @@ const NotFoundPage = () => {
     );
     return(
         <Layout>
-            <SEO title={data.contentfulPage.title} description={data.contentfulPage.description}/>
+            <Seo title={data.contentfulPage.title} description={data.contentfulPage.description}/>
             <div className="flex-container">
                 <div class="home" dangerouslySetInnerHTML={{
                         __html: data.contentfulPage.body.childMarkdownRemark.html,

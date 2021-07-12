@@ -3,7 +3,7 @@ import React, {useState} from "react"
 import { useForm } from "react-hook-form"
 
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
 import axios from "axios"
 import ReCAPTCHA from "react-google-recaptcha";
@@ -36,7 +36,7 @@ const SubmitResource = () => {
 
     return(
         <Layout>
-            <SEO title="Submit Resource" description="Submit a resource to the database"/>
+            <Seo title="Submit Resource" description="Submit a resource to the database"/>
                 <h1 className="header">Submit a Resource</h1>
                 <h3 className="textcenter">
                     Got a resource you want others to know about? Submit a resource to the user submitted database!

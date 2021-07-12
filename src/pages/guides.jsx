@@ -2,7 +2,7 @@ import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 
 import Layoutg from "../components/layoutguides"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
 const Guides = () => {
     const data = useStaticQuery(
@@ -40,7 +40,7 @@ const Guides = () => {
     );
     return(
     <Layoutg>
-        <SEO title="Guides" description="Explore GameDevelop.io's various guides on game development."/>
+        <Seo title="Guides" description="Explore GameDevelop.io's various guides on game development."/>
         <h1>Game Development Guides</h1>
         <div className="guideSection">
             <div className="guideSectionHeader">Introductory Guides</div>

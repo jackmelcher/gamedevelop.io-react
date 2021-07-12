@@ -2,7 +2,7 @@ import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
 import "../css/home.css"
 
@@ -31,7 +31,7 @@ const IndexPage = () => {
     );
     return(
     <Layout>
-        <SEO title={data.contentfulHome.title} description={data.contentfulHome.description}/>
+        <Seo title={data.contentfulHome.title} description={data.contentfulHome.description}/>
             <div className="home">
                 <h1 className="header">{data.contentfulHome.header}</h1> 
                 <img src="https://ik.imagekit.io/ucxasjyuy/logo1.svg" alt="logo" className="logomain"/>

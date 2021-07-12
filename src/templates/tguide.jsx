@@ -7,10 +7,10 @@
 
 
 import React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 
 import Layoutg from "../components/layoutguides"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
 export const query = graphql`
     query($linkslug: String!){
@@ -32,7 +32,7 @@ const Guides = (props) => {
 
     return(
         <Layoutg>
-            <SEO title={props.data.contentfulGuide.title} description={props.data.contentfulGuide.excerpt}/>
+            <Seo title={props.data.contentfulGuide.title} description={props.data.contentfulGuide.excerpt}/>
             {
                 <div className="body" dangerouslySetInnerHTML={{
                     __html: props.data.contentfulGuide.body.childMarkdownRemark.html,

@@ -77,27 +77,6 @@ function Navbar({children})
     );
 }
 
-function Settings()
-{
-    const [theme,setTheme] = useState(localStorage.getItem("site-theme") ? true : false);
-
-    useEffect(() => {    
-        themeMode(theme);
-    },[theme]);
-
-    return (
-        <div className="settingsnav">
-            <p>
-                <span id="themetext">{theme ? "Dark " : "Light "}Mode:</span>
-                <label className="switch">
-                    <input type="checkbox" checked={theme} id="theme-toggle" onClick={()=> setTheme(!theme)} />
-                    <span className="slider round"></span>
-                </label>
-            </p>
-        </div>
-    );
-}
-
 function Theme()
 {
     const [theme,setTheme] = useState(true);
