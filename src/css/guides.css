@@ -67,7 +67,7 @@ li{margin-bottom: 12px;}
     flex-wrap: wrap;
     -webkit-flex-wrap: wrap;
 
-    padding-left: 33vw;
+    padding-left: 36vw;
     padding-right: 40px;
     padding-bottom: 64px;
 }
@@ -78,7 +78,7 @@ li{margin-bottom: 12px;}
     -webkit-flex-grow: 1;
 }
 .guideflex{
-    max-width: 33vw !important;
+    max-width: 700px !important;
 }
 .guideflex > .lastmodified{
     font-size: 12px; 
@@ -104,22 +104,35 @@ li{margin-bottom: 12px;}
 .guideflex > div > .guideimg > i {
     color: #000000;
 }
+
+.guideflex > div > h2, h3, h4, h5{
+    margin-top: 0em;
+    margin-bottom: 0em;
+}
+.guideflex > div > h2{
+    margin-top: 2em;
+}
+.guideflex > div > h3{
+    margin-top: 1.5em;
+}
+.guideflex > div > h4{
+    margin-top: 1.5em;
+}
+.guideflex > div > h5{
+    margin-top: 1.5em;
+}
+
+
 @media (min-width: 1080px) and (max-width: 1250px){
     .guideflex-container{
         padding-left: 440px;
         padding-right: 30px;
-    }
-    .guideflex{
-        max-width: 70% !important;
     }
 }
 @media (min-width: 769px) and (max-width: 1080px){
     .guideflex-container{
         padding-left: 380px;
         padding-right: 20px;
-    }
-    .guideflex{
-        max-width: 90% !important;
     }
 }
 @media (max-width: 768px){

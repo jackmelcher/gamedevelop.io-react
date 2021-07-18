@@ -128,6 +128,7 @@ function makeAnchorList()
 
       let ids = document.getElementsByClassName("guideflex")[0].getElementsByTagName("div");
       let headers = document.getElementsByClassName("guideflex")[0].getElementsByTagName("h3");
+      /*
       for(let j = 0; j < headers.length; j++)
       {
         litem = document.createElement("li");
@@ -139,6 +140,7 @@ function makeAnchorList()
         litem.classList.add("pageAnchor");
         list.appendChild(litem);
       }
+      */
       pages[i].parentElement.insertAdjacentElement("afterend",list);
       break;
     }
