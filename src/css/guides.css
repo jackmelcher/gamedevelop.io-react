@@ -90,6 +90,7 @@ li{margin-bottom: 12px;}
 .guideflex > div > .guideimg {
     text-align: center;
     background-color: var(--bg-img-color);
+    margin-top: 0.5em;
 }
 .guideflex > div > .guideimg > a{
     display: block;
