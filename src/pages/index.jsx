@@ -42,7 +42,10 @@ const IndexPage = () => {
                   }}/>
             <div className="home">
                 <Link to="/resources/" className="button button_main">
-                    VIEW RESOURCES
+                    <h3>VIEW RESOURCES</h3>
+                    <i class="fas fa-icons"></i>
+                    <i class="fas fa-tools"></i>
+                    <i class="fas fa-comments-dollar"></i>
                 </Link>
             </div>
             <div className="home" dangerouslySetInnerHTML={{
@@ -50,7 +53,9 @@ const IndexPage = () => {
                   }}/>
             <div className="home">
                 <Link to="/guides/" className="button button_main">
-                    VIEW GUIDES
+                    <h3>VIEW GUIDES</h3>
+                    <i class="fas fa-file-alt"></i>
+                    <i class="fas fa-list-ol"></i>
                 </Link>
             </div>
     </Layout>
