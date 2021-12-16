@@ -12,6 +12,7 @@ const Business = () => {
     resourceMap.set("business","https://docs.google.com/spreadsheets/d/e/2PACX-1vTLZktBrbkqfzXr0E_6e2NhOqV8f1IbJzx9aupyNe36kslRmCJ3f21BCIl0-NoJgXQUcSnCxxk2lZ3t/pub?output=csv");
     resourceMap.set("ratings","https://docs.google.com/spreadsheets/d/e/2PACX-1vR_3vK3tP3DfcJy0fXwaM1v9x0eB80QgXA4Ynbh0GiESC-CTB71dhDSIZQPfOPZKLojascbscTwHMyA/pub?output=csv");
     resourceMap.set("news","https://docs.google.com/spreadsheets/d/e/2PACX-1vR902-_2TVjVM-hKRxAFkLe1TXeZsawX4RelNi9ezE0QPh3-Q7ZAySzsuzpqSAM7HyBE7Brvj2ZrTx2/pub?output=csv");
+    resourceMap.set("website","https://docs.google.com/spreadsheets/d/e/2PACX-1vTvwgqk5crjFD-1BjB7i3CDC3Gz_sE6cQyNUjn_x0mm23aCU3HtBnprCbvUWZtxEsH8KmlGSRX86d4d/pub?output=csv");
     
     return(
         <Resources map={resourceMap}>
