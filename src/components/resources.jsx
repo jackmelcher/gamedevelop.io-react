@@ -148,7 +148,7 @@ function CreateTableFromArray2D(array2D)
                         this.alt = this.src;
                         this.src = "https://ik.imagekit.io/ucxasjyuy/placeholder.png";
                     });
-                    img.src = "https://ik.imagekit.io/ucxasjyuy/resources/" + GetImageName(array2D[i][j+1]) + ".png";
+                    img.src = "https://ik.imagekit.io/ucxasjyuy/resources/" + GetImageName(array2D[i][j+1]) + ".png?tr=w-32";
                     img.className = "tableimg";
                     img.addEventListener('load',function(e){
                         //console.log(e.target.src);
