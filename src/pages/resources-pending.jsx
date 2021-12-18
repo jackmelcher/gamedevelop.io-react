@@ -162,7 +162,7 @@ function CreateTableFromArray2D(array2D, filtercolstart,filtercolend)
                     // Using event listener to catch errors
                     img.addEventListener('error', function(e) {
                         //console.log(e.target.src);
-                        this.src = "/images/placeholder.png";
+                        this.src = "https://ik.imagekit.io/ucxasjyuy/placeholder.png";
                     });
                     img.src = "https://api.faviconkit.com/" + GetImageName(array2D[i][j+1]) + "/32";
                     img.className = "tableimg";
