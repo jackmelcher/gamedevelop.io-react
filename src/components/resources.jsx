@@ -12,28 +12,31 @@ const Resources = ({map, children}) => {
     let resourceMap = new Map(map);
 
     const [tableName,setTableName] = useState("");
-    const [tableSelect,setTableSelect] = useState("");
-    useEffect(() => {
+
+    useEffect(()=>{
+        window.addEventListener('hashchange', hashChangeHandler);
+        return () => {
+            window.removeEventListener('hashchange', hashChangeHandler);
+        };
+    },[]);
+    const hashChangeHandler = React.useCallback(() => {
+        console.log("hash change" + window.location.hash);
+
         if(window.location.hash !== "")
         {
             document.getElementById("category").value = window.location.hash.split('#')[1];
-            setTableSelect(window.location.hash.split('#')[1]);
+            SelectTable(document.getElementById("category").value);
         }
         else
         {
             document.getElementById("category").selectedIndex = 0;
-            setTableSelect(document.getElementById("category").value);
+            SelectTable(document.getElementById("category").value);
         }
-    });
-
-    useEffect(() => {
-        SelectTable(document.getElementById("category").value);
-    },[tableSelect]);
+    },[]);
 
     function handleSelectChange(file)
     {
         window.location.hash = file;
-        setTableSelect(file);
     }
     function SelectTable(filename)
     {
