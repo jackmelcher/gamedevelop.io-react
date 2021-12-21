@@ -25,7 +25,6 @@ const Business = () => {
             </optgroup>
             <optgroup label="Production Tools">
                 <option value="communication">Communication</option>
-                <option value="office">Office and Cloud Storage</option>
                 <option value="tasking">Tasking and Collaboration</option>
             </optgroup>
         </Resources>
