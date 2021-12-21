@@ -14,6 +14,7 @@ const Resources = ({map, children}) => {
     const [tableName,setTableName] = useState("");
 
     useEffect(()=>{
+        SelectTable();
         window.addEventListener('hashchange', hashChangeHandler);
         return () => {
             window.removeEventListener('hashchange', hashChangeHandler);
@@ -21,24 +22,29 @@ const Resources = ({map, children}) => {
     },[]);
     const hashChangeHandler = React.useCallback(() => {
         console.log("hash change" + window.location.hash);
+        SelectTable();
 
+    },[]);
+
+    function SelectTable()
+    {
         if(window.location.hash !== "")
         {
             document.getElementById("category").value = window.location.hash.split('#')[1];
-            SelectTable(document.getElementById("category").value);
+            LoadTable(document.getElementById("category").value);
         }
         else
         {
             document.getElementById("category").selectedIndex = 0;
-            SelectTable(document.getElementById("category").value);
+            LoadTable(document.getElementById("category").value);
         }
-    },[]);
+    }
 
     function handleSelectChange(file)
     {
         window.location.hash = file;
     }
-    function SelectTable(filename)
+    function LoadTable(filename)
     {
         //Load CSV Data
         let link = resourceMap.get(filename);
