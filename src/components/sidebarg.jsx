@@ -17,34 +17,16 @@ const SidebarG = () => {
 
   const data = useStaticQuery(
         graphql`
-            query asfd{
-                introductory: allContentfulGuide(filter: {category: {eq: "introductory"}} sort: {fields: createdAt}) {
-                    edges {
-                        node {
-                            title
-                            linkslug
-                            excerpt
-                        }
-                    }
+            query guidesSidebar {
+              contentfulGuidesHome {
+                guideSections {
+                  title
+                  guides {
+                    title
+                    linkslug
+                  }
                 }
-                industry:  allContentfulGuide(filter: {category: {eq: "industry"}} sort: {fields: createdAt}) {
-                    edges {
-                        node {
-                            title
-                            linkslug
-                            excerpt
-                        }
-                    }
-                }
-                business:  allContentfulGuide(filter: {category: {eq: "business-and-marketing"}} sort: {fields: createdAt}) {
-                    edges {
-                        node {
-                            title
-                            linkslug
-                            excerpt
-                        }
-                    }
-                }
+              }
             }
         `
     );
@@ -58,45 +40,26 @@ const SidebarG = () => {
             </button>
             </div>
             <div className="sidenav">
-            
-            <div className="guidelink-container">
-                <div className="guidelink">Introductory Guides</div>
-                <ul className="nobullets">
+                <div className="guidelink-container">
                 {
-                    data.introductory.edges.map(edge => {
-                        return (
-                            <li>
-                                <Link className="pagelink" to={`/guides/${edge.node.linkslug}/`}>{edge.node.title}</Link>
-                            </li>
-                        )
+                    data.contentfulGuidesHome.guideSections.map(guideSection => {
+                        return[
+                            <div className="guidelink">{guideSection.title}</div>,
+                            <ul className="nobullets">
+                              {
+                                guideSection.guides.map(guide=>{
+                                  return(
+                                      <li>
+                                        <Link className="pagelink" to={`/guides/${guide.linkslug}/`}>{guide.title}</Link>
+                                      </li>
+                                  );
+                                })
+                              }
+                            </ul>
+                        ];
                     })
                 }
-                </ul>
-                <div className="guidelink">Games Industry Guides</div>
-                <ul className="nobullets">
-                {
-                    data.industry.edges.map(edge => {
-                        return (
-                            <li>
-                                <Link className="pagelink" to={`/guides/${edge.node.linkslug}/`}>{edge.node.title}</Link>
-                            </li>
-                        )
-                    })
-                }
-                </ul>
-                <div className="guidelink">Business and Marketing Guides</div>
-                <ul className="nobullets">
-                {
-                    data.business.edges.map(edge => {
-                        return (
-                            <li>
-                                <Link className="pagelink" to={`/guides/${edge.node.linkslug}/`}>{edge.node.title}</Link>
-                            </li>
-                        )
-                    })
-                }
-                </ul>
-            </div>
+                </div>
             </div>
         </>
     )

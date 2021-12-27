@@ -22,16 +22,23 @@ exports.createPages = async ({ graphql, actions }) => {
     const { createPage } = actions
     const response = await graphql(`
       query MyQuery{
-        allContentfulGuide {
+        guides: allContentfulGuide {
           edges {
             node {
               linkslug
             }
           }
         }
+        resources: allContentfulResourceSections {
+            edges {
+                node {
+                  linkslug
+                }
+            }
+          }
       }
     `)
-    response.data.allContentfulGuide.edges.forEach(edge => {
+    response.data.guides.edges.forEach(edge => {
       createPage({
         path: `/guides/${edge.node.linkslug}`,
         component: path.resolve(`src/templates/tguide.jsx`),
@@ -39,5 +46,14 @@ exports.createPages = async ({ graphql, actions }) => {
             linkslug: edge.node.linkslug,
         },
       })
+    })
+    response.data.resources.edges.forEach(edge => {
+        createPage({
+            path: `/resources/${edge.node.linkslug}`,
+            component: path.resolve(`src/templates/tresource.jsx`),
+            context: {
+                linkslug: edge.node.linkslug,
+            },
+        })
     })
   }

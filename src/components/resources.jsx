@@ -107,6 +107,7 @@ export default Resources
 function LoadDoc(filepath, callback) {
     //Show that table is loading
     document.getElementById("showData").innerHTML = "Loading...";
+    document.getElementById("Filters").innerHTML = "Loading...";
 
     var csvdata;
     var xhttp = new XMLHttpRequest();
