@@ -4,9 +4,11 @@
   --secondary-color: #ffffff;
   --tertiary-color: #ffffff;
   --font-color: #08090a;
-  --bg-color: #ffffff;
+  --bg-color: #f5f5f5;
+  --side-button-bg-color: #ffffff;
   --side-bg-color: #ffffff; 
-  --side-border-color: #d4d4d4; 
+  --side-border-color: #d4d4d4;
+  --side-button-border-color: #b4b4b4;
   --heading-color: #08090a;
   --link-color: #0043d3;
   --footer-bg-color: #e4e4e4;
@@ -22,8 +24,10 @@ html[data-theme = "dark"]{
   --tertiary-color: #ffffff;
   --font-color: #dadada;
   --bg-color: #202124;
-  --side-bg-color: #202124; 
-  --side-border-color: #4e4e4e; 
+  --side-button-bg-color: #202124;
+  --side-bg-color: #202124;
+  --side-button-border-color: #4e4e4e;
+  --side-border-color: #4e4e4e;
   --heading-color: #ececec;
   --link-color: #57c4ff;
   --footer-bg-color: #272727;
