@@ -8,9 +8,9 @@
   --status-red: #cf0000;
 }
 html[data-theme = "dark"]{
-  --table-header-color: #2c2c2c;
+  --table-header-color: #202025;
   --table-border-color: #5c5c5c;
-  --table-row-color-1: #525252;
+  --table-row-color-1: #202025;
   --table-row-color-2: #424242;
   --status-green: #64fd50;
   --status-yellow: #ffe65c;
@@ -251,9 +251,21 @@ td:nth-child(2){
 }
 @media (max-width: 768px) {
   .resource {
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 64px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 72px;
+  }
+  th:first-child {
+    border-top-left-radius: 0px;
+  }
+  th:last-child {
+    border-top-right-radius: 0px;
+  }
+  tr:last-child td:first-child {
+    border-bottom-left-radius: 0px;
+  }
+  tr:last-child td:last-child {
+    border-bottom-right-radius: 0px;
   }
   .selectbar{
     border-bottom: 1px solid var(--side-border-color);
@@ -304,6 +316,7 @@ td:nth-child(2){
   }
 }
 @media (max-width: 529px) {
+
   th:nth-child(n + 4):nth-last-child(n+2),td:nth-child(n + 4):nth-last-child(n+2){
     display: none;
   }
@@ -326,10 +339,6 @@ td:nth-child(2){
   }
 }
 @media (max-width: 430px) {
-  .resource {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
   th:nth-child(n + 3):nth-last-child(n+2),td:nth-child(n + 3):nth-last-child(n+2){
     display: none;
   }

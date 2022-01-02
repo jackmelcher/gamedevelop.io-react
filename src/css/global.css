@@ -4,7 +4,7 @@
   --secondary-color: #ffffff;
   --tertiary-color: #ffffff;
   --font-color: #08090a;
-  --bg-color: #f5f5f5;
+  --bg-color: #f0f0f5;
   --side-button-bg-color: #ffffff;
   --side-bg-color: #ffffff; 
   --side-border-color: #d4d4d4;
@@ -13,9 +13,9 @@
   --link-color: #0043d3;
   --footer-bg-color: #e4e4e4;
   --footer-color: #494949;
-  --form-bg-color: #d4d4d4;
+  --form-bg-color: #ffffff;
   --input--border-color: #b8b8b8;
-  --input-bg-color: #e4e4e4;
+  --input-bg-color: #ffffff;
 }
 html[data-theme = "dark"]{
   --primary-color: #008fee;
@@ -23,18 +23,18 @@ html[data-theme = "dark"]{
   --secondary-color: #ffffff;
   --tertiary-color: #ffffff;
   --font-color: #dadada;
-  --bg-color: #202124;
-  --side-button-bg-color: #202124;
-  --side-bg-color: #202124;
+  --bg-color: #17171b;
+  --side-button-bg-color: #202025;
+  --side-bg-color: #202025;
   --side-button-border-color: #4e4e4e;
   --side-border-color: #4e4e4e;
   --heading-color: #ececec;
   --link-color: #57c4ff;
   --footer-bg-color: #272727;
   --footer-color: #c0c0c0;
-  --form-bg-color: #3d3d3d; 
+  --form-bg-color: #202025;
   --input--border-color: #808080;
-  --input-bg-color: #272727;
+  --input-bg-color: #202025;
 }
 *:focus {
   /* Remove Outline after interacting with elements*/

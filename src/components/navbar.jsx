@@ -7,6 +7,7 @@ function Navbar({children})
 {
     //const [open, setOpen] = useState(false);
     const [windowWidth, setWindowWidth] = useState(1000);
+    const minFullNavBarLength = 950;
 
     useEffect(()=>{
         function updateSize() {
@@ -18,18 +19,19 @@ function Navbar({children})
     return (
         <div className="navbar flex-container-navbar">
             {
-                windowWidth < 800 && 
+                windowWidth < minFullNavBarLength &&
                 <>
                     <CollapsedMenu/>
                     <div className="flex-item-padding" />
                 </>
             }
 
-            <Link to="/" className="button button_nav flex-item-navbar small">
-                <img src="https://ik.imagekit.io/ucxasjyuy/logo.svg" alt="logo" className="logoimg"/>
+            <Link to="/" className="button button_nav flex-item-navbar mid">
+                <img src="https://ik.imagekit.io/ucxasjyuy/logo.svg" alt="Logo" className="logoimg"/>
             </Link>
+
             {
-                windowWidth >= 800 && 
+                windowWidth >= minFullNavBarLength &&
                 <>
                     <Link to="/resources/" className="button button_nav flex-item-navbar mid">
                     <p>Resources</p>
@@ -51,7 +53,7 @@ function Navbar({children})
                 </>
             }
             {
-                windowWidth < 800 && 
+                windowWidth < minFullNavBarLength &&
                 <>
                     <div className="flex-item-padding" />
                     <Theme />

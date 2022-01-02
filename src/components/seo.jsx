@@ -54,7 +54,7 @@ function Seo({ description, lang, meta, title, children }) {
         },
         {
           name: 'og:site_name',
-          content: 'GameDevelop.io',
+          content: 'GameDevsToolkit',
         },
         {
           name: 'og:image',
