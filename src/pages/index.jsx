@@ -34,7 +34,7 @@ const IndexPage = () => {
         <Seo title={data.contentfulHome.title} description={data.contentfulHome.description}/>
             <div className="home">
                 <h1 className="header">{data.contentfulHome.header}</h1> 
-                <img src="https://ik.imagekit.io/ucxasjyuy/logo1.svg" alt="logo" className="logomain"/>
+                <img src="https://ik.imagekit.io/ucxasjyuy/logo.svg" alt="logo" className="logomain"/>
                 <h1 className="subheader">{data.contentfulHome.subheader}</h1>
             </div>
             <div className="home" dangerouslySetInnerHTML={{

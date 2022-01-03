@@ -1,6 +1,6 @@
 :root{
   --table-header-color: #ffffff;
-  --table-border-color: #bebebe;
+  --table-border-color: #c9c9ce;
   --table-row-color-1: #ffffff;
   --table-row-color-2: #eeeeee;
   --status-green: #0b8800;
@@ -9,7 +9,7 @@
 }
 html[data-theme = "dark"]{
   --table-header-color: #202025;
-  --table-border-color: #5c5c5c;
+  --table-border-color: #46464b;
   --table-row-color-1: #202025;
   --table-row-color-2: #424242;
   --status-green: #64fd50;

@@ -7,11 +7,11 @@
   --bg-color: #f0f0f5;
   --side-button-bg-color: #ffffff;
   --side-bg-color: #ffffff; 
-  --side-border-color: #d4d4d4;
-  --side-button-border-color: #b4b4b4;
+  --side-border-color: #c9c9ce;
+  --side-button-border-color: #c9c9ce;
   --heading-color: #08090a;
   --link-color: #0043d3;
-  --footer-bg-color: #e4e4e4;
+  --footer-bg-color: #dfdfe4;
   --footer-color: #494949;
   --form-bg-color: #ffffff;
   --input--border-color: #b8b8b8;
@@ -26,11 +26,11 @@ html[data-theme = "dark"]{
   --bg-color: #17171b;
   --side-button-bg-color: #202025;
   --side-bg-color: #202025;
-  --side-button-border-color: #4e4e4e;
-  --side-border-color: #4e4e4e;
+  --side-button-border-color: #46464b;
+  --side-border-color: #46464b;
   --heading-color: #ececec;
   --link-color: #57c4ff;
-  --footer-bg-color: #272727;
+  --footer-bg-color: #27272c;
   --footer-color: #c0c0c0;
   --form-bg-color: #202025;
   --input--border-color: #808080;
@@ -113,6 +113,8 @@ a:hover{
 }
 .logomain{
   height: 128px;
+  background-color: var(--primary-color);
+  border-radius: 64px;
 }
 .imgprofile{
   border-radius: 50%; width: 192px;
