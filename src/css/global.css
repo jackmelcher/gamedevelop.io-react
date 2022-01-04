@@ -6,8 +6,9 @@
   --font-color: #08090a;
   --bg-color: #f0f0f5;
   --side-button-bg-color: #ffffff;
-  --side-bg-color: #ffffff; 
-  --side-border-color: #c9c9ce;
+  --side-bg-color: #ffffff;
+  --side-border-color: #f0f0f5;
+  --side-border-bottom-color: #c9c9ce;
   --side-button-border-color: #c9c9ce;
   --heading-color: #08090a;
   --link-color: #0043d3;
@@ -16,6 +17,8 @@
   --form-bg-color: #ffffff;
   --input--border-color: #b8b8b8;
   --input-bg-color: #ffffff;
+  --scrollbarBG: #dae1e7;
+  --thumbBG: #c9d0d3;
 }
 html[data-theme = "dark"]{
   --primary-color: #008fee;
@@ -27,7 +30,8 @@ html[data-theme = "dark"]{
   --side-button-bg-color: #202025;
   --side-bg-color: #202025;
   --side-button-border-color: #46464b;
-  --side-border-color: #46464b;
+  --side-border-color: #202025;
+  --side-border-bottom-color: #46464b;
   --heading-color: #ececec;
   --link-color: #57c4ff;
   --footer-bg-color: #27272c;
@@ -35,6 +39,8 @@ html[data-theme = "dark"]{
   --form-bg-color: #202025;
   --input--border-color: #808080;
   --input-bg-color: #202025;
+  --scrollbarBG: #2a2a2f;
+  --thumbBG: #424247;
 }
 *:focus {
   /* Remove Outline after interacting with elements*/
@@ -45,6 +51,25 @@ body{
   color: var(--font-color);
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+
+  scrollbar-width: auto;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+body::-webkit-scrollbar {
+  width: 16px;
+  color: var(--scrollbarBG);
+}
+body::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG) ;
+  border-radius: 6px;
+  border: 2px solid var(--scrollbarBG);
+}
+::-webkit-scrollbar-thumb {
+  box-shadow: inset 2px 2px 2px hsla(0, 0%, 80%, 0.25), inset -2px -2px 2px rgba(61, 61, 61, 0.25);
+
 }
 .flex-main{
   /* Flex Box */
@@ -130,6 +155,20 @@ a:hover{
   overflow-x: auto;
   height: calc(100vh - 82px);
   background-color: var(--side-bg-color);
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+.sidenav::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+.sidenav::-webkit-scrollbar {
+  width: 16px;
+}
+.sidenav::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG) ;
+  border-radius: 6px;
+  border: 2px solid var(--scrollbarBG);
 }
 .settingsnav{
   position: fixed;

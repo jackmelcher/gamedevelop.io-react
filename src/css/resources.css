@@ -71,9 +71,8 @@ html[data-theme = "dark"]{
   padding: 16px;
   top: 60px;
   width: 275px;
-  max-height: 63px;
-  border-right: 1px solid var(--side-border-color);
-  border-bottom: 1px solid var(--side-border-color);
+  max-height: 62px;
+  border-bottom: 1px solid var(--side-border-bottom-color);
   background-color: var(--side-bg-color);
 }
 .selectbar>button{
