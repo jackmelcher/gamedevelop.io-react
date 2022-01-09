@@ -9,7 +9,7 @@ import {readString} from "react-papaparse"
 import "../css/resources.css"
 
 const Resources = ({map, children}) => {
-    let resourceMap = new Map(map);
+    let resourceMap = map;
 
     const [tableName,setTableName] = useState("");
 
@@ -47,8 +47,8 @@ const Resources = ({map, children}) => {
     function LoadTable(filename)
     {
         //Load CSV Data
-        let link = resourceMap.get(filename);
-        LoadDoc(link, CreateTableFromArray2D);
+        let link = resourceMap[filename];
+        CreateTableFromArray2D(readString(link).data);
         let category = document.getElementById("category");
         setTableName(category.options[category.selectedIndex].text);
     }
@@ -101,26 +101,6 @@ const Resources = ({map, children}) => {
     )
 }
 export default Resources
-
-
-
-function LoadDoc(filepath, callback) {
-    //Show that table is loading
-    document.getElementById("showData").innerHTML = "Loading...";
-    document.getElementById("Filters").innerHTML = "Loading...";
-
-    var csvdata;
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            csvdata = readString(this.responseText);
-            //console.log(csvdata);
-            callback(csvdata.data);
-        }
-    };
-    xhttp.open("GET", filepath, true);
-    xhttp.send();
-}
 
 function CreateTableFromArray2D(array2D)
 {

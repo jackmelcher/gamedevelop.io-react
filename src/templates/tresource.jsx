@@ -34,23 +34,8 @@ export const query = graphql`
 
 const ResourceSection = (props) => {
 
-    let resourceMap = new Map();
-    if(props.data.contentfulResourceSections.popularSheet != null)
-    {
-        resourceMap.set(props.data.contentfulResourceSections.popularSheet.optionvalue,props.data.contentfulResourceSections.popularSheet.csvlink);
-    }
-    props.data.contentfulResourceSections.resourceSubsections.map(resourceSubsection => {
-        resourceSubsection.resourceSheets.map(resourceSheet => {
-            resourceMap.set(resourceSheet.optionvalue,resourceSheet.csvlink);
-        });
-    });
-
-    /*props.data.contentfulResourceSections.resourceSubsections.resourceSheets.map(resourceSheet => {
-        resourceMap.set(resourceSheet.optionvalue,resourceSheet.csvlink);
-    });*/
-
     return(
-        <Resources map={resourceMap}>
+        <Resources map={props.pageContext.resourceMap}>
             {
                 props.data.contentfulResourceSections.popularSheet &&
                 <option value={props.data.contentfulResourceSections.popularSheet.optionvalue}>{props.data.contentfulResourceSections.popularSheet.title}</option>

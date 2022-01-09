@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `GameDevelop.io`,
+    title: `GameDevsToolkit`,
     description: `A Resource Website for Game Development.`,
     author: `@Jack_Melcher`,
   },
