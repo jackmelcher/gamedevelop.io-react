@@ -15,7 +15,7 @@ function Navbar({children})
         }
         setWindowWidth(window.innerWidth);
         window.addEventListener('resize', updateSize);
-    });
+    },[]);
     return (
         <div className="navbar flex-container-navbar">
             {

@@ -144,7 +144,9 @@ li{margin-bottom: 12px;}
 }
 @media (max-width: 1080px){
     body{
+        /*
         background-color: var(--guide-body-color);
+        */
     }
 }
 @media (max-width: 768px){

@@ -1,17 +1,191 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useMemo} from "react"
 
 import Layout from "../components/layoutres"
 import Seo from "../components/seo"
 import Navbar from "../components/navbar"
 
+import {useSortBy, useTable, useGlobalFilter, useFilters, useAsyncDebounce} from "react-table/src";
 import {readString} from "react-papaparse"
 
 import "../css/resources.css"
+
+const Image = ({source}) => {
+    return (
+        //<img src={CheckImage(source) ? row.original.Link :  + GetImageName(source) + ".png?tr=w-32"} className = "tableimg" />
+        <img src={"https://ik.imagekit.io/ucxasjyuy/resources/" + GetImageName(source) + ".png?tr=w-32"} className = "tableimg" onError={ (e) => {e.target.onerror = null; e.target.src="https://ik.imagekit.io/ucxasjyuy/placeholder.png";}}/>
+/*        img.addEventListener('error', function(e) {
+            //console.log(e.target.src);
+            this.alt = this.src;
+            this.src = "https://ik.imagekit.io/ucxasjyuy/placeholder.png";
+        });*/
+    );
+
+    function GetImageName(url)
+    {
+        // Remove Http
+        url = url.replace(/h.*?\/\//,"")
+
+        // Split trailing url info
+        url = url.split('/');
+
+        // Return the image name.
+        //console.log(url[0]);
+        return url[0];
+    }
+}
+
+const GlobalFilter = ({ filter, setFilter }) => {
+    return(
+        <div>
+            <span className="filtername bold">Search: {" "}</span>
+            <input className="globalSearch" value={filter || ""} onChange={(e) => {setFilter(e.target.value);setTimeout(()=>{FilterTable();},100) }}/>
+        </div>
+    );
+}
+
+const GlobalFilterAsync = ({ filter, setFilter }) => {
+    const [value, setValue] = useState(filter);
+
+    const onChange = useAsyncDebounce((value) => {
+        setFilter(value || undefined);
+        FilterTable();
+    },1000)
+
+    return(
+        <div>
+            Search: {" "}
+        <input value={value || ""} onChange={(e) => {setValue(e.target.value);onChange(e.target.value);}}/>
+        </div>
+    );
+}
+
+const ColumnFilter = ({ column }) => {
+    const { filterValue, setFilter } = column;
+    return(
+        <div>
+            Search: {" "}
+            <input value={filterValue || ""} onChange={(e) => {setFilter(e.target.value);}}/>
+        </div>
+    );
+}
+
+const EmptyRow = ({rows}) => {
+    let isTableEmpty = rows.length === 0;
+    return(
+        isTableEmpty &&
+        <tr><td className="emptyRow" colSpan={99}>No Results</td></tr>
+    )
+}
+
+const Table = ({columns, data}) => {
+    const {
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        rows,
+        prepareRow,
+        state,
+        setGlobalFilter
+    } = useTable({ columns: columns, data: data }, useFilters, useGlobalFilter, useSortBy);
+
+    const {globalFilter} = state;
+
+    return(
+        <>
+        <table {...getTableProps()} id={"myTable"}>
+            <thead>
+            {headerGroups.map(headerGroup => (
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                    {headerGroup.headers.map(column => (
+                        <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                            {/*<div>
+                                {column.canFilter ? column.render("Filter") : ""}
+                            </div>*/}
+                            {column.disableSortBy
+                                ?""
+                                :column.isSorted
+                                    ? column.isSortedDesc
+                                        ? <i className="fas fa-sort-down"></i>
+                                        : <i className="fas fa-sort-up"></i>
+                                    : <i className="fas fa-sort"></i>
+                            }
+                            {" " + column.render('Header')}
+                            {/* Add a sort direction indicator */}
+
+                        </th>
+                    ))}
+                </tr>
+            ))}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+            {
+            rows.map(row => {
+                prepareRow(row)
+                return (
+                    <tr {...row.getRowProps()}>
+                        {row.cells.map(cell => {
+                            return (
+                                <td
+                                    {...cell.getCellProps()}
+                                >
+                                    {cell.render('Cell')}
+                                </td>
+                            )
+                        })}
+                    </tr>
+                )
+            })}
+            <EmptyRow rows={rows}/>
+            </tbody>
+        </table>
+        <div className="sidenav rsidenav">
+            <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+            <br/>
+            <div className="filtername">
+                <b>Filters:</b>
+            </div>
+            <div id="Filters">
+            </div>
+            <div>
+                <br/><br/>
+            </div>
+        </div>
+        </>
+    );
+}
 
 const Resources = ({map, children}) => {
     let resourceMap = map;
 
     const [tableName,setTableName] = useState("");
+    let csvData =[
+            {
+                col1: 'Hello',
+                col2: 'World',
+            },
+            {
+                col1: 'react-table',
+                col2: 'rocks',
+            },
+            {
+                col1: 'whatever',
+                col2: 'you want',
+            },
+        ],
+    columnsData = [
+        {
+            Header: 'Column 1',
+            accessor: 'col1', // accessor is the "key" in the data
+        },
+        {
+            Header: 'Column 2',
+            accessor: 'col2',
+        },
+    ];
+    // table = useMemo(() => csvData,[csvData]);
+    // const columns = useMemo(() => columnsData,[csvData]);
+    const [table,setTable] = useState(csvData);
+    const [columns,setColumns] = useState(columnsData);
 
     useEffect(()=>{
         SelectTable();
@@ -20,10 +194,10 @@ const Resources = ({map, children}) => {
             window.removeEventListener('hashchange', hashChangeHandler);
         };
     },[]);
+
     const hashChangeHandler = React.useCallback(() => {
         console.log("hash change" + window.location.hash);
         SelectTable();
-
     },[]);
 
     function SelectTable()
@@ -46,15 +220,73 @@ const Resources = ({map, children}) => {
     }
     function LoadTable(filename)
     {
-        //Load CSV Data
         let link = resourceMap[filename];
-        CreateTableFromArray2D(readString(link).data);
         let category = document.getElementById("category");
         setTableName(category.options[category.selectedIndex].text);
+
+        //Load CSV Data
+        //CreateTableFromArray2D(readString(link).data);
+
+        // React-table implementation
+        csvData = readString(link,{header:true}).data;
+        console.log("csvData: ");
+        console.log(csvData);
+        let columnKeys = Object.keys(csvData[0]);
+        console.log("columnKeys: ");
+        console.log(columnKeys);
+        let arr = [];
+        arr.push({
+            Header: "",
+            accessor: "Image",
+            disableSortBy: true,
+            //Cell: ({row}) => <img src={"https://ik.imagekit.io/ucxasjyuy/resources/" + GetImageName(row.original.Link) + ".png?tr=w-32"} className = "tableimg" />
+            Cell: ({row}) => <Image source={row.original.Link} />,
+            //Filter: ColumnFilter
+        })
+        for(let i=0; i< columnKeys.length; i++){
+            if(i === 0){
+                arr.push({
+                    Header: columnKeys[i],
+                    accessor: columnKeys[i],
+                    Cell: ({row})=> <a href={row.original.Link} target="_blank" rel="noopener noreferrer">{row.original.Name}</a>
+                })
+            }
+            else if(i === 1){
+                continue;
+            }
+            else if(i > 2){
+                arr.push({
+                    Header: columnKeys[i],
+                    accessor: columnKeys[i],
+                    disableSortBy: true
+                })
+            }
+            else {
+                arr.push({
+                    Header: columnKeys[i],
+                    accessor: columnKeys[i]
+                })
+            }
+        }
+        columnsData = arr;
+        console.log("columnsData");
+        console.log(columnsData);
+
+        setColumns(columnsData);
+        console.log("columns");
+        console.log(columns);
+
+        setTable(csvData);
+        console.log("table");
+        console.log(table);
+
+        MakeFilters(readString(link).data);
+
     }
+
     function toggleSidebar()
     {
-        var side = document.getElementsByClassName("sidenav")[0];
+        let side = document.getElementsByClassName("sidenav")[0];
         if(side.style.display === "none" || side.style.display === "")
         {
             side.style.display = "block";
@@ -81,19 +313,16 @@ const Resources = ({map, children}) => {
                     {children}
                 </select>
             </div>
-            <div className="sidenav rsidenav">
-                <div className="filtername">
-                    <b>Filters:</b>
-                </div> 
-                <div id="Filters">
-                </div>   
-                <div>
-                    <br/><br/>
-                </div> 
-            </div>
+
             <Navbar/>
             <div className="resource">
                 <h1 id="tname">{tableName}</h1>
+
+                <Table
+                    columns={columns}
+                    data ={table}
+                />
+
                 <div id="showData">
                 </div>
             </div>
@@ -163,15 +392,31 @@ function CreateTableFromArray2D(array2D)
     // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
     var divContainer = document.getElementById("showData");
     divContainer.appendChild(table);
+}
 
+function GetImageName(url)
+{
+    // Remove Http
+    url = url.replace(/h.*?\/\//,"")
+
+    // Split trailing url info
+    url = url.split('/');
+
+    // Return the image name.
+    //console.log(url[0]);
+    return url[0];
+}
+
+function MakeFilters(array2D){
     //Get all table headers
-    let tableheaders = document.getElementsByTagName("th");
+    //let tableheaders = document.getElementsByTagName("th");
+    let tableheaders = array2D[0];
 
     //Get Filter Categories
     let filtercategories = [];
     for(let i=2; i<tableheaders.length-1;i++)
     {
-        filtercategories.push(tableheaders[i].textContent);
+        filtercategories.push(tableheaders[i]);
     }
     //console.log(filtercategories);
 
@@ -197,22 +442,14 @@ function CreateTableFromArray2D(array2D)
     //Make Filter Lists
     for(let i=0; i<filtercategories.length; i++)
     {
+        // Does not work with react tables. Filtercategories value is null.
         MakeFilterChoices(i+2,filtercategories[i], array2D);
+        console.log("filtercategories" + i);
+        console.log(filtercategories[i]);
     }
 }
 
-function GetImageName(url)
-{
-    // Remove Http
-    url = url.replace(/h.*?\/\//,"")
 
-    // Split trailing url info
-    url = url.split('/');
-    
-    // Return the image name.
-    //console.log(url[0]);
-    return url[0];
-}  
 
 function PlatformTextToIcon(tableCell){
     var platforms = tableCell.textContent.split(", ")
@@ -324,12 +561,14 @@ function FilterTable()
 {
     //Get all table headers
     let tableheaders = document.getElementsByTagName("th");
+    console.log("tableheaders");
+    console.log(tableheaders);
 
     //Get Filter Categories
     let filterCategories = [];
     for(let i=2; i<tableheaders.length-1;i++)
     {
-        filterCategories.push(tableheaders[i].textContent);
+        filterCategories.push(tableheaders[i].innerText.trim());
     }
     console.log(filterCategories);
     

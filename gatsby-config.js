@@ -5,7 +5,6 @@ module.exports = {
     author: `@Jack_Melcher`,
   },
   plugins: [
-    `papaparse`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -40,6 +39,12 @@ module.exports = {
         useNameForId: false,
       },
     },
+    {
+      resolve: `gatsby-plugin-compile-es6-packages`,
+      options: {
+        modules: [`react-table`]
+      }
+    }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
