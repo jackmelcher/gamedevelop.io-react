@@ -9,15 +9,93 @@ import {readString} from "react-papaparse"
 
 import "../css/resources.css"
 
+const IconsOS = ({source}) => {
+    let platformsArray = source.split(", ")
+    let isWindows, isMac, isLinux, isWeb, isIOS, isAndroid, isXbox, isPlayStation;
+    let otherTemp = "";
+    const[other, setOther] = useState("");
+    useEffect(()=>{getPlatforms(platformsArray);},[]);
+
+    return(
+        <>
+            {source.includes("Windows")  &&
+                <i className="fab fa-windows">
+                    <div style={{display: "none"}}>Windows, </div>
+                </i>}
+            {source.includes("Mac") &&
+                <i className="fab fa-apple">
+                    <div style={{display: "none"}}>Mac, </div>
+                </i>}
+            {source.includes("Linux") &&
+                <i className="fab fa-linux">
+                    <div style={{display: "none"}}>Linux, </div>
+                </i>}
+            {source.includes("Web") &&
+                <i className="fas fa-globe">
+                    <div style={{display: "none"}}>Web, </div>
+                </i>}
+            {source.includes("iOS") &&
+                <i className="fab fa-app-store">
+                    <div style={{display: "none"}}>iOS, </div>
+                </i>}
+            {source.includes("Android") &&
+                <i className="fab fa-android">
+                    <div style={{display: "none"}}>Android, </div>
+                </i>}
+            {source.includes("Xbox") &&
+                <i className="fab fa-xbox">
+                    <div style={{display: "none"}}>Xbox, </div>
+                </i>}
+            {source.includes("PlayStation") &&
+                <i className="fab fa-playstation">
+                    <div style={{display: "none"}}>PlayStation, </div>
+                </i>}
+            {other}
+        </>
+    );
+
+    function getPlatforms(platforms){
+        platforms.forEach ((element,index) => {
+            switch (element){
+                case "Windows":
+                    isWindows = true;
+                    break;
+                case "Mac":
+                    isMac = true;
+                    break;
+                case "Linux":
+                    isLinux = true;
+                    break;
+                case "Web":
+                    isWeb = true;
+                    break;
+                case "iOS":
+                    isIOS = true;
+                    break;
+                case "Android":
+                    isAndroid = true;
+                    break;
+                case "Xbox":
+                    isXbox = true;
+                    break;
+                case "PlayStation":
+                    isPlayStation = true;
+                    break;
+                default:
+                    otherTemp += (element)
+                    setOther(otherTemp);
+                    if(index !== platforms.length-1){
+                        otherTemp += ", "
+                        setOther(otherTemp);
+                    }
+            }
+        });
+    }
+}
+
 const Image = ({source}) => {
     return (
-        //<img src={CheckImage(source) ? row.original.Link :  + GetImageName(source) + ".png?tr=w-32"} className = "tableimg" />
         <img src={"https://ik.imagekit.io/ucxasjyuy/resources/" + GetImageName(source) + ".png?tr=w-32"} className = "tableimg" onError={ (e) => {e.target.onerror = null; e.target.src="https://ik.imagekit.io/ucxasjyuy/placeholder.png";}}/>
-/*        img.addEventListener('error', function(e) {
-            //console.log(e.target.src);
-            this.alt = this.src;
-            this.src = "https://ik.imagekit.io/ucxasjyuy/placeholder.png";
-        });*/
     );
 
     function GetImageName(url)
@@ -158,30 +236,7 @@ const Resources = ({map, children}) => {
     let resourceMap = map;
 
     const [tableName,setTableName] = useState("");
-    let csvData =[
-            {
-                col1: 'Hello',
-                col2: 'World',
-            },
-            {
-                col1: 'react-table',
-                col2: 'rocks',
-            },
-            {
-                col1: 'whatever',
-                col2: 'you want',
-            },
-        ],
-    columnsData = [
-        {
-            Header: 'Column 1',
-            accessor: 'col1', // accessor is the "key" in the data
-        },
-        {
-            Header: 'Column 2',
-            accessor: 'col2',
-        },
-    ];
+    let csvData =[], columnsData = [];
     // table = useMemo(() => csvData,[csvData]);
     // const columns = useMemo(() => columnsData,[csvData]);
     const [table,setTable] = useState(csvData);
@@ -196,7 +251,7 @@ const Resources = ({map, children}) => {
     },[]);
 
     const hashChangeHandler = React.useCallback(() => {
-        console.log("hash change" + window.location.hash);
+        //console.log("hash change" + window.location.hash);
         SelectTable();
     },[]);
 
@@ -229,21 +284,20 @@ const Resources = ({map, children}) => {
 
         // React-table implementation
         csvData = readString(link,{header:true}).data;
-        console.log("csvData: ");
-        console.log(csvData);
+        //console.log("csvData: ");
+        //console.log(csvData);
         let columnKeys = Object.keys(csvData[0]);
-        console.log("columnKeys: ");
-        console.log(columnKeys);
+        //console.log("columnKeys: ");
+        //console.log(columnKeys);
         let arr = [];
         arr.push({
             Header: "",
             accessor: "Image",
             disableSortBy: true,
-            //Cell: ({row}) => <img src={"https://ik.imagekit.io/ucxasjyuy/resources/" + GetImageName(row.original.Link) + ".png?tr=w-32"} className = "tableimg" />
             Cell: ({row}) => <Image source={row.original.Link} />,
             //Filter: ColumnFilter
         })
-        for(let i=0; i< columnKeys.length; i++){
+        for(let i = 0; i < columnKeys.length; i++){
             if(i === 0){
                 arr.push({
                     Header: columnKeys[i],
@@ -253,6 +307,14 @@ const Resources = ({map, children}) => {
             }
             else if(i === 1){
                 continue;
+            }
+            else if(i === 4){
+                arr.push({
+                    Header: columnKeys[i],
+                    accessor: columnKeys[i],
+                    disableSortBy: true,
+                    Cell: ({row})=> <IconsOS source={row.original.Platforms}/>,
+                })
             }
             else if(i > 2){
                 arr.push({
@@ -269,16 +331,16 @@ const Resources = ({map, children}) => {
             }
         }
         columnsData = arr;
-        console.log("columnsData");
-        console.log(columnsData);
+        //console.log("columnsData");
+        //console.log(columnsData);
 
         setColumns(columnsData);
-        console.log("columns");
-        console.log(columns);
+        //console.log("columns");
+        //console.log(columns);
 
         setTable(csvData);
-        console.log("table");
-        console.log(table);
+        //console.log("table");
+        //console.log(table);
 
         MakeFilters(readString(link).data);
 
@@ -407,54 +469,10 @@ function GetImageName(url)
     return url[0];
 }
 
-function MakeFilters(array2D){
-    //Get all table headers
-    //let tableheaders = document.getElementsByTagName("th");
-    let tableheaders = array2D[0];
-
-    //Get Filter Categories
-    let filtercategories = [];
-    for(let i=2; i<tableheaders.length-1;i++)
-    {
-        filtercategories.push(tableheaders[i]);
-    }
-    //console.log(filtercategories);
-
-    //Make Filter Categories in page
-    let filtersdiv = document.getElementById("Filters");
-    filtersdiv.innerHTML = "";
-
-    for(let i=0; i<filtercategories.length; i++)
-    {
-        let div = document.createElement("div");
-        div.classList.add("listTitle");
-        let b = document.createElement("b");
-        b.textContent = filtercategories[i] + ":";
-        let ul = document.createElement("ul");
-        ul.id = filtercategories[i];
-        ul.classList.add("nobullets");
-
-        div.appendChild(b);
-        div.appendChild(ul);
-        filtersdiv.appendChild(div);
-    }
-
-    //Make Filter Lists
-    for(let i=0; i<filtercategories.length; i++)
-    {
-        // Does not work with react tables. Filtercategories value is null.
-        MakeFilterChoices(i+2,filtercategories[i], array2D);
-        console.log("filtercategories" + i);
-        console.log(filtercategories[i]);
-    }
-}
-
-
-
 function PlatformTextToIcon(tableCell){
     var platforms = tableCell.textContent.split(", ")
     tableCell.textContent = "";
-    
+
     platforms.forEach (element =>
     {
         var icon = document.createElement("i");
@@ -528,6 +546,48 @@ function PlatformTextToIcon(tableCell){
     });
 }
 
+function MakeFilters(array2D){
+    //Get all table headers
+    //let tableheaders = document.getElementsByTagName("th");
+    let tableheaders = array2D[0];
+
+    //Get Filter Categories
+    let filtercategories = [];
+    for(let i=2; i<tableheaders.length-1;i++)
+    {
+        filtercategories.push(tableheaders[i]);
+    }
+    //console.log(filtercategories);
+
+    //Make Filter Categories in page
+    let filtersdiv = document.getElementById("Filters");
+    filtersdiv.innerHTML = "";
+
+    for(let i=0; i<filtercategories.length; i++)
+    {
+        let div = document.createElement("div");
+        div.classList.add("listTitle");
+        let b = document.createElement("b");
+        b.textContent = filtercategories[i] + ":";
+        let ul = document.createElement("ul");
+        ul.id = filtercategories[i];
+        ul.classList.add("nobullets");
+
+        div.appendChild(b);
+        div.appendChild(ul);
+        filtersdiv.appendChild(div);
+    }
+
+    //Make Filter Lists
+    for(let i=0; i<filtercategories.length; i++)
+    {
+        // Does not work with react tables. Filtercategories value is null.
+        MakeFilterChoices(i+2,filtercategories[i], array2D);
+        //console.log("filtercategories" + i);
+        //console.log(filtercategories[i]);
+    }
+}
+
 function MakeFilterChoices(column_index, filter_id, csvarray)
 {
     var arr = GetFilterNames(column_index, csvarray);
@@ -561,16 +621,16 @@ function FilterTable()
 {
     //Get all table headers
     let tableheaders = document.getElementsByTagName("th");
-    console.log("tableheaders");
-    console.log(tableheaders);
+    //console.log("tableheaders");
+    //console.log(tableheaders);
 
     //Get Filter Categories
     let filterCategories = [];
     for(let i=2; i<tableheaders.length-1;i++)
     {
-        filterCategories.push(tableheaders[i].innerText.trim());
+        filterCategories.push(tableheaders[i].textContent.trim());
     }
-    console.log(filterCategories);
+    //console.log(filterCategories);
     
     filterTableByColumn(filterCategories);
 
@@ -591,7 +651,7 @@ function filterTableByColumn(filterCategories)
         filterCategoriesArray.push(ArrayCurrent);
     }
     filterCategoriesArray.shift();
-    console.log(filterCategoriesArray);
+    //console.log(filterCategoriesArray);
     
     var table, tr;
     table = document.getElementById("myTable");
@@ -629,7 +689,7 @@ function filterTableByColumn(filterCategories)
 function UpdateFilterArray(filterName)
 {
     var filterArrayAll = document.getElementsByName(filterName);
-    console.log(filterArrayAll);
+    //console.log(filterArrayAll);
     var filterArrayCurrent = [];
     for(var i = 0; i < filterArrayAll.length; i++)
     {
@@ -655,7 +715,7 @@ function CheckFilter(filterArr, tr, i, colIndex)
         // If table column contains any of the filters, set isfiltered to true.
         for(j=0;j<filterArr.length;j++)
         {
-            txtValue = td.textContent || td.innerText;
+            txtValue = td.textContent;
             if (txtValue.toLowerCase().includes(filterArr[j] + ",") || txtValue.toLowerCase().endsWith(filterArr[j])) 
             {
                 isfiltered = true;
@@ -688,7 +748,12 @@ function HideFilters(filterid, col)
     //make all filters visible
     var filter = document.getElementById(filterid);
     var flist = filter.getElementsByTagName("li");
-    
+
+    /*console.log(filterid);
+    console.log(col);
+    console.log(filter);
+    console.log(flist);*/
+
     // iterate through the table and add visible cells to set
     var table = document.getElementById("myTable");
     var set = new Set();
@@ -705,20 +770,21 @@ function HideFilters(filterid, col)
     }
 
     var filtervis = Array.from(set).sort();
+    //console.log(filtervis);
     /*
-    console.log("Set start");
-    for(var i=0; i < filtervis.length; i++)
-    {
-        console.log(filtervis[i]);
-    }
-    console.log("Set end");
-    */
+        console.log("Set start");
+        for(var i=0; i < filtervis.length; i++)
+        {
+            console.log(filtervis[i]);
+        }
+        console.log("Set end");
+        */
 
     // make filter lists invisible
     for(var j=0; j < flist.length; j++)
     {
-        //console.log(flist[i].textContent);
-        //console.log(filtervis.includes(flist[i].textContent));
+        //console.log(flist[j].textContent);
+        //console.log(filtervis.includes(flist[j].textContent));
         if(filtervis.includes(flist[j].textContent))
         {
             //flist[i].style.display = "";
