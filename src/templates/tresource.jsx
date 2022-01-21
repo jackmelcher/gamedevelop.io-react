@@ -37,8 +37,9 @@ const ResourceSection = (props) => {
     return(
         <Resources map={props.pageContext.resourceMap}>
             {
-                props.data.contentfulResourceSections.popularSheet &&
-                <option value={props.data.contentfulResourceSections.popularSheet.optionvalue}>{props.data.contentfulResourceSections.popularSheet.title}</option>
+                (props.data.contentfulResourceSections.popularSheet != null)
+                    ?<option value={props.data.contentfulResourceSections.popularSheet.optionvalue}>{props.data.contentfulResourceSections.popularSheet.title}</option>
+                    :""
             }
             {
                 props.data.contentfulResourceSections.resourceSubsections.map(resourceSubsection => {
