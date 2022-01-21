@@ -7,7 +7,7 @@ function Navbar({children})
 {
     //const [open, setOpen] = useState(false);
     const [windowWidth, setWindowWidth] = useState(1000);
-    const minFullNavBarLength = 950;
+    const minFullNavBarLength = 1160;
 
     useEffect(()=>{
         function updateSize() {
@@ -26,24 +26,24 @@ function Navbar({children})
                 </>
             }
 
-            <Link to="/" className="button button_nav flex-item-navbar mid">
+            <Link to="/" className="button button_nav flex-item-navbar">
                 <img src="https://ik.imagekit.io/ucxasjyuy/logo.svg" alt="Logo" className="logoimg"/>
             </Link>
 
             {
                 windowWidth >= minFullNavBarLength &&
                 <>
-                    <Link to="/resources/" className="button button_nav flex-item-navbar mid">
-                    <p>Resources</p>
+                    <Link to="/resources/" className="button button_nav flex-item-navbar">
+                        <p><i className="fas fa-database"></i> Resources</p>
                     </Link>
-                    <Link to="/guides/" className="button button_nav flex-item-navbar mid">
-                        <p>Guides</p>
+                    <Link to="/guides/" className="button button_nav flex-item-navbar">
+                        <p><i className="fas fa-list-alt"></i> Guides</p>
                     </Link>
-                    <Link to="/about/" className="button button_nav flex-item-navbar mid">
-                        <p>About</p>
+                    <Link to="/about/" className="button button_nav flex-item-navbar">
+                        <p><i className="fas fa-info-circle"></i> About</p>
                     </Link>
-                    <Link to="/resources-submit/" className="button button_nav flex-item-navbar big">
-                        <p>Submit a Resource</p>
+                    <Link to="/resources-submit/" className="button button_nav flex-item-navbar">
+                        <p><i className="fas fa-clipboard-list"></i> Submit a Resource</p>
                     </Link>
                     <div className="flex-item-padding" />
                     <a href="https://www.patreon.com/jackmelcher" className="button button_nav flex-item-navbar big" target="_blank" rel="noopener noreferrer">

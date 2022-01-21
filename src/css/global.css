@@ -90,11 +90,12 @@ body::-webkit-scrollbar-thumb {
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
 }
-h1,h2,h3,h4,h5{
+h1, h2, h3, h4, h5{
   color: var(--heading-color);
+  font-family: "Roboto Slab";
 }
 h1 {
-  font-size: 32px;
+  font-size: 36px;
 }
 h2 {
   font-size: 28px;
@@ -235,23 +236,14 @@ a:hover{
   flex-wrap: wrap;
 }
 .flex-item-navbar{
-  flex: 1 0 auto;
-  padding: 12px;
+  flex: 0 0 auto;
+  padding: 12px 32px;
 }
 .flex-item-navbar > p {
   margin: 4px 0px 0px 0px;
 }
 .flex-item-navbar > i{
   font-size: 24px;
-}
-.flex-item-navbar.big{
-  max-width: 200px;
-}
-.flex-item-navbar.mid{
-  max-width: 100px;
-}
-.flex-item-navbar.small{
-  max-width: 70px;
 }
 .flex-item-padding{
   flex: 1 0 auto;
