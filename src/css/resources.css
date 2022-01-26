@@ -111,12 +111,12 @@ select{
   margin-bottom: 16px;
   margin-left: 16px;
 }
-.listTitle > ul{
+.listTitle ul{
   margin-top: 8px;
   margin-bottom: 24px;
   padding-left: 12px;
 }
-.listTitle > * > *>*>input{
+.listTitle input{
   margin: 0px 8px 0px 4px;
 }
 .resource {

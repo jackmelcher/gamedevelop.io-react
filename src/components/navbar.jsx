@@ -135,18 +135,18 @@ function CollapsedMenu()
                 menu &&
                 <div className="collapsed-navbar">
                     <Link to="/resources/" className="button button_nav flex-item-navbar">
-                        <p>Resources</p>
+                        <p><i className="fas fa-database"></i> Resources</p>
                     </Link>
                     <Link to="/guides/" className="button button_nav flex-item-navbar">
-                        <p>Guides</p>
+                        <p><i className="fas fa-list-alt"></i> Guides</p>
                     </Link>
                     <Link to="/about/" className="button button_nav flex-item-navbar">
-                        <p>About</p>
+                        <p><i className="fas fa-info-circle"></i> About</p>
                     </Link>
                     <Link to="/resources-submit/" className="button button_nav flex-item-navbar">
-                        <p>Submit a Resource</p>
+                        <p><i className="fas fa-clipboard-list"></i> Submit a Resource</p>
                     </Link>
-                    <a href="https://www.patreon.com/jackmelcher" className="button button_nav patreon flex-item-navbar" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.patreon.com/jackmelcher" className="button button_nav flex-item-navbar big" target="_blank" rel="noopener noreferrer">
                         <p><i className="fab fa-patreon"></i> Become a Patron</p>
                     </a>
                 </div>
