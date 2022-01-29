@@ -157,31 +157,45 @@ function setFilteredParams(filterArr, val, checked) {
 
     if (filterArr.length === 0) filterArr = undefined;
 
-    console.log("filterArr: "+ filterArr);
+    console.log(filterArr);
     return filterArr;
 }
 
-function SelectColumnFilter({column: { filteredRows, filterValue = [], setFilter, preFilteredRows, id }}) {
+function SelectColumnFilter({column: { filteredRows, filterValue = [], setFilter, preFilteredRows, id, Header }}) {
 
-    let preFilteredRowsCurrent;
-    let setCurrent;
-
+    const [idCurrent,setIdCurrent] = useState([])
+    const [optionsCurrent,setOptionsCurrent] = useState([])
+    const [flag,setFlag] = useState(true)
+    // Get array of options based on all rows in a table.
     const options = useMemo(() => {
-        console.log(preFilteredRows);
-
+        console.log("id: "+ id)
+        console.log("filteredRows: ")
+        console.log(filteredRows)
+        console.log("preFilteredRows: ")
+        console.log(preFilteredRows)
+        /*
+        console.log("idCurrent: "+ idCurrent)
+        if(!idCurrent.includes(id))
+        {
+            setIdCurrent(id);
+            console.log("id: "+ id)
+            console.log("idCurrent: "+ idCurrent)*/
             let set = new Set();
-            preFilteredRows.forEach(row =>{
+        filteredRows.forEach(row =>{
                 let cells = row.values[id].split(", ");
                 cells.forEach(element => {
                     set.add(element);
                 });
             })
-            return Array.from(set).sort();
+            /*setOptionsCurrent(Array.from(set).sort());
+            return optionsCurrent;
+        }*/
+        return Array.from(set).sort();
 
+    }, [id, /*preFilteredRows*/])
 
-    }, [id,filteredRows/*preFilteredRows*/])
-
-    /*const setFilteredRows = useMemo(()=>{
+    // Get set of options based on the filtered rows
+    const optionsSet = useMemo(() => {
         let set = new Set();
         filteredRows.forEach(row =>{
             let cells = row.values[id].split(", ");
@@ -189,17 +203,21 @@ function SelectColumnFilter({column: { filteredRows, filterValue = [], setFilter
                 set.add(element);
             });
         })
-        console.log(set)
         return set;
-    },[filteredRows]);*/
+    },[filteredRows]);
+
+    function isDisabled(option){
+        return !optionsSet.has(option);
+    }
 
     return (
         <div className="listTitle">
-            <span className="bold">{id}:</span>
-            <ul>
+            <span className="bold">{Header}:</span>
+            <ul key={window.location.hash}>
             {options.map((option, i) => {
                 return (
-                    <li className="nobullets" key={option+window.location.hash}>
+                    (option !== "") &&
+                    <li className="nobullets" key={option+id}>
                         <input
                             type="checkbox"
                             id={option}
@@ -208,7 +226,7 @@ function SelectColumnFilter({column: { filteredRows, filterValue = [], setFilter
                             onChange={(e) => {
                                 setFilter(setFilteredParams(filterValue, e.target.value, e.target.checked));
                             }}
-                            /*disabled={!setFilteredRows.has(option)}*/
+                            disabled={isDisabled(option)}
                             /*defaultChecked={false}*/
                         ></input>
                         <label htmlFor={option}>
@@ -382,64 +400,44 @@ const Resources = ({map, children}) => {
             Cell: ({row}) => <Image source={row.original.Link} />,
             disableFilters: true,
         })
-        console.log("columnKeys.length: " + columnKeys.length);
+        //console.log("columnKeys.length: " + columnKeys.length);
         for(let i = 0; i < columnKeys.length; i++){
+            let columnObject = new Object();
+            columnObject.Header = columnKeys[i];
+            columnObject.accessor = columnKeys[i];
+            columnObject.id = columnKeys[i]+window.location.hash;
             if(i === 0){
-                arr.push({
-                    Header: columnKeys[i],
-                    accessor: columnKeys[i],
-                    Cell: ({row})=> <a href={row.original.Link} target="_blank" rel="noopener noreferrer">{row.original.Name}</a>,
-                    disableFilters: true,
-                })
+                columnObject.Cell = ({row})=> <a href={row.original.Link} target="_blank" rel="noopener noreferrer">{row.original.Name}</a>;
+                columnObject.disableFilters = true;
             }
-            else if(i === 1){
+            if(i === 1){
                 continue;
             }
-            else if(i === 4){
-                arr.push({
-                    Header: columnKeys[i],
-                    accessor: columnKeys[i],
-                    disableSortBy: true,
-                    Cell: ({row})=> <IconsOS source={row.original.Platforms}/>,
-                    Filter: SelectColumnFilter,
-                    filter: "include"
-                })
+            if(columnKeys[i].includes("Platforms")){
+                columnObject.Cell = ({row})=> <IconsOS source={row.original.Platforms}/>;
             }
-            else if(i === 2 ){
-                arr.push({
-                    Header: columnKeys[i],
-                    accessor: columnKeys[i],
-                    Filter: SelectColumnFilter,
-                    filter: "include"
-                })
+            if(i > 1  && i < columnKeys.length - 1){
+                columnObject.Filter = SelectColumnFilter;
+                columnObject.filter = "includesAll";
             }
-            else if(i > 2  && i < columnKeys.length - 1){
-                arr.push({
-                    Header: columnKeys[i],
-                    accessor: columnKeys[i],
-                    disableSortBy: true,
-                    Filter: SelectColumnFilter,
-                    filter: "include"
-                })
+            if(i > 2  && i < columnKeys.length){
+                columnObject.disableSortBy = true;
             }
-            else {
-                arr.push({
-                    Header: columnKeys[i],
-                    accessor: columnKeys[i],
-                    disableFilters: true,
-                    disableSortBy: true,
-                })
+            if(i === columnKeys.length -1) {
+                columnObject.disableFilters = true;
             }
+            //console.log(columnObject)
+            arr.push(columnObject);
         }
         columnsData = arr;
         //console.log("columnsData");
         //console.log(columnsData);
+        setTable(csvData);
 
         setColumns(columnsData);
         //console.log("columns");
         //console.log(columns);
 
-        setTable(csvData);
         //console.log("table");
         //console.log(table);
     }
