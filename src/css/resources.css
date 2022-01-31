@@ -49,6 +49,59 @@ html[data-theme = "dark"]{
   font-size: 56px;
   padding: 0px 8px;
 }
+
+.flex-table-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.flex-table-item{
+  flex: 1 0 auto;
+  margin: 32px 0px;
+  flex-basis: 360px;
+  max-width: 360px;
+}
+.flex-table-item i {
+  padding: 2px;
+}
+.flex-table-padding{
+  flex: 1 0 auto;
+}
+.entry-name{
+  font-size: 28px;
+  vertical-align: bottom;
+  padding-left: 8px;
+}
+.entry-chip{
+  border: 1px solid var(--input-border-color);
+  border-radius: 30px;
+  white-space: nowrap;
+  display: inline-block;
+  padding: 4px 8px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  font-weight: bold;
+  font-size: 18px;
+}
+.entry-description{
+  font-size: 18px;
+}
+.chip-color1{
+  background-color: #00bae5;
+}
+.chip-color2{
+  background-color: #00e55c;
+}
+.chip-color3{
+  background-color: #e5a200;
+}
+.chip-color4{
+  background-color: #e5005d;
+}
+.chip-color5{
+  background-color: #e500c8;
+}
+
 .accepted{
   color: var(--status-green);
   font-weight: bold;
@@ -67,6 +120,18 @@ html[data-theme = "dark"]{
   width: 275px;
   height: calc(100vh - 188px);
 }
+.viewButton{
+  font-size: 16px;
+  display: inline-block;
+  color: var(--font-color);
+  background-color: var(--side-button-bg-color);
+  border: 1px solid var(--input-border-color);
+  border-radius: 5px;
+  padding: 2px 12px;
+  margin-left: 88px;
+  display: inline !important;
+  margin-bottom: 2%!important;
+}
 .selectbar{
   position: fixed;
   padding: 16px;
@@ -79,7 +144,7 @@ html[data-theme = "dark"]{
 .selectbar>button{
   color: var(--font-color);
   background-color: var(--side-button-bg-color);
-  border: 1px solid var(--side-button-border-color);
+  border: 1px solid var(--input-border-color);
   border-radius: 5px;
   display: none;
 }
@@ -90,7 +155,7 @@ html[data-theme = "dark"]{
 select{
   color: var(--font-color);
   background-color: var(--side-button-bg-color);
-  border: 1px solid var(--input--border-color);
+  border: 1px solid var(--input-border-color);
   border-radius: 5px;
   font-size: 18px;
   padding: 5px 5px;
@@ -351,6 +416,8 @@ td:nth-child(2){
     margin-right: 1%;
     width: 45%;
     height: 35px;
+    margin-left: 4px;
+    margin-right: 0px;
   }
   .selectbarRes>select{
     width: 54%;
@@ -371,11 +438,27 @@ td:nth-child(2){
     top: 114px;
     height: calc(100vh - 146px);
   }
+  .viewButton {
+    width: 12% !important;
+    padding: 6px!important;
+    margin-left: 0px!important;
+    margin-right: 1%!important;
+  }
+  .viewButton span{
+    display: none;
+  }
+  .viewButton > i{
+    margin: 0px !important;
+  }
+  .selectbarRes>button {
+    width: 39%;
+  }
   .selectbar>button>img{
     height: 18px;
     vertical-align: -3px;
   }
   .selectbarRes>select{
+    width: 46%;
     font-size: 16px;
   }
 }

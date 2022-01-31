@@ -163,36 +163,17 @@ function setFilteredParams(filterArr, val, checked) {
 
 function SelectColumnFilter({column: { filteredRows, filterValue = [], setFilter, preFilteredRows, id, Header }}) {
 
-    const [idCurrent,setIdCurrent] = useState([])
-    const [optionsCurrent,setOptionsCurrent] = useState([])
-    const [flag,setFlag] = useState(true)
     // Get array of options based on all rows in a table.
     const options = useMemo(() => {
-        console.log("id: "+ id)
-        console.log("filteredRows: ")
-        console.log(filteredRows)
-        console.log("preFilteredRows: ")
-        console.log(preFilteredRows)
-        /*
-        console.log("idCurrent: "+ idCurrent)
-        if(!idCurrent.includes(id))
-        {
-            setIdCurrent(id);
-            console.log("id: "+ id)
-            console.log("idCurrent: "+ idCurrent)*/
-            let set = new Set();
+        let set = new Set();
         filteredRows.forEach(row =>{
                 let cells = row.values[id].split(", ");
                 cells.forEach(element => {
                     set.add(element);
                 });
             })
-            /*setOptionsCurrent(Array.from(set).sort());
-            return optionsCurrent;
-        }*/
         return Array.from(set).sort();
-
-    }, [id, /*preFilteredRows*/])
+    }, [id])
 
     // Get set of options based on the filtered rows
     const optionsSet = useMemo(() => {
@@ -248,7 +229,7 @@ const EmptyRow = ({rows}) => {
     )
 }
 
-const Table = ({columns, data}) => {
+const Table = ({columns, data, isGridView}) => {
     const defaultColumn = useMemo(() => {
         return{
             Filter: ColumnFilter,
@@ -273,69 +254,139 @@ const Table = ({columns, data}) => {
 
     return(
         <>
-        <table {...getTableProps()} id={"myTable"}>
-            <thead>
-            {headerGroups.map(headerGroup => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                    {headerGroup.headers.map(column => (
-                        <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                            {column.disableSortBy
-                                ?""
-                                :column.isSorted
-                                    ? column.isSortedDesc
-                                        ? <i className="fas fa-sort-down"></i>
-                                        : <i className="fas fa-sort-up"></i>
-                                    : <i className="fas fa-sort"></i>
-                            }
-                            {" " + column.render('Header')}
-                        </th>
-                    ))}
-                </tr>
-            ))}
-            </thead>
-            <tbody {...getTableBodyProps()}>
-            {
-            rows.map(row => {
-                prepareRow(row)
-                return (
-                    <tr {...row.getRowProps()}>
-                        {row.cells.map(cell => {
-                            return (
-                                <td {...cell.getCellProps()}>
-                                    {cell.render('Cell')}
-                                </td>
-                            )
-                        })}
-                    </tr>
-                )
-            })}
-            <EmptyRow rows={rows}/>
-            </tbody>
-        </table>
-        <div className="sidenav rsidenav">
-            <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
-            <br/>
-            <div className="filtername">
-                <b>Filters:</b>
-            </div>
-            <div id="Filters">
-                {headerGroups.map((headerGroup) => (
-                    <div {...headerGroup.getHeaderGroupProps()}>
+            {!isGridView && <table {...getTableProps()} id={"myTable"}>
+                <thead>
+                {headerGroups.map(headerGroup => (
+                    <tr {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map(column => (
-                            <div {...column.getHeaderProps()}>
-                                {
-                                    /*column.canFilter ? column.render("Filter") : null*/
-                                    !column.disableFilters ? column.render("Filter") : null
+                            <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                                {column.disableSortBy
+                                    ?""
+                                    :column.isSorted
+                                        ? column.isSortedDesc
+                                            ? <i className="fas fa-sort-down"></i>
+                                            : <i className="fas fa-sort-up"></i>
+                                        : <i className="fas fa-sort"></i>
                                 }
-                            </div>
+                                {" " + column.render('Header')}
+                            </th>
                         ))}
-                    </div>
+                    </tr>
                 ))}
+                </thead>
+                <tbody {...getTableBodyProps()}>
+                {
+                rows.map(row => {
+                    prepareRow(row)
+                    return (
+                        <tr {...row.getRowProps()}>
+                            {row.cells.map(cell => {
+                                return (
+                                    <td {...cell.getCellProps()}>
+                                        {cell.render('Cell')}
+                                    </td>
+                                )
+                            })}
+                        </tr>
+                    )
+                })}
+                <EmptyRow rows={rows}/>
+                </tbody>
+            </table>}
+            {isGridView && <div {...getTableProps()} id={"myTable"}>
+            <table>
+                <thead>
+                {headerGroups.map(headerGroup => (
+                    <tr {...headerGroup.getHeaderGroupProps()}>
+                        {headerGroup.headers.map(column => (
+                            !column.disableSortBy &&
+                            <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                                {column.disableSortBy
+                                    ?""
+                                    :column.isSorted
+                                        ? column.isSortedDesc
+                                            ? <i className="fas fa-sort-down"></i>
+                                            : <i className="fas fa-sort-up"></i>
+                                        : <i className="fas fa-sort"></i>
+                                }
+                                {" " + column.render('Header')}
+                            </th>
+                        ))}
+                    </tr>
+                ))}
+                </thead>
+            </table>
+                <div {...getTableBodyProps()} className="flex-table-container">
+                {
+                    rows.map((row, index) => {
+                        prepareRow(row)
+                        return (
+                            <>
+                                <div {...row.getRowProps()} className="flex-table-item">
+                                    {row.cells.map((cell, index) => {
+                                        if (index == 0) {
+                                            return (
+                                                <span {...cell.getCellProps()}>
+                                                {cell.render('Cell')}
+                                            </span>
+                                            )
+                                        }
+                                        if (index == 1) {
+                                            return (
+                                                <><span {...cell.getCellProps()} className="entry-name">
+                                                {cell.render('Cell')}
+                                            </span>
+                                                    <br/></>
+                                            )
+                                        }
+                                        if (index > 1 && index < row.cells.length - 1) {
+                                            let chipColor = "chip-color" + (index - 1).toString();
+                                            return (
+                                                <div {...cell.getCellProps()} className={"entry-chip " + chipColor}>
+                                                    {cell.render('Cell')}
+                                                </div>
+                                            )
+                                        } else {
+                                            return (
+                                                <div {...cell.getCellProps()} className="entry-description">
+                                                    {cell.render('Cell')}
+                                                </div>
+                                            )
+                                        }
+
+                                    })}
+                                </div>
+                                <div className="flex-table-padding"/>
+                            </>
+                        )
+                    })}
+                <EmptyRow rows={rows}/>
+                </div>
+            </div>}
+            <div className="sidenav rsidenav">
+                <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+                <br/>
+                <div className="filtername">
+                    <b>Filters:</b>
+                </div>
+                <div id="Filters">
+                    {headerGroups.map((headerGroup) => (
+                        <div {...headerGroup.getHeaderGroupProps()}>
+                            {headerGroup.headers.map(column => (
+                                <div {...column.getHeaderProps()}>
+                                    {
+                                        /*column.canFilter ? column.render("Filter") : null*/
+                                        !column.disableFilters ? column.render("Filter") : null
+                                    }
+                                </div>
+                            ))}
+                        </div>
+                    ))}
+                </div>
+                <div>
+                    <br/><br/>
+                </div>
             </div>
-            <div>
-                <br/><br/>
-            </div>
-        </div>
         </>
     );
 }
@@ -402,7 +453,7 @@ const Resources = ({map, children}) => {
         })
         //console.log("columnKeys.length: " + columnKeys.length);
         for(let i = 0; i < columnKeys.length; i++){
-            let columnObject = new Object();
+            let columnObject = {};
             columnObject.Header = columnKeys[i];
             columnObject.accessor = columnKeys[i];
             columnObject.id = columnKeys[i]+window.location.hash;
@@ -457,19 +508,47 @@ const Resources = ({map, children}) => {
         }
     }
 
+    // View Button
+    const [isGridView,setGridView] = useState(true);
+    useEffect(() => {
+        // Initialize View
+        setGridView(localStorage.getItem("resource-view") ? true : false);
+    },[]);
+    useEffect(() => {
+        viewMode(isGridView);
+    },[isGridView]);
+    function viewMode(isGridView){
+        if (!isGridView) {
+            localStorage.removeItem("resource-view");
+        }
+        else{
+            localStorage.setItem("resource-view", "grid");
+        }
+    }
+    const ViewButton = () => {
+        return (
+            <button className="viewButton" onClick={()=>{setGridView(!isGridView)}}>
+            {
+                isGridView ? <><i className=" fas fa-th-large"></i><span> Grid View</span></>  : <><i className=" fas fa-th-list"></i><span> List View</span></>
+            }
+            </button>
+        );
+    }
+
     return(
         <Layout>
             <Seo title="Resources" description="Explore a Database full of game development tools, assets, and services."/>
             <div className="selectbar selectbarRes">
-                <button onClick={(e) => toggleSidebar()}>
-                    <i className="fas fa-filter"></i><span>Filter & Sort</span>
-                </button>
-                <div className="tableTitle">
+                <span className="tableTitle">
                     <b>Tables:</b>
-                </div>
+                </span>
+                <ViewButton/>
                 <select id="category" onChange={(e) => {handleSelectChange(e.target.value);}}>
                     {children}
                 </select>
+                <button onClick={(e) => toggleSidebar()}>
+                    <i className="fas fa-filter"></i><span>Filter & Sort</span>
+                </button>
             </div>
 
             <Navbar/>
@@ -479,6 +558,7 @@ const Resources = ({map, children}) => {
                 <Table
                     columns={columns}
                     data ={table}
+                    isGridView = {isGridView}
                 />
             </div>
         </Layout>

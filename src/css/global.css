@@ -15,7 +15,7 @@
   --footer-bg-color: #dfdfe4;
   --footer-color: #494949;
   --form-bg-color: #ffffff;
-  --input--border-color: #b8b8b8;
+  --input-border-color: #b8b8b8;
   --input-bg-color: #ffffff;
   --scrollbarBG: #dae1e7;
   --thumbBG: #c9d0d3;
@@ -37,7 +37,7 @@ html[data-theme = "dark"]{
   --footer-bg-color: #27272c;
   --footer-color: #c0c0c0;
   --form-bg-color: #202025;
-  --input--border-color: #808080;
+  --input-border-color: #808080;
   --input-bg-color: #202025;
   --scrollbarBG: #2a2a2f;
   --thumbBG: #424247;
@@ -331,7 +331,7 @@ a:hover{
 input, textarea{
   color: var(--font-color);
   background-color: var(--input-bg-color);
-  border-color: var(--input--border-color);
+  border-color: var(--input-border-color);
 }
 
 @media (max-width: 768px){

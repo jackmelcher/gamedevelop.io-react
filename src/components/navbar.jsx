@@ -6,61 +6,34 @@ import React, {useState, useEffect} from "react"
 function Navbar({children})
 {
     //const [open, setOpen] = useState(false);
-    const [windowWidth, setWindowWidth] = useState(1000);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const minFullNavBarLength = 1160;
 
-    useEffect(()=>{
-        function updateSize() {
-            setWindowWidth(window.innerWidth);
-        }
+    function updateSize() {
         setWindowWidth(window.innerWidth);
-        window.addEventListener('resize', updateSize);
+        console.log(window.innerWidth)
+    }
+
+    useEffect(()=>{
+        setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', resizeHandler);
+        return () => {
+            window.removeEventListener('resize', resizeHandler);
+        };
     },[]);
+
+    const resizeHandler = React.useCallback(() => {
+        //console.log("hash change" + window.location.hash);
+        updateSize()
+    },[]);
+
     return (
         <div className="navbar flex-container-navbar">
             {
-                windowWidth < minFullNavBarLength &&
-                <>
-                    <CollapsedMenu/>
-                    <div className="flex-item-padding" />
-                </>
+                //windowWidth < minFullNavBarLength ? <MobileNav/>:<DesktopNav/>
+                windowWidth >= minFullNavBarLength ? <DesktopNav/>:<MobileNav/>
             }
 
-            <Link to="/" className="button button_nav flex-item-navbar">
-                <img src="https://ik.imagekit.io/ucxasjyuy/logo.svg" alt="Logo" className="logoimg"/>
-            </Link>
-
-            {
-                windowWidth >= minFullNavBarLength &&
-                <>
-                    <Link to="/resources/" className="button button_nav flex-item-navbar">
-                        <p><i className="fas fa-database"></i> Resources</p>
-                    </Link>
-                    <Link to="/guides/" className="button button_nav flex-item-navbar">
-                        <p><i className="fas fa-list-alt"></i> Guides</p>
-                    </Link>
-                    <Link to="/about/" className="button button_nav flex-item-navbar">
-                        <p><i className="fas fa-info-circle"></i> About</p>
-                    </Link>
-                    <Link to="/resources-submit/" className="button button_nav flex-item-navbar">
-                        <p><i className="fas fa-clipboard-list"></i> Submit a Resource</p>
-                    </Link>
-                    <div className="flex-item-padding" />
-                    <a href="https://www.patreon.com/jackmelcher" className="button button_nav flex-item-navbar big" target="_blank" rel="noopener noreferrer">
-                        <p><i className="fab fa-patreon"></i> Become a Patron</p>
-                    </a>
-                    <Theme />
-                </>
-            }
-            {
-                windowWidth < minFullNavBarLength &&
-                <>
-                    <div className="flex-item-padding" />
-                    <Theme />
-                </>
-            }
-            
-            
             {/*
             <button className="button settingsnavbutton button_nav flex-item-navbar" onClick={() => setOpen(!open)}>
                 <i className="menuicon fas fa-cog"></i>
@@ -79,18 +52,64 @@ function Navbar({children})
     );
 }
 
+const LogoNav = () => {
+    return(
+        <Link to="/" className="button button_nav flex-item-navbar">
+            <img src="https://ik.imagekit.io/ucxasjyuy/logo.svg" alt="Logo" className="logoimg"/>
+        </Link>
+    );
+}
+
+const MobileNav = () => {
+    return(
+        <>
+            <CollapsedMenu/>
+            <div className="flex-item-padding" />
+            <LogoNav/>
+            <div className="flex-item-padding" />
+            <Theme />
+        </>
+    );
+}
+
+const DesktopNav = () => {
+    return(
+        <>
+            <LogoNav/>
+            <Link to="/resources/" className="button button_nav flex-item-navbar">
+                <p><i className="fas fa-database"></i> Resources</p>
+            </Link>
+            <Link to="/guides/" className="button button_nav flex-item-navbar">
+                <p><i className="fas fa-list-alt"></i> Guides</p>
+            </Link>
+            <Link to="/about/" className="button button_nav flex-item-navbar">
+                <p><i className="fas fa-info-circle"></i> About</p>
+            </Link>
+            <Link to="/resources-submit/" className="button button_nav flex-item-navbar">
+                <p><i className="fas fa-clipboard-list"></i> Submit a Resource</p>
+            </Link>
+            <div className="flex-item-padding" />
+            <a href="https://www.patreon.com/jackmelcher" className="button button_nav flex-item-navbar big" target="_blank" rel="noopener noreferrer">
+                <p><i className="fab fa-patreon"></i> Become a Patron</p>
+            </a>
+            <Theme />
+        </>
+    );
+}
+
 function Theme()
 {
     const [theme,setTheme] = useState(true);
 
     useEffect(() => {    
-        // Initialize Theme 
+        // Initialize Theme
         setTheme(localStorage.getItem("site-theme") ? true : false);
     },[]);
 
     useEffect(() => {    
         themeMode(theme);
     },[theme]);
+
     return (
         <button className="button button_nav flex-item-navbar small" onClick={()=> setTheme(!theme)}>
         {
@@ -101,7 +120,6 @@ function Theme()
         }
         </button>
     );
-    
 }
 
 function themeMode(isDarkMode)
