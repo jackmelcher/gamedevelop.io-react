@@ -1,12 +1,17 @@
 import { Link } from "gatsby"
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useMemo} from "react"
 
 
 
 function Navbar({children})
 {
     //const [open, setOpen] = useState(false);
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [windowWidth1, setWindowWidth] = useState(1080);
+    const windowWidth = useMemo(()=>{
+        console.log(window.innerWidth)
+        return(window.innerWidth);
+    },[window.innerWidth]);
+
     const minFullNavBarLength = 1160;
 
     function updateSize() {
@@ -15,6 +20,7 @@ function Navbar({children})
     }
 
     useEffect(()=>{
+        console.log(windowWidth1)
         setWindowWidth(window.innerWidth);
         window.addEventListener('resize', resizeHandler);
         return () => {

@@ -229,7 +229,7 @@ const EmptyRow = ({rows}) => {
     )
 }
 
-const Table = ({columns, data, isGridView}) => {
+const Table = ({columns, data, view}) => {
     const defaultColumn = useMemo(() => {
         return{
             Filter: ColumnFilter,
@@ -254,7 +254,8 @@ const Table = ({columns, data, isGridView}) => {
 
     return(
         <>
-            {!isGridView && <table {...getTableProps()} id={"myTable"}>
+            {/* Table View */}
+            {view === "table" && <table {...getTableProps()} id={"myTable"}>
                 <thead>
                 {headerGroups.map(headerGroup => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
@@ -293,7 +294,9 @@ const Table = ({columns, data, isGridView}) => {
                 <EmptyRow rows={rows}/>
                 </tbody>
             </table>}
-            {isGridView && <div {...getTableProps()} id={"myTable"}>
+
+            {/* Grid View */}
+            {view === "grid" && <div {...getTableProps()} id={"myTable"}>
             <table>
                 <thead>
                 {headerGroups.map(headerGroup => (
@@ -315,6 +318,7 @@ const Table = ({columns, data, isGridView}) => {
                     </tr>
                 ))}
                 </thead>
+
             </table>
                 <div {...getTableBodyProps()} className="flex-table-container">
                 {
@@ -324,27 +328,31 @@ const Table = ({columns, data, isGridView}) => {
                             <>
                                 <div {...row.getRowProps()} className="flex-table-item">
                                     {row.cells.map((cell, index) => {
-                                        if (index == 0) {
+                                        if (index === 0) {
                                             return (
-                                                <span {...cell.getCellProps()}>
+                                                <div {...cell.getCellProps()} className="entry-image">
                                                 {cell.render('Cell')}
-                                            </span>
+                                            </div>
                                             )
                                         }
-                                        if (index == 1) {
+                                        if (index === 1) {
                                             return (
-                                                <><span {...cell.getCellProps()} className="entry-name">
-                                                {cell.render('Cell')}
-                                            </span>
-                                                    <br/></>
+                                                <>
+                                                    <div {...cell.getCellProps()} className="entry-name">
+                                                    {cell.render('Cell')}
+                                                    </div>
+                                                    <br/>
+                                                </>
                                             )
                                         }
                                         if (index > 1 && index < row.cells.length - 1) {
                                             let chipColor = "chip-color" + (index - 1).toString();
+                                            console.log(cell.render('Cell').props.value)
                                             return (
-                                                <div {...cell.getCellProps()} className={"entry-chip " + chipColor}>
+                                                cell.render('Cell').props.value !== "" &&
+                                                <span {...cell.getCellProps()} className={"entry-chip " + chipColor}>
                                                     {cell.render('Cell')}
-                                                </div>
+                                                </span>
                                             )
                                         } else {
                                             return (
@@ -363,6 +371,82 @@ const Table = ({columns, data, isGridView}) => {
                 <EmptyRow rows={rows}/>
                 </div>
             </div>}
+
+            {/* List View */}
+            {(view === "list") && <div {...getTableProps()} id={"myTable"}>
+                <table>
+                    <thead>
+                    {headerGroups.map(headerGroup => (
+                        <tr {...headerGroup.getHeaderGroupProps()}>
+                            {headerGroup.headers.map(column => (
+                                !column.disableSortBy &&
+                                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                                    {column.disableSortBy
+                                        ?""
+                                        :column.isSorted
+                                            ? column.isSortedDesc
+                                                ? <i className="fas fa-sort-down"></i>
+                                                : <i className="fas fa-sort-up"></i>
+                                            : <i className="fas fa-sort"></i>
+                                    }
+                                    {" " + column.render('Header')}
+                                </th>
+                            ))}
+                        </tr>
+                    ))}
+                    </thead>
+
+                </table>
+                <div {...getTableBodyProps()} className="flex-list-container">
+                    {
+                        rows.map((row, index) => {
+                            prepareRow(row)
+                            return (
+                                <>
+                                    <div {...row.getRowProps()} className="flex-list-item">
+                                        {row.cells.map((cell, index) => {
+                                            if (index === 0) {
+                                                return (
+                                                    <div {...cell.getCellProps()} className="entry-image">
+                                                        {cell.render('Cell')}
+                                                    </div>
+                                                )
+                                            }
+                                            if (index === 1) {
+                                                return (
+                                                    <>
+                                                        <div {...cell.getCellProps()} className="entry-name">
+                                                            {cell.render('Cell')}
+                                                        </div>
+                                                        <br/>
+                                                    </>
+                                                )
+                                            }
+                                            if (index > 1 && index < row.cells.length - 1) {
+                                                let chipColor = "chip-color" + (index - 1).toString();
+                                                return (
+                                                    cell.render('Cell').props.value !== "" &&
+                                                    <span {...cell.getCellProps()} className={"entry-chip " + chipColor}>
+                                                        {cell.render('Cell')}
+                                                    </span>
+                                                )
+                                            } else {
+                                                return (
+                                                    <div {...cell.getCellProps()} className="entry-description">
+                                                        {cell.render('Cell')}
+                                                    </div>
+                                                )
+                                            }
+
+                                        })}
+                                    </div>
+                                </>
+                            )
+                        })}
+                    <EmptyRow rows={rows}/>
+                </div>
+            </div>}
+
             <div className="sidenav rsidenav">
                 <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
                 <br/>
@@ -510,27 +594,46 @@ const Resources = ({map, children}) => {
 
     // View Button
     const [isGridView,setGridView] = useState(true);
+    const [view,setView] = useState("table");
     useEffect(() => {
         // Initialize View
-        setGridView(localStorage.getItem("resource-view") ? true : false);
+        setGridView(localStorage.getItem("resource-gridview") ? true : false);
+        setView(localStorage.getItem("resource-view"))
     },[]);
     useEffect(() => {
         viewMode(isGridView);
     },[isGridView]);
     function viewMode(isGridView){
         if (!isGridView) {
-            localStorage.removeItem("resource-view");
+            localStorage.removeItem("resource-gridview");
         }
         else{
-            localStorage.setItem("resource-view", "grid");
+            localStorage.setItem("resource-gridview", "grid");
+        }
+    }
+    function cycleView(){
+        console.log(view)
+        switch (view) {
+            case "table":
+                setView("list");
+                localStorage.setItem("resource-view", "list");
+                break;
+            case "list":
+                setView("grid");
+                localStorage.setItem("resource-view", "grid");
+                break;
+            case "grid":
+                setView("table");
+                localStorage.setItem("resource-view", "table");
+                break;
         }
     }
     const ViewButton = () => {
         return (
-            <button className="viewButton" onClick={()=>{setGridView(!isGridView)}}>
-            {
-                isGridView ? <><i className=" fas fa-th-large"></i><span> Grid View</span></>  : <><i className=" fas fa-th-list"></i><span> List View</span></>
-            }
+            <button className="viewButton" onClick={()=>{cycleView();}}>
+            {view === "table" && <><i className="fas fa-table"></i><span> Table View</span></>}
+            {view === "list" && <><i className=" fas fa-th-list"></i><span> List View</span></>}
+            {view === "grid" && <><i className=" fas fa-th-large"></i><span> Grid View</span></>}
             </button>
         );
     }
@@ -558,7 +661,7 @@ const Resources = ({map, children}) => {
                 <Table
                     columns={columns}
                     data ={table}
-                    isGridView = {isGridView}
+                    view = {view}
                 />
             </div>
         </Layout>

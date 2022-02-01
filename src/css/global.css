@@ -245,6 +245,9 @@ a:hover{
 .flex-item-navbar > i{
   font-size: 24px;
 }
+.flex-item-navbar.small{
+  width: 90px;
+}
 .flex-item-padding{
   flex: 1 0 auto;
 }
