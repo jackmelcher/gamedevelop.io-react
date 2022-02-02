@@ -6,32 +6,6 @@ import React, {useState, useEffect, useMemo} from "react"
 function Navbar({children})
 {
     //const [open, setOpen] = useState(false);
-    const [windowWidth1, setWindowWidth] = useState(1080);
-    const windowWidth = useMemo(()=>{
-        console.log(window.innerWidth)
-        return(window.innerWidth);
-    },[window.innerWidth]);
-
-    const minFullNavBarLength = 1160;
-
-    function updateSize() {
-        setWindowWidth(window.innerWidth);
-        console.log(window.innerWidth)
-    }
-
-    useEffect(()=>{
-        console.log(windowWidth1)
-        setWindowWidth(window.innerWidth);
-        window.addEventListener('resize', resizeHandler);
-        return () => {
-            window.removeEventListener('resize', resizeHandler);
-        };
-    },[]);
-
-    const resizeHandler = React.useCallback(() => {
-        //console.log("hash change" + window.location.hash);
-        updateSize()
-    },[]);
 
     return (
         <>
@@ -55,10 +29,6 @@ function Navbar({children})
             </div>
             */}
         </>
-
-
-
-            
     );
 }
 
