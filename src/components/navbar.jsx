@@ -34,12 +34,13 @@ function Navbar({children})
     },[]);
 
     return (
-        <div className="navbar flex-container-navbar">
-            {
-                //windowWidth < minFullNavBarLength ? <MobileNav/>:<DesktopNav/>
-                windowWidth >= minFullNavBarLength ? <DesktopNav/>:<MobileNav/>
-            }
-
+        <>
+            <div className="navbar navbar-desktop flex-container-navbar">
+                <DesktopNav/>
+            </div>
+            <span className="navbar navbar-mobile flex-container-navbar">
+                <MobileNav/>
+            </span>
             {/*
             <button className="button settingsnavbutton button_nav flex-item-navbar" onClick={() => setOpen(!open)}>
                 <i className="menuicon fas fa-cog"></i>
@@ -53,8 +54,11 @@ function Navbar({children})
             }
             </div>
             */}
+        </>
+
+
+
             
-        </div>
     );
 }
 

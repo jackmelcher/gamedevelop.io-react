@@ -200,6 +200,7 @@ a:hover{
   border-color: var(--side-border-color);
   */
 }
+
 .button {
   background-color: var(--primary-color);
   border: none; /* 2px solid #000000; */
@@ -234,6 +235,10 @@ a:hover{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.navbar-mobile{
+  display: none;
 }
 .flex-item-navbar{
   flex: 0 0 auto;
@@ -335,6 +340,14 @@ input, textarea{
   color: var(--font-color);
   background-color: var(--input-bg-color);
   border-color: var(--input-border-color);
+}
+@media (max-width: 1160px){
+  .navbar-desktop{
+    display: none;
+  }
+  .navbar-mobile{
+    display: flex;
+  }
 }
 
 @media (max-width: 768px){
