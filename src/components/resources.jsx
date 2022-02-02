@@ -598,7 +598,7 @@ const Resources = ({map, children}) => {
     useEffect(() => {
         // Initialize View
         setGridView(localStorage.getItem("resource-gridview") ? true : false);
-        setView(localStorage.getItem("resource-view"))
+        setView(localStorage.getItem("resource-view") !== null ? localStorage.getItem("resource-view") : "table");
     },[]);
     useEffect(() => {
         viewMode(isGridView);
