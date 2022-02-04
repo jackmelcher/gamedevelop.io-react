@@ -297,29 +297,6 @@ const Table = ({columns, data, view}) => {
 
             {/* Grid View */}
             {view === "grid" && <div {...getTableProps()} id={"myTable"}>
-            <table>
-                <thead>
-                {headerGroups.map(headerGroup => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
-                        {headerGroup.headers.map(column => (
-                            !column.disableSortBy &&
-                            <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                                {column.disableSortBy
-                                    ?""
-                                    :column.isSorted
-                                        ? column.isSortedDesc
-                                            ? <i className="fas fa-sort-down"></i>
-                                            : <i className="fas fa-sort-up"></i>
-                                        : <i className="fas fa-sort"></i>
-                                }
-                                {" " + column.render('Header')}
-                            </th>
-                        ))}
-                    </tr>
-                ))}
-                </thead>
-
-            </table>
                 <div {...getTableBodyProps()} className="flex-table-container">
                 {
                     rows.map((row, index) => {
@@ -361,7 +338,6 @@ const Table = ({columns, data, view}) => {
                                                 </div>
                                             )
                                         }
-
                                     })}
                                 </div>
                                 <div className="flex-table-padding"/>
@@ -374,29 +350,6 @@ const Table = ({columns, data, view}) => {
 
             {/* List View */}
             {(view === "list") && <div {...getTableProps()} id={"myTable"}>
-                <table>
-                    <thead>
-                    {headerGroups.map(headerGroup => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map(column => (
-                                !column.disableSortBy &&
-                                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                                    {column.disableSortBy
-                                        ?""
-                                        :column.isSorted
-                                            ? column.isSortedDesc
-                                                ? <i className="fas fa-sort-down"></i>
-                                                : <i className="fas fa-sort-up"></i>
-                                            : <i className="fas fa-sort"></i>
-                                    }
-                                    {" " + column.render('Header')}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                    </thead>
-
-                </table>
                 <div {...getTableBodyProps()} className="flex-list-container">
                     {
                         rows.map((row, index) => {
@@ -451,8 +404,33 @@ const Table = ({columns, data, view}) => {
                 <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
                 <br/>
                 <div className="filtername">
+                    <b>Sort:</b>
+                </div>
+                {<div {...getTableProps()} className="listTitle">
+                    {headerGroups.map(headerGroup => (
+                        <ul {...headerGroup.getHeaderGroupProps()}>
+                            {headerGroup.headers.map(column => (
+                                !column.disableSortBy &&
+                                <li {...column.getHeaderProps(column.getSortByToggleProps())} className="nobullets">
+                                    {column.disableSortBy
+                                        ?""
+                                        :column.isSorted
+                                            ? column.isSortedDesc
+                                                ? <i className="fas fa-sort-down"></i>
+                                                : <i className="fas fa-sort-up"></i>
+                                            : <i className="fas fa-sort"></i>
+                                    }
+                                    {" " + column.render('Header')}
+                                </li>
+                            ))}
+                        </ul>
+                    ))}
+                </div>}
+
+                <div className="filtername">
                     <b>Filters:</b>
                 </div>
+
                 <div id="Filters">
                     {headerGroups.map((headerGroup) => (
                         <div {...headerGroup.getHeaderGroupProps()}>
@@ -630,7 +608,7 @@ const Resources = ({map, children}) => {
     }
     const ViewButton = () => {
         return (
-            <button className="viewButton" onClick={()=>{cycleView();}}>
+            <button className="viewButton select-flex-item" onClick={()=>{cycleView();}}>
             {view === "table" && <><i className="fas fa-table"></i><span> Table View</span></>}
             {view === "list" && <><i className=" fas fa-th-list"></i><span> List View</span></>}
             {view === "grid" && <><i className=" fas fa-th-large"></i><span> Grid View</span></>}
@@ -642,16 +620,21 @@ const Resources = ({map, children}) => {
         <Layout>
             <Seo title="Resources" description="Explore a Database full of game development tools, assets, and services."/>
             <div className="selectbar selectbarRes">
-                <span className="tableTitle">
-                    <b>Tables:</b>
-                </span>
-                <ViewButton/>
-                <select id="category" onChange={(e) => {handleSelectChange(e.target.value);}}>
-                    {children}
-                </select>
-                <button onClick={(e) => toggleSidebar()}>
-                    <i className="fas fa-filter"></i><span>Filter & Sort</span>
-                </button>
+                <div className="select-flex-container">
+                    <span className="tableTitle select-flex-item">
+                        Tables:
+                    </span>
+                    <div className="select-flex-item-padding"/>
+                    <ViewButton/>
+                    <select id="category" className="select-flex-item" onChange={(e) => {
+                        handleSelectChange(e.target.value);
+                    }}>
+                        {children}
+                    </select>
+                    <button className="filterSortButton select-flex-item" onClick={(e) => toggleSidebar()}>
+                        <i className="fas fa-filter"></i><span>Filter & Sort</span>
+                    </button>
+                </div>
             </div>
 
             <Navbar/>

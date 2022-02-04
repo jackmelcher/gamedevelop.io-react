@@ -1,16 +1,17 @@
 :root{
   --table-header-color: #ffffff;
-  --table-border-color: #c9c9ce;
+  --table-border-color: #b8b8b8;
   --table-row-color-1: #ffffff;
   --table-row-color-2: #eeeeee;
   --status-green: #0b8800;
   --status-yellow: #b67c00;
   --status-red: #cf0000;
   --chip-font-color: #ffffff;
+  --chip-color: #00819d;
 }
 html[data-theme = "dark"]{
   --table-header-color: #202025;
-  --table-border-color: #46464b;
+  --table-border-color: #808080;
   --table-row-color-1: #202025;
   --table-row-color-2: #424242;
   --status-green: #64fd50;
@@ -94,7 +95,7 @@ html[data-theme = "dark"]{
 }
 .entry-chip{
   border: 0px solid var(--input-border-color);
-  border-radius: 12px;
+  border-radius: 8px;
   display: inline-block;
   padding: 4px 8px;
   margin: 4px;
@@ -104,6 +105,7 @@ html[data-theme = "dark"]{
 }
 .entry-chip i {
   padding: 2px;
+  font-size: 16px;
 }
 .entry-description{
   font-size: 18px;
@@ -111,18 +113,23 @@ html[data-theme = "dark"]{
 }
 .chip-color1{
   background-color: #00bae5;
+  background-color: var(--chip-color);
 }
 .chip-color2{
-  background-color: #00e55c;
+  //background-color: #00e55c;
+  background-color: var(--chip-color);
 }
 .chip-color3{
-  background-color: #e5a200;
+  //background-color: #e5a200;
+  background-color: var(--chip-color);
 }
 .chip-color4{
   background-color: #e5005d;
+  background-color: var(--chip-color);
 }
 .chip-color5{
-  background-color: #e500c8;
+  //background-color: #e500c8;
+  background-color: var(--chip-color);
 }
 
 .accepted{
@@ -151,9 +158,8 @@ html[data-theme = "dark"]{
   border: 1px solid var(--input-border-color);
   border-radius: 5px;
   padding: 2px 12px;
-  margin-left: 80px;
   display: inline !important;
-  margin-bottom: 2%!important;
+  margin-bottom: 5px;
 }
 .selectbar{
   position: fixed;
@@ -164,17 +170,7 @@ html[data-theme = "dark"]{
   border-bottom: 1px solid var(--side-border-bottom-color);
   background-color: var(--side-bg-color);
 }
-.selectbar>button{
-  color: var(--font-color);
-  background-color: var(--side-button-bg-color);
-  border: 1px solid var(--input-border-color);
-  border-radius: 5px;
-  display: none;
-}
-.selectbar>button>img{
-  height: 20px;
-  vertical-align: -3px;
-}
+
 select{
   color: var(--font-color);
   background-color: var(--side-button-bg-color);
@@ -190,6 +186,31 @@ select{
 .tableTitle{
   font-size: 21px;
   margin-bottom: 5px;
+  font-weight: bold;
+}
+.select-flex-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.select-flex-item{
+  flex: 0 1 auto;
+  display: inline-block;
+}
+.select-flex-item-padding{
+  flex: 1 1 auto;
+  display: inline-block;
+}
+.filterSortButton{
+  color: var(--font-color);
+  background-color: var(--side-button-bg-color);
+  border: 1px solid var(--input-border-color);
+  border-radius: 5px;
+  display: none;
+}
+.filterSortButton img{
+  height: 20px;
+  vertical-align: -3px;
 }
 .filtername{
   font-size: 18px;
@@ -378,12 +399,22 @@ td:nth-child(2){
   .selectbar > * *{
     font-size: 18px;
   }
-  .selectbar>button{
+  .select-flex-container {
+    flex-wrap: nowrap;
+  }
+  .select-flex-item {
+    margin: 4px 4px;
+    white-space: nowrap;
+  }
+  .select-flex-item-padding{
+    display: none;
+  }
+  .filterSortButton{
     display: inline-block;
     margin-right: 5px;
     padding: 6px 12px;
   }
-  .selectbar>button>i{
+  .filterSortButton>i{
     margin-right: 8px;
   }
   .selectbar>select{
@@ -464,8 +495,6 @@ td:nth-child(2){
   .viewButton {
     width: 12% !important;
     padding: 6px!important;
-    margin-left: 0px!important;
-    margin-right: 1%!important;
   }
   .viewButton span{
     display: none;
