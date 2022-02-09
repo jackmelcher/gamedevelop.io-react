@@ -167,11 +167,15 @@ function SelectColumnFilter({column: { filteredRows, filterValue = [], setFilter
     const options = useMemo(() => {
         let set = new Set();
         filteredRows.forEach(row =>{
+            console.log(id)
+            console.log(row.values[id])
+            if(row.values[id] != undefined){
                 let cells = row.values[id].split(", ");
                 cells.forEach(element => {
                     set.add(element);
                 });
-            })
+            }
+        })
         return Array.from(set).sort();
     }, [id])
 
@@ -179,10 +183,12 @@ function SelectColumnFilter({column: { filteredRows, filterValue = [], setFilter
     const optionsSet = useMemo(() => {
         let set = new Set();
         filteredRows.forEach(row =>{
-            let cells = row.values[id].split(", ");
-            cells.forEach(element => {
-                set.add(element);
-            });
+            if(row.values[id] != undefined){
+                let cells = row.values[id].split(", ");
+                cells.forEach(element => {
+                    set.add(element);
+                });
+            }
         })
         return set;
     },[filteredRows]);
