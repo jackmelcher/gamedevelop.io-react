@@ -8,6 +8,7 @@ import {useSortBy, useTable, useGlobalFilter, useFilters, useAsyncDebounce} from
 import {readString} from "react-papaparse"
 
 import "../css/resources.css"
+import axios from "axios";
 
 const IconsOS = ({source}) => {
     let platformsArray = source.split(", ")
@@ -167,8 +168,6 @@ function SelectColumnFilter({column: { filteredRows, filterValue = [], setFilter
     const options = useMemo(() => {
         let set = new Set();
         filteredRows.forEach(row =>{
-            console.log(id)
-            console.log(row.values[id])
             if(row.values[id] != undefined){
                 let cells = row.values[id].split(", ");
                 cells.forEach(element => {
@@ -460,15 +459,29 @@ const Table = ({columns, data, view}) => {
 }
 
 const Resources = ({map, children}) => {
-    let resourceMap = map;
+    let other;
 
     const [tableName,setTableName] = useState("");
     let csvData =[], columnsData = [];
     const [table,setTable] = useState(csvData);
     const [columns,setColumns] = useState(columnsData);
 
+    function MakeResourceMap(entry, index){
+        return axios.get(entry[1])
+    }
+
     useEffect(()=>{
-        SelectTable();
+        let object = new Object();
+        console.log(map);
+        Promise.all(Array.from(Object.entries(map)).map(MakeResourceMap))
+            .then(dataArray => {
+                Object.keys(map).forEach((key,index) => {
+                    object[key] = dataArray[index].data
+                })
+                other = object
+                SelectTable();
+            })
+
         window.addEventListener('hashchange', hashChangeHandler);
         return () => {
             window.removeEventListener('hashchange', hashChangeHandler);
@@ -500,12 +513,21 @@ const Resources = ({map, children}) => {
     }
     function LoadTable(filename)
     {
-        let link = resourceMap[filename];
+        if(other === undefined){
+            console.log("resourceMap undefined")
+            return
+        }
+
+        console.log(filename)
+        console.log(other[filename])
+        let link = other[filename];
         let category = document.getElementById("category");
         setTableName(category.options[category.selectedIndex].text);
 
         // React-table implementation
-        csvData = readString(link,{header:true}).data;
+        try{
+            csvData = readString(link, {header: true}).data;
+
         //console.log("csvData: ");
         //console.log(csvData);
         let columnKeys = Object.keys(csvData[0]);
@@ -559,6 +581,9 @@ const Resources = ({map, children}) => {
 
         //console.log("table");
         //console.log(table);
+        }catch (e){
+            console.log(e)
+        }
     }
 
     function toggleSidebar()
