@@ -7,7 +7,7 @@
 
 
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
 import Resources from "../components/resources"
 

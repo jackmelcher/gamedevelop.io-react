@@ -55,6 +55,10 @@ const Guides = (props) => {
                                             </>
                                         )
                                     }
+                                    else
+                                    {
+                                        return (<></>);
+                                    }
                                 })
                             }
                             </Link>

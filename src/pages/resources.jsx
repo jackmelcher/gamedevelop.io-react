@@ -25,11 +25,11 @@ const ResourcePages = () => {
     return(
       <Layout>
         <Seo title="Resources" description="Explore a Database full of game development tools, assets, and services."/>
-        <div className="flex-container-resources">
+        <div className="flex-container-row-nowrap-center">
             <h1 className="header">Resources</h1>
         </div>
-        <div className="flex-container-resources">
-            <div className="flex-item-resources flex-container-resources-inner">
+        <div className="flex-container-row-nowrap-center">
+            <div className="flex-item-resources flex-container-row-wrap-center">
                 {
                     data.contentfulRecources.resourceSections.map(resourceSection => {
                         return(
@@ -47,7 +47,6 @@ const ResourcePages = () => {
                     })
                 }
             </div>
-
         </div>
       </Layout>
     );

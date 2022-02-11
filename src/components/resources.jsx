@@ -206,6 +206,7 @@ function SelectColumnFilter({column: { filteredRows, filterValue = [], setFilter
                     <li className="nobullets" key={option+id}>
                         <input
                             type="checkbox"
+                            className="filterItem"
                             id={option}
                             name={option}
                             value={option}
@@ -227,10 +228,10 @@ function SelectColumnFilter({column: { filteredRows, filterValue = [], setFilter
 }
 
 const EmptyRow = ({rows}) => {
+    console.log(rows);
     let isTableEmpty = rows.length === 0;
     return(
-        isTableEmpty &&
-        <tr><td className="emptyRow" colSpan={99}>No Results</td></tr>
+        isTableEmpty && <h1>Loading Data</h1>
     )
 }
 
@@ -286,7 +287,14 @@ const Table = ({columns, data, view}) => {
                     prepareRow(row)
                     return (
                         <tr {...row.getRowProps()}>
-                            {row.cells.map(cell => {
+                            {row.cells.map((cell, index) => {
+                                if (index === 1) {
+                                    return (
+                                            <td {...cell.getCellProps()} className="entry-name-table">
+                                                {cell.render('Cell')}
+                                            </td>
+                                    )
+                                }
                                 return (
                                     <td {...cell.getCellProps()}>
                                         {cell.render('Cell')}
@@ -296,13 +304,12 @@ const Table = ({columns, data, view}) => {
                         </tr>
                     )
                 })}
-                <EmptyRow rows={rows}/>
                 </tbody>
             </table>}
 
             {/* Grid View */}
             {view === "grid" && <div {...getTableProps()} id={"myTable"}>
-                <div {...getTableBodyProps()} className="flex-table-container">
+                <div {...getTableBodyProps()} className="flex-container-row-wrap">
                 {
                     rows.map((row, index) => {
                         prepareRow(row)
@@ -349,13 +356,12 @@ const Table = ({columns, data, view}) => {
                             </>
                         )
                     })}
-                <EmptyRow rows={rows}/>
                 </div>
             </div>}
 
             {/* List View */}
             {(view === "list") && <div {...getTableProps()} id={"myTable"}>
-                <div {...getTableBodyProps()} className="flex-list-container">
+                <div {...getTableBodyProps()} className="flex-container-column-wrap">
                     {
                         rows.map((row, index) => {
                             prepareRow(row)
@@ -401,9 +407,10 @@ const Table = ({columns, data, view}) => {
                                 </>
                             )
                         })}
-                    <EmptyRow rows={rows}/>
                 </div>
             </div>}
+            <EmptyRow rows={rows}/>
+
 
             <div className="sidenav rsidenav">
                 <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
@@ -432,8 +439,18 @@ const Table = ({columns, data, view}) => {
                     ))}
                 </div>}
 
-                <div className="filtername">
-                    <b>Filters:</b>
+                <div className="filtername select-flex-container">
+                    <div className="flex-filter-item bold">Filters:</div>
+                    <div className="flex-filter-item-padding"></div>
+                    <button className="flex-filter-item resetButton" onClick={() => {
+                        setAllFilters([]);
+                        let inputs = document.getElementsByClassName("filterItem");
+                        Array.from(inputs).forEach((element,index)=>{
+                            element.checked = false;
+                        })
+                    }}>
+                        Reset
+                    </button>
                 </div>
 
                 <div id="Filters">
@@ -459,7 +476,7 @@ const Table = ({columns, data, view}) => {
 }
 
 const Resources = ({map, children}) => {
-    let other;
+    let resourceData;
 
     const [tableName,setTableName] = useState("");
     let csvData =[], columnsData = [];
@@ -478,7 +495,7 @@ const Resources = ({map, children}) => {
                 Object.keys(map).forEach((key,index) => {
                     object[key] = dataArray[index].data
                 })
-                other = object
+                resourceData = object
                 SelectTable();
             })
 
@@ -513,14 +530,14 @@ const Resources = ({map, children}) => {
     }
     function LoadTable(filename)
     {
-        if(other === undefined){
+        if(resourceData === undefined){
             console.log("resourceMap undefined")
             return
         }
 
         console.log(filename)
-        console.log(other[filename])
-        let link = other[filename];
+        console.log(resourceData[filename])
+        let link = resourceData[filename];
         let category = document.getElementById("category");
         setTableName(category.options[category.selectedIndex].text);
 
@@ -660,7 +677,7 @@ const Resources = ({map, children}) => {
                     <select id="category" className="select-flex-item" onChange={(e) => {
                         handleSelectChange(e.target.value);
                     }}>
-                        {children}
+                    {children}
                     </select>
                     <button className="filterSortButton select-flex-item" onClick={(e) => toggleSidebar()}>
                         <i className="fas fa-filter"></i><span>Filter & Sort</span>
@@ -669,14 +686,17 @@ const Resources = ({map, children}) => {
             </div>
 
             <Navbar/>
-            <div className="resource">
-                <h1 id="tname">{tableName}</h1>
-
-                <Table
-                    columns={columns}
-                    data ={table}
-                    view = {view}
-                />
+            <div className="flex-container-row-nowrap">
+                <div className="flex-item-resource-table-padding-left"/>
+                <div className="flex-item-resource-table">
+                    <h1 id="tname">{tableName}</h1>
+                    <Table
+                        columns={columns}
+                        data={table}
+                        view={view}
+                    />
+                </div>
+                <div className="flex-item-resource-table-padding-right"/>
             </div>
         </Layout>
     )
