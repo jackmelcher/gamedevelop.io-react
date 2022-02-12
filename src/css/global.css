@@ -28,7 +28,7 @@ html[data-theme = "dark"]{
   --bg-color: #121215;
   --side-button-bg-color: #202025;
   --side-bg-color: #202025;
-  --side-border-color: #808080;
+  --side-border-color: #565656;
   --side-border-bottom-color: #808080;
   --heading-color: #ececec;
   --link-color: #57c4ff;
@@ -146,9 +146,6 @@ a:hover{
 .sidenav {
   width: 240px;
   position: fixed;
-  border-style: solid;
-  border-color: var(--side-border-color);
-  border-width: 0px 1px 0px 0px;
   top: 60px;
   padding: 16px 16px;
   overflow-x: auto;
@@ -198,7 +195,9 @@ a:hover{
   border-color: var(--side-border-color);
   */
 }
-
+button, input, select, label{
+  cursor: pointer;
+}
 .button {
   background-color: var(--primary-color);
   border: none; /* 2px solid #000000; */
@@ -359,14 +358,10 @@ input, textarea{
   .footer{
     padding: 8px 0px 8px 0px;
   }
-  .flex-container {
-  padding-left: 20px;
-  padding-right: 20px;
-  }
 }
 @media (max-width: 360px){
   .sidenav{
-    width: calc(100vw - 33px) !important;
+    width: calc(100vw - 32px) !important;
   }
 }
 /* The switch - the box around the slider */

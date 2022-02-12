@@ -11,7 +11,7 @@
 }
 html[data-theme = "dark"]{
   --table-header-color: #202025;
-  --table-border-color: #808080;
+  --table-border-color: #565656;
   --table-row-color-1: #202025;
   --table-row-color-2: #424242;
   --status-green: #64fd50;
@@ -84,31 +84,31 @@ html[data-theme = "dark"]{
   padding-bottom: 64px;
 }
 .flex-item-resource-table-padding-right{
-  flex: 1 0 auto;
-  flex-basis: 160px;
+  flex: 0 1 auto;
+  min-width: 73px;
   max-width: 160px;
 }
 
 .flex-table-item{
   flex: 1 1 auto;
-  margin: 32px 0px;
-  flex-basis: 360px;
-  max-width: 360px;
+  min-width: 260px;
+  flex-basis: 320px;
+  max-width: 460px;
   background-color: var(--table-row-color-1);
   border: 1px solid var(--table-border-color);
-  border-radius: 8px;
-  padding: 8px;
+  padding: 16px;
 }
 .flex-table-padding{
   flex: 0 1 auto;
-  min-width: 16px;
+  min-width: 0px;
+  max-width: 0px;
 }
 
 .flex-list-item{
   flex: 1 0 auto;
   background-color: var(--table-row-color-1);
   border: 1px solid var(--table-border-color);
-  padding: 8px;
+  padding: 16px;
 }
 
 .entry-image{
@@ -186,6 +186,7 @@ html[data-theme = "dark"]{
   left: 0px;
   width: 275px;
   height: calc(100% - 187px);
+  border-right: 1px solid var(--side-border-color);
 }
 .viewButton{
   font-size: 16px;
@@ -207,14 +208,15 @@ html[data-theme = "dark"]{
   border-radius: 5px;
   padding: 2px 12px;
 }
+
 .selectbar{
   position: fixed;
   padding: 16px;
   top: 60px;
   width: 275px;
   max-height: 62px;
-  border-bottom: 1px solid var(--side-border-bottom-color);
-  border-right: 1px solid var(--side-border-bottom-color);
+  border-bottom: 1px solid var(--side-border-color);
+  border-right: 1px solid var(--side-border-color);
   background-color: var(--side-bg-color);
 }
 
@@ -310,7 +312,7 @@ th {
 }
 table tr th {
   border-top: 1px solid var(--table-border-color);
-  border-bottom: 2px solid var(--table-border-color);
+  border-bottom: 3px solid var(--table-border-color);
 }
 table tr td {
   border-bottom: 1px solid var(--table-border-color);
@@ -360,7 +362,7 @@ td:nth-child(2){
     max-width: 340px;
   }
   .flex-item-resource-table-padding-right {
-    max-width: 40px;
+    min-width: 33px;
   }
 }
 @media (max-width: 768px) {
@@ -368,7 +370,7 @@ td:nth-child(2){
     max-width: 0px;
   }
   .flex-item-resource-table-padding-right {
-    max-width: 0px;
+    min-width: 0px;
   }
   .flex-item-resource-table{
     padding-top: 75px;
@@ -461,6 +463,9 @@ td:nth-child(2){
     padding: 5px 12px;
     width: auto;
   }
+  .rsidenav {
+    border-right: 0px
+  }
   .sidenav{
     top: 117px;
     height: calc(100vh - 149px);
@@ -491,6 +496,9 @@ td:nth-child(2){
   table tr th:last-child,
   table tr td:last-child {
     border-right: 0px;
+  }
+  .flex-list-item{
+    border-width: 1px 0px;
   }
 }
 @media (max-width: 529px) {

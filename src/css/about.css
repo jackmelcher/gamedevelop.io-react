@@ -63,8 +63,8 @@
   text-align: left;
 }
 
-@media (max-width: 768px){
-  .about{
-    padding: 0px 0px;
+@media (max-width: 768px) {
+  .about {
+    padding: 0px 20px;
   }
 }

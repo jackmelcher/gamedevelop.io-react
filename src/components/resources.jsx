@@ -203,7 +203,8 @@ function SelectColumnFilter({column: { filteredRows, filterValue = [], setFilter
             {options.map((option, i) => {
                 return (
                     (option !== "") &&
-                    <li className="nobullets" key={option+id}>
+                    <label htmlFor={option}>
+                        <li className="nobullets" key={option+id}>
                         <input
                             type="checkbox"
                             className="filterItem"
@@ -216,10 +217,9 @@ function SelectColumnFilter({column: { filteredRows, filterValue = [], setFilter
                             disabled={isDisabled(option)}
                             /*defaultChecked={false}*/
                         ></input>
-                        <label htmlFor={option}>
                             {option}
-                        </label>
                     </li>
+                    </label>
                 );
             })}
             </ul>
