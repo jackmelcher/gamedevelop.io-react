@@ -33,13 +33,13 @@ const SidebarG = () => {
 
     return (
         <>
-            <div className="selectbar selectbarGuide">
-            <button onClick={(e) => toggleSidebarEvent()}>
+            <div className="selectbarGuide">
+            <button className="table-of-contents-button" onClick={(e) => toggleSidebarEvent()}>
                 <i className="menuicon fas fa-list"></i>
                 <span>Table of Contents</span>
             </button>
             </div>
-            <div className="sidenav">
+            <div className="sidenav sidenavGuide">
                 <div className="guidelink-container">
                 {
                     data.contentfulGuidesHome.guideSections.map(guideSection => {
@@ -89,8 +89,8 @@ function makeAnchorList()
       var litem;
       var anchor;
 
-      let ids = document.getElementsByClassName("guideflex")[0].getElementsByTagName("div");
-      let headers = document.getElementsByClassName("guideflex")[0].getElementsByTagName("h3");
+      let ids = document.getElementsByClassName("guide")[0].getElementsByTagName("div");
+      let headers = document.getElementsByClassName("guide")[0].getElementsByTagName("h3");
       /*
       for(let j = 0; j < headers.length; j++)
       {

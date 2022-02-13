@@ -32,15 +32,16 @@ const IndexPage = () => {
     return(
     <Layout>
         <Seo title={data.contentfulHome.title} description={data.contentfulHome.description}/>
-            <div className="home">
-                <h1 className="header">{data.contentfulHome.header}</h1> 
+        <div className="home">
+            <div>
+                <h1 className="header">{data.contentfulHome.header}</h1>
                 <img src="https://ik.imagekit.io/ucxasjyuy/logo.svg" alt="logo" className="logomain"/>
                 <h1 className="subheader">{data.contentfulHome.subheader}</h1>
             </div>
-            <div className="home" dangerouslySetInnerHTML={{
-                    __html: data.contentfulHome.sectionResources.childMarkdownRemark.html,
-                  }}/>
-            <div className="home">
+            <div dangerouslySetInnerHTML={{
+                __html: data.contentfulHome.sectionResources.childMarkdownRemark.html,
+            }}/>
+            <div>
                 <Link to="/resources/" className="button button_main">
                     <h3>VIEW RESOURCES</h3>
                     <i className="fas fa-icons"></i>
@@ -48,16 +49,17 @@ const IndexPage = () => {
                     <i className="fas fa-comments-dollar"></i>
                 </Link>
             </div>
-            <div className="home" dangerouslySetInnerHTML={{
-                    __html: data.contentfulHome.sectionGuides.childMarkdownRemark.html,
-                  }}/>
-            <div className="home">
+            <div dangerouslySetInnerHTML={{
+                __html: data.contentfulHome.sectionGuides.childMarkdownRemark.html,
+            }}/>
+            <div>
                 <Link to="/guides/" className="button button_main">
                     <h3>VIEW GUIDES</h3>
                     <i className="fas fa-file-alt"></i>
                     <i className="fas fa-list-ol"></i>
                 </Link>
             </div>
+        </div>
     </Layout>
     )
 }

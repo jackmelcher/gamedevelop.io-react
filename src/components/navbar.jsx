@@ -8,7 +8,7 @@ function Navbar({children})
     //const [open, setOpen] = useState(false);
 
     return (
-        <>
+        <div className="navbar-container">
             <div className="navbar navbar-desktop flex-container-navbar">
                 <DesktopNav/>
             </div>
@@ -28,19 +28,19 @@ function Navbar({children})
             }
             </div>
             */}
-        </>
+        </div>
     );
 }
 
 const LogoNav = () => {
     return(
-        <Link to="/" className="button button_nav flex-item-navbar">
-            <img src="https://ik.imagekit.io/ucxasjyuy/logo.svg" alt="Logo" className="logoimg"/>
+        <Link to="/" className="navbar-button flex-item-navbar">
+            <img src="https://ik.imagekit.io/ucxasjyuy/logo1.svg" alt="Logo" className="logoimg"/>
         </Link>
     );
 }
 
-const MobileNav = () => {
+const MobileNav = ({children}) => {
     return(
         <>
             <CollapsedMenu/>
@@ -56,22 +56,11 @@ const DesktopNav = () => {
     return(
         <>
             <LogoNav/>
-            <Link to="/resources/" className="button button_nav flex-item-navbar">
-                <p><i className="fas fa-database"></i> Resources</p>
-            </Link>
-            <Link to="/guides/" className="button button_nav flex-item-navbar">
-                <p><i className="fas fa-list-alt"></i> Guides</p>
-            </Link>
-            <Link to="/about/" className="button button_nav flex-item-navbar">
-                <p><i className="fas fa-info-circle"></i> About</p>
-            </Link>
-            <Link to="/resources-submit/" className="button button_nav flex-item-navbar">
-                <p><i className="fas fa-clipboard-list"></i> Submit a Resource</p>
-            </Link>
+            <Resources/>
+            <Guides/>
+            <About/>
             <div className="flex-item-padding" />
-            <a href="https://www.patreon.com/jackmelcher" className="button button_nav flex-item-navbar big" target="_blank" rel="noopener noreferrer">
-                <p><i className="fab fa-patreon"></i> Become a Patron</p>
-            </a>
+            <Patreon/>
             <Theme />
         </>
     );
@@ -79,19 +68,15 @@ const DesktopNav = () => {
 
 function Theme()
 {
+    //const [theme,setTheme] = useState(localStorage.getItem("site-theme") ? true : false);
     const [theme,setTheme] = useState(true);
-
-    useEffect(() => {    
-        // Initialize Theme
-        setTheme(localStorage.getItem("site-theme") ? true : false);
-    },[]);
 
     useEffect(() => {    
         themeMode(theme);
     },[theme]);
 
     return (
-        <button className="button button_nav flex-item-navbar small" onClick={()=> setTheme(!theme)}>
+        <button className="navbar-button flex-item-navbar small" onClick={()=> setTheme(!theme)}>
         {
             theme && <i className="menuicon fas fa-moon"></i>
         }
@@ -120,7 +105,7 @@ function CollapsedMenu()
     const [menu,setMenu] = useState(false);
     return(
         <>
-            <button className="button button_nav flex-item-navbar small" onClick={()=> setMenu(!menu)}>
+            <button className="navbar-button flex-item-navbar small" onClick={()=> setMenu(!menu)}>
                 {
                     !menu && <i className="fas fa-bars"></i>
                 }
@@ -131,25 +116,52 @@ function CollapsedMenu()
             </button>
             {
                 menu &&
-                <div className="collapsed-navbar">
-                    <Link to="/resources/" className="button button_nav flex-item-navbar">
-                        <p><i className="fas fa-database"></i> Resources</p>
-                    </Link>
-                    <Link to="/guides/" className="button button_nav flex-item-navbar">
-                        <p><i className="fas fa-list-alt"></i> Guides</p>
-                    </Link>
-                    <Link to="/about/" className="button button_nav flex-item-navbar">
-                        <p><i className="fas fa-info-circle"></i> About</p>
-                    </Link>
-                    <Link to="/resources-submit/" className="button button_nav flex-item-navbar">
-                        <p><i className="fas fa-clipboard-list"></i> Submit a Resource</p>
-                    </Link>
-                    <a href="https://www.patreon.com/jackmelcher" className="button button_nav flex-item-navbar big" target="_blank" rel="noopener noreferrer">
-                        <p><i className="fab fa-patreon"></i> Become a Patron</p>
-                    </a>
+                <div className="navbar-collapsed">
+                    <Resources/>
+                    <Guides/>
+                    <About/>
+                    <Patreon/>
                 </div>
             }
         </>
     );
 }
+
+const Resources = () => {
+    return(
+        <Link to="/resources/" className="navbar-button flex-item-navbar">
+            <p><i className="fas fa-database"></i> Resources</p>
+        </Link>
+    )
+}
+const Guides = () => {
+    return(
+        <Link to="/guides/" className="navbar-button flex-item-navbar">
+            <p><i className="fas fa-list-alt"></i> Guides</p>
+        </Link>
+    )
+}
+const About = () => {
+    return(
+        <Link to="/about/" className="navbar-button flex-item-navbar">
+            <p><i className="fas fa-info-circle"></i> About</p>
+        </Link>
+    )
+}
+const Submit = () => {
+    return(
+        <Link to="/resources-submit/" className="navbar-button flex-item-navbar">
+            <p><i className="fas fa-clipboard-list"></i> Submit a Resource</p>
+        </Link>
+    )
+}
+const Patreon = () => {
+    return(
+        <a href="https://www.patreon.com/jackmelcher" className="navbar-button flex-item-navbar big" target="_blank" rel="noopener noreferrer">
+            <p><i className="fab fa-patreon"></i> Become a Patron</p>
+        </a>
+    )
+}
+
+
 export default Navbar

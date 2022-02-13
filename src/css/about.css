@@ -47,6 +47,7 @@
   padding-bottom: 32px;
   text-align: center;
   background-color: var(--guide-body-color);
+  margin: 0px auto
 }
 .about>p{
   font-size: 18px;

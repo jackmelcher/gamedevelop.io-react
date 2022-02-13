@@ -26,8 +26,8 @@ const Layoutg = ({ children }) => {
       <SidebarG/>
       <Navbar/>
       <div className="flex-main-content">
-        <div className="guideflex-container">
-          <div id="overview" className="guideflex">
+        <div className="guide-container">
+          <div id="overview" className="guide">
             {children}
           </div>
         </div>

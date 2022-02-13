@@ -2,24 +2,25 @@
     text-align: center;
     padding-bottom: 32px;
     padding: 0px 64px;
+    margin: 0px auto
 }
-.home > p {
+.home p {
 font-size: 18px;
 margin-top: 8px;
 margin-bottom: 12px;
 }
-.home > h2 {
+.home h2 {
 margin-top: 36px;
 margin-bottom: 8px;
 }
-.home > a {
+.home a {
   margin-bottom: 16px;
 }
-.home > a > i {
+.home i {
   font-size: 56px;
   padding: 0px 8px;
 }
-.home > a > h3 {
+.home h3 {
   margin-bottom: 16px;
   color: var(--secondary-color) !important; /* Text Color */
 }

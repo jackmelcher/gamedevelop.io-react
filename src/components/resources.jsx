@@ -227,11 +227,17 @@ function SelectColumnFilter({column: { filteredRows, filterValue = [], setFilter
     );
 }
 
+const LoadingData = ({isLoading}) => {
+    return(
+        isLoading && <h1>Loading Data</h1>
+    )
+}
+
 const EmptyRow = ({rows}) => {
     console.log(rows);
     let isTableEmpty = rows.length === 0;
     return(
-        isTableEmpty && <h1>Loading Data</h1>
+        isTableEmpty && <h2>No Search Results</h2>
     )
 }
 
@@ -261,7 +267,7 @@ const Table = ({columns, data, view}) => {
     return(
         <>
             {/* Table View */}
-            {view === "table" && <table {...getTableProps()} id={"myTable"}>
+            {view === "table" && rows.length !== 0 &&<table {...getTableProps()} id={"myTable"}>
                 <thead>
                 {headerGroups.map(headerGroup => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
@@ -309,13 +315,13 @@ const Table = ({columns, data, view}) => {
 
             {/* Grid View */}
             {view === "grid" && <div {...getTableProps()} id={"myTable"}>
-                <div {...getTableBodyProps()} className="flex-container-row-wrap">
+                <div {...getTableBodyProps()} className="grid-container">
                 {
                     rows.map((row, index) => {
                         prepareRow(row)
                         return (
                             <>
-                                <div {...row.getRowProps()} className="flex-table-item">
+                                <div {...row.getRowProps()} className="grid-item">
                                     {row.cells.map((cell, index) => {
                                         if (index === 0) {
                                             return (
@@ -352,7 +358,6 @@ const Table = ({columns, data, view}) => {
                                         }
                                     })}
                                 </div>
-                                <div className="flex-table-padding"/>
                             </>
                         )
                     })}
@@ -482,8 +487,10 @@ const Resources = ({map, children}) => {
     let csvData =[], columnsData = [];
     const [table,setTable] = useState(csvData);
     const [columns,setColumns] = useState(columnsData);
+    const [isLoading,setIsLoading] = useState(true);
 
     function MakeResourceMap(entry, index){
+        setIsLoading(false)
         return axios.get(entry[1])
     }
 

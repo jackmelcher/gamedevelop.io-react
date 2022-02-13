@@ -26,11 +26,9 @@ const About = () => {
     return(
         <Layout>
             <Seo title={data.contentfulPage.title} description={data.contentfulPage.description}/>
-            <div className="flex-container">
                 <div className="about" dangerouslySetInnerHTML={{
                     __html: data.contentfulPage.body.childMarkdownRemark.html,
                   }}/>
-            </div>
         </Layout>
     )
 }
