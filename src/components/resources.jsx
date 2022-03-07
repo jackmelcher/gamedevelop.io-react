@@ -128,12 +128,12 @@ const GlobalFilterAsync = ({ filter, setFilter }) => {
     const onChange = useAsyncDebounce((value) => {
         setFilter(value || undefined);
         //FilterTable();
-    },1000)
+    },500)
 
     return(
         <div>
-            Search: {" "}
-        <input value={value || ""} onChange={(e) => {setValue(e.target.value);onChange(e.target.value);}}/>
+            <span className="filtername bold">Search: {" "}</span>
+            <input className="globalSearch"  value={value || ""} onChange={(e) => {setValue(e.target.value);onChange(e.target.value);}}/>
         </div>
     );
 }
@@ -227,13 +227,14 @@ function SelectColumnFilter({column: { filteredRows, filterValue = [], setFilter
     );
 }
 
-const LoadingData = ({isLoading}) => {
+const LoadingData = () => {
     return(
-        isLoading && <h1>Loading Data</h1>
-    )
+        <h2>Loading Data...</h2>
+    );
 }
 
 const EmptyRow = ({rows}) => {
+    console.log("Empty rows");
     console.log(rows);
     let isTableEmpty = rows.length === 0;
     return(
@@ -259,7 +260,8 @@ const Table = ({columns, data, view}) => {
         setAllFilters
     } = useTable({ columns: columns, data: data, defaultColumn }, useFilters, useGlobalFilter, useSortBy);
 
-    useEffect(()=>{        setAllFilters([]);
+    useEffect(()=>{
+        setAllFilters([]);
     },[data])
 
     const {globalFilter} = state;
@@ -414,11 +416,13 @@ const Table = ({columns, data, view}) => {
                         })}
                 </div>
             </div>}
-            <EmptyRow rows={rows}/>
-
+            {state.globalFilter && <EmptyRow rows={rows}/>}
 
             <div className="sidenav rsidenav">
                 <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+                {/*
+                <GlobalFilterAsync filter={globalFilter} setFilter={setGlobalFilter} />
+                */}
                 <br/>
                 <div className="filtername">
                     <b>Sort:</b>
@@ -482,28 +486,51 @@ const Table = ({columns, data, view}) => {
 
 const Resources = ({map, children}) => {
     let resourceData;
-
+    const [isLoading,setIsLoading] = useState(false);
     const [tableName,setTableName] = useState("");
     let csvData =[], columnsData = [];
     const [table,setTable] = useState(csvData);
     const [columns,setColumns] = useState(columnsData);
-    const [isLoading,setIsLoading] = useState(true);
 
-    function MakeResourceMap(entry, index){
-        setIsLoading(false)
-        return axios.get(entry[1])
+    function MakeResourceMap(entry){
+        return axios.get(entry[1]);
     }
 
     useEffect(()=>{
-        let object = new Object();
         console.log(map);
+
+        console.log(localStorage.getItem(document.getElementById("category").value));
+        if(!localStorage.getItem(document.getElementById("category").value)){
+            console.log("set loading to true");
+            setIsLoading(true);
+            console.log("isLoading");
+            console.log(isLoading);
+        }
+
+        let tempMap = new Object();
+        Object.keys(map).forEach((key) => {
+            tempMap[key] = localStorage.getItem(key);
+        })
+        resourceData = tempMap;
+        console.log("tempMap")
+        console.log(tempMap)
+
+        SelectTable();
+
+        let object = new Object();
         Promise.all(Array.from(Object.entries(map)).map(MakeResourceMap))
             .then(dataArray => {
                 Object.keys(map).forEach((key,index) => {
                     object[key] = dataArray[index].data
+                    if(localStorage.getItem(key) != dataArray[index].data){
+                        localStorage.setItem(key,object[key]);
+                    }
                 })
                 resourceData = object
+
+                // Can I cache and check the data if it differs here?
                 SelectTable();
+                setIsLoading(false);
             })
 
         window.addEventListener('hashchange', hashChangeHandler);
@@ -552,59 +579,59 @@ const Resources = ({map, children}) => {
         try{
             csvData = readString(link, {header: true}).data;
 
-        //console.log("csvData: ");
-        //console.log(csvData);
-        let columnKeys = Object.keys(csvData[0]);
-        //console.log("columnKeys: ");
-        //console.log(columnKeys);
-        let arr = [];
-        arr.push({
-            Header: "",
-            accessor: "Image",
-            disableSortBy: true,
-            Cell: ({row}) => <Image source={row.original.Link} />,
-            disableFilters: true,
-        })
-        //console.log("columnKeys.length: " + columnKeys.length);
-        for(let i = 0; i < columnKeys.length; i++){
-            let columnObject = {};
-            columnObject.Header = columnKeys[i];
-            columnObject.accessor = columnKeys[i];
-            columnObject.id = columnKeys[i]+window.location.hash;
-            if(i === 0){
-                columnObject.Cell = ({row})=> <a href={row.original.Link} target="_blank" rel="noopener noreferrer">{row.original.Name}</a>;
-                columnObject.disableFilters = true;
+            //console.log("csvData: ");
+            //console.log(csvData);
+            let columnKeys = Object.keys(csvData[0]);
+            //console.log("columnKeys: ");
+            //console.log(columnKeys);
+            let arr = [];
+            arr.push({
+                Header: "",
+                accessor: "Image",
+                disableSortBy: true,
+                Cell: ({row}) => <Image source={row.original.Link} />,
+                disableFilters: true,
+            })
+            //console.log("columnKeys.length: " + columnKeys.length);
+            for(let i = 0; i < columnKeys.length; i++){
+                let columnObject = {};
+                columnObject.Header = columnKeys[i];
+                columnObject.accessor = columnKeys[i];
+                columnObject.id = columnKeys[i]+window.location.hash;
+                if(i === 0){
+                    columnObject.Cell = ({row})=> <a href={row.original.Link} target="_blank" rel="noopener noreferrer">{row.original.Name}</a>;
+                    columnObject.disableFilters = true;
+                }
+                if(i === 1){
+                    continue;
+                }
+                if(columnKeys[i].includes("Platforms")){
+                    columnObject.Cell = ({row})=> <IconsOS source={row.original.Platforms}/>;
+                }
+                if(i > 1  && i < columnKeys.length - 1){
+                    columnObject.Filter = SelectColumnFilter;
+                    columnObject.filter = "includesAll";
+                }
+                if(i > 2  && i < columnKeys.length){
+                    columnObject.disableSortBy = true;
+                }
+                if(i === columnKeys.length -1) {
+                    columnObject.disableFilters = true;
+                }
+                //console.log(columnObject)
+                arr.push(columnObject);
             }
-            if(i === 1){
-                continue;
-            }
-            if(columnKeys[i].includes("Platforms")){
-                columnObject.Cell = ({row})=> <IconsOS source={row.original.Platforms}/>;
-            }
-            if(i > 1  && i < columnKeys.length - 1){
-                columnObject.Filter = SelectColumnFilter;
-                columnObject.filter = "includesAll";
-            }
-            if(i > 2  && i < columnKeys.length){
-                columnObject.disableSortBy = true;
-            }
-            if(i === columnKeys.length -1) {
-                columnObject.disableFilters = true;
-            }
-            //console.log(columnObject)
-            arr.push(columnObject);
-        }
-        columnsData = arr;
-        //console.log("columnsData");
-        //console.log(columnsData);
-        setTable(csvData);
+            columnsData = arr;
+            //console.log("columnsData");
+            //console.log(columnsData);
+            setTable(csvData);
 
-        setColumns(columnsData);
-        //console.log("columns");
-        //console.log(columns);
+            setColumns(columnsData);
+            //console.log("columns");
+            //console.log(columns);
 
-        //console.log("table");
-        //console.log(table);
+            //console.log("table");
+            //console.log(table);
         }catch (e){
             console.log(e)
         }
@@ -627,7 +654,7 @@ const Resources = ({map, children}) => {
 
     // View Button
     const [isGridView,setGridView] = useState(true);
-    const [view,setView] = useState("table");
+    const [view,setView] = useState(localStorage.getItem("resource-view"));
     useEffect(() => {
         // Initialize View
         setGridView(localStorage.getItem("resource-gridview") ? true : false);
@@ -664,7 +691,7 @@ const Resources = ({map, children}) => {
     const ViewButton = () => {
         return (
             <button className="viewButton select-flex-item" onClick={()=>{cycleView();}}>
-            {view === "table" && <><i className="fas fa-table"></i><span> Table View</span></>}
+            {(view === "table" || view === "") && <><i className="fas fa-table"></i><span> Table View</span></>}
             {view === "list" && <><i className=" fas fa-th-list"></i><span> List View</span></>}
             {view === "grid" && <><i className=" fas fa-th-large"></i><span> Grid View</span></>}
             </button>
@@ -697,6 +724,7 @@ const Resources = ({map, children}) => {
                 <div className="flex-item-resource-table-padding-left"/>
                 <div className="flex-item-resource-table">
                     <h1 id="tname">{tableName}</h1>
+                    {isLoading && <LoadingData/>}
                     <Table
                         columns={columns}
                         data={table}

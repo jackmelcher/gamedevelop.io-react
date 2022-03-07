@@ -98,6 +98,7 @@ html[data-theme = "dark"]{
 .grid-container{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(336px, 1fr));
+  border: 1px solid var(--table-border-color);
   /*
   grid-template-columns: 1fr 1fr;
   */
@@ -366,6 +367,7 @@ td:nth-child(2){
   border-style: solid;
   border-width: 1px;
   border-radius: 2px;
+  cursor: text;
 }
 @media (min-width: 769px) and (max-width: 1600px) {
   .flex-item-resource-table-padding-left {
