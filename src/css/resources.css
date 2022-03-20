@@ -59,11 +59,16 @@ html[data-theme = "dark"]{
   font-size: 56px;
   padding: 0px 8px;
 }
-
 .flex-container-row-wrap{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+.flex-container-row-wrap-align-items-center{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
 }
 .flex-container-row-nowrap{
   display: flex;

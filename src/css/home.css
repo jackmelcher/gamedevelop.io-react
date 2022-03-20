@@ -1,20 +1,46 @@
+.homeSection{
+    margin: 0px auto;
+    max-width: 1200px;
+    padding: 120px 16px;
+}
+.homeHeader{
+    font-size: 36px;
+    margin-bottom: 16px;
+    font-family: "Roboto Slab";
+}
+.homeSectionHeader{
+    font-family: "Roboto Slab";
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+.homeHeaderBackground{
+    background: linear-gradient(315deg, rgba(51,0,255,1) 0%, rgba(0,185,255,1) 100%);
+    background: linear-gradient(315deg, rgba(29,0,144,1) 0%, rgba(0,185,255,1) 100%);
+}
+.altBackground{
+    background-color: var(--bg-color2);
+}
+.flex-item-home{
+    flex: auto;
+    flex-basis: 300px;
+    max-width: 800px;
+    padding: 16px;
+}
 .home{
     text-align: center;
-    padding-bottom: 32px;
-    padding: 0px 64px;
-    margin: 0px auto
+    margin: 0px auto;
 }
 .home p {
-font-size: 18px;
-margin-top: 8px;
-margin-bottom: 12px;
+    font-size: clamp(16px,2vw,20px);
 }
 .home h2 {
-margin-top: 36px;
-margin-bottom: 8px;
+    margin-top: 0px;
 }
-.home a {
-  margin-bottom: 16px;
+.homeHeaderButton {
+    margin-bottom: 16px;
+}
+.homeSectionButton{
+    margin-top: 16px;
 }
 .home i {
   font-size: 56px;
@@ -23,6 +49,9 @@ margin-bottom: 8px;
 .home h3 {
   margin-bottom: 16px;
   color: var(--secondary-color) !important; /* Text Color */
+}
+.home-image{
+    margin: 1.5em 0;
 }
 @media (max-width: 768px) {
     .home {

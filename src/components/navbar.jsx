@@ -1,33 +1,18 @@
 import { Link } from "gatsby"
-import React, {useState, useEffect, useMemo} from "react"
+import React, {useState, useEffect} from "react"
 
 
 
 function Navbar({children})
 {
-    //const [open, setOpen] = useState(false);
-
     return (
         <div className="navbar-container">
-            <div className="navbar navbar-desktop flex-container-navbar">
+            <div className="navbar navbar-desktop flex-container row wrap">
                 <DesktopNav/>
             </div>
-            <span className="navbar navbar-mobile flex-container-navbar">
+            <span className="navbar navbar-mobile flex-container row wrap">
                 <MobileNav/>
             </span>
-            {/*
-            <button className="button settingsnavbutton button_nav flex-item-navbar" onClick={() => setOpen(!open)}>
-                <i className="menuicon fas fa-cog"></i>
-            </button>
-            <a href="https://www.buymeacoffee.com/gamedevelop" className="button_nav_patreon button button_logo settingsnavbutton button_nav " target="_blank" rel="noopener noreferrer">
-                <img src="https://ik.imagekit.io/ucxasjyuy/patreon-navbar.png" alt="Patreon Logo"/>Become a Patron
-            </a>
-            <div>
-            {
-                open && <Settings />
-            }
-            </div>
-            */}
         </div>
     );
 }
@@ -60,7 +45,6 @@ const DesktopNav = () => {
             <Guides/>
             <About/>
             <div className="flex-item-padding" />
-            <Patreon/>
             <Theme />
         </>
     );
@@ -69,34 +53,40 @@ const DesktopNav = () => {
 function Theme()
 {
     //const [theme,setTheme] = useState(localStorage.getItem("site-theme") ? true : false);
-    const [theme,setTheme] = useState(true);
+    const [isDarkTheme,setIsDarkTheme] = useState(false);
+
+    useEffect(() => {
+        if(localStorage.getItem("site-theme")){
+            setIsDarkTheme(true);
+        }
+    },[]);
 
     useEffect(() => {    
-        themeMode(theme);
-    },[theme]);
+        themeMode(isDarkTheme);
+    },[isDarkTheme]);
 
     return (
-        <button className="navbar-button flex-item-navbar small" onClick={()=> setTheme(!theme)}>
+        <button className="navbar-button flex-item-navbar small" onClick={()=> setIsDarkTheme(!isDarkTheme)}>
         {
-            theme && <i className="menuicon fas fa-moon"></i>
+            isDarkTheme && <i className="menuicon fas fa-moon"></i>
         }
         {
-            !theme && <i className="menuicon fas fa-sun"></i>
+            !isDarkTheme && <i className="menuicon fas fa-sun"></i>
         }
         </button>
     );
 }
 
-function themeMode(isDarkMode)
+function themeMode(isDarkTheme)
 {
     const htmlTag = document.getElementsByTagName("html")[0];
-    if (!isDarkMode) {
-        htmlTag.removeAttribute("data-theme");
-        localStorage.removeItem("site-theme");
-    }
-    else{
+    if (isDarkTheme) {
         htmlTag.setAttribute("data-theme", "dark");
         localStorage.setItem("site-theme", "dark");
+    }
+    else {
+        htmlTag.removeAttribute("data-theme");
+        localStorage.removeItem("site-theme");
     }
 }
 
@@ -120,7 +110,6 @@ function CollapsedMenu()
                     <Resources/>
                     <Guides/>
                     <About/>
-                    <Patreon/>
                 </div>
             }
         </>
@@ -130,24 +119,26 @@ function CollapsedMenu()
 const Resources = () => {
     return(
         <Link to="/resources/" className="navbar-button flex-item-navbar">
-            <p><i className="fas fa-database"></i> Resources</p>
+            <p>Resources</p>
         </Link>
     )
 }
 const Guides = () => {
     return(
         <Link to="/guides/" className="navbar-button flex-item-navbar">
-            <p><i className="fas fa-list-alt"></i> Guides</p>
+            <p>Guides</p>
         </Link>
     )
 }
 const About = () => {
     return(
         <Link to="/about/" className="navbar-button flex-item-navbar">
-            <p><i className="fas fa-info-circle"></i> About</p>
+            <p>About</p>
         </Link>
     )
 }
+
+// Atm not using this page. Might replace page with Google Form.
 const Submit = () => {
     return(
         <Link to="/resources-submit/" className="navbar-button flex-item-navbar">
@@ -155,13 +146,5 @@ const Submit = () => {
         </Link>
     )
 }
-const Patreon = () => {
-    return(
-        <a href="https://www.patreon.com/jackmelcher" className="navbar-button flex-item-navbar big" target="_blank" rel="noopener noreferrer">
-            <p><i className="fab fa-patreon"></i> Become a Patron</p>
-        </a>
-    )
-}
-
 
 export default Navbar

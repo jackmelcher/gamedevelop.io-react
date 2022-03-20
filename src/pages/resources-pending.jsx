@@ -9,6 +9,7 @@ import {readString,jsonToCSV} from "react-papaparse"
 import "../css/resources.css"
 import axios from "axios"
 
+// Atm not using this page. Don't want to rework all of it.
 const Resources = () => {
     
     const tableNames = ["user_submitted","user_submitted","user_submitted","user_submitted"];

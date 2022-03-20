@@ -10,6 +10,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 const TEST_SITE_KEY = process.env.GATSBY_SITE_RECAPTCHA_KEY;
 
+// Atm not using this page. Might replace page with Google Form.
 const SubmitResource = () => {
 
     const{ register, handleSubmit, formState: { errors }, reset } = useForm();

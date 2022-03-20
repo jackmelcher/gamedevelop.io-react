@@ -5,6 +5,7 @@
   --tertiary-color: #ffffff;
   --font-color: #08090a;
   --bg-color: #f0f0f5;
+  --bg-color2: #ffffff;
   --border-color: #b8b8b8;
   --side-button-bg-color: #ffffff;
   --side-bg-color: #ffffff;
@@ -32,6 +33,7 @@ html[data-theme = "dark"]{
   --tertiary-color: #ffffff;
   --font-color: #dadada;
   --bg-color: #121215;
+  --bg-color2: #303038;
   --border-color: #565656;
   --side-button-bg-color: #202025;
   --side-bg-color: #202025;
@@ -106,7 +108,7 @@ h1 {
   font-size: 36px;
 }
 h2 {
-  font-size: 28px;
+  font-size: 30px;
 }
 h3 {
   font-size: 24px;
@@ -136,11 +138,23 @@ a:hover{
   text-decoration: none !important;
 }
 .header{
-  text-align: center; font-size: 36px; margin-bottom: 16px; margin-top: 0px; padding-top: 16px;
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 16px;
+  padding-top: 16px;
+  margin-top: 0px;
+  color: var(--heading-color);
+  font-family: "Roboto Slab";
 }
 .subheader{
-  text-align: center; font-size: 28px; margin-top: 16px; margin-bottom: 0px;
+  text-align: center;
+  font-size: 28px;
+  margin-top: 16px;
+  margin-bottom: 32px;
+  color: var(--heading-color);
+  font-family: "Roboto Slab";
 }
+
 .logoimg{
   max-width: 36px;
   vertical-align: bottom;
@@ -189,6 +203,34 @@ a:hover{
   list-style-type: none;
 }
 
+
+.flex-container{
+  display: flex;
+  display: -webkit-flex;
+}
+.flex-container.row{
+  flex-direction: row;
+}
+.flex-container.column{
+  flex-direction: column;
+}
+.flex-container.wrap{
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+}
+.flex-container.align-items-center{
+  align-items: center;
+}
+.flex-container.justify-content-center {
+  justify-content: center;
+}
+/*
+.flex-container > div {
+  min-width: 200px;
+  flex-basis: 200px;
+  flex-grow: 1;
+  -webkit-flex-grow: 1;
+}*/
 
 button, input, select, label{
   cursor: pointer;
@@ -258,12 +300,6 @@ button, input, select, label{
   flex-direction: column;
 }
 
-
-.flex-container-navbar{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
 .flex-item-navbar{
   flex: 0 0 auto;
   padding: 12px 32px;
@@ -289,6 +325,9 @@ button, input, select, label{
 }
 .button_main{
   font-weight: bold;
+  font-family: "Roboto Slab";
+  font-size: 24px;
+  margin: 0px 16px;
 }
 .button_main:hover{
   background-color: var(--primary-color-v);
@@ -338,19 +377,7 @@ button, input, select, label{
   margin: 4px 16px 0px;
   font-size: 14px;
 }
-.flex-container {
-  display: flex;
-  display: -webkit-flex;
-  flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  justify-content: center;
-}
-.flex-container > div {
-  min-width: 200px;
-  flex-basis: 200px;
-  flex-grow: 1;
-  -webkit-flex-grow: 1;
-}
+
 
 input, textarea{
   color: var(--font-color);

@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `GameDevsToolkit`,
-    description: `A Resource Website for Game Development.`,
+    title: `Game Dev Nexus`,
+    description: `Everything You Need for Game Development.`,
     author: `@Jack_Melcher`,
   },
   plugins: [

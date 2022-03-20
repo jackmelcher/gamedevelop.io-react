@@ -653,24 +653,12 @@ const Resources = ({map, children}) => {
     }
 
     // View Button
-    const [isGridView,setGridView] = useState(true);
-    const [view,setView] = useState(localStorage.getItem("resource-view"));
+    const [view,setView] = useState("table");
     useEffect(() => {
         // Initialize View
-        setGridView(localStorage.getItem("resource-gridview") ? true : false);
         setView(localStorage.getItem("resource-view") !== null ? localStorage.getItem("resource-view") : "table");
     },[]);
-    useEffect(() => {
-        viewMode(isGridView);
-    },[isGridView]);
-    function viewMode(isGridView){
-        if (!isGridView) {
-            localStorage.removeItem("resource-gridview");
-        }
-        else{
-            localStorage.setItem("resource-gridview", "grid");
-        }
-    }
+
     function cycleView(){
         console.log(view)
         switch (view) {
