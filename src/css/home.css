@@ -3,10 +3,22 @@
     max-width: 1200px;
     padding: 120px 16px;
 }
+.homeLandingSection{
+    position: relative;
+    /*background-color: rgba(0, 0, 0, 0.2);*/
+    padding: 120px 16px;
+}
 .homeHeader{
+    font-size: 48px;
+    margin-bottom: 16px;
+    font-family: "Roboto Slab";
+    color: var(--secondary-color);
+}
+.homeSubHeader{
     font-size: 36px;
     margin-bottom: 16px;
     font-family: "Roboto Slab";
+    color: var(--secondary-color);
 }
 .homeSectionHeader{
     font-family: "Roboto Slab";
@@ -14,8 +26,11 @@
     margin-bottom: 16px;
 }
 .homeHeaderBackground{
-    background: linear-gradient(315deg, rgba(51,0,255,1) 0%, rgba(0,185,255,1) 100%);
-    background: linear-gradient(315deg, rgba(29,0,144,1) 0%, rgba(0,185,255,1) 100%);
+    /*background: linear-gradient(315deg, rgba(51,0,255,1) 0%, rgba(0,185,255,1) 100%);*/
+    /*background: linear-gradient(315deg, rgba(29,0,144,1) 0%, rgba(0,185,255,1) 100%);*/
+    /*background: linear-gradient(135deg, rgba(0,185,255,1) 0%, rgba(0,65,255,1) 100%);*/
+    background: linear-gradient(150deg, rgba(0,185,255,1) 0%, rgba(0,138,255,1) 25%, rgb(0, 42, 255) 100%);
+    position: relative;
 }
 .altBackground{
     background-color: var(--bg-color2);
@@ -37,7 +52,7 @@
     margin-top: 0px;
 }
 .homeHeaderButton {
-    margin-bottom: 16px;
+    margin-bottom: 32px;
 }
 .homeSectionButton{
     margin-top: 16px;
@@ -53,8 +68,19 @@
 .home-image{
     margin: 1.5em 0;
 }
-@media (max-width: 768px) {
-    .home {
-        padding: 0px 20px;
-    }
+.home-image-background{
+    background-image: url("https://ik.imagekit.io/ucxasjyuy/expanded-game-dev-icons-black.svg");
+    background-size: 1200px;
+}
+.home-overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+.home-shadow-text{
+    text-shadow: 4px 4px 4px #000000;
+}
+.home-shadow-box{
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.7);
 }

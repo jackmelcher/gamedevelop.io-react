@@ -11,14 +11,14 @@ import "../css/resources.css"
 import axios from "axios";
 
 const IconsOS = ({source}) => {
-    let platformsArray = source.split(", ")
+    let platformsArray = source != undefined ? source.split(", ") : [];
     let isWindows, isMac, isLinux, isWeb, isIOS, isAndroid, isXbox, isPlayStation;
     let otherTemp = "";
     const[other, setOther] = useState("");
     useEffect(()=>{getPlatforms(platformsArray);},[]);
 
     return(
-        <>
+        source != undefined && <>
             {source.includes("Windows")  &&
                 <i className="fab fa-windows">
                     <div style={{display: "none"}}>Windows, </div>
@@ -497,16 +497,19 @@ const Resources = ({map, children}) => {
     }
 
     useEffect(()=>{
+        let initialKey = document.getElementById("category").value;
         console.log(map);
+        console.log(localStorage.getItem(initialKey));
 
-        console.log(localStorage.getItem(document.getElementById("category").value));
-        if(!localStorage.getItem(document.getElementById("category").value)){
+        // If table does not exist in local storage, show "Loading" text.
+        if(!localStorage.getItem(initialKey)){
             console.log("set loading to true");
             setIsLoading(true);
             console.log("isLoading");
             console.log(isLoading);
         }
 
+        // Get tables from local storage.
         let tempMap = new Object();
         Object.keys(map).forEach((key) => {
             tempMap[key] = localStorage.getItem(key);
@@ -515,8 +518,10 @@ const Resources = ({map, children}) => {
         console.log("tempMap")
         console.log(tempMap)
 
+        // Show table if it exists.
         SelectTable();
 
+        // Get data tables using Axios function and save any changes to local storage.
         let object = new Object();
         Promise.all(Array.from(Object.entries(map)).map(MakeResourceMap))
             .then(dataArray => {
@@ -528,11 +533,14 @@ const Resources = ({map, children}) => {
                 })
                 resourceData = object
 
-                // Can I cache and check the data if it differs here?
-                SelectTable();
+                // Only load table with axios data if the current local storage data differs from the axios data.
+                if(tempMap[initialKey] !== object[initialKey]){
+                    SelectTable();
+                }
                 setIsLoading(false);
             })
 
+        // Set hash change handler so we can switch between tables using browser navigation.
         window.addEventListener('hashchange', hashChangeHandler);
         return () => {
             window.removeEventListener('hashchange', hashChangeHandler);

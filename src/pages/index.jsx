@@ -41,16 +41,19 @@ const IndexPage = () => {
     <Layout>
         <Seo title={query.Home.title} description={query.Home.description}/>
         <div className="home">
-            <div className="homeSection">
-                    <div className="homeHeader">{query.Site.siteMetadata.title}</div>
-                    <img src="https://ik.imagekit.io/ucxasjyuy/logo.svg" alt="logo" className="logomain"/>
-                    <div className="subheader">{query.Home.subheader}</div>
-                    <Link to="/resources/" className="button button_main">
+            <div className=" homeHeaderBackground">
+                <div className="home-image-background home-overlay"></div>
+                <div className="homeLandingSection">
+                    <div className="homeHeader home-shadow-text">{query.Site.siteMetadata.title}</div>
+                    <img src="https://ik.imagekit.io/ucxasjyuy/logo.svg" alt="logo" className="logomain home-shadow-box"/>
+                    <div className="homeSubHeader home-shadow-text">{query.Home.subheader}</div>
+                    <Link to="/resources/" className="button button_main homeHeaderButton home-shadow-box">
                         <div>VIEW RESOURCES</div>
                     </Link>
-                    <Link to="/guides/" className="button button_main">
+                    <Link to="/guides/" className="button button_main homeHeaderButton home-shadow-box">
                         <div>VIEW GUIDES</div>
                     </Link>
+                </div>
             </div>
             {/*<div dangerouslySetInnerHTML={{
                 __html: query.Home.sectionResources.childMarkdownRemark.html,
