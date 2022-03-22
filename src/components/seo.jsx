@@ -54,19 +54,19 @@ function Seo({ description, lang, meta, title, children }) {
         },
         {
           name: 'og:site_name',
-          content: 'GameDevsToolkit',
+          content: defaultTitle,
         },
         {
           name: 'og:image',
-          content: 'https://ik.imagekit.io/ucxasjyuy/logo-ogimage.png',
+          content: 'https://ik.imagekit.io/ucxasjyuy/logo1.png',
         },
         {
           name: 'og:image:width',
-          content: '1200',
+          content: '400',
         },
         {
           name: 'og:image:height',
-          content: '627',
+          content: '400',
         },
         {
           name: 'twitter:image',

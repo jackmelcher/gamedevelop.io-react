@@ -160,7 +160,7 @@ a:hover{
   vertical-align: bottom;
 }
 .logomain{
-  height: 128px;
+  height: clamp(96px,20vh,128px);
   background-color: var(--primary-color);
   border-radius: 64px;
 }
@@ -267,6 +267,7 @@ button, input, select, label{
   top: 0;
   border-bottom: 1px solid var(--border-color);
   background-color: var(--navbar-bg-color);
+  z-index: 2;
 }
 .navbar{
   margin: 0px auto;

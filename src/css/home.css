@@ -1,21 +1,24 @@
+:root{
+    --homeSectionPadding: clamp(20px,9vh,115px) 0px;
+    --homeButtonFontSize: clamp(18px,3vh,24px);
+}
 .homeSection{
     margin: 0px auto;
     max-width: 1200px;
-    padding: 120px 16px;
+    padding: var(--homeSectionPadding);
 }
 .homeLandingSection{
     position: relative;
-    /*background-color: rgba(0, 0, 0, 0.2);*/
-    padding: 120px 16px;
+    padding: var(--homeSectionPadding);
 }
 .homeHeader{
-    font-size: 48px;
+    font-size: clamp(24px,8vh,48px);
     margin-bottom: 16px;
     font-family: "Roboto Slab";
     color: var(--secondary-color);
 }
 .homeSubHeader{
-    font-size: 36px;
+    font-size: clamp(18px,7vh,36px);
     margin-bottom: 16px;
     font-family: "Roboto Slab";
     color: var(--secondary-color);
@@ -26,9 +29,6 @@
     margin-bottom: 16px;
 }
 .homeHeaderBackground{
-    /*background: linear-gradient(315deg, rgba(51,0,255,1) 0%, rgba(0,185,255,1) 100%);*/
-    /*background: linear-gradient(315deg, rgba(29,0,144,1) 0%, rgba(0,185,255,1) 100%);*/
-    /*background: linear-gradient(135deg, rgba(0,185,255,1) 0%, rgba(0,65,255,1) 100%);*/
     background: linear-gradient(150deg, rgba(0,185,255,1) 0%, rgba(0,138,255,1) 25%, rgb(0, 42, 255) 100%);
     position: relative;
 }
@@ -53,9 +53,12 @@
 }
 .homeHeaderButton {
     margin-bottom: 32px;
+    padding: clamp(8px,3vh,16px);
+    font-size: var(--homeButtonFontSize);
 }
 .homeSectionButton{
     margin-top: 16px;
+    font-size: var(--homeButtonFontSize);
 }
 .home i {
   font-size: 56px;

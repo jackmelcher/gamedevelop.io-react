@@ -58,7 +58,7 @@ const IndexPage = () => {
             {/*<div dangerouslySetInnerHTML={{
                 __html: query.Home.sectionResources.childMarkdownRemark.html,
             }}/>*/}
-            <div className="altBackground">
+            <div>
                 <div className="homeSection">
                     <div className="homeSectionHeader">Resources Database</div>
                     <div className="flex-container row wrap justify-content-center align-items-center">
@@ -108,35 +108,36 @@ const IndexPage = () => {
                     </Link>
                 </div>
             </div>
-            <div className="homeSection">
-                <div className="homeSectionHeader">Game Development Guides</div>
-                <div className="flex-container row wrap justify-content-center align-items-center">
-                    <div className="flex-item-home">
-                        <div className="home-image">
-                            <i className="fas fa-file-alt"></i>
-                        </div>
-                        <p>
-                            Get introduced to game development, from conceptualization to release.
-                        </p>
-                    </div>
-                    <div className="flex-item-home">
-                        <div className="home-image">
-                            <i className="fas fa-project-diagram"></i>
-                        </div>
-                        <p>
-                            Gain insight into Game Industry trends, career options, and work culture.
-                        </p>
-                    </div>
-                    <div className="flex-item-home">
-                        <div className="home-image">
-                            <i className="fas fa-list-ol"></i>
-                        </div>
-                        <p>
-                            Acquire specialized knowledge on business and marketing techniques.
-                        </p>
-                    </div>
+            <div className="altBackground">
+                <div className="homeSection ">
+                    <div className="homeSectionHeader">Game Development Guides</div>
                     <div className="flex-container row wrap justify-content-center align-items-center">
-                        {/*<div className="flex-item-home">
+                        <div className="flex-item-home">
+                            <div className="home-image">
+                                <i className="fas fa-file-alt"></i>
+                            </div>
+                            <p>
+                                Get introduced to game development, from conceptualization to release.
+                            </p>
+                        </div>
+                        <div className="flex-item-home">
+                            <div className="home-image">
+                                <i className="fas fa-project-diagram"></i>
+                            </div>
+                            <p>
+                                Gain insight into Game Industry trends, career options, and work culture.
+                            </p>
+                        </div>
+                        <div className="flex-item-home">
+                            <div className="home-image">
+                                <i className="fas fa-list-ol"></i>
+                            </div>
+                            <p>
+                                Acquire specialized knowledge on business and marketing techniques.
+                            </p>
+                        </div>
+                        <div className="flex-container row wrap justify-content-center align-items-center">
+                            {/*<div className="flex-item-home">
                             <div dangerouslySetInnerHTML={{
                                 __html: query.Home.sectionGuides.childMarkdownRemark.html,
                             }}/>
@@ -149,11 +150,12 @@ const IndexPage = () => {
                                 <div>VIEW GUIDES</div>
                             </Link>
                         </div>*/}
+                        </div>
                     </div>
+                    <Link to="/guides/" className="button button_main homeSectionButton">
+                        <div>VIEW GUIDES</div>
+                    </Link>
                 </div>
-                <Link to="/guides/" className="button button_main homeSectionButton">
-                    <div>VIEW GUIDES</div>
-                </Link>
             </div>
         </div>
     </Layout>
