@@ -23,8 +23,8 @@ const Guides = () => {
     );
     return(
         <Layoutg>
-            <Seo title="Guides" description="Explore GameDevelop.io's various guides on game development."/>
-            <h1 className="header">Game Development Guides</h1>
+            <Seo title="Guides" description="Explore various guides on game development."/>
+            <h1 className="header">Guides</h1>
             {
                 data.contentfulGuidesHome.guideSections.map(guideSection => {
                     return[

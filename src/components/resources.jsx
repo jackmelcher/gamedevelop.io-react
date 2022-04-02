@@ -343,11 +343,10 @@ const Table = ({columns, data, view}) => {
                                             )
                                         }
                                         if (index > 1 && index < row.cells.length - 1) {
-                                            let chipColor = "chip-color" + (index - 1).toString();
                                             console.log(cell.render('Cell').props.value)
                                             return (
                                                 cell.render('Cell').props.value !== "" &&
-                                                <span {...cell.getCellProps()} className={"entry-chip " + chipColor}>
+                                                <span {...cell.getCellProps()} className={"entry-chip " + "chip-color"}>
                                                     {cell.render('Cell')}
                                                 </span>
                                             )
@@ -368,7 +367,7 @@ const Table = ({columns, data, view}) => {
 
             {/* List View */}
             {(view === "list") && <div {...getTableProps()} id={"myTable"}>
-                <div {...getTableBodyProps()} className="flex-container-column-wrap">
+                <div {...getTableBodyProps()} className="flex-container column wrap list-container">
                     {
                         rows.map((row, index) => {
                             prepareRow(row)
@@ -394,10 +393,9 @@ const Table = ({columns, data, view}) => {
                                                 )
                                             }
                                             if (index > 1 && index < row.cells.length - 1) {
-                                                let chipColor = "chip-color" + (index - 1).toString();
                                                 return (
                                                     cell.render('Cell').props.value !== "" &&
-                                                    <span {...cell.getCellProps()} className={"entry-chip " + chipColor}>
+                                                    <span {...cell.getCellProps()} className={"entry-chip " + "chip-color"}>
                                                         {cell.render('Cell')}
                                                     </span>
                                                 )

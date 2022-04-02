@@ -1,13 +1,13 @@
 <p align="center">
-  <a href="https://www.gamedevstoolkit.com">
-    <img alt="GameDevsToolkit logo" src="https://ik.imagekit.io/ucxasjyuy/logo1.svg" width="120" />
+  <a href="https://www.gamedevnexus.com">
+    <img alt="GameDevNexus logo" src="https://ik.imagekit.io/ucxasjyuy/logo1.svg" width="120" />
   </a>
 </p>
 <h1 align="center">
-  GameDevsToolkit
+  Game Dev Nexus
 </h1>
 <h3 align="center">
-A Resource Website for Game Development.
+Everything You Need For Game Development.
 </h3>
 
 ## Features

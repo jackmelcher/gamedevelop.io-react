@@ -15,21 +15,15 @@ import "../css/guides.css"
 
 const Layoutg = ({ children }) => {
 
-
   useEffect(() =>{
   });
 
-  
-
   return (
     <div className="flex-main">
-      <SidebarG/>
       <Navbar/>
-      <div className="flex-main-content">
-        <div className="guide-container">
-          <div id="overview" className="guide">
+      <div className="flex-container container-padding guide-container row align-items-flex-start">
+        <div className="flex-item guide">
             {children}
-          </div>
         </div>
       </div>
       <Footer/>

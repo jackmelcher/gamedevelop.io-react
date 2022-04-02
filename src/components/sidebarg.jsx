@@ -33,34 +33,34 @@ const SidebarG = () => {
 
     return (
         <>
-            <div className="selectbarGuide">
+          <div className="flex-item sidenavGuide">
+            <div className="guidelink-container">
+              {
+                data.contentfulGuidesHome.guideSections.map(guideSection => {
+                  return [
+                    <div className="guidelink">{guideSection.title}</div>,
+                    <ul className="nobullets">
+                      {
+                        guideSection.guides.map(guide => {
+                          return (
+                              <li>
+                                <Link className="pagelink" to={`/guides/${guide.linkslug}/`}>{guide.title}</Link>
+                              </li>
+                          );
+                        })
+                      }
+                    </ul>
+                  ];
+                })
+              }
+            </div>
+          </div>
+          <div className="selectbarGuide">
             <button className="table-of-contents-button" onClick={(e) => toggleSidebarEvent()}>
-                <i className="menuicon fas fa-list"></i>
-                <span>Table of Contents</span>
+              <i className="menuicon fas fa-list"></i>
+              <span>Table of Contents</span>
             </button>
-            </div>
-            <div className="sidenav sidenavGuide">
-                <div className="guidelink-container">
-                {
-                    data.contentfulGuidesHome.guideSections.map(guideSection => {
-                        return[
-                            <div className="guidelink">{guideSection.title}</div>,
-                            <ul className="nobullets">
-                              {
-                                guideSection.guides.map(guide=>{
-                                  return(
-                                      <li>
-                                        <Link className="pagelink" to={`/guides/${guide.linkslug}/`}>{guide.title}</Link>
-                                      </li>
-                                  );
-                                })
-                              }
-                            </ul>
-                        ];
-                    })
-                }
-                </div>
-            </div>
+          </div>
         </>
     )
 }
@@ -86,12 +86,13 @@ function makeAnchorList()
       let list = document.createElement("ul");
       list.classList.add("nobullets","pageAnchorList");
 
+      /*
       var litem;
       var anchor;
 
       let ids = document.getElementsByClassName("guide")[0].getElementsByTagName("div");
       let headers = document.getElementsByClassName("guide")[0].getElementsByTagName("h3");
-      /*
+
       for(let j = 0; j < headers.length; j++)
       {
         litem = document.createElement("li");
@@ -110,6 +111,7 @@ function makeAnchorList()
   }
 }
 
+/*
 function handleAnchorLink(id)
 {
   document.getElementById(id).scrollIntoView();
@@ -122,8 +124,8 @@ function handleAnchorLink(id)
     window.scrollBy(0,-64);
   }
   toggleSidebar();
-
 }
+*/
 
 function makeUnderlines(className)
 {
@@ -143,7 +145,7 @@ function makeUnderlines(className)
 
 function toggleSidebar()
 {
-  var side = document.getElementsByClassName("sidenav")[0];
+  let side = document.getElementsByClassName("sidenav")[0];
   if(side.style.display === "none" || side.style.display === "")
   {
     side.style.display = "block";

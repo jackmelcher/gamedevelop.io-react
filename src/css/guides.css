@@ -9,6 +9,7 @@
     --selectbarGuide-border-width: 1px;
 
     --sidenavGuide-padding: 16px;
+    --sidenavGuide-width: 360px;
 }
 html[data-theme = "dark"]{
     --guide-link-article-color: #ececec;
@@ -17,10 +18,12 @@ html[data-theme = "dark"]{
     --guide-body-color: #202025;
 }
 .sidenavGuide{
-    width: 320px;
+    min-width: var(--sidenavGuide-width);
+    margin-top: 32px;
     padding: var(--sidenavGuide-padding);
-    height: calc(100vh - var(--navbar-max-height) - var(--navbar-border-width) - (2 * var(--selectbarGuide-padding)));
+    padding-top: 0px;
     top: calc(var(--navbar-max-height) + var(--navbar-border-width));
+    border-right: 1px solid var(--side-border-color);
 }
 .table-of-contents-button{
     color: var(--font-color);
@@ -35,13 +38,16 @@ html[data-theme = "dark"]{
 }
 .selectbarGuide{
     position: fixed;
+    display: none;
     padding: var(--selectbarGuide-padding);
-    top: calc(var(--navbar-max-height) + var(--navbar-border-width));;
+    top: calc(var(--navbar-max-height) + var(--navbar-border-width));
+    left: 0px;
     height: var(--selectbarGuide-height);
     border-bottom: 1px solid var(--side-border-color);
     border-right: 1px solid var(--side-border-color);
     background-color: var(--side-bg-color);
 }
+
 
 .guideslistTitle{
     margin-left: -20px;
@@ -49,7 +55,6 @@ html[data-theme = "dark"]{
     margin-left: 10px;
 }
 .guidelink-container{
-    margin: 16px 0px;
 }
 .guidelink{
     font-size: 18px;
@@ -91,15 +96,14 @@ li{margin-bottom: 12px;}
     max-height: 80px;
     max-width: 90%;
 }
-.guide-container {
-    padding-left: 36vw;
-    padding-right: 40px;
+.guide-container{
+    margin: var(--body-margin);
+    justify-content: center;
+    max-width: 800px;
 }
 .guide{
-    max-width: 700px !important;
-    background-color: var(--guide-body-color);
-    padding: 32px 64px;
-    padding-top: 0px;
+    max-width: calc(var(--body-max-width) - var(--sidenavGuide-width));
+    background-color: var(--bg-color);
 }
 .guide > .lastmodified{
     font-size: 12px; 
@@ -129,14 +133,13 @@ li{margin-bottom: 12px;}
 .guide > div > h1{
     margin-top: 0em;
     margin-bottom: 0em;
-    padding-top: 16px;
 }
 .guide > div > h2, h3, h4, h5{
     margin-top: 0em;
     margin-bottom: 0em;
 }
 .guide > div > h2{
-    margin-top: 2em;
+    margin-top: 1em;
 }
 .guide > div > h3{
     margin-top: 1.5em;
@@ -147,22 +150,9 @@ li{margin-bottom: 12px;}
 .guide > div > h5{
     margin-top: 1.5em;
 }
-
-
 @media (min-width: 1080px) and (max-width: 1250px){
-    .guide-container{
-        padding-right: 30px;
-    }
 }
 @media (min-width: 769px) and (max-width: 1080px){
-    .guide-container{
-        padding-left: 353px;
-        padding-right: 0px;
-    }
-    .guide{
-        padding: 32px 32px;
-        padding-top: 8px;
-    }
 }
 @media (max-width: 1080px){
     body{
@@ -173,19 +163,14 @@ li{margin-bottom: 12px;}
 }
 @media (max-width: 768px){
     .sidenavGuide{
+        position: fixed;
+        display: none;
         top: calc(var(--navbar-max-height) + var(--navbar-border-width) + var(--selectbarGuide-height) + (2 * var(--selectbarGuide-padding)) + var(--selectbarGuide-border-width));
+        left: 0px;
         height: calc(100vh - var(--navbar-max-height) - var(--navbar-border-width) - var(--selectbarGuide-height) - (2 * var(--selectbarGuide-padding)) - var(--selectbarGuide-border-width) - (2*var(--sidenavGuide-padding)));
     }
-    .guide-container{
-        padding-left: 0px;
-        padding-right: 0px;
-        padding-top: 48px;
-    }
-    .guide{
-        max-width: 100%;
-        padding: 20px;
-    }
     .selectbarGuide{
+        display: block;
         width: calc(100% - (2*var(--selectbarGuide-padding)));
         border-right: 0px;
     }

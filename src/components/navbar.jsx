@@ -7,11 +7,13 @@ function Navbar({children})
 {
     return (
         <div className="navbar-container">
-            <div className="navbar navbar-desktop flex-container row wrap">
+            <span className="flex-container row">
+                <CollapsedMenu/>
+                <span className="flex-item-padding navbar-mobile"/>
+                <LogoNav/>
                 <DesktopNav/>
-            </div>
-            <span className="navbar navbar-mobile flex-container row wrap">
-                <MobileNav/>
+                <span className="flex-item-padding"/>
+                <Theme/>
             </span>
         </div>
     );
@@ -25,28 +27,23 @@ const LogoNav = () => {
     );
 }
 
-const MobileNav = ({children}) => {
+const MobileNav = () => {
     return(
-        <>
-            <CollapsedMenu/>
-            <div className="flex-item-padding" />
-            <LogoNav/>
-            <div className="flex-item-padding" />
-            <Theme />
-        </>
+        <span className="navbar-mobile">
+            <Resources/>
+            <Guides/>
+            <About/>
+        </span>
     );
 }
 
 const DesktopNav = () => {
     return(
-        <>
-            <LogoNav/>
+        <span className="navbar-desktop">
             <Resources/>
             <Guides/>
             <About/>
-            <div className="flex-item-padding" />
-            <Theme />
-        </>
+        </span>
     );
 }
 
@@ -102,7 +99,6 @@ function CollapsedMenu()
                 {
                     menu && <i className="fas fa-times"></i>
                 }
-                
             </button>
             {
                 menu &&

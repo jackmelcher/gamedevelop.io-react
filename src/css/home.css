@@ -3,8 +3,8 @@
     --homeButtonFontSize: clamp(18px,3vh,24px);
 }
 .homeSection{
-    margin: 0px auto;
-    max-width: 1200px;
+    margin: var(--body-margin);
+    max-width: var(--body-max-width);
     padding: var(--homeSectionPadding);
 }
 .homeLandingSection{
@@ -25,7 +25,7 @@
 }
 .homeSectionHeader{
     font-family: "Roboto Slab";
-    font-size: 32px;
+    font-size: clamp(28px,2vw,32px);
     margin-bottom: 16px;
 }
 .homeHeaderBackground{

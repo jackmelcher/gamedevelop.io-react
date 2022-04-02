@@ -43,14 +43,14 @@
 }
 .about{
   max-width: 800px;
-  padding: 0px 64px;
-  padding-bottom: 32px;
   text-align: center;
-  background-color: var(--guide-body-color);
-  margin: 0px auto
+  background-color: var(--bg-color);
+  margin: 0px auto;
 }
 .about>p{
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: normal;
+  font-family: Arial;
 }
 .about > a {
   margin-bottom: 16px;
@@ -62,10 +62,4 @@
 }
 .textleft{
   text-align: left;
-}
-
-@media (max-width: 768px) {
-  .about {
-    padding: 0px 20px;
-  }
 }

@@ -20,6 +20,7 @@
     "gatsby-transformer-remark": "^4.4.1",
     "gatsby-transformer-sharp": "^2.12.1",
     "graphql": "^15.5.0",
+    "netlify": "^11.0.1",
     "netlify-cli": "^8.4.2",
     "pg": "^8.6.0",
     "prop-types": "^15.7.2",
