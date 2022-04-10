@@ -26,9 +26,9 @@ const About = () => {
     return(
         <Layout>
             <Seo title={data.contentfulPage.title} description={data.contentfulPage.description}/>
-                <div className="about container-padding" dangerouslySetInnerHTML={{
-                    __html: data.contentfulPage.body.childMarkdownRemark.html,
-                  }}/>
+            <div className="about container-padding" dangerouslySetInnerHTML={{
+                __html: data.contentfulPage.body.childMarkdownRemark.html,
+            }}/>
         </Layout>
     )
 }

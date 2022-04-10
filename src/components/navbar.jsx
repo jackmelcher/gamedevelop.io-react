@@ -7,8 +7,8 @@ function Navbar({children})
 {
     return (
         <div className="navbar-container">
-            <span className="flex-container row">
-                <CollapsedMenu/>
+            <span className="navbar flex-container row">
+                <MobileNav/>
                 <span className="flex-item-padding navbar-mobile"/>
                 <LogoNav/>
                 <DesktopNav/>
@@ -24,16 +24,6 @@ const LogoNav = () => {
         <Link to="/" className="navbar-button flex-item-navbar">
             <img src="https://ik.imagekit.io/ucxasjyuy/logo1.svg" alt="Logo" className="logoimg"/>
         </Link>
-    );
-}
-
-const MobileNav = () => {
-    return(
-        <span className="navbar-mobile">
-            <Resources/>
-            <Guides/>
-            <About/>
-        </span>
     );
 }
 
@@ -87,11 +77,11 @@ function themeMode(isDarkTheme)
     }
 }
 
-function CollapsedMenu()
+function MobileNav()
 {
     const [menu,setMenu] = useState(false);
     return(
-        <>
+        <span className="navbar-mobile">
             <button className="navbar-button flex-item-navbar small" onClick={()=> setMenu(!menu)}>
                 {
                     !menu && <i className="fas fa-bars"></i>
@@ -108,7 +98,7 @@ function CollapsedMenu()
                     <About/>
                 </div>
             }
-        </>
+        </span>
     );
 }
 

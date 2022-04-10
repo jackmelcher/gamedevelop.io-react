@@ -145,7 +145,7 @@ function makeUnderlines(className)
 
 function toggleSidebar()
 {
-  let side = document.getElementsByClassName("sidenav")[0];
+  let side = document.getElementsByClassName("rsidenav")[0];
   if(side.style.display === "none" || side.style.display === "")
   {
     side.style.display = "block";

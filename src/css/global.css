@@ -15,6 +15,7 @@
   --link-color: #0043d3;
   --footer-bg-color: #dfdfe4;
   --footer-color: #494949;
+  --footer-border-color: #e1e1e1;
   --form-bg-color: #ffffff;
   --input-border-color: #b8b8b8;
   --input-bg-color: #ffffff;
@@ -37,9 +38,9 @@ html[data-theme = "dark"]{
   --primary-color-v: #0079ca;
   --secondary-color: #ffffff;
   --tertiary-color: #ffffff;
-  --font-color: #dadada;
+  --font-color: #ececec;
   --bg-color: #121215;
-  --bg-color2: #1c1c21;
+  --bg-color2: #23232a;
   --border-color: #565656;
   --side-button-bg-color: #202025;
   --side-bg-color: #202025;
@@ -49,6 +50,7 @@ html[data-theme = "dark"]{
   --link-color: #57c4ff;
   --footer-bg-color: #27272c;
   --footer-color: #c0c0c0;
+  --footer-border-color: #363636;
   --form-bg-color: #202025;
   --input-border-color: #808080;
   --input-bg-color: #202025;
@@ -85,28 +87,7 @@ body::-webkit-scrollbar-thumb {
 }
 ::-webkit-scrollbar-thumb {
   box-shadow: inset 2px 2px 2px hsla(0, 0%, 80%, 0.25), inset -2px -2px 2px rgba(61, 61, 61, 0.25);
-
 }
-.flex-main{
-  /* Flex Box */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  min-height: 100vh;
-}
-.flex-main-content {
-  /* Flex Box */
-  -webkit-box-flex: 1;
-  -webkit-flex: 1 0 auto;
-  -ms-flex: 1 0 auto;
-  flex: 1 0 auto;
-}
-
 h1, h2, h3, h4, h5{
   color: var(--heading-color);
   font-family: "Roboto Slab";
@@ -135,14 +116,12 @@ li {
   font-size: 18px;
 }
 a:link, a:visited {
-  color: var(--link-color);
+  color: var(--font-color);
   text-decoration: none;
 }
 a:hover{
-  text-decoration: underline;
-}
-.anav{
-  text-decoration: none !important;
+  color: var(--primary-color);
+  text-decoration: none;
 }
 .header{
   text-align: center;
@@ -160,7 +139,12 @@ a:hover{
   color: var(--heading-color);
   font-family: "Roboto Slab";
 }
-
+.margin-center{
+  margin: var(--body-margin);
+}
+.limit-width{
+  max-width: var(--body-max-width);
+}
 .logoimg{
   max-width: 36px;
   vertical-align: bottom;
@@ -173,25 +157,7 @@ a:hover{
 .imgprofile{
   border-radius: 50%; width: 192px;
 }
-.sidenav {
-  margin: auto;
-  position: fixed;
-  overflow-x: auto;
-  background-color: var(--bg-color);
-  scrollbar-width: thin;
-  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
-}
-.sidenav::-webkit-scrollbar-track {
-  background: var(--scrollbarBG);
-}
-.sidenav::-webkit-scrollbar {
-  width: 16px;
-}
-.sidenav::-webkit-scrollbar-thumb {
-  background-color: var(--thumbBG) ;
-  border-radius: 6px;
-  border: 2px solid var(--scrollbarBG);
-}
+
 .settingsnav{
   position: fixed;
   top: 50px;
@@ -210,13 +176,11 @@ a:hover{
   list-style-type: none;
 }
 
-
+.flex-item{
+  flex: 1 0 auto;
+}
 .flex-container{
   display: flex;
-  display: -webkit-flex;
-}
-.container-padding{
-  padding: var(--body-padding);
 }
 .flex-container.row{
   flex-direction: row;
@@ -234,22 +198,29 @@ a:hover{
 .flex-container.align-items-flex-start{
   align-items: flex-start;
 }
+.flex-container.align-items-flex-end{
+  align-items: flex-end;
+}
 .flex-container.justify-content-center {
   justify-content: center;
 }
 .flex-container.justify-content-space-around {
   justify-content: space-around;
 }
-flex-item{
-  flex: 1 0 auto;
+.flex-container.justify-content-space-between{
+  justify-content: space-between;
 }
-/*
-.flex-container > div {
-  min-width: 200px;
-  flex-basis: 200px;
-  flex-grow: 1;
-  -webkit-flex-grow: 1;
-}*/
+.main-container{
+  min-height: 100vh;
+}
+
+.content-centering{
+  margin: var(--body-margin);
+  max-width: var(--body-max-width);
+}
+.container-padding{
+  padding: var(--body-padding);
+}
 
 button, input, select, label{
   cursor: pointer;
@@ -382,15 +353,12 @@ button, input, select, label{
   text-decoration: underline !important;
 }
 .footer{
-  background-color: var(--footer-bg-color);
-  padding: 8px 0px 8px 0px;
-  font-size: 14px;
-  color: var(--footer-color);
-
-  /* Flex Box */
-  -webkit-flex-shrink: 0;
-  -ms-flex-shrink: 0;
   flex-shrink: 0;
+  padding: 8px 0px 8px 0px;
+  background-color: var(--bg-color);
+  font-size: 14px;
+  color: var(--font-color);
+  border-top: 1px solid var(--footer-border-color);
 }
 .footer > a {
   text-decoration: none;
@@ -426,9 +394,7 @@ input, textarea{
   .sidenavbutton{
     display: inline-block;
   }
-  .sidenav{
-    display: none;
-  }
+
   .footer{
     padding: 8px 0px 8px 0px;
   }

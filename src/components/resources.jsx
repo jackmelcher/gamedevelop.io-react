@@ -1,8 +1,7 @@
 import React, {useState, useEffect, useMemo} from "react"
 
-import Layout from "../components/layoutres"
+import Layout from "../components/layout"
 import Seo from "../components/seo"
-import Navbar from "../components/navbar"
 
 import {useSortBy, useTable, useGlobalFilter, useFilters, useAsyncDebounce} from "react-table/src";
 import {readString} from "react-papaparse"
@@ -116,7 +115,7 @@ const Image = ({source}) => {
 const GlobalFilter = ({ filter, setFilter }) => {
     return(
         <div>
-            <span className="filtername bold">Search: {" "}</span>
+            <div className="filtername bold">Search: {" "}</div>
             <input className="globalSearch" value={filter || ""} onChange={(e) => {setFilter(e.target.value);{/*setTimeout(()=>{FilterTable();},100);*/} }}/>
         </div>
     );
@@ -242,242 +241,14 @@ const EmptyRow = ({rows}) => {
     )
 }
 
-const Table = ({columns, data, view}) => {
-    const defaultColumn = useMemo(() => {
-        return{
-            Filter: ColumnFilter,
-        }
-    },[])
+const Table = ({columns, data, view, tableName, isLoading}) => {
 
-    const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        rows,
-        prepareRow,
-        state,
-        setGlobalFilter,
-        setAllFilters
-    } = useTable({ columns: columns, data: data, defaultColumn }, useFilters, useGlobalFilter, useSortBy);
-
-    useEffect(()=>{
-        setAllFilters([]);
-    },[data])
-
-    const {globalFilter} = state;
 
     return(
         <>
-            {/* Table View */}
-            {view === "table" && rows.length !== 0 &&<table {...getTableProps()} id={"myTable"}>
-                <thead>
-                {headerGroups.map(headerGroup => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
-                        {headerGroup.headers.map(column => (
-                            <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                                {column.disableSortBy
-                                    ?""
-                                    :column.isSorted
-                                        ? column.isSortedDesc
-                                            ? <i className="fas fa-sort-down"></i>
-                                            : <i className="fas fa-sort-up"></i>
-                                        : <i className="fas fa-sort"></i>
-                                }
-                                {" " + column.render('Header')}
-                            </th>
-                        ))}
-                    </tr>
-                ))}
-                </thead>
-                <tbody {...getTableBodyProps()}>
-                {
-                rows.map(row => {
-                    prepareRow(row)
-                    return (
-                        <tr {...row.getRowProps()}>
-                            {row.cells.map((cell, index) => {
-                                if (index === 1) {
-                                    return (
-                                            <td {...cell.getCellProps()} className="entry-name-table">
-                                                {cell.render('Cell')}
-                                            </td>
-                                    )
-                                }
-                                return (
-                                    <td {...cell.getCellProps()}>
-                                        {cell.render('Cell')}
-                                    </td>
-                                )
-                            })}
-                        </tr>
-                    )
-                })}
-                </tbody>
-            </table>}
 
-            {/* Grid View */}
-            {view === "grid" && <div {...getTableProps()} id={"myTable"}>
-                <div {...getTableBodyProps()} className="grid-container">
-                {
-                    rows.map((row, index) => {
-                        prepareRow(row)
-                        return (
-                            <>
-                                <div {...row.getRowProps()} className="grid-item">
-                                    {row.cells.map((cell, index) => {
-                                        if (index === 0) {
-                                            return (
-                                                <div {...cell.getCellProps()} className="entry-image">
-                                                {cell.render('Cell')}
-                                            </div>
-                                            )
-                                        }
-                                        if (index === 1) {
-                                            return (
-                                                <>
-                                                    <div {...cell.getCellProps()} className="entry-name">
-                                                    {cell.render('Cell')}
-                                                    </div>
-                                                    <br/>
-                                                </>
-                                            )
-                                        }
-                                        if (index > 1 && index < row.cells.length - 1) {
-                                            console.log(cell.render('Cell').props.value)
-                                            return (
-                                                cell.render('Cell').props.value !== "" &&
-                                                <span {...cell.getCellProps()} className={"entry-chip " + "chip-color"}>
-                                                    {cell.render('Cell')}
-                                                </span>
-                                            )
-                                        } else {
-                                            return (
-                                                <div {...cell.getCellProps()} className="entry-description">
-                                                    {cell.render('Cell')}
-                                                </div>
-                                            )
-                                        }
-                                    })}
-                                </div>
-                            </>
-                        )
-                    })}
-                </div>
-            </div>}
 
-            {/* List View */}
-            {(view === "list") && <div {...getTableProps()} id={"myTable"}>
-                <div {...getTableBodyProps()} className="flex-container column wrap list-container">
-                    {
-                        rows.map((row, index) => {
-                            prepareRow(row)
-                            return (
-                                <>
-                                    <div {...row.getRowProps()} className="flex-list-item">
-                                        {row.cells.map((cell, index) => {
-                                            if (index === 0) {
-                                                return (
-                                                    <div {...cell.getCellProps()} className="entry-image">
-                                                        {cell.render('Cell')}
-                                                    </div>
-                                                )
-                                            }
-                                            if (index === 1) {
-                                                return (
-                                                    <>
-                                                        <div {...cell.getCellProps()} className="entry-name">
-                                                            {cell.render('Cell')}
-                                                        </div>
-                                                        <br/>
-                                                    </>
-                                                )
-                                            }
-                                            if (index > 1 && index < row.cells.length - 1) {
-                                                return (
-                                                    cell.render('Cell').props.value !== "" &&
-                                                    <span {...cell.getCellProps()} className={"entry-chip " + "chip-color"}>
-                                                        {cell.render('Cell')}
-                                                    </span>
-                                                )
-                                            } else {
-                                                return (
-                                                    <div {...cell.getCellProps()} className="entry-description">
-                                                        {cell.render('Cell')}
-                                                    </div>
-                                                )
-                                            }
 
-                                        })}
-                                    </div>
-                                </>
-                            )
-                        })}
-                </div>
-            </div>}
-            {state.globalFilter && <EmptyRow rows={rows}/>}
-
-            <div className="sidenav rsidenav">
-                <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
-                {/*
-                <GlobalFilterAsync filter={globalFilter} setFilter={setGlobalFilter} />
-                */}
-                <br/>
-                <div className="filtername">
-                    <b>Sort:</b>
-                </div>
-                {<div {...getTableProps()} className="listTitle">
-                    {headerGroups.map(headerGroup => (
-                        <ul {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map(column => (
-                                !column.disableSortBy &&
-                                <li {...column.getHeaderProps(column.getSortByToggleProps())} className="nobullets">
-                                    {column.disableSortBy
-                                        ?""
-                                        :column.isSorted
-                                            ? column.isSortedDesc
-                                                ? <i className="fas fa-sort-down"></i>
-                                                : <i className="fas fa-sort-up"></i>
-                                            : <i className="fas fa-sort"></i>
-                                    }
-                                    {" " + column.render('Header')}
-                                </li>
-                            ))}
-                        </ul>
-                    ))}
-                </div>}
-
-                <div className="filtername select-flex-container">
-                    <div className="flex-filter-item bold">Filters:</div>
-                    <div className="flex-filter-item-padding"></div>
-                    <button className="flex-filter-item resetButton" onClick={() => {
-                        setAllFilters([]);
-                        let inputs = document.getElementsByClassName("filterItem");
-                        Array.from(inputs).forEach((element,index)=>{
-                            element.checked = false;
-                        })
-                    }}>
-                        Reset
-                    </button>
-                </div>
-
-                <div id="Filters">
-                    {headerGroups.map((headerGroup) => (
-                        <div {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map(column => (
-                                <div {...column.getHeaderProps()}>
-                                    {
-                                        /*column.canFilter ? column.render("Filter") : null*/
-                                        !column.disableFilters ? column.render("Filter") : null
-                                    }
-                                </div>
-                            ))}
-                        </div>
-                    ))}
-                </div>
-                <div>
-                    <br/><br/>
-                </div>
-            </div>
         </>
     );
 }
@@ -487,7 +258,7 @@ const Resources = ({map, children}) => {
     const [isLoading,setIsLoading] = useState(false);
     const [tableName,setTableName] = useState("");
     let csvData =[], columnsData = [];
-    const [table,setTable] = useState(csvData);
+    const [data,setData] = useState(csvData);
     const [columns,setColumns] = useState(columnsData);
 
     function MakeResourceMap(entry){
@@ -630,7 +401,7 @@ const Resources = ({map, children}) => {
             columnsData = arr;
             //console.log("columnsData");
             //console.log(columnsData);
-            setTable(csvData);
+            setData(csvData);
 
             setColumns(columnsData);
             //console.log("columns");
@@ -645,7 +416,7 @@ const Resources = ({map, children}) => {
 
     function toggleSidebar()
     {
-        let side = document.getElementsByClassName("sidenav")[0];
+        let side = document.getElementsByClassName("rsidenav")[0];
         if(side.style.display === "none" || side.style.display === "")
         {
             side.style.display = "block";
@@ -692,40 +463,275 @@ const Resources = ({map, children}) => {
         );
     }
 
+    const defaultColumn = useMemo(() => {
+        return{
+            Filter: ColumnFilter,
+        }
+    },[])
+
+    const {
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        rows,
+        prepareRow,
+        state,
+        setGlobalFilter,
+        setAllFilters
+    } = useTable({ columns: columns, data: data, defaultColumn }, useFilters, useGlobalFilter, useSortBy);
+
+    useEffect(()=>{
+        setAllFilters([]);
+    },[data])
+
+    const {globalFilter} = state;
+
     return(
         <Layout>
             <Seo title="Resources" description="Explore a Database full of game development tools, assets, and services."/>
-            <div className="selectbar selectbarRes">
-                <div className="select-flex-container">
-                    <span className="tableTitle select-flex-item">
-                        Tables:
-                    </span>
-                    <div className="select-flex-item-padding"/>
-                    <ViewButton/>
-                    <select id="category" className="select-flex-item" onChange={(e) => {
-                        handleSelectChange(e.target.value);
-                    }}>
-                    {children}
-                    </select>
-                    <button className="filterSortButton select-flex-item" onClick={(e) => toggleSidebar()}>
-                        <i className="fas fa-filter"></i><span>Filter & Sort</span>
-                    </button>
-                </div>
-            </div>
 
-            <Navbar/>
-            <div className="flex-container-row-nowrap">
-                <div className="flex-item-resource-table-padding-left"/>
-                <div className="flex-item-resource-table">
-                    <h1 id="tname">{tableName}</h1>
-                    {isLoading && <LoadingData/>}
-                    <Table
-                        columns={columns}
-                        data={table}
-                        view={view}
-                    />
+            <div className="flex-container row limit-width margin-center">
+                <div className="flex-item">
+                    <div className="selectbar selectbarRes">
+                        <div className="select-flex-container align-items-flex-end">
+                            <span className="tableTitle select-flex-item">
+                                Tables:
+                            </span>
+                            <div className="select-flex-item-padding"/>
+                            <ViewButton/>
+                            <select id="category" className="select-flex-item" onChange={(e) => {
+                                handleSelectChange(e.target.value);
+                            }}>
+                                {children}
+                            </select>
+                            <button className="filterSortButton select-flex-item" onClick={(e) => toggleSidebar()}>
+                                <i className="fas fa-filter"></i><span>Filter & Sort</span>
+                            </button>
+                        </div>
+                    </div>
+                    {/* Sidebar */}
+                    <div className="rsidenav">
+                        <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}/>
+                        {/*
+                <GlobalFilterAsync filter={globalFilter} setFilter={setGlobalFilter} />
+                */}
+                        <br/>
+                        <div className="filtername">
+                            <b>Sort:</b>
+                        </div>
+                        {<div {...getTableProps()} className="listTitle">
+                            {headerGroups.map(headerGroup => (
+                                <ul {...headerGroup.getHeaderGroupProps()}>
+                                    {headerGroup.headers.map(column => (
+                                        !column.disableSortBy &&
+                                        <li {...column.getHeaderProps(column.getSortByToggleProps())}
+                                            className="nobullets">
+                                            {column.disableSortBy
+                                                ? ""
+                                                : column.isSorted
+                                                    ? column.isSortedDesc
+                                                        ? <i className="fas fa-sort-down"></i>
+                                                        : <i className="fas fa-sort-up"></i>
+                                                    : <i className="fas fa-sort"></i>
+                                            }
+                                            {" " + column.render('Header')}
+                                        </li>
+                                    ))}
+                                </ul>
+                            ))}
+                        </div>}
+
+                        <div className="filtername select-flex-container">
+                            <div className="flex-filter-item bold">Filters:</div>
+                            <div className="flex-filter-item-padding"></div>
+                            <button className="flex-filter-item resetButton" onClick={() => {
+                                setAllFilters([]);
+                                let inputs = document.getElementsByClassName("filterItem");
+                                Array.from(inputs).forEach((element, index) => {
+                                    element.checked = false;
+                                })
+                            }}>
+                                Reset
+                            </button>
+                        </div>
+
+                        <div id="Filters">
+                            {headerGroups.map((headerGroup) => (
+                                <div {...headerGroup.getHeaderGroupProps()}>
+                                    {headerGroup.headers.map(column => (
+                                        <div {...column.getHeaderProps()}>
+                                            {
+                                                /*column.canFilter ? column.render("Filter") : null*/
+                                                !column.disableFilters ? column.render("Filter") : null
+                                            }
+                                        </div>
+                                    ))}
+                                </div>
+                            ))}
+                        </div>
+                        <div>
+                            <br/><br/>
+                        </div>
+                    </div>
                 </div>
-                <div className="flex-item-resource-table-padding-right"/>
+                <div className="flex-item-resource-table">
+                        <h1 id="tname" className="textcenter">{tableName}</h1>
+                        {isLoading && <LoadingData/>}
+
+                        {/* Table View */}
+                        {view === "table" && rows.length !== 0 && <table {...getTableProps()} id={"myTable"}>
+                            <thead>
+                            {headerGroups.map(headerGroup => (
+                                <tr {...headerGroup.getHeaderGroupProps()}>
+                                    {headerGroup.headers.map(column => (
+                                        <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                                            {column.disableSortBy
+                                                ? ""
+                                                : column.isSorted
+                                                    ? column.isSortedDesc
+                                                        ? <i className="fas fa-sort-down"></i>
+                                                        : <i className="fas fa-sort-up"></i>
+                                                    : <i className="fas fa-sort"></i>
+                                            }
+                                            {" " + column.render('Header')}
+                                        </th>
+                                    ))}
+                                </tr>
+                            ))}
+                            </thead>
+                            <tbody {...getTableBodyProps()}>
+                            {
+                                rows.map(row => {
+                                    prepareRow(row)
+                                    return (
+                                        <tr {...row.getRowProps()}>
+                                            {row.cells.map((cell, index) => {
+                                                if (index === 1) {
+                                                    return (
+                                                        <td {...cell.getCellProps()} className="entry-name-table">
+                                                            {cell.render('Cell')}
+                                                        </td>
+                                                    )
+                                                }
+                                                return (
+                                                    <td {...cell.getCellProps()}>
+                                                        {cell.render('Cell')}
+                                                    </td>
+                                                )
+                                            })}
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </table>}
+
+                        {/* Grid View */}
+                        {view === "grid" && <div {...getTableProps()} id={"myTable"}>
+                            <div {...getTableBodyProps()} className="grid-container">
+                                {
+                                    rows.map((row, index) => {
+                                        prepareRow(row)
+                                        return (
+                                            <>
+                                                <div {...row.getRowProps()} className="grid-item">
+                                                    {row.cells.map((cell, index) => {
+                                                        if (index === 0) {
+                                                            return (
+                                                                <div {...cell.getCellProps()} className="entry-image">
+                                                                    {cell.render('Cell')}
+                                                                </div>
+                                                            )
+                                                        }
+                                                        if (index === 1) {
+                                                            return (
+                                                                <>
+                                                                    <div {...cell.getCellProps()}
+                                                                         className="entry-name-grid">
+                                                                        {cell.render('Cell')}
+                                                                    </div>
+                                                                    <br/>
+                                                                </>
+                                                            )
+                                                        }
+                                                        if (index > 1 && index < row.cells.length - 1) {
+                                                            console.log(cell.render('Cell').props.value)
+                                                            return (
+                                                                cell.render('Cell').props.value !== "" &&
+                                                                <span {...cell.getCellProps()}
+                                                                      className={"entry-chip " + "chip-color"}>
+                                                                    {cell.render('Cell')}
+                                                                </span>
+                                                            )
+                                                        } else {
+                                                            return (
+                                                                <div {...cell.getCellProps()}
+                                                                     className="entry-description">
+                                                                    {cell.render('Cell')}
+                                                                </div>
+                                                            )
+                                                        }
+                                                    })}
+                                                </div>
+                                            </>
+                                        )
+                                    })}
+                            </div>
+                        </div>}
+
+                        {/* List View */}
+                        {(view === "list") && <div {...getTableProps()} id={"myTable"}>
+                            <div {...getTableBodyProps()} className="flex-container column wrap list-container">
+                                {
+                                    rows.map((row, index) => {
+                                        prepareRow(row)
+                                        return (
+                                            <>
+                                                <div {...row.getRowProps()} className="flex-list-item">
+                                                    {row.cells.map((cell, index) => {
+                                                        if (index === 0) {
+                                                            return (
+                                                                <div {...cell.getCellProps()} className="entry-image">
+                                                                    {cell.render('Cell')}
+                                                                </div>
+                                                            )
+                                                        }
+                                                        if (index === 1) {
+                                                            return (
+                                                                <>
+                                                                    <div {...cell.getCellProps()}
+                                                                         className="entry-name">
+                                                                        {cell.render('Cell')}
+                                                                    </div>
+                                                                    <br/>
+                                                                </>
+                                                            )
+                                                        }
+                                                        if (index > 1 && index < row.cells.length - 1) {
+                                                            return (
+                                                                cell.render('Cell').props.value !== "" &&
+                                                                <span {...cell.getCellProps()}
+                                                                      className={"entry-chip " + "chip-color"}>
+                                                        {cell.render('Cell')}
+                                                    </span>
+                                                            )
+                                                        } else {
+                                                            return (
+                                                                <div {...cell.getCellProps()}
+                                                                     className="entry-description">
+                                                                    {cell.render('Cell')}
+                                                                </div>
+                                                            )
+                                                        }
+
+                                                    })}
+                                                </div>
+                                            </>
+                                        )
+                                    })}
+                            </div>
+                        </div>}
+                        {state.globalFilter && <EmptyRow rows={rows}/>}
+                    </div>
             </div>
         </Layout>
     )

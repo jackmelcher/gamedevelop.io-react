@@ -15,15 +15,15 @@ import "../css/global.css"
 
 const Layout = ({ children }) => {
 
-  return (
-    <div className="flex-main">
-      <Navbar/>
-      <div className="flex-main-content">
-        {children}
-      </div>
-      <Footer/>
-    </div>
-  )
+    return (
+        <div className="flex-container column main-container">
+            <Navbar/>
+            <div className="flex-item">
+                {children}
+            </div>
+            <Footer/>
+        </div>
+    )
 }
 
 Layout.propTypes = {

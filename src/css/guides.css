@@ -9,7 +9,7 @@
     --selectbarGuide-border-width: 1px;
 
     --sidenavGuide-padding: 16px;
-    --sidenavGuide-width: 360px;
+    --sidenavGuide-width: 320px;
 }
 html[data-theme = "dark"]{
     --guide-link-article-color: #ececec;
@@ -20,6 +20,7 @@ html[data-theme = "dark"]{
 .sidenavGuide{
     min-width: var(--sidenavGuide-width);
     margin-top: 32px;
+    margin-right: 32px;
     padding: var(--sidenavGuide-padding);
     padding-top: 0px;
     top: calc(var(--navbar-max-height) + var(--navbar-border-width));

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 
-import Layoutr from "../components/layoutres"
+import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Navbar from "../components/navbar"
 
@@ -74,7 +74,7 @@ const Resources = () => {
 
     function toggleSidebar()
     {
-        var side = document.getElementsByClassName("sidenav")[0];
+        var side = document.getElementsByClassName("rsidenav")[0];
         if(side.style.display === "none" || side.style.display === "")
         {
             side.style.display = "block";
@@ -88,7 +88,7 @@ const Resources = () => {
     }
 
     return(
-        <Layoutr>
+        <Layout>
             <Seo title="Resources" description="Explore a Database full of game development tools, assets, and services."/>
             <div className="selectbar selectbarRes">
                 <button onClick={(e) => toggleSidebar()}>
@@ -104,7 +104,7 @@ const Resources = () => {
                     <option value="Duplicate">User Submitted Duplicate</option>
                 </select>
             </div>
-            <div className="sidenav rsidenav">
+            <div className="rsidenav rsidenav">
                 <div className="filtername">
                     <b>Filters:</b>
                 </div> 
@@ -120,7 +120,7 @@ const Resources = () => {
                 <div id="showData">
                 </div>
             </div>
-        </Layoutr>
+        </Layout>
     )
 }
 export default Resources

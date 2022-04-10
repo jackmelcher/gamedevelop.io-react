@@ -26,11 +26,11 @@ const ResourcePages = () => {
       <Layout>
         <Seo title="Resources" description="Explore a Database full of game development tools, assets, and services."/>
           <div className="container-padding">
-              <div className="flex-container-row-nowrap-center">
+              <div className="margin-center limit-width">
                   <h1 className="header">Resources</h1>
               </div>
-              <div className="flex-container-row-nowrap-center">
-                  <div className="flex-item-resources flex-container-row-wrap-center">
+              <div className="flex-container row align-items-flex-start justify-content-center">
+                  <div className="flex-item-resources rs-container-gap flex-container row wrap justify-content-center limit-width">
                       {
                           data.contentfulRecources.resourceSections.map(resourceSection => {
                               return (

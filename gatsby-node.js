@@ -18,8 +18,6 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 
 // Need to make the create pages for guide sections and guides
 const path = require(`path`)
-const {readString} = require("react-papaparse");
-const axios = require("axios");
 exports.createPages = async ({ graphql, actions }) => {
     const { createPage } = actions
     const response = await graphql(`

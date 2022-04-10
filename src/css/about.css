@@ -42,13 +42,12 @@
   background-color: #432279;
 }
 .about{
-  max-width: 800px;
   text-align: center;
   background-color: var(--bg-color);
   margin: 0px auto;
 }
 .about>p{
-  font-size: 20px;
+  font-size: clamp(18px,2vw,22px);
   font-weight: normal;
   font-family: Arial;
 }
