@@ -20,7 +20,7 @@ const Layoutg = ({ children }) => {
         <Layout>
             <div className="flex-container row container-padding justify-content-center">
                 {/*<SidebarG/>*/}
-                <div className="flex-item guide">
+                <div className={"guide"}>
                     {children}
                 </div>
             </div>
