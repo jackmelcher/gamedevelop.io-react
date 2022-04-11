@@ -13,6 +13,7 @@ const Guides = () => {
                   title
                   guides {
                     title
+                    image
                     excerpt
                     linkslug
                   }
@@ -34,9 +35,16 @@ const Guides = () => {
                                 guideSection.guides.map(guide=>{
                                     return(
                                         <div className="guideItem">
-                                            <Link className="guideItemLink" to={`/guides/${guide.linkslug}/`}>{guide.title}</Link>
-                                            <div className="guideItemExcerpt">
-                                                {guide.excerpt}
+                                            <div className={"inline-block"}>
+                                                <img className={"guideItemImage"} src={guide.image} onError={(e) => {
+                                                        e.target.onerror = null;
+                                                        e.target.src = "https://ik.imagekit.io/ucxasjyuy/placeholder.png";
+                                                    }}>
+                                                </img>
+                                            </div>
+                                            <div className={"guideItemTextBlock"}>
+                                                <Link className="guideItemLink" to={`/guides/${guide.linkslug}/`}>{guide.title}</Link>
+                                                <div className="guideItemExcerpt">{guide.excerpt}</div>
                                             </div>
                                         </div>
                                     );

@@ -5,7 +5,8 @@ const Footer = () => {
     return (
         <div className="footer">
             <p>© {date.getFullYear()} GameDevelop.io. All trademarks and registered trademarks are the property of their respective
-                owners.</p>
+                owners. <a href={"https://icons8.com/"}>Icons provided by Icons8</a></p>
+
         </div>
     )
 }

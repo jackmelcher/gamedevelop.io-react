@@ -145,6 +145,9 @@ a:hover{
 .limit-width{
   max-width: var(--body-max-width);
 }
+.inline-block{
+  display: inline-block;
+}
 .logoimg{
   max-width: 36px;
   vertical-align: bottom;

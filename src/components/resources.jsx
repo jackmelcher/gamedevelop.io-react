@@ -513,8 +513,8 @@ const Resources = ({map, children}) => {
                     <div className="rsidenav">
                         <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}/>
                         {/*
-                <GlobalFilterAsync filter={globalFilter} setFilter={setGlobalFilter} />
-                */}
+                            <GlobalFilterAsync filter={globalFilter} setFilter={setGlobalFilter} />
+                        */}
                         <br/>
                         <div className="filtername">
                             <b>Sort:</b>
@@ -568,9 +568,6 @@ const Resources = ({map, children}) => {
                                     ))}
                                 </div>
                             ))}
-                        </div>
-                        <div>
-                            <br/><br/>
                         </div>
                     </div>
                 </div>

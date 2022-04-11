@@ -34,7 +34,7 @@ const Guides = (props) => {
         <Layoutg>
             <Seo title={props.data.contentfulGuide.title} description={props.data.contentfulGuide.excerpt}/>
             {
-                <div className="body" dangerouslySetInnerHTML={{
+                <div className="" dangerouslySetInnerHTML={{
                     __html: props.data.contentfulGuide.body.childMarkdownRemark.html,
                   }}
                 /> 
