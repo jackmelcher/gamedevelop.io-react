@@ -64,7 +64,7 @@ const IndexPage = () => {
                     <div className="flex-container row wrap justify-content-center align-items-center">
                         <div className="flex-item-home">
                             <div className="home-image">
-                                <i className="fas fa-tools"></i>
+                                <img src="https://img.icons8.com/fluency/96/000000/maintenance.png"/>
                             </div>
                             <p>
                                 Explore a comprehensive database of tools, assets, and services used by game developers
@@ -73,7 +73,7 @@ const IndexPage = () => {
                         </div>
                         <div className="flex-item-home">
                             <div className="home-image">
-                                <i className="fas fa-users"></i>
+                                <img src="https://img.icons8.com/fluency/96/000000/conference-background-selected.png"/>
                             </div>
                             <p>
                                 Find communities to share development progress, learn from each other, and team up for
@@ -82,7 +82,7 @@ const IndexPage = () => {
                         </div>
                         <div className="flex-item-home">
                             <div className="home-image">
-                                <i className="fas fa-comments-dollar"></i>
+                                <img src="https://img.icons8.com/fluency/96/000000/refund-2.png"/>
                             </div>
                             <p>
                                 Discover publishers and funding options that can help take your game idea to the next
@@ -114,7 +114,7 @@ const IndexPage = () => {
                     <div className="flex-container row wrap justify-content-center align-items-center">
                         <div className="flex-item-home">
                             <div className="home-image">
-                                <i className="fas fa-file-alt"></i>
+                                <img src="https://img.icons8.com/fluency/96/000000/user-manual.png"/>
                             </div>
                             <p>
                                 Get introduced to game development, from conceptualization to release.
@@ -122,7 +122,7 @@ const IndexPage = () => {
                         </div>
                         <div className="flex-item-home">
                             <div className="home-image">
-                                <i className="fas fa-project-diagram"></i>
+                                <img src="https://img.icons8.com/fluency/96/000000/analytics.png"/>
                             </div>
                             <p>
                                 Gain insight into Game Industry trends, career options, and work culture.
@@ -130,7 +130,7 @@ const IndexPage = () => {
                         </div>
                         <div className="flex-item-home">
                             <div className="home-image">
-                                <i className="fas fa-list-ol"></i>
+                                <img src="https://img.icons8.com/fluency/96/000000/critical-thinking.png"/>
                             </div>
                             <p>
                                 Acquire specialized knowledge on business and marketing techniques.

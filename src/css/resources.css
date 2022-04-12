@@ -18,6 +18,11 @@
   --side-border-radius: 8px;
 
   --table-border-radius: 10px;
+
+  --disable-font-color: #b7b7b7;
+
+  --resource-section-bg-color: #a9d3f6;
+  --resource-section-bg-color-hover: #59bfff;
 }
 html[data-theme = "dark"]{
   --table-header-color: #202025;
@@ -27,10 +32,17 @@ html[data-theme = "dark"]{
   --status-green: #64fd50;
   --status-yellow: #ffe65c;
   --status-red: #ff4a4a;
-  --chip-font-color: #888888;
+  --chip-font-color: #9f9f9f;
   --chip-color: #212121;
-}
 
+  --disable-font-color: #727272;
+
+  --resource-section-bg-color: #002d52;
+  --resource-section-bg-color-hover: #0d4e81;
+}
+input[type="checkbox"]:disabled + label {
+  color: var(--disable-font-color);
+}
 .flex-container.rs-container-gap{
   row-gap: 64px;
   column-gap: 64px;
@@ -41,16 +53,20 @@ html[data-theme = "dark"]{
 .flex-item-resources-inner{
   flex: 1 0 auto;
   flex-basis: 180px;
-  max-width: 180px;
+  max-width: 200px;
+  background-color: var(--resource-section-bg-color);
+}
+.flex-item-resources-inner:hover{
+  background-color: var(--resource-section-bg-color-hover);
 }
 .flex-item-resources-inner > h3{
   margin-top: 0;
   margin-bottom: 16px;
-  color: var(--secondary-color);
+  color: var(--font-color);
 }
-.flex-item-resources-inner > i{
-  font-size: 56px;
-  padding: 0px 8px;
+.flex-item-resources-inner > img{
+  min-width: 64px;
+  max-width: 6vw;
 }
 .flex-item-resource-table-padding-left{
   flex: 1 0 auto;
