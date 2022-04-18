@@ -36,14 +36,19 @@ const ResourcePages = () => {
                               return (
                                   <Link to={`/resources/${resourceSection.linkslug}/`}
                                         className="button button_main flex-item-resources-inner">
-                                      <h3>{resourceSection.title}</h3>
-                                      {
-                                          resourceSection.fontawesomeicons.map(fontawesomeicon => {
-                                              return (
-                                                  <img src={fontawesomeicon}></img>
-                                              );
-                                          })
-                                      }
+                                      <div className={"flex-container column justify-content-space-between flex-padding-rs"}>
+                                          <h3>{resourceSection.title}</h3>
+                                          <div className={"flex-item-padding"}></div>
+                                          <div className={""}>
+                                              {
+                                                  resourceSection.fontawesomeicons.map(fontawesomeicon => {
+                                                      return (
+                                                          <img src={fontawesomeicon}></img>
+                                                      );
+                                                  })
+                                              }
+                                          </div>
+                                      </div>
                                   </Link>
                               );
                           })

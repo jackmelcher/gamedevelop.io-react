@@ -82,7 +82,7 @@ const IndexPage = () => {
                         </div>
                         <div className="flex-item-home">
                             <div className="home-image">
-                                <img src="https://img.icons8.com/fluency/96/000000/refund-2.png"/>
+                                <img src="https://img.icons8.com/fluency/96/000000/initiate-money-transfer.png"/>
                             </div>
                             <p>
                                 Discover publishers and funding options that can help take your game idea to the next
@@ -114,7 +114,7 @@ const IndexPage = () => {
                     <div className="flex-container row wrap justify-content-center align-items-center">
                         <div className="flex-item-home">
                             <div className="home-image">
-                                <img src="https://img.icons8.com/fluency/96/000000/user-manual.png"/>
+                                <img src="https://img.icons8.com/fluency/96/000000/copybook--v2.png"/>
                             </div>
                             <p>
                                 Get introduced to game development, from conceptualization to release.

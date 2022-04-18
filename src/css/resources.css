@@ -37,8 +37,8 @@ html[data-theme = "dark"]{
 
   --disable-font-color: #727272;
 
-  --resource-section-bg-color: #002d52;
-  --resource-section-bg-color-hover: #0d4e81;
+  --resource-section-bg-color: #1c2c42;
+  --resource-section-bg-color-hover: #274967;
 }
 input[type="checkbox"]:disabled + label {
   color: var(--disable-font-color);
@@ -49,6 +49,9 @@ input[type="checkbox"]:disabled + label {
 }
 .flex-item-resources{
   flex: 0 1  auto;
+}
+.flex-padding-rs{
+  min-height: 170px;
 }
 .flex-item-resources-inner{
   flex: 1 0 auto;

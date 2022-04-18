@@ -148,7 +148,7 @@ const ColumnFilter = ({ column }) => {
 }
 
 function setFilteredParams(filterArr, val, checked) {
-    console.log(checked)
+    //console.log(checked)
     if (filterArr.includes(val) && !checked) {
         filterArr = filterArr.filter((n) => {
             return n !== val;
@@ -157,7 +157,7 @@ function setFilteredParams(filterArr, val, checked) {
 
     if (filterArr.length === 0) filterArr = undefined;
 
-    console.log(filterArr);
+    //console.log(filterArr);
     return filterArr;
 }
 
@@ -265,15 +265,15 @@ const Resources = ({map, children}) => {
 
     useEffect(()=>{
         let initialKey = document.getElementById("category").value;
-        console.log(map);
-        console.log(localStorage.getItem(initialKey));
+        //console.log(map);
+        //console.log(localStorage.getItem(initialKey));
 
         // If table does not exist in local storage, show "Loading" text.
         if(!localStorage.getItem(initialKey)){
-            console.log("set loading to true");
+            //console.log("set loading to true");
             setIsLoading(true);
-            console.log("isLoading");
-            console.log(isLoading);
+            //console.log("isLoading");
+            //console.log(isLoading);
         }
 
         // Get tables from local storage.
@@ -282,8 +282,8 @@ const Resources = ({map, children}) => {
             tempMap[key] = localStorage.getItem(key);
         })
         resourceData = tempMap;
-        console.log("tempMap")
-        console.log(tempMap)
+        //console.log("tempMap")
+        //console.log(tempMap)
 
         // Show table if it exists.
         SelectTable();
@@ -344,8 +344,8 @@ const Resources = ({map, children}) => {
             return
         }
 
-        console.log(filename)
-        console.log(resourceData[filename])
+        //console.log(filename)
+        //console.log(resourceData[filename])
         let link = resourceData[filename];
         let category = document.getElementById("category");
         setTableName(category.options[category.selectedIndex].text);
@@ -435,7 +435,7 @@ const Resources = ({map, children}) => {
     },[]);
 
     function cycleView(){
-        console.log(view)
+        //console.log(view)
         switch (view) {
             case "table":
                 setView("list");
@@ -649,7 +649,7 @@ const Resources = ({map, children}) => {
                                                             )
                                                         }
                                                         if (index > 1 && index < row.cells.length - 1) {
-                                                            console.log(cell.render('Cell').props.value)
+                                                            //console.log(cell.render('Cell').props.value)
                                                             return (
                                                                 cell.render('Cell').props.value !== "" &&
                                                                 <span {...cell.getCellProps()}
