@@ -95,7 +95,7 @@ const IconsOS = ({source}) => {
 
 const Image = ({source}) => {
     return (
-        <img src={"https://ik.imagekit.io/ucxasjyuy/resources/" + GetImageName(source) + ".png?tr=w-32"} className = "tableimg" onError={ (e) => {e.target.onerror = null; e.target.src="https://ik.imagekit.io/ucxasjyuy/placeholder.png";}}/>
+        <img src={"https://ik.imagekit.io/ucxasjyuy/resources/" + GetImageName(source) + ".png?tr=w-32"} className = "tableimg" onError={ (e) => {e.target.onerror = null; e.target.src="https://continental-black-krill.b-cdn.net/"+GetImageName(source)+"/31";}}/>
     );
 
     function GetImageName(url)
