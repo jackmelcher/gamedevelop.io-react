@@ -620,7 +620,7 @@ const Resources = ({map, children}) => {
                         {isLoading && <LoadingData/>}
 
                     {/* User Submission */}
-                    {window.location.toString().includes("userSubmitted") &&
+                    {tableName.includes("User Submitted") &&
                         <div className={"textcenter"}>
                             <a href={"https://forms.gle/QxW3cnvsN4ikQ9wA9"} target="_blank" rel="noopener noreferrer"
                               className={"button button_submission "}>Submit a Resource</a>
