@@ -148,6 +148,9 @@ a:hover{
 .inline-block{
   display: inline-block;
 }
+.work-break{
+  word-break: break-all;
+}
 .logoimg{
   max-width: 36px;
   vertical-align: bottom;
@@ -160,7 +163,29 @@ a:hover{
 .imgprofile{
   border-radius: 50%; width: 192px;
 }
+.modal{
+  position: fixed;
+  background: var(--bg-color);
+  border: var(--selectbarGuide-border-width) solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  z-index: 4;
+  top: calc(50vh - 300px);
+  left: calc(50vw - 120px);
 
+}
+.modal-url{
+  color: var(--primary-color);
+}
+.modal-background{
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  position: fixed;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
 .settingsnav{
   position: fixed;
   top: 50px;
@@ -241,6 +266,28 @@ button, input, select, label{
   transition-duration: 0.25s;
   cursor: pointer;
   display: inline-block;
+}
+.button_modal{
+  margin: 0px 16px;
+  padding: 8px 16px;
+  font-weight: bold;
+}
+.button_submission{
+  margin: 1.2em;
+  margin-top: 0px;
+  padding: 16px 16px;
+  font-size: clamp(16px,6vw,20px);
+  font-weight: bold;
+}
+.button_link{
+  border: 0;
+  background-color: var(--bg-color);
+  color: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+}
+.button_link:hover{
+  color: var(--primary-color);
 }
 .sidenavbutton{
   margin: 0;
@@ -477,6 +524,24 @@ input:checked + .slider:before {
 .slider.round {
   border-radius: 34px;
 }
-.slider.round:before {
+.slider.round:after {
   border-radius: 50%;
-} 
+}
+
+.Collapsible__trigger{
+  font-weight: bold;
+  display: block;
+  font-size: 18px;
+}
+.collapsible-arrow-down:after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f107";
+  position: relative;
+  float: right;
+}
+.collapsible-arrow-up:after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f106";
+  position: relative;
+  float: right;
+}

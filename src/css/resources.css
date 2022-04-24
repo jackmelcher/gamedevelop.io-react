@@ -81,6 +81,7 @@ input[type="checkbox"]:disabled + label {
   padding-bottom: 64px;
   margin: var(--body-margin);
   max-width: var(--body-max-width);
+  margin-right: 32px;
 }
 
 .grid-container{
@@ -132,19 +133,21 @@ input[type="checkbox"]:disabled + label {
 }*/
 .entry-name{
   font-size: clamp(20px,3vw,28px);
-  vertical-align: bottom;
+  vertical-align: middle;
   padding: 8px;
   padding-right: 0;
   display: inline-block;
   font-weight: bold;
+  max-width: 80%;
 }
 .entry-name-grid{
   font-size: clamp(16px,3vw,28px);
-  vertical-align: bottom;
+  vertical-align: middle;
   padding: 8px;
   padding-right: 0;
   display: inline-block;
   font-weight: bold;
+  max-width: 80%;
 }
 .entry-chip{
   border-radius: 5px;
@@ -155,7 +158,7 @@ input[type="checkbox"]:disabled + label {
   font-size: clamp(16px,2vw,18px);
 }
 .entry-chip i {
-  padding: 2px;
+  padding: 0px 2px;
   font-size: 16px;
 }
 .entry-description{
@@ -214,6 +217,7 @@ input[type="checkbox"]:disabled + label {
   padding: 8px 12px;
   display: inline !important;
   margin-bottom: 5px;
+  width: 130px;
 }
 .resetButton{
   font-size: 16px;
@@ -255,6 +259,9 @@ select{
   margin-bottom: auto;
   font-weight: bold;
 }
+#tname{
+  font-size: clamp(24px,6vw,32px);
+}
 .select-flex-container{
   display: flex;
   flex-direction: row;
@@ -285,7 +292,6 @@ select{
 }
 .filterSortButton img{
   height: 20px;
-  vertical-align: -3px;
 }
 .filtername{
   font-size: 18px;
@@ -385,9 +391,6 @@ td:nth-child(2){
     min-width: 33px;
   }
 }
-@media (max-width: 768px) {
-
-}
 @media (min-width: 1440px) and (max-width: 1600px) {
   th:nth-child(n + 8):nth-last-child(n+2),td:nth-child(n + 8):nth-last-child(n+2){
     display: none;
@@ -471,6 +474,7 @@ td:nth-child(2){
   }
   .flex-item-resource-table{
     padding-top: 75px;
+    margin-right: 0;
   }
 
   .selectbar{
@@ -495,12 +499,14 @@ td:nth-child(2){
   .select-flex-item-padding{
     display: none;
   }
+  .viewButton{
+    width: 240px;
+    padding: 6px 12px;
+  }
   .filterSortButton{
     display: inline-block;
     padding: 6px 12px;
-  }
-  .filterSortButton>i{
-    margin-right: 8px;
+    width: 240px;
   }
   .selectbar>select{
     padding: 5px 12px;
@@ -516,9 +522,7 @@ td:nth-child(2){
     display: none;
   }
   #tname{
-    font-size: 28px;
     margin-top: 0px;
-    text-align: center;
   }
   td,
   th {
@@ -571,6 +575,9 @@ td:nth-child(2){
   .flex-list-item:last-child {
     border-radius: 0;
   }
+  .disableScroll{
+    overflow: hidden;
+  }
 }
 @media (max-width: 529px) {
   th:nth-child(n + 4):nth-last-child(n+2),td:nth-child(n + 4):nth-last-child(n+2){
@@ -606,7 +613,7 @@ td:nth-child(2){
     font-size: 16px;
   }
   .viewButton {
-    width: 12% !important;
+    width: 50px;
     padding: 6px!important;
   }
   .viewButton span{
@@ -625,5 +632,15 @@ td:nth-child(2){
   .selectbarRes>select{
     width: 46%;
     font-size: 16px;
+  }
+  .entry-image.grid img{
+    width: 24px;
+  }
+  .filterButtonText{
+    display: none;
+  }
+  .filterSortButton{
+    width: 50px;
+    padding: 6px;
   }
 }

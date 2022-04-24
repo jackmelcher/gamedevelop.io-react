@@ -1,7 +1,9 @@
 import React, {useState, useEffect, useMemo} from "react"
+import Collapsible from 'react-collapsible';
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import Modal from "../components/modal"
 
 import {useSortBy, useTable, useGlobalFilter, useFilters, useAsyncDebounce} from "react-table/src";
 import {readString} from "react-papaparse"
@@ -10,14 +12,13 @@ import "../css/resources.css"
 import axios from "axios";
 
 const IconsOS = ({source}) => {
-    let platformsArray = source != undefined ? source.split(", ") : [];
-    let isWindows, isMac, isLinux, isWeb, isIOS, isAndroid, isXbox, isPlayStation;
+    let platformsArray = source !== undefined ? source.split(", ") : [];
     let otherTemp = "";
     const[other, setOther] = useState("");
     useEffect(()=>{getPlatforms(platformsArray);},[]);
 
     return(
-        source != undefined && <>
+        source !== undefined && <>
             {source.includes("Windows")  &&
                 <i className="fab fa-windows">
                     <div style={{display: "none"}}>Windows, </div>
@@ -58,28 +59,20 @@ const IconsOS = ({source}) => {
         platforms.forEach ((element,index) => {
             switch (element){
                 case "Windows":
-                    isWindows = true;
                     break;
                 case "Mac":
-                    isMac = true;
                     break;
                 case "Linux":
-                    isLinux = true;
                     break;
                 case "Web":
-                    isWeb = true;
                     break;
                 case "iOS":
-                    isIOS = true;
                     break;
                 case "Android":
-                    isAndroid = true;
                     break;
                 case "Xbox":
-                    isXbox = true;
                     break;
                 case "PlayStation":
-                    isPlayStation = true;
                     break;
                 default:
                     otherTemp += (element)
@@ -95,7 +88,7 @@ const IconsOS = ({source}) => {
 
 const Image = ({source}) => {
     return (
-        <img src={"https://ik.imagekit.io/ucxasjyuy/resources/" + GetImageName(source) + ".png?tr=w-32"} className = "tableimg" onError={ (e) => {e.target.onerror = null; e.target.src="https://continental-black-krill.b-cdn.net/"+GetImageName(source)+"/31";}}/>
+        <img src={"https://ik.imagekit.io/ucxasjyuy/resources/" + GetImageName(source) + ".png?tr=w-32"} className = "tableimg" onError={ (e) => {e.target.onerror = null; e.target.src="https://continental-black-krill.b-cdn.net/"+GetImageName(source)+"/31";}} alt={"Icon"}/>
     );
 
     function GetImageName(url)
@@ -167,7 +160,7 @@ function SelectColumnFilter({column: { filteredRows, filterValue = [], setFilter
     const options = useMemo(() => {
         let set = new Set();
         filteredRows.forEach(row =>{
-            if(row.values[id] != undefined){
+            if(row.values[id] !== undefined){
                 let cells = row.values[id].split(", ");
                 cells.forEach(element => {
                     set.add(element);
@@ -181,7 +174,7 @@ function SelectColumnFilter({column: { filteredRows, filterValue = [], setFilter
     const optionsSet = useMemo(() => {
         let set = new Set();
         filteredRows.forEach(row =>{
-            if(row.values[id] != undefined){
+            if(row.values[id] !== undefined){
                 let cells = row.values[id].split(", ");
                 cells.forEach(element => {
                     set.add(element);
@@ -195,31 +188,34 @@ function SelectColumnFilter({column: { filteredRows, filterValue = [], setFilter
         return !optionsSet.has(option);
     }
 
+    let defaultOpen = window.innerWidth > 768;
+
     return (
         <div className="listTitle">
-            <span className="bold">{Header}:</span>
-            <ul key={window.location.hash}>
-            {options.map((option, i) => {
-                return (
-                    (option !== "") &&
-                    <li className="nobullets" key={option+id}>
-                        <input
-                            type="checkbox"
-                            className="filterItem"
-                            id={option}
-                            name={option}
-                            value={option}
-                            onChange={(e) => {
-                                setFilter(setFilteredParams(filterValue, e.target.value, e.target.checked));
-                            }}
-                            disabled={isDisabled(option)}
-                            /*defaultChecked={false}*/
-                        />
-                        <label htmlFor={option}>{option}</label>
-                    </li>
-                );
-            })}
-            </ul>
+            <Collapsible trigger={Header} transitionTime={200} open={defaultOpen} triggerClassName={"collapsible-arrow-down"} triggerOpenedClassName={"collapsible-arrow-up"}>{/*<span className="bold">{Header}:</span>*/}
+                <ul key={window.location.hash}>
+                    {options.map((option, i) => {
+                        return (
+                            (option !== "") &&
+                            <li className="nobullets" key={option + id}>
+                                <input
+                                    type="checkbox"
+                                    className="filterItem"
+                                    id={option}
+                                    name={option}
+                                    value={option}
+                                    onChange={(e) => {
+                                        setFilter(setFilteredParams(filterValue, e.target.value, e.target.checked));
+                                    }}
+                                    disabled={isDisabled(option)}
+                                    /*defaultChecked={false}*/
+                                />
+                                <label htmlFor={option}>{option}</label>
+                            </li>
+                        );
+                    })}
+                </ul>
+            </Collapsible>
         </div>
     );
 }
@@ -237,18 +233,6 @@ const EmptyRow = ({rows}) => {
     return(
         isTableEmpty && <h2>No Search Results</h2>
     )
-}
-
-const Table = ({columns, data, view, tableName, isLoading}) => {
-
-
-    return(
-        <>
-
-
-
-        </>
-    );
 }
 
 const Resources = ({map, children}) => {
@@ -277,7 +261,7 @@ const Resources = ({map, children}) => {
         }
 
         // Get tables from local storage.
-        let tempMap = new Object();
+        let tempMap = {};
         Object.keys(map).forEach((key) => {
             tempMap[key] = localStorage.getItem(key);
         })
@@ -289,12 +273,12 @@ const Resources = ({map, children}) => {
         SelectTable();
 
         // Get data tables using Axios function and save any changes to local storage.
-        let object = new Object();
+        let object = {};
         Promise.all(Array.from(Object.entries(map)).map(MakeResourceMap))
             .then(dataArray => {
                 Object.keys(map).forEach((key,index) => {
                     object[key] = dataArray[index].data
-                    if(localStorage.getItem(key) != dataArray[index].data){
+                    if(localStorage.getItem(key) !== dataArray[index].data){
                         localStorage.setItem(key,object[key]);
                     }
                 })
@@ -360,28 +344,65 @@ const Resources = ({map, children}) => {
             //console.log("columnKeys: ");
             //console.log(columnKeys);
             let arr = [];
-            arr.push({
-                Header: "",
-                accessor: "Image",
-                disableSortBy: true,
-                Cell: ({row}) => <Image source={row.original.Link} />,
-                disableFilters: true,
-            })
+            if(columnKeys.toString().includes("Link")){
+                arr.push({
+                    Header: "",
+                    accessor: "Image",
+                    disableSortBy: true,
+                    Cell: ({row}) => <Image source={row.original.Link} />,
+                    disableFilters: true,
+                })
+            }
+            if(columnKeys.toString().includes("URL")){
+                arr.push({
+                    Header: "",
+                    accessor: "Image",
+                    disableSortBy: true,
+                    Cell: ({row}) => <Image source={row.original.URL}/>,
+                    disableFilters: true,
+                })
+            }
             //console.log("columnKeys.length: " + columnKeys.length);
             for(let i = 0; i < columnKeys.length; i++){
                 let columnObject = {};
                 columnObject.Header = columnKeys[i];
                 columnObject.accessor = columnKeys[i];
                 columnObject.id = columnKeys[i]+window.location.hash;
-                if(i === 0){
-                    columnObject.Cell = ({row})=> <a href={row.original.Link} target="_blank" rel="noopener noreferrer">{row.original.Name}</a>;
+                if(columnKeys[i].includes("Name")){
+                    columnObject.Cell = ({row}) => <a href={row.original.Link} target="_blank" rel="noopener noreferrer">{row.original.Name}</a>;
                     columnObject.disableFilters = true;
                 }
-                if(i === 1){
+                if(columnKeys[i].includes("Link")){
+                    continue;
+                }
+                /*if(columnKeys[i].includes("Resource")){
+                    columnObject.Cell = ({row})=> <a href={row.original.URL} target="_blank" rel="noopener noreferrer" className={"work-break"}>{row.original.Resource + " ("+row.original.URL+")"}</a>;
+                    columnObject.disableFilters = true;
+                }*/
+                if(columnKeys[i].includes("Resource")){
+                    columnObject.Cell = ({row}) =>
+                        row.original.Verified === "TRUE" ?
+                        <>
+                            <a href={row.original.URL} target="_blank" rel="noopener noreferrer">{row.original.Resource}</a>
+                            <img src="https://img.icons8.com/color/24/000000/verified-badge.png" className={"inline-block vertical-align"} alt={"Verified"}/>
+                        </>
+                        : <>
+                            <button className={"button_link"} onClick={() => {
+                                setModalOpen(true);
+                                setModalName(row.original.Resource);
+                                setModalLink(row.original.URL);
+                            }}>
+                                {row.original.Resource}
+                            </button>
+                            <img src={"https://img.icons8.com/fluency/24/000000/error.png"} className={"inline-block vertical-align"} alt={"Warning"}/>
+                        </>
+                    columnObject.disableFilters = true;
+                }
+                if(columnKeys[i].includes("URL")){
                     continue;
                 }
                 if(columnKeys[i].includes("Platforms")){
-                    columnObject.Cell = ({row})=> <IconsOS source={row.original.Platforms}/>;
+                    columnObject.Cell = ({row}) => <IconsOS source={row.original.Platforms}/>;
                 }
                 if(i > 1  && i < columnKeys.length - 1){
                     columnObject.Filter = SelectColumnFilter;
@@ -390,8 +411,17 @@ const Resources = ({map, children}) => {
                 if(i > 2  && i < columnKeys.length){
                     columnObject.disableSortBy = true;
                 }
-                if(i === columnKeys.length -1) {
+                if(columnKeys[i].includes("Description")) {
                     columnObject.disableFilters = true;
+                }
+                if(columnKeys[i].includes("Google Account Security")){
+                    continue;
+                }
+                if(columnKeys[i].includes("Timestamp")){
+                    continue;
+                }
+                if(columnKeys[i].includes("Verified")){
+                    continue;
                 }
                 //console.log(columnObject)
                 arr.push(columnObject);
@@ -412,18 +442,20 @@ const Resources = ({map, children}) => {
         }
     }
 
+    const [filterOpen,setFilterOpen] = useState(false);
     function toggleSidebar()
     {
+        setFilterOpen(!filterOpen);
         let side = document.getElementsByClassName("rsidenav")[0];
         if(side.style.display === "none" || side.style.display === "")
         {
             side.style.display = "block";
-            //document.body.style.overflow = "hidden";
+            document.body.classList.add("disableScroll");
         }
         else
         {
             side.style.display = "";
-            //document.body.style.overflow = "";
+            document.body.classList.remove("disableScroll");
         }
     }
 
@@ -446,6 +478,10 @@ const Resources = ({map, children}) => {
                 localStorage.setItem("resource-view", "grid");
                 break;
             case "grid":
+                setView("table");
+                localStorage.setItem("resource-view", "table");
+                break;
+            default:
                 setView("table");
                 localStorage.setItem("resource-view", "table");
                 break;
@@ -484,6 +520,11 @@ const Resources = ({map, children}) => {
 
     const {globalFilter} = state;
 
+    const [modalOpen,setModalOpen] = useState(false);
+    const [modalName,setModalName] = useState("");
+    const [modalLink,setModalLink] = useState("");
+
+
     return(
         <Layout>
             <Seo title="Resources" description="Explore a Database full of game development tools, assets, and services."/>
@@ -503,7 +544,12 @@ const Resources = ({map, children}) => {
                                 {children}
                             </select>
                             <button className="filterSortButton select-flex-item" onClick={(e) => toggleSidebar()}>
-                                <i className="fas fa-filter"></i><span>Filter & Sort</span>
+                                {!filterOpen && <><i className="fas fa-sliders-h"></i>
+                                    <span className={"filterButtonText"}> Filter & Sort</span></>
+                                }
+                                {filterOpen && <><i className="fas fa-times"></i>
+                                    <span className={"filterButtonText"}> Close Filter</span></>
+                                }
                             </button>
                         </div>
                     </div>
@@ -573,6 +619,15 @@ const Resources = ({map, children}) => {
                         <h1 id="tname" className="textcenter">{tableName}</h1>
                         {isLoading && <LoadingData/>}
 
+                    {/* User Submission */}
+                    {window.location.toString().includes("userSubmitted") &&
+                        <div className={"textcenter"}>
+                            <a href={"https://forms.gle/QxW3cnvsN4ikQ9wA9"} target="_blank" rel="noopener noreferrer"
+                              className={"button button_submission "}>Submit a Resource</a>
+                            {modalOpen && <Modal setModalOpen={setModalOpen} name={modalName} link={modalLink}/>}
+                        </div>
+                    }
+
                         {/* Table View */}
                         {view === "table" && rows.length !== 0 && <table {...getTableProps()} id={"myTable"}>
                             <thead>
@@ -630,22 +685,17 @@ const Resources = ({map, children}) => {
                                             <>
                                                 <div {...row.getRowProps()} className="grid-item">
                                                     {row.cells.map((cell, index) => {
-                                                        if (index === 0) {
-                                                            return (
-                                                                <div {...cell.getCellProps()} className="entry-image">
-                                                                    {cell.render('Cell')}
-                                                                </div>
-                                                            )
-                                                        }
                                                         if (index === 1) {
                                                             return (
-                                                                <>
+                                                                <div>
+                                                                    <div {...row.cells[index-1].getCellProps()} className="entry-image grid">
+                                                                        {row.cells[index-1].render('Cell')}
+                                                                    </div>
                                                                     <div {...cell.getCellProps()}
                                                                          className="entry-name-grid">
                                                                         {cell.render('Cell')}
                                                                     </div>
-                                                                    <br/>
-                                                                </>
+                                                                </div>
                                                             )
                                                         }
                                                         if (index > 1 && index < row.cells.length - 1) {
@@ -653,11 +703,12 @@ const Resources = ({map, children}) => {
                                                             return (
                                                                 cell.render('Cell').props.value !== "" &&
                                                                 <span {...cell.getCellProps()}
-                                                                      className={"entry-chip " + "chip-color"}>
+                                                                      className={"entry-chip chip-color"}>
                                                                     {cell.render('Cell')}
                                                                 </span>
                                                             )
-                                                        } else {
+                                                        }
+                                                        if(index === row.cells.length - 1){
                                                             return (
                                                                 <div {...cell.getCellProps()}
                                                                      className="entry-description">
@@ -669,7 +720,8 @@ const Resources = ({map, children}) => {
                                                 </div>
                                             </>
                                         )
-                                    })}
+                                    })
+                                }
                             </div>
                         </div>}
 
@@ -683,10 +735,16 @@ const Resources = ({map, children}) => {
                                             <>
                                                 <div {...row.getRowProps()} className="flex-list-item">
                                                     {row.cells.map((cell, index) => {
-                                                        if (index === 0) {
+                                                        if (index === 1) {
                                                             return (
-                                                                <div {...cell.getCellProps()} className="entry-image">
-                                                                    {cell.render('Cell')}
+                                                                <div>
+                                                                    <div {...row.cells[index-1].getCellProps()} className="entry-image">
+                                                                        {row.cells[index-1].render('Cell')}
+                                                                    </div>
+                                                                    <div {...cell.getCellProps()}
+                                                                         className="entry-name">
+                                                                        {cell.render('Cell')}
+                                                                    </div>
                                                                 </div>
                                                             )
                                                         }
@@ -705,11 +763,12 @@ const Resources = ({map, children}) => {
                                                             return (
                                                                 cell.render('Cell').props.value !== "" &&
                                                                 <span {...cell.getCellProps()}
-                                                                      className={"entry-chip " + "chip-color"}>
-                                                        {cell.render('Cell')}
-                                                    </span>
+                                                                      className={"entry-chip chip-color"}>
+                                                                    {cell.render('Cell')}
+                                                                </span>
                                                             )
-                                                        } else {
+                                                        }
+                                                        if(index === row.cells.length - 1){
                                                             return (
                                                                 <div {...cell.getCellProps()}
                                                                      className="entry-description">
