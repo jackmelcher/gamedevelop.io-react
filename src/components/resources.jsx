@@ -88,7 +88,7 @@ const IconsOS = ({source}) => {
 
 const Image = ({source}) => {
     return (
-        <img src={"https://ik.imagekit.io/ucxasjyuy/resources/" + GetImageName(source) + ".png?tr=w-32"} className = "tableimg" onError={ (e) => {e.target.onerror = "https://ik.imagekit.io/ucxasjyuy/resources/placeholder.png?tr=w-32"; e.target.src="https://continental-black-krill.b-cdn.net/"+GetImageName(source)+"/32";}} alt={"Icon"}/>
+        <img src={"https://ik.imagekit.io/ucxasjyuy/resources/" + GetImageName(source) + ".png?tr=w-32"} className = "tableimg" onError={ (e) => {replaceImgOnError (e.target)}} alt={"Icon"}/>
     );
 
     function GetImageName(url)
@@ -102,6 +102,13 @@ const Image = ({source}) => {
         // Return the image name.
         //console.log(url[0]);
         return url[0];
+    }
+
+    function replaceImgOnError (img) {
+        img.src = "https://continental-black-krill.b-cdn.net/"+GetImageName(source)+"/32";
+        img.onerror = () => {
+            img.src = "https://ik.imagekit.io/ucxasjyuy/placeholder.png?tr=w-32";
+        }
     }
 }
 
