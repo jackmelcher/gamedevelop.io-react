@@ -88,7 +88,7 @@ const IconsOS = ({source}) => {
 
 const Image = ({source}) => {
     return (
-        <img src={"https://ik.imagekit.io/ucxasjyuy/resources/" + GetImageName(source) + ".png?tr=w-32"} className = "tableimg" onError={ (e) => {e.target.onerror = null; e.target.src="https://continental-black-krill.b-cdn.net/"+GetImageName(source)+"/31";}} alt={"Icon"}/>
+        <img src={"https://ik.imagekit.io/ucxasjyuy/resources/" + GetImageName(source) + ".png?tr=w-32"} className = "tableimg" onError={ (e) => {e.target.onerror = "https://ik.imagekit.io/ucxasjyuy/resources/placeholder.png?tr=w-32"; e.target.src="https://continental-black-krill.b-cdn.net/"+GetImageName(source)+"/32";}} alt={"Icon"}/>
     );
 
     function GetImageName(url)
@@ -502,7 +502,7 @@ const Resources = ({map, children}) => {
             Filter: ColumnFilter,
         }
     },[])
-
+    function compareIgnoreCase(a, b) { let r1 = a.toLowerCase(); let r2 = b.toLowerCase(); if (r1 < r2) { return -1; } if (r1 > r2) { return 1; } return 0; }
     const {
         getTableProps,
         getTableBodyProps,
@@ -512,7 +512,17 @@ const Resources = ({map, children}) => {
         state,
         setGlobalFilter,
         setAllFilters
-    } = useTable({ columns: columns, data: data, defaultColumn }, useFilters, useGlobalFilter, useSortBy);
+    } = useTable(
+{ columns: columns, data: data, defaultColumn,
+        sortTypes: {
+            alphanumeric: (row1, row2, columnName) => {
+                return compareIgnoreCase(
+                    row1.values[columnName],
+                    row2.values[columnName]
+                )
+            },
+        },
+    }, useFilters, useGlobalFilter, useSortBy);
 
     useEffect(()=>{
         setAllFilters([]);

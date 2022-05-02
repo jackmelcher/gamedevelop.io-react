@@ -476,12 +476,14 @@ td:nth-child(2){
     padding-top: 75px;
     margin-right: 0;
   }
-
+  table{
+    width: 100vw;
+  }
   .selectbar{
     border-bottom: 1px solid var(--side-border-color);
     padding: var(--selectbarRes-padding);
     border-right: 0px;
-    width: calc(100% - 2*var(--selectbarRes-padding));
+    width: calc(100vw - 2*var(--selectbarRes-padding));
   }
   .selectbar *{
     font-size: 18px;
@@ -606,6 +608,9 @@ td:nth-child(2){
   th:nth-child(n + 3):nth-last-child(n+2),td:nth-child(n + 3):nth-last-child(n+2){
     display: none;
   }
+  th:nth-last-child(n+10),td:nth-last-child(n+10){
+    display: none;
+  }
   .selectbar *{
     font-size: 16px;
   }
@@ -642,5 +647,10 @@ td:nth-child(2){
   .filterSortButton{
     width: 50px;
     padding: 6px;
+  }
+}
+@media (max-width: 320px)  {
+  th:nth-child(n + 3):nth-last-child(n+1),td:nth-child(n + 3):nth-last-child(n+1){
+    display: none;
   }
 }

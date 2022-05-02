@@ -170,9 +170,24 @@ a:hover{
   border-radius: 8px;
   padding: 16px;
   z-index: 4;
-  top: calc(50vh - 300px);
-  left: calc(50vw - 120px);
+  left: 0;
+  right: 0;
+  margin: 0px auto;
+  max-width: 278px;
 
+}
+.modal2{
+  position: fixed;
+  background: var(--bg-color);
+  border: var(--selectbarGuide-border-width) solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  z-index: 4;
+  top: 50vh;
+  left: 0;
+  right: 0;
+  margin: 0px auto;
+  width: 100%;
 }
 .modal-url{
   color: var(--primary-color);
@@ -285,6 +300,7 @@ button, input, select, label{
   color: inherit;
   font-weight: inherit;
   font-size: inherit;
+  text-align: left;
 }
 .button_link:hover{
   color: var(--primary-color);
