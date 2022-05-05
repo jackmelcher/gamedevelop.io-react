@@ -649,7 +649,7 @@ td:nth-child(2){
     padding: 6px;
   }
 }
-@media (max-width: 320px)  {
+@media (max-width: 420px)  {
   th:nth-child(n + 3):nth-last-child(n+1),td:nth-child(n + 3):nth-last-child(n+1){
     display: none;
   }
