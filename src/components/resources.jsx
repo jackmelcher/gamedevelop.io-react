@@ -85,12 +85,24 @@ const IconsOS = ({source}) => {
         });
     }
 }
-
-const Image = ({source}) => {
+// bCustomImage = true means to use the imagekit cdn because CustomImageString="TRUE"
+// if bCustomImage is false, then the image will be pulled from the provided CustomImageString
+const Image = ({source, bCustomImage=false, CustomImageString=""}) => {
+    //console.log(bCustomImage + " " + source)
+    //console.log(bCustomImage + " " +  !(CustomImageString==="")  + " " + CustomImageString)
     return (
-        <img src={"https://ik.imagekit.io/ucxasjyuy/resources/" + GetImageName(source) + ".png?tr=w-32"} className = "tableimg" onError={ (e) => {replaceImgOnError (e.target)}} alt={"Icon"}/>
+        bCustomImage ? <img src={"https://ik.imagekit.io/ucxasjyuy/resources/" + GetImageName(source) + ".png?tr=w-32"} className ={"tableimg"} onError={ (e) => {replaceImgOnError (e.target)}} alt={"Icon"}/>
+        : !(CustomImageString==="") ? <img src={CustomImageString} className ={"tableimg"} onError={ (e) => {replaceImgOnError (e.target)}} alt={"Icon"}/>
+        :<img src={"https://www.google.com/s2/favicons?sz=32&domain_url="+source} className ={"tableimg"} onError={ (e) => {replaceImgOnError (e.target)}} alt={"Icon"}/>
     );
 
+    function GetFavicon(url)
+    {
+        // Split trailing url info
+        url = url.split('/');
+        console.log(url[0]+url[1]+url[2]);
+        return url[0]+url[1]+url[2]+"/favicon.ico";
+    }
     function GetImageName(url)
     {
         // Remove Http
@@ -105,7 +117,7 @@ const Image = ({source}) => {
     }
 
     function replaceImgOnError (img) {
-        img.src = "https://continental-black-krill.b-cdn.net/"+GetImageName(source)+"/32";
+        img.src = "https://www.google.com/s2/favicons?sz=32&domain_url="+source;
         img.onerror = () => {
             img.src = "https://ik.imagekit.io/ucxasjyuy/placeholder.png?tr=w-32";
         }
@@ -356,7 +368,7 @@ const Resources = ({map, children}) => {
                     Header: "",
                     accessor: "Image",
                     disableSortBy: true,
-                    Cell: ({row}) => <Image source={row.original.Link} />,
+                    Cell: ({row}) => <Image source={row.original.Link} bCustomImage={row.original.CustomImage === "TRUE"} CustomImageString={row.original.CustomImage}/>,
                     disableFilters: true,
                 })
             }
@@ -428,6 +440,9 @@ const Resources = ({map, children}) => {
                     continue;
                 }
                 if(columnKeys[i].includes("Verified")){
+                    continue;
+                }
+                if(columnKeys[i].includes("CustomImage")){
                     continue;
                 }
                 //console.log(columnObject)
@@ -704,7 +719,7 @@ const Resources = ({map, children}) => {
                                                     {row.cells.map((cell, index) => {
                                                         if (index === 1) {
                                                             return (
-                                                                <div>
+                                                                <div key={cell.render('Cell')}>
                                                                     <div {...row.cells[index-1].getCellProps()} className="entry-image grid">
                                                                         {row.cells[index-1].render('Cell')}
                                                                     </div>

@@ -34,7 +34,7 @@ const Guides = () => {
                             {
                                 guideSection.guides.map(guide=>{
                                     return(
-                                        <div className="guideItem">
+                                        <div className="guideItem" key={guide.title}>
                                             <div className={"inline-block vertical-align"}>
                                                 <img className={"guideItemImage"} src={guide.image} onError={(e) => {
                                                         e.target.onerror = null;

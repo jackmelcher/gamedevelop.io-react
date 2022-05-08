@@ -19,6 +19,7 @@
     "gatsby-source-filesystem": "^2.11.1",
     "gatsby-transformer-remark": "^4.4.1",
     "gatsby-transformer-sharp": "^2.12.1",
+    "get-website-favicon": "^0.0.7",
     "graphql": "^15.5.0",
     "netlify": "^11.0.1",
     "netlify-cli": "^8.4.2",

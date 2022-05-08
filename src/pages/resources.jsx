@@ -35,7 +35,7 @@ const ResourcePages = () => {
                           data.contentfulRecources.resourceSections.map(resourceSection => {
                               return (
                                   <Link to={`/resources/${resourceSection.linkslug}/`}
-                                        className="button button_main flex-item-resources-inner">
+                                        className="button button_main flex-item-resources-inner" key={resourceSection.linkslug}>
                                       <div className={"flex-container column justify-content-space-between flex-padding-rs"}>
                                           <h3>{resourceSection.title}</h3>
                                           <div className={"flex-item-padding"}></div>
@@ -43,7 +43,7 @@ const ResourcePages = () => {
                                               {
                                                   resourceSection.fontawesomeicons.map(fontawesomeicon => {
                                                       return (
-                                                          <img src={fontawesomeicon}></img>
+                                                          <img src={fontawesomeicon} key={fontawesomeicon}></img>
                                                       );
                                                   })
                                               }

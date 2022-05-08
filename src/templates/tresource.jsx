@@ -44,11 +44,11 @@ const ResourceSection = (props) => {
             {
                 props.data.contentfulResourceSections.resourceSubsections.map(resourceSubsection => {
                     return(
-                        <optgroup label={resourceSubsection.title}>
+                        <optgroup label={resourceSubsection.title} key={resourceSubsection.title}>
                         {
                             resourceSubsection.resourceSheets.map(resourceSheets => {
                                 return(
-                                    <option value={resourceSheets.optionvalue}>{resourceSheets.title}</option>
+                                    <option value={resourceSheets.optionvalue} key={resourceSheets.optionvalue}>{resourceSheets.title}</option>
                                 );
                             })
                         }
