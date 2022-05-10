@@ -241,7 +241,7 @@ function SelectColumnFilter({column: { filteredRows, filterValue = [], setFilter
 
 const LoadingData = () => {
     return(
-        <h2>Loading Data...</h2>
+        <h2 className={"textcenter"}>Loading Data...</h2>
     );
 }
 
