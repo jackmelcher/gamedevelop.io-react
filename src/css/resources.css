@@ -246,12 +246,11 @@ select{
   background-color: var(--side-button-bg-color);
   border: 1px solid var(--input-border-color);
   border-radius: 5px;
-  font-size: 18px;
-  padding: 5px 5px;
-  width: 100%;
 }
-.selectbar>select *{
+.tableSelect{
   font-size: 18px;
+  width: 100%;
+  padding: 5px 5px;
 }
 .tableTitle{
   font-size: 32px;
@@ -378,10 +377,14 @@ td:nth-child(2){
 .globalSearch {
   font-size: 18px;
   width: calc(100% - 6px);
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 2px;
-  cursor: text;
+}
+.pagination{
+  margin-top: 4px;
+  margin-left: 8px;
+}
+.pagination *{
+  margin-top: 8px;
+  font-size: 16px;
 }
 @media (min-width: 769px) and (max-width: 1600px) {
   .flex-item-resource-table-padding-left {
@@ -510,10 +513,6 @@ td:nth-child(2){
     padding: 6px 12px;
     width: 240px;
   }
-  .selectbar>select{
-    padding: 5px 12px;
-    width: auto;
-  }
   .rsidenav {
     border-right: 0px
   }
@@ -596,10 +595,6 @@ td:nth-child(2){
     margin-left: 4px;
     margin-right: 0px;
   }
-  .selectbarRes>select{
-    width: 54%;
-    height: 35px;
-  }
 }
 @media (max-width: 430px) {
   :root{
@@ -633,10 +628,6 @@ td:nth-child(2){
   .selectbar>button>img{
     height: 18px;
     vertical-align: -3px;
-  }
-  .selectbarRes>select{
-    width: 46%;
-    font-size: 16px;
   }
   .entry-image.grid img{
     width: 24px;

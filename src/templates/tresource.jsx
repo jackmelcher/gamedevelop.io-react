@@ -35,6 +35,7 @@ export const query = graphql`
 const ResourceSection = (props) => {
 
     return(
+        // props.pageContext.resourceMap comes from gatsby-node.js during Create Pages.
         <Resources map={props.pageContext.resourceMap}>
             {
                 (props.data.contentfulResourceSections.popularSheet != null)

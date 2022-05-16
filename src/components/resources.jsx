@@ -5,11 +5,12 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Modal from "../components/modal"
 
-import {useSortBy, useTable, useGlobalFilter, useFilters, useAsyncDebounce} from "react-table/src";
+import {useSortBy, useTable, usePagination, useGlobalFilter, useFilters, useAsyncDebounce} from "react-table/src";
 import {readString} from "react-papaparse"
 
 import "../css/resources.css"
 import axios from "axios";
+import {graphql, useStaticQuery} from "gatsby";
 
 const IconsOS = ({source}) => {
     let platformsArray = source !== undefined ? source.split(", ") : [];
@@ -207,7 +208,7 @@ function SelectColumnFilter({column: { filteredRows, filterValue = [], setFilter
         return !optionsSet.has(option);
     }
 
-    let defaultOpen = window.innerWidth > 768;
+    let defaultOpen = window.innerWidth > 768 && !window.location.href.includes("/all/");
 
     return (
         <div className="listTitle">
@@ -255,18 +256,43 @@ const EmptyRow = ({rows}) => {
 }
 
 const Resources = ({map, children}) => {
+    const query = useStaticQuery( graphql`
+        query AllSheets{
+            allContentfulTestAsset(
+                filter: {optionvalue: {regex: "/^(?!pop).+/"}}
+                sort: {fields: optionvalue}
+              ) {
+                edges {
+                  node {
+                    optionvalue
+                    csvlink
+                  }
+                }
+              }
+        }
+    `)
+
     let resourceData;
     const [isLoading,setIsLoading] = useState(false);
     const [tableName,setTableName] = useState("");
     let csvData =[], columnsData = [];
     const [data,setData] = useState(csvData);
     const [columns,setColumns] = useState(columnsData);
+    const [isGlobalTable,setIsGlobalTable] = useState(false);
 
     function MakeResourceMap(entry){
+        //console.log(entry[1])
         return axios.get(entry[1]);
     }
 
     useEffect(()=>{
+        // If viewing All Resources, then initialize the Global Table
+        if(window.location.href.includes("/all/")){
+            setIsGlobalTable(true);
+            InitializeGlobalTable();
+            return;
+        }
+
         let initialKey = document.getElementById("category").value;
         //console.log(map);
         //console.log(localStorage.getItem(initialKey));
@@ -293,6 +319,8 @@ const Resources = ({map, children}) => {
 
         // Get data tables using Axios function and save any changes to local storage.
         let object = {};
+        console.log(map)
+        console.log(Array.from(Object.entries(map)))
         Promise.all(Array.from(Object.entries(map)).map(MakeResourceMap))
             .then(dataArray => {
                 Object.keys(map).forEach((key,index) => {
@@ -305,6 +333,8 @@ const Resources = ({map, children}) => {
 
                 // Only load table with axios data if the current local storage data differs from the axios data.
                 if(tempMap[initialKey] !== object[initialKey]){
+                    setData([])
+                    setColumns([])
                     SelectTable();
                 }
                 setIsLoading(false);
@@ -316,6 +346,7 @@ const Resources = ({map, children}) => {
             window.removeEventListener('hashchange', hashChangeHandler);
         };
     },[]);
+
 
     const hashChangeHandler = React.useCallback(() => {
         //console.log("hash change" + window.location.hash);
@@ -363,6 +394,8 @@ const Resources = ({map, children}) => {
             //console.log("columnKeys: ");
             //console.log(columnKeys);
             let arr = [];
+
+            // Make Image column for resource table
             if(columnKeys.toString().includes("Link")){
                 arr.push({
                     Header: "",
@@ -372,6 +405,7 @@ const Resources = ({map, children}) => {
                     disableFilters: true,
                 })
             }
+            // Make Image column for resource table
             if(columnKeys.toString().includes("URL")){
                 arr.push({
                     Header: "",
@@ -463,6 +497,149 @@ const Resources = ({map, children}) => {
             console.log(e)
         }
     }
+    function InitializeGlobalTable()
+    {
+        console.log("Initialize Global Tables");
+        setTableName("All Resources");
+        setPageSize(10);
+        // If table does not exist in local storage, show "Loading" text.
+        /*query.allContentfulTestAsset.edges.map(edge => {
+            if(!localStorage.getItem(edge.node.optionvalue)) {
+                setIsLoading(true);
+                return;
+            }
+        })*/
+        let resourceGlobalLocal = {};
+        query.allContentfulTestAsset.edges.map(edge => {
+            if(localStorage.getItem(edge.node.optionvalue) !== null) {
+                resourceGlobalLocal[edge.node.optionvalue] = localStorage.getItem(edge.node.optionvalue);
+            }
+        })
+
+        // Load Global table from local storage data.
+        if(Object.keys(resourceGlobalLocal).length === 0){
+            setIsLoading(true);
+        }
+        else {
+            GlobalTable(resourceGlobalLocal);
+        }
+
+        // Make table object with names and values of the tables and csv url.
+        let tables = {};
+        query.allContentfulTestAsset.edges.map(edge => {
+            tables[edge.node.optionvalue]=edge.node.csvlink;
+        })
+        //console.log(tables);
+
+        // Fetch the csv data from the tables object
+        let resourceGlobal;
+        let object = {};
+        Promise.all(Array.from(Object.entries(tables)).map(MakeResourceMap))
+            .then(dataArray => {
+                Object.keys(tables).forEach((key,index) => {
+                    object[key] = dataArray[index].data;
+                    if(localStorage.getItem(key) !== dataArray[index].data){
+                        localStorage.setItem(key,object[key]);
+                    }
+                })
+                resourceGlobal = object;
+                setIsLoading(false);
+
+                //console.log(resourceGlobal)
+                //console.log(Object.values(resourceGlobal))
+
+                // Load table from fetched data if it doesn't match local storage data.
+                if(Object.keys(resourceGlobalLocal).length !== Object.keys(resourceGlobal).length){
+                    setData([])
+                    setColumns([])
+                    GlobalTable(resourceGlobal);
+                }
+                else{
+                    for (const key of Object.keys(resourceGlobal)) {
+                        if(resourceGlobal[key] !== resourceGlobalLocal[key]){
+                            setData([])
+                            setColumns([])
+                            GlobalTable(resourceGlobal);
+                            break;
+                        }
+                    }
+                }
+            })
+    }
+
+    function GlobalTable(resourceGlobal)
+    {
+        console.log("Load Global Tables");
+        csvData = [];
+        let link, data;
+
+        // React-table implementation
+        try{
+            //console.log(Object.values(resourceGlobal).length)
+
+            for(let i = 0; i < Object.values(resourceGlobal).length; i++){
+                //console.log(i)
+                //console.log(Object.values(resourceGlobal)[i])
+                data = Object.values(resourceGlobal)[i]
+                link = readString(data, {header: true}).data;
+                //console.log(link)
+                csvData = csvData.concat(link)
+            }
+            //console.log(csvData)
+
+            let columnKeys = Object.keys(csvData[0]);
+            let arr = [];
+
+            // Make Image column for resource table
+            if(columnKeys.toString().includes("Link")){
+                arr.push({
+                    Header: "",
+                    accessor: "Image",
+                    disableSortBy: true,
+                    Cell: ({row}) => <Image source={row.original.Link} bCustomImage={row.original.CustomImage === "TRUE"} CustomImageString={row.original.CustomImage}/>,
+                    disableFilters: true,
+                })
+            }
+            for(let i = 0; i < columnKeys.length; i++){
+                let columnObject = {};
+                columnObject.Header = columnKeys[i];
+                columnObject.accessor = columnKeys[i];
+                columnObject.id = columnKeys[i]+window.location.hash;
+                if(i > 1  && i < columnKeys.length - 1){
+                    columnObject.Filter = SelectColumnFilter;
+                    columnObject.filter = "includesAll";
+                }
+                if(i > 2  && i < columnKeys.length){
+                    columnObject.disableSortBy = true;
+                }
+                if(columnKeys[i].includes("Name")){
+                    columnObject.Cell = ({row}) => <a href={row.original.Link} target="_blank" rel="noopener noreferrer">{row.original.Name}</a>;
+                    columnObject.disableFilters = true;
+                    arr.push(columnObject);
+                }
+                if(columnKeys[i].includes("Categories")){
+                    arr.push(columnObject);
+                }
+                if(columnKeys[i].includes("Pricing")){
+                    arr.push(columnObject);
+                }
+                if(columnKeys[i].includes("Platforms")){
+                    columnObject.Cell = ({row}) => <IconsOS source={row.original.Platforms}/>;
+                    arr.push(columnObject);
+                }
+                if(columnKeys[i].includes("Description")) {
+                    columnObject.disableFilters = true;
+                    arr.push(columnObject);
+                }
+            }
+            columnsData = arr;
+            setData(csvData);
+
+            setColumns(columnsData);
+        }catch (e){
+            console.log(e)
+        }
+    }
 
     const [filterOpen,setFilterOpen] = useState(false);
     function toggleSidebar()
@@ -529,13 +706,25 @@ const Resources = ({map, children}) => {
         getTableProps,
         getTableBodyProps,
         headerGroups,
-        rows,
         prepareRow,
-        state,
+        rows,
+        page,
+        canPreviousPage,
+        canNextPage,
+        pageOptions,
+        pageCount,
+        gotoPage,
+        nextPage,
+        previousPage,
+        setPageSize,
+        state: { globalFilter, pageIndex, pageSize },
         setGlobalFilter,
         setAllFilters
     } = useTable(
-{ columns: columns, data: data, defaultColumn,
+{ columns: columns,
+        data: data,
+        defaultColumn,
+        initialState: { pageIndex: 0, pageSize: 99999},
         sortTypes: {
             alphanumeric: (row1, row2, columnName) => {
                 return compareIgnoreCase(
@@ -544,18 +733,15 @@ const Resources = ({map, children}) => {
                 )
             },
         },
-    }, useFilters, useGlobalFilter, useSortBy);
+    }, useFilters, useGlobalFilter, useSortBy, usePagination);
 
     useEffect(()=>{
         setAllFilters([]);
     },[data])
 
-    const {globalFilter} = state;
-
     const [modalOpen,setModalOpen] = useState(false);
     const [modalName,setModalName] = useState("");
     const [modalLink,setModalLink] = useState("");
-
 
     return(
         <Layout>
@@ -570,7 +756,7 @@ const Resources = ({map, children}) => {
                             </span>
                             <div className="select-flex-item-padding"/>
                             <ViewButton/>
-                            <select id="category" className="select-flex-item" onChange={(e) => {
+                            <select id="category" className="tableSelect select-flex-item" onChange={(e) => {
                                 handleSelectChange(e.target.value);
                             }}>
                                 {children}
@@ -587,10 +773,7 @@ const Resources = ({map, children}) => {
                     </div>
                     {/* Sidebar */}
                     <div className="rsidenav">
-                        <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}/>
-                        {/*
-                            <GlobalFilterAsync filter={globalFilter} setFilter={setGlobalFilter} />
-                        */}
+                        <GlobalFilterAsync filter={globalFilter} setFilter={setGlobalFilter} />
                         <br/>
                         <div className="filtername">
                             <b>Sort:</b>
@@ -648,8 +831,8 @@ const Resources = ({map, children}) => {
                     </div>
                 </div>
                 <div className="flex-item-resource-table">
-                        <h1 id="tname" className="textcenter">{tableName}</h1>
-                        {isLoading && <LoadingData/>}
+                    <h1 id="tname" className="textcenter">{tableName}</h1>
+                    {isLoading && <LoadingData/>}
 
                     {/* User Submission */}
                     {tableName.includes("User Submitted") &&
@@ -659,7 +842,6 @@ const Resources = ({map, children}) => {
                             {modalOpen && <Modal setModalOpen={setModalOpen} name={modalName} link={modalLink}/>}
                         </div>
                     }
-
                         {/* Table View */}
                         {view === "table" && rows.length !== 0 && <table {...getTableProps()} id={"myTable"}>
                             <thead>
@@ -683,7 +865,7 @@ const Resources = ({map, children}) => {
                             </thead>
                             <tbody {...getTableBodyProps()}>
                             {
-                                rows.map(row => {
+                                page.map(row => {
                                     prepareRow(row)
                                     return (
                                         <tr {...row.getRowProps()}>
@@ -711,7 +893,7 @@ const Resources = ({map, children}) => {
                         {view === "grid" && <div {...getTableProps()} id={"myTable"}>
                             <div {...getTableBodyProps()} className="grid-container">
                                 {
-                                    rows.map((row, index) => {
+                                    page.map((row, index) => {
                                         prepareRow(row)
                                         return (
                                             <>
@@ -761,7 +943,7 @@ const Resources = ({map, children}) => {
                         {(view === "list") && <div {...getTableProps()} id={"myTable"}>
                             <div {...getTableBodyProps()} className="flex-container column wrap list-container">
                                 {
-                                    rows.map((row, index) => {
+                                    page.map((row, index) => {
                                         prepareRow(row)
                                         return (
                                             <>
@@ -816,7 +998,73 @@ const Resources = ({map, children}) => {
                                     })}
                             </div>
                         </div>}
-                        {state.globalFilter && <EmptyRow rows={rows}/>}
+                        {globalFilter && <EmptyRow rows={rows}/>}
+                        {/*
+                        Pagination can be built however you'd like.
+                        This is just a very basic UI implementation:
+                        */}
+                        {!isLoading && isGlobalTable && <div className="pagination">
+                            <button onClick={() => {
+                                gotoPage(0);
+                                window.scrollTo(0,0);
+                            }} disabled={!canPreviousPage}>
+                                {'<<'}
+                            </button>
+                            {' '}
+                            <button onClick={() => {
+                                previousPage();
+                                window.scrollTo(0,0);
+                            }} disabled={!canPreviousPage}>
+                                {'<'}
+                            </button>
+                            {' '}
+                            <button onClick={() => {
+                                nextPage();
+                                window.scrollTo(0,0);
+                            }} disabled={!canNextPage}>
+                                {'>'}
+                            </button>
+                            {' '}
+                            <button onClick={() => {
+                                gotoPage(pageCount - 1);
+                                window.scrollTo(0,0);
+                            }} disabled={!canNextPage}>
+                                {'>>'}
+                            </button>
+                            {' '}
+                            <span>
+                                Page{' '}
+                                <strong>
+                                    {pageIndex + 1} of {pageOptions.length}
+                                </strong>{' '}
+                                |{' '}
+                            </span>
+                            <div className={"inline-block"}><span>
+                                Go to page:{' '}
+                                <input
+                                    type="number"
+                                    min={1}
+                                    max={pageCount}
+                                    defaultValue={pageIndex + 1}
+                                    onChange={e => {
+                                        const page = e.target.value ? Number(e.target.value) - 1 : 0
+                                        gotoPage(page)
+                                    }}
+                                />
+                            </span>{' '}
+                                <select
+                                    value={pageSize}
+                                    onChange={e => {
+                                        setPageSize(Number(e.target.value));
+                                    }}
+                                >
+                                    {[10, 20, 30, 40, 50, 100].map(pageSize => (
+                                        <option key={pageSize} value={pageSize}>
+                                            Show {pageSize}
+                                        </option>
+                                    ))}
+                                </select></div>
+                        </div>}
                     </div>
             </div>
         </Layout>
