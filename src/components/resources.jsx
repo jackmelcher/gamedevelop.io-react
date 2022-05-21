@@ -286,10 +286,9 @@ const Resources = ({map, children}) => {
     }
 
     useEffect(()=>{
-        let initialKey = document.getElementById("category").value;
-
+        //console.log(map)
         // If viewing All Resources, then initialize the Global Table
-        if(window.location.href.includes("/all/")){
+        if(map.global === "nocsvlink"){
             setIsGlobalTable(true);
             InitializeGlobalTable();
         }
@@ -299,6 +298,7 @@ const Resources = ({map, children}) => {
             //console.log(localStorage.getItem(initialKey));
 
             // If table does not exist in local storage, show "Loading" text.
+            let initialKey = document.getElementById("category").value;
             if(!localStorage.getItem(initialKey)){
                 //console.log("set loading to true");
                 setIsLoading(true);
@@ -385,7 +385,7 @@ const Resources = ({map, children}) => {
             console.log("resourceMap undefined");
             return;
         }
-        if(window.location.href.includes("/all/")){
+        if(map.global === "nocsvlink"){
             console.log("Ignore LoadTable for View All Resources page.");
             return;
         }
