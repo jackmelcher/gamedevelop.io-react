@@ -259,7 +259,7 @@ const Resources = ({map, children}) => {
     const query = useStaticQuery( graphql`
         query AllSheets{
             allContentfulTestAsset(
-                filter: {optionvalue: {regex: "/^(?!pop).+/", nin: ["userSubmitted","all"]}}
+                filter: {optionvalue: {regex: "/^(?!pop).+/", nin: ["userSubmitted","global"]}}
                 sort: {fields: optionvalue}
               ) {
                 edges {
