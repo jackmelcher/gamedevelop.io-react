@@ -286,14 +286,15 @@ const Resources = ({map, children}) => {
     }
 
     useEffect(()=>{
+        let initialKey = document.getElementById("category").value;
+
         // If viewing All Resources, then initialize the Global Table
-        if(window.location.href.includes("/all/")){
+        if(initialKey.includes("global")){
             setIsGlobalTable(true);
             InitializeGlobalTable();
         }
         else{
             // Otherwise, load a table from the Select list.
-            let initialKey = document.getElementById("category").value;
             //console.log(map);
             //console.log(localStorage.getItem(initialKey));
 
@@ -321,24 +322,29 @@ const Resources = ({map, children}) => {
             let object = {};
             console.log(map)
             console.log(Array.from(Object.entries(map)))
-            Promise.all(Array.from(Object.entries(map)).map(MakeResourceMap))
-                .then(dataArray => {
-                    Object.keys(map).forEach((key,index) => {
-                        object[key] = dataArray[index].data
-                        if(localStorage.getItem(key) !== dataArray[index].data){
-                            localStorage.setItem(key,object[key]);
-                        }
-                    })
-                    resourceData = object;
+            try{
+                Promise.all(Array.from(Object.entries(map)).map(MakeResourceMap))
+                    .then(dataArray => {
+                        Object.keys(map).forEach((key, index) => {
+                            object[key] = dataArray[index].data
+                            if (localStorage.getItem(key) !== dataArray[index].data) {
+                                localStorage.setItem(key, object[key]);
+                            }
+                        })
+                        resourceData = object;
 
-                    // Only load table with axios data if the current local storage data differs from the axios data.
-                    if(tempMap[initialKey] !== object[initialKey]){
-                        setData([]);
-                        setColumns([]);
-                        SelectTable();
-                    }
-                    setIsLoading(false);
-                })
+                        // Only load table with axios data if the current local storage data differs from the axios data.
+                        if (tempMap[initialKey] !== object[initialKey]) {
+                            setData([]);
+                            setColumns([]);
+                            SelectTable();
+                        }
+                        setIsLoading(false);
+                    })
+            }
+            catch (e) {
+                console.log(e)
+            }
         }
 
         // Set hash change handler so we can switch between tables using browser navigation.
@@ -378,7 +384,7 @@ const Resources = ({map, children}) => {
             console.log("resourceMap undefined");
             return;
         }
-        if(window.location.href.includes("/all/")){
+        if(filename.includes("global")){
             console.log("Ignore LoadTable for View All Resources page.");
             return;
         }
@@ -516,6 +522,7 @@ const Resources = ({map, children}) => {
         })*/
         try{
             let resourceGlobalLocal = {};
+            console.log(query);
             query.allContentfulTestAsset.edges.map(edge => {
                 if(localStorage.getItem(edge.node.optionvalue) !== null) {
                     resourceGlobalLocal[edge.node.optionvalue] = localStorage.getItem(edge.node.optionvalue);
@@ -535,7 +542,7 @@ const Resources = ({map, children}) => {
             query.allContentfulTestAsset.edges.map(edge => {
                 tables[edge.node.optionvalue]=edge.node.csvlink;
             })
-            //console.log(tables);
+            console.log(tables);
 
             // Fetch the csv data from the tables object
             let resourceGlobal;
@@ -551,7 +558,8 @@ const Resources = ({map, children}) => {
                     resourceGlobal = object;
                     setIsLoading(false);
 
-                    //console.log(resourceGlobal)
+                    console.log(resourceGlobalLocal)
+                    console.log(resourceGlobal)
                     //console.log(Object.values(resourceGlobal))
 
                     // Load table from fetched data if it doesn't match local storage data.
@@ -596,7 +604,7 @@ const Resources = ({map, children}) => {
                 //console.log(link)
                 csvData = csvData.concat(link);
             }
-            //console.log(csvData)
+            console.log(csvData)
 
             let columnKeys = Object.keys(csvData[0]);
             let arr = [];
