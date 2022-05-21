@@ -259,7 +259,7 @@ const Resources = ({map, children}) => {
     const query = useStaticQuery( graphql`
         query AllSheets{
             allContentfulTestAsset(
-                filter: {optionvalue: {regex: "/^(?!pop).+/", ne: "userSubmitted"}}
+                filter: {optionvalue: {regex: "/^(?!pop).+/", nin: ["userSubmitted","all"]}}
                 sort: {fields: optionvalue}
               ) {
                 edges {
@@ -289,7 +289,7 @@ const Resources = ({map, children}) => {
         let initialKey = document.getElementById("category").value;
 
         // If viewing All Resources, then initialize the Global Table
-        if(initialKey.includes("global")){
+        if(window.location.href.includes("/all/")){
             setIsGlobalTable(true);
             InitializeGlobalTable();
         }
@@ -320,8 +320,8 @@ const Resources = ({map, children}) => {
 
             // Get data tables using Axios function and save any changes to local storage.
             let object = {};
-            console.log(map)
-            console.log(Array.from(Object.entries(map)))
+            //console.log(map)
+            //console.log(Array.from(Object.entries(map)))
             try{
                 Promise.all(Array.from(Object.entries(map)).map(MakeResourceMap))
                     .then(dataArray => {
@@ -380,11 +380,12 @@ const Resources = ({map, children}) => {
     }
     function LoadTable(filename)
     {
+        //console.log("Load Table");
         if(resourceData === undefined){
             console.log("resourceMap undefined");
             return;
         }
-        if(filename.includes("global")){
+        if(window.location.href.includes("/all/")){
             console.log("Ignore LoadTable for View All Resources page.");
             return;
         }
@@ -510,7 +511,7 @@ const Resources = ({map, children}) => {
     }
     function InitializeGlobalTable()
     {
-        console.log("Initialize Global Tables");
+        //console.log("Initialize Global Tables");
         setTableName("All Resources");
         setPageSize(10);
         // If table does not exist in local storage, show "Loading" text.
@@ -522,12 +523,13 @@ const Resources = ({map, children}) => {
         })*/
         try{
             let resourceGlobalLocal = {};
-            console.log(query);
+            //console.log(query);
             query.allContentfulTestAsset.edges.map(edge => {
                 if(localStorage.getItem(edge.node.optionvalue) !== null) {
                     resourceGlobalLocal[edge.node.optionvalue] = localStorage.getItem(edge.node.optionvalue);
                 }
             })
+            //console.log(resourceGlobalLocal)
 
             // Load Global table from local storage data.
             if(Object.keys(resourceGlobalLocal).length === 0){
@@ -542,7 +544,7 @@ const Resources = ({map, children}) => {
             query.allContentfulTestAsset.edges.map(edge => {
                 tables[edge.node.optionvalue]=edge.node.csvlink;
             })
-            console.log(tables);
+            //console.log(tables);
 
             // Fetch the csv data from the tables object
             let resourceGlobal;
@@ -558,11 +560,11 @@ const Resources = ({map, children}) => {
                     resourceGlobal = object;
                     setIsLoading(false);
 
-                    console.log(resourceGlobalLocal)
-                    console.log(resourceGlobal)
+                    //console.log(resourceGlobal);
                     //console.log(Object.values(resourceGlobal))
 
                     // Load table from fetched data if it doesn't match local storage data.
+                    //console.log(Object.keys(resourceGlobalLocal).length !== Object.keys(resourceGlobal).length);
                     if(Object.keys(resourceGlobalLocal).length !== Object.keys(resourceGlobal).length){
                         setData([]);
                         setColumns([]);
@@ -588,7 +590,7 @@ const Resources = ({map, children}) => {
 
     function GlobalTable(resourceGlobal)
     {
-        console.log("Load Global Tables");
+        //console.log("Load Global Tables");
         csvData = [];
         let link, data;
 
@@ -604,7 +606,7 @@ const Resources = ({map, children}) => {
                 //console.log(link)
                 csvData = csvData.concat(link);
             }
-            console.log(csvData)
+            //console.log(csvData)
 
             let columnKeys = Object.keys(csvData[0]);
             let arr = [];
