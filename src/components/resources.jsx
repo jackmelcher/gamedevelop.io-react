@@ -288,6 +288,11 @@ const Resources = ({map, children}) => {
     useEffect(()=>{
         //console.log(map)
         // If viewing All Resources, then initialize the Global Table
+
+        // Enable table scroll if it was disabled when viewing another page.
+        let table = document.getElementsByClassName("flex-item-resource-table")[0];
+        table.classList.remove("disableScroll");
+
         if(map.global === "nocsvlink"){
             setIsGlobalTable(true);
             InitializeGlobalTable();
@@ -667,15 +672,16 @@ const Resources = ({map, children}) => {
     {
         setFilterOpen(!filterOpen);
         let side = document.getElementsByClassName("rsidenav")[0];
+        let table = document.getElementsByClassName("flex-item-resource-table")[0];
         if(side.style.display === "none" || side.style.display === "")
         {
             side.style.display = "block";
-            document.body.classList.add("disableScroll");
+            table.classList.add("disableScroll");
         }
         else
         {
             side.style.display = "";
-            document.body.classList.remove("disableScroll");
+            table.classList.remove("disableScroll");
         }
     }
 
