@@ -7,11 +7,7 @@
 
 import React from "react"
 
-import SidebarG from "./sidebarg"
 import Layout from "./layout"
-import Navbar from "./navbar"
-import Footer from "./footer"
-
 import "../css/guides.css"
 
 const Layoutg = ({ children }) => {

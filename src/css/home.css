@@ -87,3 +87,9 @@
 .home-shadow-box{
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.7);
 }
+
+@media (max-width: 768px){
+    .homeLandingSection{
+        padding: 0px;
+    }
+}

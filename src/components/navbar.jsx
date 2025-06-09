@@ -3,18 +3,12 @@ import React, {useState, useEffect} from "react"
 
 
 
-function Navbar({children})
+function Navbar()
 {
     return (
         <div className="navbar-container">
-            <span className="navbar flex-container row">
-                <MobileNav/>
-                <span className="flex-item-padding navbar-mobile"/>
-                <LogoNav/>
-                <DesktopNav/>
-                <span className="flex-item-padding"/>
-                <Theme/>
-            </span>
+            <MobileNav/>
+            <DesktopNav/>
         </div>
     );
 }
@@ -29,24 +23,24 @@ const LogoNav = () => {
 
 const DesktopNav = () => {
     return(
-        <span className="navbar-desktop">
-            <Resources/>
-            <Guides/>
-            <About/>
+        <span className="navbar flex-container row">
+            <span className="navbar-desktop">
+                <LogoNav/>
+                <Resources/>
+                <Guides/>
+                <About/>
+            </span>
+            <span className="flex-item-padding"/>
+            <Theme/>
         </span>
     );
 }
 
 function Theme()
 {
-    //const [theme,setTheme] = useState(localStorage.getItem("site-theme") ? true : false);
-    const [isDarkTheme,setIsDarkTheme] = useState(false);
-
-    useEffect(() => {
-        if(localStorage.getItem("site-theme")){
-            setIsDarkTheme(true);
-        }
-    },[]);
+    const [isDarkTheme,setIsDarkTheme] = useState(()=>{if(localStorage.getItem("site-theme")){
+            return true;
+        }});
 
     useEffect(() => {    
         themeMode(isDarkTheme);
@@ -59,6 +53,35 @@ function Theme()
         }
         {
             !isDarkTheme && <i className="menuicon fas fa-sun"></i>
+        }
+        </button>
+    );
+}
+function ThemeMobile()
+{
+    const [isDarkTheme,setIsDarkTheme] = useState(()=>{if(localStorage.getItem("site-theme")){
+            return true;
+        }});
+        
+    useEffect(() => {    
+        themeMode(isDarkTheme);
+    },[isDarkTheme]);
+
+    return (
+        <button className="navbar-button flex-item-navbar" onClick={()=> setIsDarkTheme(!isDarkTheme)}>
+        {
+            isDarkTheme && 
+            <>
+                <i className="menuicon fas fa-moon"></i>
+                <p>Dark</p>
+            </>
+        }
+        {
+            !isDarkTheme && 
+            <>
+                <i className="menuicon fas fa-sun"></i>
+                <p>Light</p>
+            </>
         }
         </button>
     );
@@ -79,25 +102,13 @@ function themeMode(isDarkTheme)
 
 function MobileNav()
 {
-    const [menu,setMenu] = useState(false);
     return(
         <span className="navbar-mobile">
-            <button className="navbar-button flex-item-navbar small" onClick={()=> setMenu(!menu)}>
-                {
-                    !menu && <i className="fas fa-bars"></i>
-                }
-                {
-                    menu && <i className="fas fa-times"></i>
-                }
-            </button>
-            {
-                menu &&
-                <div className="navbar-collapsed">
-                    <Resources/>
-                    <Guides/>
-                    <About/>
-                </div>
-            }
+            <HomeMobile/>
+            <ResourcesMobile/>
+            <GuidesMobile/>
+            <AboutMobile/>
+            <ThemeMobile/>
         </span>
     );
 }
@@ -124,13 +135,38 @@ const About = () => {
     )
 }
 
-// Atm not using this page. Might replace page with Google Form.
-const Submit = () => {
+const ResourcesMobile = () => {
     return(
-        <Link to="/resources-submit/" className="navbar-button flex-item-navbar">
-            <p><i className="fas fa-clipboard-list"></i> Submit a Resource</p>
+        <Link to="/resources/" className="navbar-button flex-item-navbar mobile">
+            <i class="fas fa-database"></i>
+            <p>Resources</p>
         </Link>
     )
 }
+const GuidesMobile = () => {
+    return(
+        <Link to="/guides/" className="navbar-button flex-item-navbar mobile">
+            <i class="fas fa-file-alt"></i>
+            <p>Guides</p>
+        </Link>
+    )
+}
+const AboutMobile = () => {
+    return(
+        <Link to="/about/" className="navbar-button flex-item-navbar mobile">
+            <i class="fas fa-info-circle"></i>
+            <p>About</p>
+        </Link>
+    )
+}
+const HomeMobile = () => {
+    return(
+        <Link to="/" className="navbar-button flex-item-navbar mobile">
+            <img src="https://ik.imagekit.io/ucxasjyuy/logo1.svg" alt="Logo" className="logoimg"/>
+            <p>Home</p>
+        </Link>
+    )
+}
+
 
 export default Navbar

@@ -16,6 +16,12 @@ const ResourcePages = () => {
                       title
                       fontawesomeicons
                       linkslug
+                      resourceSubsections{
+                            resourceSheets {
+                            title
+                            optionvalue
+                            }
+                        }
                     }
                   }
                 }
@@ -33,23 +39,37 @@ const ResourcePages = () => {
                   <div className="flex-item-resources rs-container-gap flex-container row wrap justify-content-center limit-width">
                       {
                           data.contentfulRecources.resourceSections.map(resourceSection => {
+                            
                               return (
-                                  <Link to={`/resources/${resourceSection.linkslug}/`}
-                                        className="button button_main flex-item-resources-inner" key={resourceSection.linkslug}>
+                                  <div to={`/resources/${resourceSection.linkslug}/`}
+                                        className="button flex-item-resources-inner" key={resourceSection.linkslug}>
                                       <div className={"flex-container column justify-content-space-between flex-padding-rs"}>
-                                          <h3>{resourceSection.title}</h3>
-                                          <div className={"flex-item-padding"}></div>
-                                          <div className={""}>
-                                              {
-                                                  resourceSection.fontawesomeicons.map(fontawesomeicon => {
-                                                      return (
-                                                          <img src={fontawesomeicon} key={fontawesomeicon}></img>
-                                                      );
-                                                  })
-                                              }
-                                          </div>
+                                            <h3>{resourceSection.title}</h3>
+                                            <div className={"flex-item-padding"}></div>
+                                            <div className={"resource_sheets_lists"}>
+                                            {
+                                                resourceSection.fontawesomeicons.map(fontawesomeicon => {
+                                                    return (
+                                                        <img src={fontawesomeicon} key={fontawesomeicon}></img>
+                                                    );
+                                                })
+                                            }
+                                            {
+                                                resourceSection.resourceSubsections.map(resourceSubsection => {
+                                                    return (
+                                                        resourceSubsection.resourceSheets.map(resourceSheet => {
+                                                            return (
+                                                                <div>
+                                                                <Link to={`/resources/${resourceSheet.optionvalue}/`}>{resourceSheet.title}</Link>
+                                                                </div>
+                                                            );
+                                                        })
+                                                    )
+                                                })
+                                            }
+                                            </div>
                                       </div>
-                                  </Link>
+                                  </div>
                               );
                           })
                       }

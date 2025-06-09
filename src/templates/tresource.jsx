@@ -36,26 +36,26 @@ const ResourceSection = (props) => {
 
     return(
         // props.pageContext.resourceMap comes from gatsby-node.js during Create Pages.
-        <Resources map={props.pageContext.resourceMap}>
+        <Resources map={props.pageContext.resourceMap} title={props.pageContext.title}>
             {
-                (props.data.contentfulResourceSections.popularSheet != null)
-                    ?<option value={props.data.contentfulResourceSections.popularSheet.optionvalue}>{props.data.contentfulResourceSections.popularSheet.title}</option>
-                    :""
+                // (props.data.contentfulResourceSections.popularSheet != null)
+                //     ?<option value={props.data.contentfulResourceSections.popularSheet.optionvalue}>{props.data.contentfulResourceSections.popularSheet.title}</option>
+                //     :""
             }
             {
-                props.data.contentfulResourceSections.resourceSubsections.map(resourceSubsection => {
-                    return(
-                        <optgroup label={resourceSubsection.title} key={resourceSubsection.title}>
-                        {
-                            resourceSubsection.resourceSheets.map(resourceSheets => {
-                                return(
-                                    <option value={resourceSheets.optionvalue} key={resourceSheets.optionvalue}>{resourceSheets.title}</option>
-                                );
-                            })
-                        }
-                        </optgroup>
-                    );
-                })
+                // props.data.contentfulResourceSections.resourceSubsections.map(resourceSubsection => {
+                //     return(
+                //         <optgroup label={resourceSubsection.title} key={resourceSubsection.title}>
+                //         {
+                //             resourceSubsection.resourceSheets.map(resourceSheets => {
+                //                 return(
+                //                     <option value={resourceSheets.optionvalue} key={resourceSheets.optionvalue}>{resourceSheets.title}</option>
+                //                 );
+                //             })
+                //         }
+                //         </optgroup>
+                //     );
+                // })
             }
         </Resources>
     );

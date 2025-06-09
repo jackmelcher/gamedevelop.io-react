@@ -30,22 +30,34 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
         resources: allContentfulResourceSections {
-            edges {
-                node {
-                  linkslug
-                  popularSheet {
-                      csvlink
-                      optionvalue
-                    }
-                  resourceSubsections {
-                      resourceSheets {
-                        csvlink
-                        optionvalue
-                      }
-                    }
+          edges {
+            node {
+              linkslug
+              popularSheet {
+                csvlink
+                optionvalue
+              }
+              resourceSubsections {
+                resourceSheets {
+                  csvlink
+                  optionvalue
                 }
+              }
             }
           }
+        }
+        resources2: allContentfulResourceSubsection {
+          edges {
+            node {
+              title
+              resourceSheets {
+                title
+                csvlink
+                optionvalue
+              }
+            }
+          }
+        }
       }
     `)
 
@@ -62,7 +74,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
     response.data.resources.edges.forEach(edge => {
         let resourceMap1 = new Map();
-        if(edge.node.popularSheet != null) {
+        if(edge.node.popularSheet) {
             resourceMap1.set(edge.node.popularSheet.optionvalue, edge.node.popularSheet.csvlink);
         }
         edge.node.resourceSubsections.map(resourceSubsection => {
@@ -79,5 +91,21 @@ exports.createPages = async ({ graphql, actions }) => {
                 resourceMap: Object.fromEntries(resourceMap1),
             },
         })
+    })
+
+    response.data.resources2.edges.forEach(edge => {
+      edge.node.resourceSheets.map(resourceSheet => {
+        let resourceMap2 = new Map();
+        resourceMap2.set(resourceSheet.optionvalue, resourceSheet.csvlink);
+        createPage({
+          path: `/resources/${resourceSheet.optionvalue}`,
+          component: path.resolve(`src/templates/tresource.jsx`),
+          context: {
+              linkslug: resourceSheet.optionvalue,
+              resourceMap: Object.fromEntries(resourceMap2),
+              title: resourceSheet.title
+          },
+        })
+      })
     })
   }

@@ -26,7 +26,7 @@
   --navbar-border-width: 1px;
   --navbar-bg-color: #ffffff;
   --navbar-bg-color-hover: #e5e5e5;
-  --navbar-max-width: 1280px;
+  --navbar-max-width: 1440px;
   --navbar-padding-top-and-bottom: 12px;
   --navbar-padding-sides: 32px;
   --body-max-width: calc(var(--navbar-max-width) - var(--navbar-padding-sides));
@@ -61,8 +61,11 @@ html[data-theme = "dark"]{
   --navbar-bg-color-hover: #202025;
 }
 *:focus {
-  /* Remove Outline after interacting with elements*/
-  outline: 0;
+  outline-offset: -2px;
+  outline-color: var(--font-color);
+  outline-style: solid;
+  outline-width: 2px ;
+  border-radius: 4px;
 }
 body{
   background-color: var(--bg-color);
@@ -373,9 +376,6 @@ button, input, select, label{
 .flex-item-navbar > i{
   font-size: 24px;
 }
-.flex-item-navbar.small{
-  width: 90px;
-}
 .flex-item-padding{
   flex: 1 0 auto;
 }
@@ -461,12 +461,41 @@ input, textarea{
 }
 
 @media (max-width: 768px){
+  .logoimg{
+    max-width: 26px;
+    vertical-align: bottom;
+  }
   .sidenavbutton{
     display: inline-block;
   }
 
   .footer{
-    padding: 8px 0px 8px 0px;
+    padding: 8px 0px calc(64px + var(--navbar-max-height)) 0px;
+  }
+  .navbar-container{
+    position: -webkit-sticky; /* Safari */
+    position: fixed;
+    height: var(--navbar-max-height);
+    width: 100vw;
+    top: auto;
+    bottom: 0;
+    border-top: 2px solid var(--border-color);
+    background-color: var(--navbar-bg-color);
+    z-index: 2;
+  }
+  .flex-item-navbar{
+    flex: 1 0 60px;
+    padding: 8px 0px
+  }
+  .flex-item-navbar > p {
+    margin: 0px;
+    font-size: 16px;
+  }
+  .flex-item-navbar > i{
+    font-size: 24px;
+  }
+  .flex-item-padding {
+    display: none;
   }
 }
 @media (max-width: 360px){

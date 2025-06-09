@@ -255,7 +255,7 @@ const EmptyRow = ({rows}) => {
     )
 }
 
-const Resources = ({map, children}) => {
+const Resources = ({map, title, children}) => {
     const query = useStaticQuery( graphql`
         query AllSheets{
             allContentfulTestAsset(
@@ -303,8 +303,11 @@ const Resources = ({map, children}) => {
             //console.log(localStorage.getItem(initialKey));
 
             // If table does not exist in local storage, show "Loading" text.
-            let initialKey = document.getElementById("category").value;
-            if(!localStorage.getItem(initialKey)){
+            let initialKey = "";
+            if(Object.keys(map)[0]) {
+                initialKey = Object.keys(map)[0]
+            }
+            if(!localStorage.getItem(Object.keys(map)[0])){
                 //console.log("set loading to true");
                 setIsLoading(true);
                 //console.log("isLoading");
@@ -367,22 +370,11 @@ const Resources = ({map, children}) => {
 
     function SelectTable()
     {
-        if(window.location.hash !== "")
-        {
-            document.getElementById("category").value = window.location.hash.split('#')[1];
-            LoadTable(document.getElementById("category").value);
-        }
-        else
-        {
-            document.getElementById("category").selectedIndex = 0;
-            LoadTable(document.getElementById("category").value);
+        if(window.location.href){
+            LoadTable(Object.keys(map)[0]);
         }
     }
 
-    function handleSelectChange(file)
-    {
-        window.location.hash = file;
-    }
     function LoadTable(filename)
     {
         //console.log("Load Table");
@@ -399,7 +391,8 @@ const Resources = ({map, children}) => {
         //console.log(resourceData[filename])
         let link = resourceData[filename];
         let category = document.getElementById("category");
-        setTableName(category.options[category.selectedIndex].text);
+        // setTableName(Object.keys(map)[0]);
+        setTableName(title);
 
         // React-table implementation
         try{
@@ -686,7 +679,7 @@ const Resources = ({map, children}) => {
     }
 
     // View Button
-    const [view,setView] = useState("table");
+    const [view,setView] = useState("list");
     useEffect(() => {
         // Initialize View
         setView(localStorage.getItem("resource-view") !== null ? localStorage.getItem("resource-view") : "table");
@@ -773,21 +766,16 @@ const Resources = ({map, children}) => {
     return(
         <Layout>
             <Seo title="Resources" description="Explore a Database full of game development tools, assets, and services."/>
-
+            <h1 id="tname" className="textcenter">{tableName}</h1>
             <div className="flex-container row limit-width margin-center">
                 <div className="flex-item">
                     <div className="selectbar selectbarRes">
                         <div className="select-flex-container align-items-flex-end">
                             <span className="tableTitle select-flex-item">
-                                Tables:
+                                Filter & Sort:
                             </span>
                             <div className="select-flex-item-padding"/>
                             <ViewButton/>
-                            <select id="category" className="tableSelect select-flex-item" onChange={(e) => {
-                                handleSelectChange(e.target.value);
-                            }}>
-                                {children}
-                            </select>
                             <button className="filterSortButton select-flex-item" onClick={(e) => toggleSidebar()}>
                                 {!filterOpen && <><i className="fas fa-sliders-h"></i>
                                     <span className={"filterButtonText"}> Filter & Sort</span></>
@@ -858,11 +846,10 @@ const Resources = ({map, children}) => {
                     </div>
                 </div>
                 <div className="flex-item-resource-table">
-                    <h1 id="tname" className="textcenter">{tableName}</h1>
                     {isLoading && <LoadingData/>}
 
                     {/* User Submission */}
-                    {tableName.includes("User Submitted") &&
+                    {tableName && tableName.includes("User Submitted") &&
                         <div className={"textcenter"}>
                             <a href={"https://forms.gle/QxW3cnvsN4ikQ9wA9"} target="_blank" rel="noopener noreferrer"
                               className={"button button_submission "}>Submit a Resource</a>
