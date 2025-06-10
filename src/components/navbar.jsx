@@ -38,9 +38,16 @@ const DesktopNav = () => {
 
 function Theme()
 {
-    const [isDarkTheme,setIsDarkTheme] = useState(()=>{if(localStorage.getItem("site-theme")){
-            return true;
-        }});
+    const [isDarkTheme,setIsDarkTheme] = useState(()=>{
+        if (typeof window !== 'undefined') {
+            if(localStorage.getItem("site-theme")){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    });
 
     useEffect(() => {    
         themeMode(isDarkTheme);
@@ -59,9 +66,16 @@ function Theme()
 }
 function ThemeMobile()
 {
-    const [isDarkTheme,setIsDarkTheme] = useState(()=>{if(localStorage.getItem("site-theme")){
-            return true;
-        }});
+    const [isDarkTheme,setIsDarkTheme] = useState(()=>{
+        if (typeof window !== 'undefined') {
+            if(localStorage.getItem("site-theme")){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    });
         
     useEffect(() => {    
         themeMode(isDarkTheme);
