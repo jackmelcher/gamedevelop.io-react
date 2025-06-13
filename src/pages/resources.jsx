@@ -50,7 +50,7 @@ const ResourcePages = () => {
                                             {
                                                 resourceSection.fontawesomeicons.map(fontawesomeicon => {
                                                     return (
-                                                        <img src={fontawesomeicon} key={fontawesomeicon}></img>
+                                                        <img src={fontawesomeicon} key={fontawesomeicon} alt="Section Logo"></img>
                                                     );
                                                 })
                                             }

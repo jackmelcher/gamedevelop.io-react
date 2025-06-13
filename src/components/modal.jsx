@@ -7,7 +7,7 @@ const Modal = ({setModalOpen,name,link}) => {
             <div className={"modal"}>
                 <div>
                     <div className={"inline-block vertical-align"}><img
-                        src="https://img.icons8.com/fluency/48/000000/error.png"/></div>
+                        src="https://img.icons8.com/fluency/48/000000/error.png" alt="Warning"/></div>
                     <div className={"inline-block vertical-align"}>
                         <b>Warning. Unverified URL.</b>
                     </div>

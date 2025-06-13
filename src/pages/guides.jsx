@@ -36,7 +36,7 @@ const Guides = () => {
                                     return(
                                         <div className="guideItem" key={guide.title}>
                                             <div className={"inline-block vertical-align"}>
-                                                <img className={"guideItemImage"} src={guide.image} onError={(e) => {
+                                                <img className={"guideItemImage"} src={guide.image} alt="Guide Section Logo" onError={(e) => {
                                                         e.target.onerror = null;
                                                         e.target.src = "https://ik.imagekit.io/ucxasjyuy/placeholder.png";
                                                     }}>

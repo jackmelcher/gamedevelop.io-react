@@ -24,7 +24,7 @@ const NotFoundPage = () => {
         <Layout>
             <Seo title={data.contentfulPage.title} description={data.contentfulPage.description}/>
             <div className="flex-container">
-                <div class="home" dangerouslySetInnerHTML={{
+                <div className="home" dangerouslySetInnerHTML={{
                         __html: data.contentfulPage.body.childMarkdownRemark.html,
                     }}/>
             </div>

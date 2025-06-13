@@ -449,15 +449,7 @@ input, textarea{
   cursor: text;
 }
 @media (max-width: 1160px){
-  .navbar-desktop{
-    display: none;
-  }
-  .navbar-mobile{
-    display: flex;
-  }
-  .navbar-collapsed .navbar-button{
-    border-bottom: 1px solid var(--border-color);
-  }
+
 }
 
 @media (max-width: 768px){
@@ -471,6 +463,18 @@ input, textarea{
 
   .footer{
     padding: 8px 0px calc(64px + var(--navbar-max-height)) 0px;
+  }
+  .navbar{
+    display: none;
+  }
+  .navbar-desktop{
+    display: none;
+  }
+  .navbar-mobile{
+    display: flex;
+  }
+  .navbar-collapsed .navbar-button{
+    border-bottom: 1px solid var(--border-color);
   }
   .navbar-container{
     position: -webkit-sticky; /* Safari */

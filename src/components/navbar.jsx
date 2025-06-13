@@ -36,18 +36,24 @@ const DesktopNav = () => {
     );
 }
 
+const GetSystemTheme = () => {
+    if(CheckLocalStorage())
+        return (CheckLocalStorage() === "dark")
+    if (typeof window !== 'undefined')
+        return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return false
+}
+
+const CheckLocalStorage = () => {
+    if (typeof window !== 'undefined') {
+        return localStorage.getItem("site-theme")
+    }
+    return null
+}
+
 function Theme()
 {
-    const [isDarkTheme,setIsDarkTheme] = useState(()=>{
-        if (typeof window !== 'undefined') {
-            if(localStorage.getItem("site-theme")){
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-    });
+    const [isDarkTheme,setIsDarkTheme] = useState(GetSystemTheme());
 
     useEffect(() => {    
         themeMode(isDarkTheme);
@@ -64,18 +70,11 @@ function Theme()
         </button>
     );
 }
+
 function ThemeMobile()
 {
-    const [isDarkTheme,setIsDarkTheme] = useState(()=>{
-        if (typeof window !== 'undefined') {
-            if(localStorage.getItem("site-theme")){
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-    });
+
+    const [isDarkTheme,setIsDarkTheme] = useState(GetSystemTheme());
         
     useEffect(() => {    
         themeMode(isDarkTheme);
@@ -110,7 +109,7 @@ function themeMode(isDarkTheme)
     }
     else {
         htmlTag.removeAttribute("data-theme");
-        localStorage.removeItem("site-theme");
+        localStorage.setItem("site-theme", "light");
     }
 }
 
@@ -152,7 +151,7 @@ const About = () => {
 const ResourcesMobile = () => {
     return(
         <Link to="/resources/" className="navbar-button flex-item-navbar mobile">
-            <i class="fas fa-database"></i>
+            <i className="fas fa-database"></i>
             <p>Resources</p>
         </Link>
     )
@@ -160,7 +159,7 @@ const ResourcesMobile = () => {
 const GuidesMobile = () => {
     return(
         <Link to="/guides/" className="navbar-button flex-item-navbar mobile">
-            <i class="fas fa-file-alt"></i>
+            <i className="fas fa-file-alt"></i>
             <p>Guides</p>
         </Link>
     )
@@ -168,7 +167,7 @@ const GuidesMobile = () => {
 const AboutMobile = () => {
     return(
         <Link to="/about/" className="navbar-button flex-item-navbar mobile">
-            <i class="fas fa-info-circle"></i>
+            <i className="fas fa-info-circle"></i>
             <p>About</p>
         </Link>
     )

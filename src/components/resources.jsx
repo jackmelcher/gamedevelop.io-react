@@ -97,13 +97,6 @@ const Image = ({source, bCustomImage=false, CustomImageString=""}) => {
         :<img src={"https://www.google.com/s2/favicons?sz=32&domain_url="+source} className ={"tableimg"} onError={ (e) => {replaceImgOnError (e.target)}} alt={"Icon"}/>
     );
 
-    function GetFavicon(url)
-    {
-        // Split trailing url info
-        url = url.split('/');
-        console.log(url[0]+url[1]+url[2]);
-        return url[0]+url[1]+url[2]+"/favicon.ico";
-    }
     function GetImageName(url)
     {
         // Remove Http
@@ -123,15 +116,6 @@ const Image = ({source, bCustomImage=false, CustomImageString=""}) => {
             img.src = "https://ik.imagekit.io/ucxasjyuy/placeholder.png?tr=w-32";
         }
     }
-}
-
-const GlobalFilter = ({ filter, setFilter }) => {
-    return(
-        <div>
-            <div className="filtername bold">Search: {" "}</div>
-            <input className="globalSearch" value={filter || ""} onChange={(e) => {setFilter(e.target.value);{/*setTimeout(()=>{FilterTable();},100);*/} }}/>
-        </div>
-    );
 }
 
 const GlobalFilterAsync = ({ filter, setFilter }) => {
