@@ -448,9 +448,6 @@ input, textarea{
   border-radius: 2px;
   cursor: text;
 }
-@media (max-width: 1160px){
-
-}
 
 @media (max-width: 768px){
   .logoimg{
