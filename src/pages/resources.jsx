@@ -59,7 +59,7 @@ const ResourcePages = () => {
                                                     return (
                                                         resourceSubsection.resourceSheets.map(resourceSheet => {
                                                             return (
-                                                                <div>
+                                                                <div key={resourceSheet.optionvalue}>
                                                                 <Link to={`/resources/${resourceSheet.optionvalue}/`}>{resourceSheet.title}</Link>
                                                                 </div>
                                                             );

@@ -4,6 +4,9 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
+import '@fortawesome/fontawesome-free/css/all.css'
+import "@fontsource/roboto-slab";
+import "@fontsource/roboto-slab/600.css"; // Specify weight
 import "../css/home.css"
 
 const IndexPage = () => {

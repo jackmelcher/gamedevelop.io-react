@@ -374,7 +374,6 @@ const Resources = ({map, title, children}) => {
         //console.log(filename)
         //console.log(resourceData[filename])
         let link = resourceData[filename];
-        let category = document.getElementById("category");
         // setTableName(Object.keys(map)[0]);
         setTableName(title);
 
@@ -752,7 +751,7 @@ const Resources = ({map, title, children}) => {
             <Seo title="Resources" description="Explore a Database full of game development tools, assets, and services."/>
             <h1 id="tname" className="textcenter">{tableName}</h1>
             <div className="flex-container row limit-width margin-center">
-                <div className="flex-item">
+                <div>
                     <div className="selectbar selectbarRes">
                         <div className="select-flex-container align-items-flex-end">
                             <span className="tableTitle select-flex-item">
@@ -891,46 +890,45 @@ const Resources = ({map, title, children}) => {
                         {view === "grid" && <div {...getTableProps()} id={"myTable"}>
                             <div {...getTableBodyProps()} className="grid-container">
                                 {
-                                    page.map((row, index) => {
+                                    page.map((row) => {
                                         prepareRow(row)
                                         return (
-                                            <>
-                                                <div {...row.getRowProps()} className="grid-item">
-                                                    {row.cells.map((cell, index) => {
-                                                        if (index === 1) {
-                                                            return (
-                                                                <div key={cell.render('Cell')}>
-                                                                    <div {...row.cells[index-1].getCellProps()} className="entry-image grid">
-                                                                        {row.cells[index-1].render('Cell')}
-                                                                    </div>
-                                                                    <div {...cell.getCellProps()}
-                                                                         className="entry-name-grid">
-                                                                        {cell.render('Cell')}
-                                                                    </div>
+                                            <div {...row.getRowProps()} className="grid-item" key={row.id}>
+                                                {row.cells.map((cell, index) => {
+                                                    if (index === 1) {
+                                                        return (
+                                                            <div key={index}>
+                                                                <div {...row.cells[index-1].getCellProps()} className="entry-image grid">
+                                                                    {row.cells[index-1].render('Cell')}
                                                                 </div>
-                                                            )
-                                                        }
-                                                        if (index > 1 && index < row.cells.length - 1) {
-                                                            //console.log(cell.render('Cell').props.value)
-                                                            return (
-                                                                cell.render('Cell').props.value !== "" &&
-                                                                <span {...cell.getCellProps()}
-                                                                      className={"entry-chip chip-color"}>
-                                                                    {cell.render('Cell')}
-                                                                </span>
-                                                            )
-                                                        }
-                                                        if(index === row.cells.length - 1){
-                                                            return (
                                                                 <div {...cell.getCellProps()}
-                                                                     className="entry-description">
+                                                                        className="entry-name-grid">
                                                                     {cell.render('Cell')}
                                                                 </div>
-                                                            )
-                                                        }
-                                                    })}
-                                                </div>
-                                            </>
+                                                            </div>
+                                                        )
+                                                    }
+                                                    if (index > 1 && index < row.cells.length - 1) {
+                                                        return (
+                                                            cell.render('Cell').props.value !== "" &&
+                                                            <span {...cell.getCellProps()}
+                                                                key={index}
+                                                                className={"entry-chip chip-color"}>
+                                                                {cell.render('Cell')}
+                                                            </span>
+                                                        )
+                                                    }
+                                                    if(index === row.cells.length - 1){
+                                                        return (
+                                                            <div {...cell.getCellProps()}
+                                                                key={index}
+                                                                className="entry-description">
+                                                                {cell.render('Cell')}
+                                                            </div>
+                                                        )
+                                                    }
+                                                })}
+                                            </div>
                                         )
                                     })
                                 }
@@ -941,57 +939,46 @@ const Resources = ({map, title, children}) => {
                         {(view === "list") && <div {...getTableProps()} id={"myTable"}>
                             <div {...getTableBodyProps()} className="flex-container column wrap list-container">
                                 {
-                                    page.map((row, index) => {
+                                    page.map((row) => {
                                         prepareRow(row)
                                         return (
-                                            <>
-                                                <div {...row.getRowProps()} className="flex-list-item">
-                                                    {row.cells.map((cell, index) => {
-                                                        if (index === 1) {
-                                                            return (
-                                                                <div>
-                                                                    <div {...row.cells[index-1].getCellProps()} className="entry-image">
-                                                                        {row.cells[index-1].render('Cell')}
-                                                                    </div>
-                                                                    <div {...cell.getCellProps()}
-                                                                         className="entry-name">
-                                                                        {cell.render('Cell')}
-                                                                    </div>
+                                            <div {...row.getRowProps()} className="flex-list-item" key={row.id}>
+                                                {row.cells.map((cell, index) => {
+                                                    if (index === 1) {
+                                                        return (
+                                                            <div key={index}>
+                                                                <div {...row.cells[index-1].getCellProps()} className="entry-image">
+                                                                    {row.cells[index-1].render('Cell')}
                                                                 </div>
-                                                            )
-                                                        }
-                                                        if (index === 1) {
-                                                            return (
-                                                                <>
-                                                                    <div {...cell.getCellProps()}
-                                                                         className="entry-name">
-                                                                        {cell.render('Cell')}
-                                                                    </div>
-                                                                    <br/>
-                                                                </>
-                                                            )
-                                                        }
-                                                        if (index > 1 && index < row.cells.length - 1) {
-                                                            return (
-                                                                cell.render('Cell').props.value !== "" &&
-                                                                <span {...cell.getCellProps()}
-                                                                      className={"entry-chip chip-color"}>
-                                                                    {cell.render('Cell')}
-                                                                </span>
-                                                            )
-                                                        }
-                                                        if(index === row.cells.length - 1){
-                                                            return (
                                                                 <div {...cell.getCellProps()}
-                                                                     className="entry-description">
+                                                                    className="entry-name">
                                                                     {cell.render('Cell')}
                                                                 </div>
-                                                            )
-                                                        }
+                                                            </div>
+                                                        )
+                                                    }
+                                                    if (index > 1 && index < row.cells.length - 1) {
+                                                        return (
+                                                            cell.render('Cell').props.value !== "" &&
+                                                            <span {...cell.getCellProps()}
+                                                                key={index}
+                                                                className={"entry-chip chip-color"}>
+                                                                {cell.render('Cell')}
+                                                            </span>
+                                                        )
+                                                    }
+                                                    if(index === row.cells.length - 1){
+                                                        return (
+                                                            <div {...cell.getCellProps()}
+                                                                key={index}
+                                                                className="entry-description">
+                                                                {cell.render('Cell')}
+                                                            </div>
+                                                        )
+                                                    }
 
-                                                    })}
-                                                </div>
-                                            </>
+                                                })}
+                                            </div>
                                         )
                                     })}
                             </div>

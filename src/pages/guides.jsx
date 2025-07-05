@@ -29,7 +29,7 @@ const Guides = () => {
             {
                 data.contentfulGuidesHome.guideSections.map(guideSection => {
                     return[
-                        <div className="guideSection">
+                        <div className="guideSection" key={guideSection.title}>
                             <div className="guideSectionHeader">{guideSection.title}</div>
                             {
                                 guideSection.guides.map(guide=>{

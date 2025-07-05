@@ -15,17 +15,20 @@
     font-size: clamp(24px,8vh,48px);
     margin-bottom: 16px;
     font-family: "Roboto Slab";
+    font-weight: bold;
     color: var(--secondary-color);
 }
 .homeSubHeader{
     font-size: clamp(18px,7vh,36px);
     margin-bottom: 16px;
     font-family: "Roboto Slab";
+    font-weight: bold;
     color: var(--secondary-color);
 }
 .homeSectionHeader{
     font-family: "Roboto Slab";
     font-size: clamp(28px,2vw,32px);
+    font-weight: bold;
     margin-bottom: 16px;
 }
 .homeHeaderBackground{

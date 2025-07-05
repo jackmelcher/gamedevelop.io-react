@@ -10,7 +10,7 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function Seo({ description, lang, meta, title, children }) {
+function Seo({ description=``, lang=`en`, meta=[], title, children }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -91,24 +91,9 @@ function Seo({ description, lang, meta, title, children }) {
       ].concat(meta)}
     >
       {children}
-      <link rel="preconnect" href="https://fonts.googleapis.com"/>
-      <link rel="preconnect" href="https://fonts.gstatic.com"/>
       <link rel="preconnect" href="https://img.icons8.com"/>
-      <link rel="preconnect" href="https://kit.fontawesome.com"/>
-
-      <link rel="preload" href="https://kit.fontawesome.com/00abf3a6fb.js" crossorigin="anonymous" as="script"/>
-      <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap" crossorigin="anonymous" as="stylesheet"/>
-
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap"/>
-      <script src="https://kit.fontawesome.com/00abf3a6fb.js" crossorigin="anonymous"></script>
     </Helmet>
   )
-}
-
-Seo.defaultProps = {
-  lang: `en`,
-  meta: [],
-  description: ``,
 }
 
 Seo.propTypes = {
