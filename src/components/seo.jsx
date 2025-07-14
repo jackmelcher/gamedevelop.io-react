@@ -92,6 +92,9 @@ function Seo({ description=``, lang=`en`, meta=[], title, children }) {
     >
       {children}
       <link rel="preconnect" href="https://img.icons8.com"/>
+      <link rel="preconnect" href="https://www.google.com/s2/favicons"/>
+      <link rel="preconnect" href="https://t0.gstatic.com/faviconV2"/>
+      <link rel="preconnect" href="https://ik.imagekit.io"/>
     </Helmet>
   )
 }

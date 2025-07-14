@@ -25,11 +25,20 @@ export const query = graphql`
             }
             resourcenames
             resourcelinks
+            updatedAt
+            createdAt
         }
     }
 `
 
 const Guides = (props) => {
+    const createdDate = new Date(props.data.contentfulGuide.createdAt)
+    const updatedDate = new Date(props.data.contentfulGuide.updatedAt)
+    const options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    };
 
     return(
         <Layoutg>
@@ -45,6 +54,9 @@ const Guides = (props) => {
                     <h1 className={"guideItemTextBlock vertical-align"}>
                         {props.data.contentfulGuide.title}
                     </h1>
+                    <div className="updatedDate">
+                        Last Updated: {updatedDate.toLocaleDateString('en-US',options).toString()}
+                    </div>
                 </div>
             }
             {
@@ -81,6 +93,9 @@ const Guides = (props) => {
                     )
                 })
             }
+            <div className="publishedDate">
+                Originally Published: {createdDate.toLocaleDateString('en-US',options).toString()}
+            </div>
         </Layoutg>
     );
 }

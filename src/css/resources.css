@@ -550,12 +550,13 @@ td:nth-child(2){
     border-right: 0px;
   }
   .grid-container{
-    grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(50%, 0fr));
     grid-gap: 0px;
   }
   .grid-item{
     border-radius: 0;
     background-color: var(--bg-color);
+    padding: 8px;
   }
   .grid-item:nth-child(n){
     border-left: 0;

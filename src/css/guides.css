@@ -62,8 +62,6 @@ html[data-theme = "dark"]{
     font-weight: bold;
     margin-left: 10px;
 }
-.guidelink-container{
-}
 .guidelink{
     font-size: 18px;
     font-weight: bold;
@@ -116,11 +114,27 @@ li{margin-bottom: 12px;}
     max-height: 80px;
     max-width: 90%;
 }
-
+.guideLogoImage {
+    height: 32px;
+    padding-right: 4px;
+    vertical-align: middle;
+    image-rendering: pixelated;
+}
 .guide-container{
     margin: var(--body-margin);
     justify-content: center;
     max-width: 800px;
+}
+.publishedDate {
+    padding-top: 32px;
+    color: var(--footer-color);
+}
+.updatedDate {
+    padding-top: 4px;
+    color: var(--footer-color);
+}
+hr {
+    border-color: var(--footer-color);
 }
 .guide{
     max-width: calc(var(--body-max-width) - var(--sidenavGuide-width));
@@ -135,7 +149,7 @@ li{margin-bottom: 12px;}
 }
 .guide > div > .guideimg {
     text-align: center;
-    background-color: var(--bg-img-color);
+    /* background-color: var(--bg-img-color); */
     margin-top: 0.5em;
 }
 .guide > div > .guideimg > a{

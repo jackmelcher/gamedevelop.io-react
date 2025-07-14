@@ -71,7 +71,6 @@ exports.createPages = async ({ graphql, actions }) => {
       })
     })
 
-
     response.data.resources.edges.forEach(edge => {
         let resourceMap1 = new Map();
         if(edge.node.popularSheet) {
