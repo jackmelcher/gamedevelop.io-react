@@ -518,6 +518,7 @@ tr:last-child > td:last-child {
     padding: var(--selectbarRes-padding);
     border-right: 0px;
     width: calc(100vw - 2*var(--selectbarRes-padding));
+    z-index: 2;
   }
   .selectbar *{
     font-size: 18px;
