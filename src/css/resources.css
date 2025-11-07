@@ -84,6 +84,10 @@ input[type="checkbox"]:disabled + label {
 .resource_sheets_lists{
   font-size: 20px;
 }
+.resource_sheets_lists>*>img{
+  vertical-align: middle;
+  padding-right: 4px;
+}
 .resource_sheets_lists>div{
   padding-top: 16px;
   padding-bottom: 16px;
@@ -452,6 +456,17 @@ tr:last-child > td:last-child {
   }
 }
 @media (max-width: 768px) {
+  .flex-container.rs-container-gap{
+    row-gap: 32px;
+  }
+  .flex-item-resources-inner{
+    padding: 0;
+    background-color:var(--bg-color)
+  }
+  .resource_sheets_lists>div{
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
   #myTable th:first-child {
     border-top-left-radius: 0px;
   }

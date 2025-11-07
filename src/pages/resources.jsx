@@ -14,12 +14,12 @@ const ResourcePages = () => {
                   contentfulRecources {
                     resourceSections {
                       title
-                      fontawesomeicons
                       linkslug
                       resourceSubsections{
                             resourceSheets {
-                            title
-                            optionvalue
+                                title
+                                optionvalue
+                                icon
                             }
                         }
                     }
@@ -43,24 +43,17 @@ const ResourcePages = () => {
                               return (
                                   <div to={`/resources/${resourceSection.linkslug}/`}
                                         className="button flex-item-resources-inner" key={resourceSection.linkslug}>
-                                      <div className={"flex-container column justify-content-space-between flex-padding-rs"}>
+                                      <div className={"flex-container column"}>
                                             <h3>{resourceSection.title}</h3>
-                                            <div className={"flex-item-padding"}></div>
                                             <div className={"resource_sheets_lists"}>
                                             {
-                                                resourceSection.fontawesomeicons.map(fontawesomeicon => {
-                                                    return (
-                                                        <img src={fontawesomeicon} key={fontawesomeicon} alt="Section Logo"></img>
-                                                    );
-                                                })
-                                            }
-                                            {
-                                                resourceSection.resourceSubsections.map(resourceSubsection => {
+                                                resourceSection.resourceSubsections.map((resourceSubsection,index) => {
                                                     return (
                                                         resourceSubsection.resourceSheets.map(resourceSheet => {
                                                             return (
                                                                 <div key={resourceSheet.optionvalue}>
-                                                                <Link to={`/resources/${resourceSheet.optionvalue}/`}>{resourceSheet.title}</Link>
+                                                                    <img src={resourceSheet.icon}></img>
+                                                                    <Link to={`/resources/${resourceSheet.optionvalue}/`}>{resourceSheet.title}</Link>
                                                                 </div>
                                                             );
                                                         })
