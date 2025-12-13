@@ -509,7 +509,7 @@ tr:last-child > td:last-child {
   .selectbar{
     position: fixed;
     top: auto;
-    bottom: calc(3px + var(--navbar-max-height));
+    bottom: calc(2px + var(--navbar-max-height));
     margin: 0;
     border-radius: 0;
     border: 0;
