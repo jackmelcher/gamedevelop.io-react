@@ -1,0 +1,46 @@
+{
+  "version": "5",
+  "remote": {
+    "https://edge.netlify.com/": "fd941d61d88673d5f28aab283fb86fcc50f08a3bc80ee5470498fcfa88c65cfb",
+    "https://edge.netlify.com/bootstrap/config.ts": "6a2ce0e544e15e8f8883a5c18da5948e37fd0f2619f68cb31f3af53c51817025",
+    "https://edge.netlify.com/bootstrap/context.ts": "72496497b40d9e808f419efc764ecb438952a32f61ed94cd54952fc59f17f69d",
+    "https://edge.netlify.com/bootstrap/cookie.ts": "8b0baae708989ca183c6f3b4ab3d029e6abcbc2e43f93edeb0ff447b3bbc3a05",
+    "https://edge.netlify.com/bootstrap/edge_function.ts": "b8253e86aa83c67341f5cfedeba5049d77fbf84dcab7eceff7566b7728ae9b39",
+    "https://edge.netlify.com/bootstrap/globals/types.ts": "eaa6148ded3121d8dee62dd91c86e7fe76601df0f3ca8d7962243a30f4c8935f"
+  },
+  "workspace": {
+    "packageJson": {
+      "dependencies": [
+        "npm:@fontsource/roboto-slab@^5.2.6",
+        "npm:@fortawesome/fontawesome-free@^6.7.2",
+        "npm:axios@~0.21.4",
+        "npm:contentful@^8.5.8",
+        "npm:gatsby-plugin-compile-es6-packages@^2.1.1",
+        "npm:gatsby-plugin-image@^3.14.0",
+        "npm:gatsby-plugin-manifest@^5.14.0",
+        "npm:gatsby-plugin-sharp@^5.14.0",
+        "npm:gatsby-source-contentful@^8.15.0",
+        "npm:gatsby-source-filesystem@^5.14.0",
+        "npm:gatsby-transformer-remark@^6.14.0",
+        "npm:gatsby-transformer-sharp@^5.14.0",
+        "npm:gatsby@^5.14.3",
+        "npm:get-website-favicon@^0.0.7",
+        "npm:graphql@16",
+        "npm:pg@^8.16.0",
+        "npm:prettier@2.2.1",
+        "npm:prop-types@^15.8.1",
+        "npm:react-collapsible@^2.10.0",
+        "npm:react-dom@^18.3.1",
+        "npm:react-google-recaptcha@^2.1.0",
+        "npm:react-helmet@^6.1.0",
+        "npm:react-hook-form@^7.56.4",
+        "npm:react-papaparse@^3.18.2",
+        "npm:react-table@^7.8.0",
+        "npm:react@18",
+        "npm:serverless-postgres@^1.10.3",
+        "npm:stream-browserify@3",
+        "npm:typescript@^4.9.5"
+      ]
+    }
+  }
+}

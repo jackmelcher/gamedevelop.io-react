@@ -91,8 +91,19 @@
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.7);
 }
 
-@media (max-width: 768px){
+@media (max-width: 450px){
     .homeLandingSection{
-        padding: 0px;
+        height: 80vh;
+        padding: 10vh 0;
+    }
+    .homeLandingSection > div:nth-child(1){
+        font-size: clamp(24px,12vw,36px);
+    }
+    .homeLandingSection > div:nth-child(3){
+        font-size: clamp(18px,7vw,28px);
+        padding: 0px 8px;
+    }
+    .homeHeaderButton{
+        margin-bottom: 16px;
     }
 }

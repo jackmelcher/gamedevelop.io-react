@@ -86,7 +86,7 @@ html[data-theme = "dark"]{
     font-family: "Roboto Slab";
 }
 .guideItem{
-    margin-bottom: 32px;
+    padding-bottom: 32px;
 }
 .guideItemImage{
     height: auto;
@@ -278,4 +278,30 @@ hr {
         margin: 0px !important;
         width: 100% !important;
     }
-  }
+}
+
+@media (max-width: 450px) {
+    .guideSection {
+        margin-bottom: 16px;
+    }
+    .guideSectionHeader {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+    .guideItem{
+        padding-bottom: 8px;
+    }
+    .guideItemImage{
+        height: auto;
+        width: 24px;
+        min-width: 0px;
+    }
+    .guideItemLink {
+        color: var(--link-color);
+        font-size: 16px;
+        font-weight: normal;
+    }
+    .guideImage {
+        max-height: 48px;
+    }
+}

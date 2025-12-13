@@ -46,7 +46,7 @@ const Guides = (props) => {
             {
                 <div className="guideItem">
                     <div className={"inline-block vertical-align"}>
-                        <img className={"guideItemImage"} src={props.data.contentfulGuide.image} alt={"Decorative Icon"} onError={(e) => {
+                        <img className={"guideImage"} src={props.data.contentfulGuide.image} alt={"Decorative Icon"} onError={(e) => {
                             e.target.onerror = null;
                             e.target.src = "https://ik.imagekit.io/ucxasjyuy/placeholder.png";
                         }}/>
@@ -70,26 +70,26 @@ const Guides = (props) => {
                 props.data.contentfulGuide.resourcelinks && 
                 props.data.contentfulGuide.resourcelinks.map((resourcelink, index1) => {
                     return (
-                        <p>
+                        <div key={index1}>
                             <Link to={`/resources/${resourcelink}`}>
                             {
                                 props.data.contentfulGuide.resourcenames.map((resourcename,index2) => {
                                     if(index1 === index2)
                                     {
                                         return (
-                                            <>
-                                            {resourcename}
-                                            </>
+                                            <p key={index2}>
+                                                {resourcename}
+                                            </p>
                                         )
                                     }
                                     else
                                     {
-                                        return (<></>);
+                                        return (<p key={index2}></p>);
                                     }
                                 })
                             }
                             </Link>
-                        </p>
+                        </div>
                     )
                 })
             }

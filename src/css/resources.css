@@ -146,7 +146,7 @@ input[type="checkbox"]:disabled + label {
   font-weight: bold;
 }*/
 .entry-name{
-  font-size: clamp(20px,3vw,28px);
+  font-size: clamp(24px,3vw,28px);
   vertical-align: middle;
   padding: 8px;
   padding-right: 0;
@@ -246,7 +246,6 @@ input[type="checkbox"]:disabled + label {
   padding: 16px;
   top: calc(var(--navbar-max-height) + var(--navbar-border-width));
   width: var(--rsidenav-width);
-  /*height: var(--selectbarRes-height);*/
   border: var(--selectbarRes-border-width) solid var(--side-border-color);
   border-bottom: 0px;
   border-top-left-radius: var(--side-border-radius);
@@ -376,8 +375,8 @@ tr:last-child > td:last-child {
   border-bottom-right-radius: 10px;
 }
 #myTable i{
-  font-size: 16pt;
-  padding: 2px;
+  font-size: 18px;
+  padding: 0px 4px;
 }
 #myTable td:nth-child(2){
   font-size: 14pt;
@@ -510,7 +509,7 @@ tr:last-child > td:last-child {
   .selectbar{
     position: fixed;
     top: auto;
-    bottom: calc(0px + var(--navbar-max-height));
+    bottom: calc(3px + var(--navbar-max-height));
     margin: 0;
     border-radius: 0;
     border: 0;
@@ -671,4 +670,30 @@ tr:last-child > td:last-child {
   #myTable td:nth-child(n + 3):nth-last-child(n+1){
     display: none;
   }
+}
+@media (max-width: 450px) {
+  .flex-container.rs-container-gap{
+    row-gap: 16px;
+  }
+  .resource_sheets_lists{
+  font-size: 16px;
+  }
+  .resource_sheets_lists>*>img{
+    vertical-align: middle;
+    padding-right: 4px;
+    height: 24px;
+  }
+  .resource_sheets_lists>div{
+    padding-bottom: 8px;
+  }
+  .resource_sheets_lists>*>a{
+    text-decoration: underline;
+  }
+  .resource_sheets_lists>*>a:hover{
+    text-decoration-color: var(--primary-color-v);
+  }
+  #myTable i{
+  font-size: 16px;
+  padding: 0px 4px;
+}
 }
