@@ -676,12 +676,12 @@ tr:last-child > td:last-child {
     row-gap: 16px;
   }
   .resource_sheets_lists{
-  font-size: 16px;
+  font-size: 20px;
   }
   .resource_sheets_lists>*>img{
     vertical-align: middle;
     padding-right: 4px;
-    height: 24px;
+    height: 32px;
   }
   .resource_sheets_lists>div{
     padding-bottom: 8px;
