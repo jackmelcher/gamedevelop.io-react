@@ -241,18 +241,18 @@ const EmptyRow = ({rows}) => {
 
 const Resources = ({map, title, children}) => {
     const query = useStaticQuery( graphql`
-        query AllSheets{
+        query AllSheets {
             allContentfulTestAsset(
-                filter: {optionvalue: {regex: "/^(?!pop).+/", nin: ["userSubmitted","global"]}}
-                sort: {fields: optionvalue}
-              ) {
+                filter: {optionvalue: {regex: "/^(?!pop).+/", nin: ["userSubmitted", "global"]}}
+                sort: {optionvalue: ASC}
+            ) {
                 edges {
-                  node {
+                node {
                     optionvalue
                     csvlink
-                  }
                 }
-              }
+                }
+            }
         }
     `);
 

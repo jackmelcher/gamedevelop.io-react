@@ -77,7 +77,7 @@ html[data-theme = "dark"]{
     margin: 0px;
 }
 .guideSection {
-    margin-bottom: 64px;
+    margin-bottom: 32px;
 }
 .guideSectionHeader {
     font-size: 28px;
@@ -87,6 +87,9 @@ html[data-theme = "dark"]{
 }
 .guideItem{
     padding-bottom: 32px;
+}
+.guideImage {
+    max-height: 64px;
 }
 .guideItemImage{
     height: auto;
