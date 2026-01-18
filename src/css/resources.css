@@ -672,9 +672,6 @@ tr:last-child > td:last-child {
   }
 }
 @media (max-width: 450px) {
-  .flex-container.rs-container-gap{
-    row-gap: 16px;
-  }
   .resource_sheets_lists{
   font-size: 20px;
   }
